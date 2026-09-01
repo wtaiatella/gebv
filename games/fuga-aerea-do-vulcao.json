@@ -1,0 +1,87 @@
+{
+   "games": [
+      {
+         "nome": "", //nome da ativiade a se fazer
+         "tempo_estimado": "20 minutos", //tempo estimado para realizar a ativiade
+         "ramos": [ // ramos de escoteiros aptos a fazer a atividade
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [ // areas de desenvolvimento que a atividade trabalha
+            "Cognitiva",
+            "Física",
+            "Emocional",
+            "Social",
+            "Espiritual"
+         ],
+         "tipos_atividade": [ //onde essa atividade pode ser aplicada
+            "Jogos de sede",
+            "Acampamento",
+            "Quebra gelo",
+            "Local fechado",
+            "Local ao ar livre"
+         ],
+         "modalidades":
+         // Basico, atividades em geral
+         // Ar, são atividade geralmente aereas ou que envolvem tecnicas de base aerea, aviões, 
+         // Mar, atividade aquaticas que normalemnte exigem um lago, prai, piscina
+         [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Corda de sisal",
+            "Várias folhas de papel (sulfite, tipo 'chamex')",
+            "Cronômetro ou relógio"
+         ],
+         "contexto_historia": "fundo de cana para criar o ambiente da atividade",
+         "objetivo": "O objetivo do jogo",
+         "preparacao_e_regras": [
+            "etapas e regras a seguir durante o jogo / atividade"
+         ],
+         "observacoes_dicas": "Dicas ao executor..."
+      },
+      //exemplo
+      {
+         "nome": "Fuga Aérea do Vulcão",
+         "tempo_estimado": "20 minutos",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Emocional",
+            "Social",
+            "Espiritual"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Quebra gelo"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Corda de sisal",
+            "Várias folhas de papel (sulfite, tipo 'chamex')",
+            "Cronômetro ou relógio"
+         ],
+         "contexto_historia": "A história se passa em uma ilha onde um vulcão entrou em erupção e a população foi pega de surpresa. As águas estão em chamas e não se pode fugir da ilha de barco. Para isso terão de construir aviões artesanais para tentarem escapar o mais rápido possível. No céu há uma nuvem tóxica por todos os lados. Mas há uma brecha nessas nuvens, onde os pilotos mais audazes tentarão entrar para escapar da morte (o quadrado de sisal).",
+         "objetivo": "O objetivo deste jogo é que as patrulhas delimitem funções a cada membro para um melhor aproveitamento do tempo de construção e decolagem dos aviões. Assim poderemos observar o entrosamento, cooperação e intelecto da tropa ao se depararem com resolução de problemas imediatos.",
+         "preparacao_e_regras": [
+            "Entre dois troncos de árvore, construa um quadrado de mais ou menos 50 centímetros com as cordas de sisal (suspenso no ar a um metro e meio do chão).",
+            "A 5 metros de distância deste quadrado trace uma linha no solo, que servirá de cabeceira de decolagem.",
+            "Cada patrulha terá mais ou menos três minutos para construir aviões de papel e lançá-los através do quadrado de sisal.",
+            "Os aviões lançados não poderão mais ser utilizados.",
+            "Vence a patrulha que conseguir atravessar mais aviões pelo quadrado de sisal."
+         ],
+         "observacoes_dicas": "Não diga às patrulhas que eles devem delimitar funções e nem como construir suas estratégias. Na maioria dos casos, o que se vê é o “cada um por si” nas patrulhas. Será que com vocês será diferente?"
+      }
+   ]
+}

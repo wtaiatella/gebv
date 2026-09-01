@@ -1,0 +1,825 @@
+{
+   "games": [
+      {
+         "nome": "Posto de Trocas Canadense",
+         "tempo_estimado": "1 a 2 horas (ou duração de uma reunião / módulo de acampamento)",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Cédulas de dinheiro fictício (ex: 'Garça Real' G$ 1,00, G$ 2,00, G$ 5,00, G$ 10,00 e G$ 20,00)",
+            "Passaporte para cada Patrulha com tabelas de tarefas e vistos",
+            "Cartões ou envelopes com desafios e tarefas de técnicas escoteiras",
+            "Itens para a Taberna Canadense (guloseimas, frutas, biscoitos, refrigerante/suco)",
+            "Materiais para as bases técnicas (cordas, bastões, caixas de fósforo, bússolas, mapas, kits de primeiros socorros)"
+         ],
+         "contexto_historia": "Como todos sabem, o Canadá é um país frio, com grandes áreas que ficam cobertas de neve durante todo o inverno. Neste período há pouca caça e a pesca torna-se muito difícil, pois os rios e lagos ficam congelados. Os caçadores então se alojam em seus chalés e vivem quase isolados, trabalhando no preparo de peles e artesanato. Com o início da primavera, o gelo derrete e os caçadores levam seus produtos até o 'Posto de Trocas Canadense' da Companhia da Baía de Hudson para comercializar, ganhar dinheiro da época e adquirir provisões e guloseimas na Taberna Canadense.",
+         "objetivo": "Ensinar e avaliar técnicas e habilidades escoteiras, liderança, coordenação motora, memória, capacidade de trabalhar em grupo, administração de recursos e espírito de equipe através do sistema de patrulhas.",
+         "preparacao_e_regras": [
+            "O Chefe monta o 'Posto de Trocas' central (banco/administração) e distribui diversas bases de desafios técnicos pelo campo ou sede.",
+            "Cada Patrulha recebe um Passaporte e uma quantia inicial de dinheiro fictício para taxas ou compras.",
+            "As patrulhas percorrem as bases executando tarefas técnicas (nós e amarras, primeiros socorros, fogo mateiro, rastreamento, orientação por bússola, código morse/semáfora, etc.).",
+            "Ao cumprir a tarefa com sucesso e qualidade, o chefe da base assina o passaporte e efetua o pagamento em dinheiro do jogo de acordo com o desempenho.",
+            "Com o dinheiro arrecadado, as patrulhas podem consumir itens na 'Taberna Canadense', pagar pedágios ou investir em novos desafios.",
+            "Vence a patrulha que cumprir o maior número de tarefas com excelência e acumular mais recursos/pontos no encerramento."
+         ],
+         "observacoes_dicas": "O valor pedagógico desta atividade é altíssimo. Permite testar todo o currículo de progressão da tropa de forma dinâmica e lúdica. O escotista deve calibrar o preço das tarefas e dos itens da taberna para manter o desafio equilibrado durante toda a atividade."
+      },
+      {
+         "nome": "Carta Prego",
+         "tempo_estimado": "2 a 3 horas (ou durante uma tarde inteira de atividades)",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Envelopes lacrados e numerados para cada Patrulha",
+            "Folhas de tarefas com enigmas, criptogramas e mensagens em código (Morse, Semáfora, Código de César, etc.)",
+            "Mapas, croquis de azimute e bússolas",
+            "Prego ou mural onde o envelope inicial fica afixado",
+            "Materiais específicos para cumprir tarefas práticas intermediárias"
+         ],
+         "contexto_historia": "Na tradição escoteira clássica, o Chefe de Tropa não dá nenhuma instrução verbal: apenas deixa um envelope espetado em um prego na porta da sede com o nome de cada patrulha. Ao abrirem o envelope, os escoteiros encontram ordens misteriosas e uma cadeia de pistas e desafios que os levarão a cruzar a cidade ou o campo em uma missão autônoma de grande exploração.",
+         "objetivo": "Desenvolver em toda a Patrulha a iniciativa, dedução, raciocínio lógico, disciplina, autonomia, capacidade de resolver problemas sem a intervenção direta dos adultos e liderança do monitor.",
+         "preparacao_e_regras": [
+            "A Chefia prepara antecipadamente o trajeto com envelopes escondidos em locais estratégicos pré-definidos.",
+            "A Patrulha retira seu primeiro envelope no prego da sede ao sinal de início.",
+            "Cada envelope contém uma missão, charada ou coordenada técnica que indica onde encontrar a próxima pista ou envelope.",
+            "A Patrulha deve manter-se sempre unida durante todo o percurso; a separação de membros implica em desclassificação.",
+            "Pelo caminho, realizam tarefas variadas (mensagens cifradas, croquis de elevação, nós aplicados, entrevistas com personalidades locais, pequenas boas ações comunitárias).",
+            "O jogo termina quando a patrulha decifra a última carta e atinge o objetivo final estipulado."
+         ],
+         "observacoes_dicas": "Excelente atividade para testar a maturidade das patrulhas. A chefia deve monitorar discretamente a segurança dos jovens nos trajetos externos sem interferir nas decisões tomadas pelos monitores."
+      },
+      {
+         "nome": "Colar do Guerreiro",
+         "tempo_estimado": "1 hora e meia a 2 horas",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Cordões para colar (um para cada participante)",
+            "Contas, miçangas ou macarrões furados pintados em cores diferentes (representando dentes/troféus de guerreiro)",
+            "Cartões de desafios de habilidades individuais e coletivas",
+            "Apito e cronômetro"
+         ],
+         "contexto_historia": "Inspirado nas tradições das tribos indígenas Apaches e nos guerreiros Zulus de Baden-Powell. Os jovens guerreiros saíam para caçar e provar seu valor; a cada grande façanha, ato de bravura ou habilidade demonstrada perante a tribo, o guerreiro recebia uma conta especial para compor o seu 'Colar de Contas', símbolo de honra e respeito na aldeia.",
+         "objetivo": "Incentivar a superação individual, o domínio de nós e técnicas mateiras, o espírito desportivo, a cooperação na patrulha e o desenvolvimento motor e técnico.",
+         "preparacao_e_regras": [
+            "Cada escoteiro recebe um cordão inicial no pescoço com apenas uma conta que simboliza sua participação.",
+            "Existem bases com chefes/examinadores e também duelos de técnicas e destreza entre guerreiros de patrulhas rivais.",
+            "Desafios podem incluir: fazer nós com rapidez e de olhos vendados, decifrar códigos morse sonoros, tiro ao alvo com arco/funda, equilíbrio e corrida de obstáculos.",
+            "Ao vencer um desafio ou passar em uma prova técnica, o escoteiro conquista novas contas coloridas para seu colar.",
+            "A patrulha que somar o maior número e diversidade de contas em seus colares ao final do Conselho de Guerra é aclamada vencedora."
+         ],
+         "observacoes_dicas": "Pode ser ambientado com cantos e danças de abertura. As contas de madeira ou sementes naturais dão um toque rústico e muito atrativo aos jovens."
+      },
+      {
+         "nome": "O Estouro da Mina",
+         "tempo_estimado": "45 minutos a 1 hora",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Balões de borracha inflados (bexigas) contendo farinha ou papel picado (as minas)",
+            "Barbantes ou tiras para amarrar os balões nos tornozelos dos jogadores",
+            "Faixas delimitadoras de campo (cordas ou giz)",
+            "Materiais para curativos de primeiros socorros simulados (ataduras, talas, lenços)"
+         ],
+         "contexto_historia": "Terminada a Segunda Guerra Mundial, muitas áreas de batalha permaneceram minadas e altamente perigosas. Um grupo de soldados e equipes de socorristas precisa atravessar um território hostil e desativar os campos minados, resgatando feridos e transportando mantimentos vitais sem detonar os artefatos explosivos restantes.",
+         "objetivo": "Desenvolver agilidade corporal, estratégia em equipe, reflexos rápidos, noções de primeiros socorros e transporte de acidentados sob pressão.",
+         "preparacao_e_regras": [
+            "Delimita-se a 'Zona Minada'. Cada jogador tem um balão ('mina ativa') amarrado no tornozelo.",
+            "O objetivo de cada equipe é pisar e estourar os balões dos adversários sem deixar que estourem os seus próprios.",
+            "Quando o balão de um jogador estoura, ele é considerado 'ferido' e deve sentar-se imediatamente no local.",
+            "Para voltar ao jogo ou ser salvo, a equipe de socorristas da sua patrulha deve aplicar corretamente um procedimento de primeiros socorros (curativo de campo com lenço escoteiro ou imobilização rápida).",
+            "A equipe que neutralizar todas as minas adversárias ou salvar mais companheiros no tempo limite vence a batalha."
+         ],
+         "observacoes_dicas": "Excelente para aquecimento e dinamismo. Garanta que o piso não tenha pedras soltas ou objetos cortantes para evitar escorregões e quedas."
+      },
+      {
+         "nome": "Bomba Nuclear",
+         "tempo_estimado": "1 hora e meia a 2 horas (tempo limite do timer: 90 minutos)",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Um relógio despertador mecânico ou digital de toque bem alto (a 'Bomba Nuclear')",
+            "Bússolas (Silva ou Prismática) para cada Patrulha",
+            "Folhas quadriculadas, pranchetas, lápis e borracha para elaboração do croqui",
+            "Envelope com mensagem oficial do Conselho de Segurança da ONU e folha de azimutes/passos",
+            "Uma trava ou mecanismo simulado para desarmar o despertador"
+         ],
+         "contexto_historia": "O satélite de monitoramento da ONU detectou que terroristas internacionais enterraram uma ogiva nuclear devastadora nas proximidades da sede/acampamento, programada para detonar em exatamente 90 minutos. Como as forças armadas estão distantes, os Escoteiros são convocados em missão de emergência para rastrear as coordenadas secretas, localizar a bomba e desarmar o dispositivo antes que a radiação destrua a região.",
+         "objetivo": "Aplicar e consolidar conhecimentos de orientação por bússola, cálculo de passos e distância, elaboração de croqui topográfico, trabalho em equipe sob contagem regressiva e tomada de decisão.",
+         "preparacao_e_regras": [
+            "A Chefia define trajetos com azimutes e distâncias em passos previamente medidos que convergem para o local secreto da bomba.",
+            "O relógio despertador é regulado para soar exatamente em 90 minutos e escondido no ponto final.",
+            "Cada Patrulha recebe um conjunto de azimutes em graus e número de passos (ex: 45° por 250 passos, 120° por 300 passos, etc.).",
+            "Os jovens se revezam entre navegação com a bússola, contagem precisa de passos e desenho do croqui da rota na prancheta.",
+            "Ao encontrar a bomba no ponto final, a patrulha deve acionar a trava de desarmamento antes do despertador tocar.",
+            "A primeira patrulha a localizar e desativar o artefato salva o planeta e vence o jogo."
+         ],
+         "observacoes_dicas": "Pode ser premiada com 'bombas de chocolate'. Se feita em acampamento, pode incluir postos intermediários de medição de alturas ou pequenas tarefas mateiras."
+      },
+      {
+         "nome": "Cruzados x Sarracenos",
+         "tempo_estimado": "40 a 60 minutos",
+         "ramos": [
+            "Lobinho",
+            "Escoteiro"
+         ],
+         "areas_desenvolvimento": [
+            "Física",
+            "Social",
+            "Emocional",
+            "Cognitiva"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Fitas ou tiras de pano nas cores vermelha e verde (vidas presas no cinto/costas dos jogadores)",
+            "Cartões com moedas de ouro ou relíquias sagradas para captura",
+            "Corda para delimitar o Castelo dos Cruzados e a Tenda dos Sarracenos",
+            "Apito e giz para marcação"
+         ],
+         "contexto_historia": "Na época das Cruzadas medievais, cavaleiros cruzados e nobres sarracenos disputavam o controle de territórios e de relíquias sagradas de valor inestimável. Ambos os exércitos precisavam de bravura, astúcia e velocidade para invadir o acampamento inimigo, resgatar prisioneiros e levar os tesouros de volta à sua fortaleza.",
+         "objetivo": "Desenvolver velocidade, esquiva, trabalho em equipe, respeito às regras do combate leal e estratégia coletiva de ataque e defesa.",
+         "preparacao_e_regras": [
+            "Divide-se a tropa/alcateia em dois grupos: Cruzados (vermelho) e Sarracenos (verde). Cada jogador prende uma fita na parte de trás da calça/cinto.",
+            "Cada campo possui um 'Castelo' com sua relíquia/tesouro guardado e uma 'Prisão'.",
+            "Para capturar um adversário no território neutro ou ofensivo, o jogador deve puxar a fita de vida do oponente.",
+            "O jogador que perder a fita deve caminhar com as mãos na cabeça até a prisão inimiga.",
+            "Um companheiro de equipe pode libertar os prisioneiros ao tocar na cadeia sem ser interceptado.",
+            "Vence o time que conseguir capturar a relíquia adversária e levá-la em segurança para seu castelo ou capturar todos os oponentes."
+         ],
+         "observacoes_dicas": "Jogo de grande gasto de energia e empolgação, especialmente eficaz para o Ramo Lobinho e Tropa Escoteira jovem. Certifique-se de que o terreno seja seguro para corridas."
+      },
+      {
+         "nome": "Acidente Aéreo",
+         "tempo_estimado": "1 hora a 1 hora e meia",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Destroços simulados (caixas de papelão, peças de alumínio, fumaça simulada com terra/lenha)",
+            "Manequim ou monitores atuando como 'vítimas' com cartões de lesões clínicas (fratura exposta, queimaduras, choque, hemorragia)",
+            "Bastões, varas e lonas para confecção de macas improvisadas",
+            "Kits completos de primeiros socorros de patrulha",
+            "Rádio comunicador (Walkie-Talkie) ou Semáfora para comunicação de emergência"
+         ],
+         "contexto_historia": "O Centro de Controle de Tráfego Aéreo comunica que uma aeronave de pequeno porte perdeu sustentação e caiu em uma área de mata fechada. A tripulação e os passageiros estão feridos e isolados. A Defesa Civil acionou o Grupo Escoteiro para montar uma operação de busca, triagem médica rápida, estabilização dos feridos e resgate com transporte de maca até a zona de evacuação.",
+         "objetivo": "Avaliar na prática as técnicas de salvamento e primeiros socorros, confecção de macas de emergência com amarras e nós, triagem de acidentados (método START simplificado) e liderança sob pressão.",
+         "preparacao_e_regras": [
+            "A Chefia monta o cenário do acidente em uma clareira afastada com vítimas posicionadas e caracterizadas.",
+            "As patrulhas recebem um alerta de emergência com coordenadas estimadas e devem deslocar-se equipadas.",
+            "Ao chegarem no local, devem avaliar os perigos da cena (risco de fogo, vazamento de combustível).",
+            "Realizam a triagem das vítimas, aplicando os curativos, imobilizações e torniquetes necessários de acordo com a prioridade médica.",
+            "Constroem macas de campanha utilizando bastões escoteiros e camisas ou cordas com nós de amarra.",
+            "Transportam as vítimas com cuidado e firmeza por uma pista de obstáculos simulando o terreno acidentado até a base médica.",
+            "A pontuação é atribuída pela correção dos diagnósticos, técnica dos curativos e segurança no transporte."
+         ],
+         "observacoes_dicas": "A simulação ganha muito realismo quando os escotistas ou pioneiros atuam como vítimas 'reclamando de dores' e testando o aspecto psicológico e o acolhimento dos socorristas."
+      },
+      {
+         "nome": "Área Contaminada",
+         "tempo_estimado": "45 minutos a 1 hora",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Corda de 10 a 15 metros para delimitar o círculo da zona radioativa no solo",
+            "Um recipiente central (balde ou tambor) com o 'material radioativo' (garrafa d'água ou peso)",
+            "Cordas menores de sisal, mosquetões, elásticos, varas e bambus para cada patrulha",
+            "Vendas para os olhos (opcional para aumentar o nível de dificuldade)"
+         ],
+         "contexto_historia": "Um contêiner de resíduos químicos altamente radioativos rompeu-se no laboratório central. Um raio de 5 metros ao redor do frasco está totalmente contaminado: ninguém pode pisar ou tocar o solo dessa área sob risco de contaminação fatal imediata. Os cientistas escoteiros precisam construir um aparato mecânico à distância para içar e resgatar o cilindro com segurança.",
+         "objetivo": "Estimular a criatividade em engenharia pioneira, aplicação de nós e nós tensores, trabalho colaborativo estrito e coordenação fina da patrulha.",
+         "preparacao_e_regras": [
+            "No centro de um círculo de 6 metros de diâmetro delimitado por corda, coloca-se o recipiente com o material perigoso.",
+            "Nenhum membro da patrulha pode tocar o chão dentro do círculo nem utilizar partes do corpo dentro da zona proibida.",
+            "A patrulha deve usar apenas as cordas e bambus fornecidos para laçar, prender e suspender o recipiente, transportando-o para fora da linha demarcada sem deixá-lo tombar.",
+            "Se o recipiente cair ou derramar o líquido, o grupo sofre penalidade de tempo e deve reiniciar o processo.",
+            "Ganha a patrulha que conseguir extrair o objeto com segurança e no menor tempo."
+         ],
+         "observacoes_dicas": "Excelente atividade para testar a comunicação: um escoteiro pode ficar de costas ou vendado enquanto o monitor guia o movimento dos cabos por comandos de voz precisos."
+      },
+      {
+         "nome": "Sherlock Holmes",
+         "tempo_estimado": "1 hora a 1 hora e meia",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Local fechado",
+            "Acampamento"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Cenário de cena de crime montado em uma sala ou tenda isolada",
+            "Objetos de pistas (copo com marca de batom, cinzas de charuto, relógio de bolso quebrado marcando 03:15, cartas rasgadas, pegadas em terra, pedaço de tecido rasgado, baralho espanhol)",
+            "Bloco de anotações, prancheta e canetas para cada patrulha",
+            "Lupas e fitas métricas"
+         ],
+         "contexto_historia": "A polícia britânica encontra-se perplexa diante de um misterioso crime ocorrido em um casarão abandonado em Londres. Testemunhas relatam barulhos suspeitos durante a madrugada, e a cena do crime contém evidências desconexas deixadas pelos criminosos em fuga. O lendário detetive Sherlock Holmes convoca os jovens investigadores escoteiros para analisar os vestígios e desvendar a sequência exata dos acontecimentos.",
+         "objetivo": "Desenvolver a capacidade de observação minuciosa (Jogo de Kim avançado), raciocínio indutivo e dedutivo, análise crítica de evidências e apresentação de relatórios estruturados.",
+         "preparacao_e_regras": [
+            "A Chefia isola a sala com fita zebrada e prepara a cena do crime com detalhes meticulosos.",
+            "Cada Patrulha tem um tempo restrito (ex: 5 a 8 minutos) para entrar silenciosamente na sala e examinar todas as pistas sem tocar em nada.",
+            "Os membros da patrulha anotam todas as pistas visíveis, posições relativas dos objetos, marcas e horários.",
+            "Após o tempo de observação, a patrulha retira-se para sua 'sala de reuniões' e tem 20 minutos para debater e escrever um relatório pericial respondendo: O que aconteceu? Quem eram os envolvidos? Qual foi a motivação? Como o suspeito fugiu?",
+            "A Patrulha cuja tese for mais precisa e coerente com a narrativa oculta criada pela chefia é declarada a vencedora."
+         ],
+         "observacoes_dicas": "Atividade perfeita para dias chuvosos na sede ou finais de tarde em acampamentos. O ramo Sênior adora a complexidade psicológica e lógica dos mistérios."
+      },
+      {
+         "nome": "O Homem Sem Braço",
+         "tempo_estimado": "1 hora e meia a 2 horas",
+         "ramos": [
+            "Pioneiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Emocional",
+            "Social",
+            "Espiritual"
+         ],
+         "tipos_atividade": [
+            "Local fechado",
+            "Acampamento",
+            "Jogos de sede"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Ambiente intimista e silencioso (Caverna do Clã ou Fogo de Conselho noturno)",
+            "Folha de anotações para o Clã registrar deduções e pistas confirmadas",
+            "Nenhum material físico adicional é necessário"
+         ],
+         "contexto_historia": "Cinco homens sobrevivem a um terrível naufrágio em alto mar por quase 60 dias em um bote salva-vidas. Anos mais tarde, pacotes misteriosos começam a ser enviados sucessivamente pelo correio entre eles contendo um conteúdo macabro: um braço humano recém-amputado com uma tatuagem de Flor-de-Lis. O Clã deve desvendar o pacto sagrado e o terrível segredo mantido por aqueles homens que salvaram suas vidas através do verdadeiro espírito de sacrifício e fraternidade.",
+         "objetivo": "Estimular o pensamento lateral, dedução coletiva profunda, questionamento estruturado, escuta ativa, reflexão ética sobre a promessa, lealdade e sacrifício fraterno.",
+         "preparacao_e_regras": [
+            "O Mestre Pioneiro narra com riqueza de detalhes e dramaticidade a cena inicial dos pacotes postais e dos homens com um braço a menos.",
+            "A partir da narrativa inicial, os Pioneiros formulam perguntas sucessivas para desvendar a história completa.",
+            "O Mestre responde EXCLUSIVAMENTE com uma de três opções: 'Sim!', 'Não!' ou 'Não vem ao caso!'.",
+            "Os jovens devem organizar as informações obtidas, descartar hipóteses falsas e reconstruir passo a passo os eventos ocorridos no bote salva-vidas e o juramento solene dos sobreviventes.",
+            "A atividade conclui quando o Clã deduz a história completa e a revelação do juramento do cirurgião escoteiro.",
+            "Os participantes devem firmar o compromisso de guardar segredo da solução para que futuros pioneiros possam vivenciar a mesma experiência."
+         ],
+         "observacoes_dicas": "Uma das mais marcantes e tradicionais dinâmicas de dedução do Ramo Pioneiro. Requer do condutor firmeza, excelente entonação narrativa e controle absoluto do ritmo de respostas."
+      },
+      {
+         "nome": "Sistema de Bases",
+         "tempo_estimado": "2 a 3 horas",
+         "ramos": [
+            "Lobinho",
+            "Escoteiro",
+            "Sênior",
+            "Pioneiro"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional",
+            "Espiritual"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Cartões de controle de rota e pontuação para cada patrulha",
+            "Materiais específicos distribuídos em cada uma das bases (cordas para pioneiria, kits de primeiros socorros, mapas, rádios, fogareiros, etc.)",
+            "Relógio central e apito de sinalização de rodízio"
+         ],
+         "contexto_historia": "O Sistema de Bases é uma das mais consagradas e eficientes metodologias do Escotismo mundial. As patrulhas operam como unidades expedicionárias independentes, navegando entre postos de fronteira especializados onde instrutores e pioneiros avaliam competências técnicas e desafios práticos indispensáveis para a vida ao ar livre.",
+         "objetivo": "Instruir, reciclar e avaliar múltiplas competências do Guia de Progressão Escoteira de forma simultânea, dinâmica, organizada e competitiva entre as patrulhas.",
+         "preparacao_e_regras": [
+            "Montam-se de 4 a 8 bases temáticas ao redor do campo ou da sede (ex: Base 1 - Nós e Amarras; Base 2 - Primeiros Socorros; Base 3 - Bússola e Azimutes; Base 4 - Código Morse; Base 5 - Fogo e Cozinha Mateira; Base 6 - Canções e Animação).",
+            "Cada base conta com um escotista ou pioneiro responsável por explicar o desafio, cronometrar e pontuar a execução.",
+            "As patrulhas iniciam em bases diferentes e, a cada sinal sonoro do chefe geral (ex: 20 minutos por base), giram para a base seguinte em sentido horário.",
+            "A patrulha deve se apresentar uniformizada ao chefe da base, com grito de patrulha e respeito à ordem de inspeção.",
+            "Soma-se a pontuação obtida em todas as bases para determinar a classificação final da tropa."
+         ],
+         "observacoes_dicas": "Pode ser aplicado em diferentes variantes: 'Bases Fixas com Rodízio', 'Bases Livres com Escolha de Rota', ou 'Bases com Tarefas Cumulativas'. Mantenha o tempo das bases estritamente sincronizado."
+      },
+      {
+         "nome": "O Baú do Tesouro",
+         "tempo_estimado": "1 hora a 1 hora e meia",
+         "ramos": [
+            "Lobinho",
+            "Escoteiro"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Um baú de madeira rústico ou caixa decorada trancada com cadeado",
+            "Chaves falsas e a chave correta escondidas ou obtidas por tarefas",
+            "Pedaços de um mapa pirata rasgado em 4 partes (um para cada patrulha)",
+            "Pás pequenas, bússolas e pergaminhos com charadas temáticas",
+            "Guloseimas e moedas de chocolate no interior do baú"
+         ],
+         "contexto_historia": "Conta a lenda que, por volta do ano de 1500, um temido navio corsário fugindo da armada real aportou em segredo na costa brasileira e enterrou um fabuloso baú de tesouros com joias da coroa. O capitão pirata dividiu o mapa do tesouro em quatro partes e escondeu as coordenadas em charadas misteriosas antes de desaparecer pelos mares do sul.",
+         "objetivo": "Desenvolver a cooperação entre patrulhas, orientação cartográfica, resolução de charadas históricas e celebração comunitária do resultado.",
+         "preparacao_e_regras": [
+            "A Chefia enterra ou esconde o baú do tesouro em um ponto isolado da mata ou da sede.",
+            "Cada patrulha recebe uma parte rasgada do mapa com enigmas em código que precisam ser decifrados para revelar o ponto de convergência.",
+            "As patrulhas logo percebem que nenhuma parte isolada contém o mapa completo: precisam negociar, cooperar ou juntar os fragmentos na mesa de estratégia.",
+            "Ao unir o mapa completo e seguir os passos e azimutes, encontram o local exato da escavação.",
+            "A patrulha que resolver o enigma da chave abre o baú e compartilha o tesouro com toda a tropa."
+         ],
+         "observacoes_dicas": "Excelente para estimular a união de tropa e mostrar que o trabalho compartilhado traz recompensas muito maiores do que o isolamento."
+      },
+      {
+         "nome": "Área de Sobrevivência",
+         "tempo_estimado": "1 hora a 1 hora e meia",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Acampamento",
+            "Local ao ar livre",
+            "Jogos de sede"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Bambus ou bastões de 2 a 3 metros",
+            "Cordas de sisal para amarras quadradas e diagonais",
+            "Lonas plásticas impermeáveis ou encerados",
+            "Pederneiras ou fósforos para fogueira mateira de sobrevivência",
+            "Recipientes para ferver água e purificação"
+         ],
+         "contexto_historia": "Uma força-tarefa internacional de cientistas descobre que uma tempestade solar e geoclimática extrema atingirá a região nas próximas horas, cortando energia elétrica, comunicações e abastecimento. Apenas as patrulhas que conseguirem erguer um abrigo seguro, purificar água potável e produzir fogo autossuficiente com recursos naturais conseguirão sobreviver ao cataclismo.",
+         "objetivo": "Treinar técnicas de sobrevivência na selva, confecção de abrigos de emergência (bivaque), técnicas pioneiras de fogo primitivo, filtragem e purificação de água.",
+         "preparacao_e_regras": [
+            "Cada patrulha é alocada em um quadrante delimitado de mata com recursos limitados.",
+            "Ao sinal de alerta, a patrulha deve construir um abrigo para todos os seus membros resistente a vento e chuva usando apenas bambus, folhagens e lonas.",
+            "Simultaneamente, devem acender uma fogueira de sobrevivência e ferver 1 litro de água em tempo recorde.",
+            "A Chefia inspeciona o abrigo (testando estabilidade e impermeabilidade com borrifador de água) e a pureza da água.",
+            "A patrulha com o melhor índice de segurança, organização do bivaque e rapidez recebe o brevê de Sobrevivente de Honra."
+         ],
+         "observacoes_dicas": "Atividade clássica de acampamentos de outono e inverno. Reforça intensamente a autonomia do escoteiro perante a natureza."
+      },
+      {
+         "nome": "Alarme Contra Chuva",
+         "tempo_estimado": "45 a 60 minutos",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social"
+         ],
+         "tipos_atividade": [
+            "Acampamento",
+            "Local ao ar livre",
+            "Jogos de sede"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Bastões escoteiros e varas de madeira",
+            "Cordas finas, linhas de pesca e barbantes",
+            "Latas vazias com pedrinhas no interior (os guizos de alarme)",
+            "Pedras como contrapesos e estacas de solo",
+            "Regador ou balde d'água para teste de chuva"
+         ],
+         "contexto_historia": "No vale do Caraubá, uma tribo de guerreiros ribeirinhos vivia sob constante ameaça de enchentes repentinas causadas por temporais que desciam das cabeceiras das montanhas durante a madrugada. Para não serem pegos dormindo, os guardiões indígenas inventaram um engenhoso sistema mecânico de alarme acionado pelo peso e acúmulo da primeira água de chuva nas folhas das árvores.",
+         "objetivo": "Estimular a engenhosidade pioneira, conceitos de física mecânica (alavancas, polias rústicas e contrapesos), prevenção de acidentes e prontidão noturna em acampamento.",
+         "preparacao_e_regras": [
+            "As patrulhas recebem o desafio de construir um dispositivo mecânico sensível que toque um alarme sonoro (latas com pedras caindo) assim que começar a chover.",
+            "O dispositivo deve usar uma calha de lona ou funil suspenso que, ao encher-se de água, acione um gatilho de corda liberando o pêndulo sonoro.",
+            "Nenhum componente elétrico ou eletrônico é permitido; toda a engenharia deve ser puramente mecânica com nós escoteiros.",
+            "A Chefia testa cada alarme despejando gradualmente água de um regador sobre a área coletora da estrutura.",
+            "Vence a patrulha cujo dispositivo disparar o sinal sonoro com o menor volume de água e maior confiabilidade."
+         ],
+         "observacoes_dicas": "Desafio que surpreende pela originalidade. Os jovens adoram criar mecanismos de gatilho do tipo 'Rube Goldberg' usando materiais da natureza."
+      },
+      {
+         "nome": "Voo Noturno",
+         "tempo_estimado": "1 hora a 1 hora e meia (atividade noturna)",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Acampamento",
+            "Local ao ar livre",
+            "Jogos noturnos"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Lanternas (uma para cada elemento com filtros coloridos se possível)",
+            "Balançadores de luz, fitas reflexivas ou pequenas lâmpadas químicas (glow sticks)",
+            "Bússolas com mostrador fosforescente ou iluminado",
+            "Pranchetas com mapas em código luminoso ou Morse sonoro/visual",
+            "Apitos de emergência"
+         ],
+         "contexto_historia": "Um avião militar de transporte bimotor Douglas DC-3 em missão noturna sofre uma pane em um de seus motores e perde contato de rádio sobre uma densa cordilheira. A tripulação precisa saltar de paraquedas no escuro e localizar uma pista clandestina de pouso guiada unicamente por sinais luminosos intermitentes emitidos por agentes em terra.",
+         "objetivo": "Desenvolver a orientação noturna, deslocamento silencioso na escuridão, transmissão e recepção de sinais óticos em código Morse, e autocontrole emocional no escuro.",
+         "preparacao_e_regras": [
+            "A atividade ocorre em ambiente de escuridão total (campo aberto ou bosque de acampamento).",
+            "As patrulhas partem de posições dispersas e precisam avançar em direção à 'pista de pouso' secreta sem acender luzes brancas contínuas que possam denunciar sua posição.",
+            "Postos de vigia no terreno transmitem letras em código Morse luminoso com intervalos regulares de 3 minutos.",
+            "As patrulhas anotam as letras, decifram as coordenadas e ajustam seu rumo com a bússola fosforescente.",
+            "Ao chegarem ao perímetro final, devem responder ao sinal de reconhecimento com a senha e contrassenha da missão.",
+            "A patrulha mais furtiva, rápida e precisa nas mensagens recebidas completa o resgate com vitória."
+         ],
+         "observacoes_dicas": "Segurança rigorosa: inspecione previamente o terreno durante o dia para remover buracos profundos, arames ou obstáculos cortantes. Cada patrulha deve portar um apito para emergências."
+      },
+      {
+         "nome": "O Náufrago",
+         "tempo_estimado": "1 hora e meia a 2 horas",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Acampamento",
+            "Local ao ar livre",
+            "Jogos de sede"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Bóias salva-vidas, coletes e cordas náuticas de 20 metros",
+            "Bambus grossos ou toras de madeira e câmaras de ar de caminhão para balsa",
+            "Fitas adesivas impermeáveis e cabos solteiros",
+            "Baldes e recipientes estanques com provisões simuladas",
+            "Espelho de sinalização heliógrafo ou sinalizador luminoso"
+         ],
+         "contexto_historia": "Uma violenta tempestade marítima fez naufragar um barco de pesca em alto mar. O único marinheiro sobrevivente conseguiu nadar até uma ilha rochosa e deserta cercada por fortes correntezas e recifes cortantes. O náufrago está sem água doce e ferido; equipes de resgate costeiro devem lançar cabos de segurança e construir um transporte de transbordo para salvar o tripulante e suas provisões.",
+         "objetivo": "Praticar nós náuticos e de salvamento (laís de guia, volta da ribeira, nó de correr), cálculo de flutuabilidade, lançamento de cabo de resgate com precisão e trabalho sincronizado de tração.",
+         "preparacao_e_regras": [
+            "Delimita-se uma 'ilha' (que pode ser um platô de pedras, uma área isolada do campo ou margem oposta de um pequeno riacho/lago).",
+            "Um chefe ou monitor atua como o náufrago isolado na ilha.",
+            "A patrulha na margem segura deve lançar um cabo com boia ou peso até a ilha utilizando arremesso de precisão.",
+            "Uma vez fixado o cabo de vai-e-vem (tirolesa ou teleférico rústico) entre duas ancoragens sólidas, a patrulha baldeia materiais médicos e alimentos para a ilha.",
+            "Em seguida, com uma balsa improvisada ou arreio de resgate com o nó de Laís de Guia duplo, efetuam o resgate e evacuação do marinheiro.",
+            "Vence a patrulha que executar o salvamento com o melhor emprego dos nós técnicos e menor tempo total."
+         ],
+         "observacoes_dicas": "Atividade com forte apelo para a Modalidade do Mar, mas perfeitamente adaptável para terra firme utilizando marcas de solo como 'mar revolto'."
+      },
+      {
+         "nome": "Remoção da Ancoragem",
+         "tempo_estimado": "1 hora a 1 hora e meia",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social"
+         ],
+         "tipos_atividade": [
+            "Acampamento",
+            "Local ao ar livre",
+            "Jogos de sede"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Estacas de madeira de 60 a 80 cm para ancoragem de solo (sistemas 3-2-1 e ancoragem russa)",
+            "Marreta de madeira ou maço de pioneiria para cravar as estacas",
+            "Cordas de sisal de 1/2 polegada e cabos solteiros",
+            "Dinamômetro ou peso de tração para teste de carga",
+            "Trena métrica"
+         ],
+         "contexto_historia": "Na Segunda Guerra Mundial, unidades de engenharia militar do exército aliado precisavam construir e desarmar rapidamente sistemas pesados de ancoragem para içar pontes Bailey e veículos blindados sobre rios e ravinas. A resistência da ancoragem cravada no terreno e a rapidez para desarmar a estrutura em caso de retirada estratégica eram a chave para o sucesso militar.",
+         "objetivo": "Aprender e aplicar os princípios fundamentais de engenharia de ancoragens terrestres de pioneiria (ancoragem simples, 3-2-1 e em cavalete), nós de retenção (volta do fiel, nó de pescador) e física de tração.",
+         "preparacao_e_regras": [
+            "Cada patrulha recebe 6 estacas de madeira e cabos de fixação.",
+            "O desafio consiste em montar uma ancoragem do tipo '3-2-1' com estacas inclinadas a 45 graus e travadas entre si com nós de peito e amarras tensoras.",
+            "A Chefia conecta o cabo principal da ancoragem a um cabo de guerra ou teste de tração mecânica: a ancoragem deve suportar a tração simultânea de toda a tropa sem ceder nem arrancar do solo.",
+            "Após o teste de carga, a patrulha recebe o comando de 'Retirada Imediata' e deve desatar os nós e recolher as estacas no menor tempo possível sem danificar o material.",
+            "A avaliação combina a capacidade de sustentação da carga, a exatidão geométrica dos ângulos e a velocidade de desmontagem."
+         ],
+         "observacoes_dicas": "Indispensável para o aprendizado de grandes pioneirias (pontes suspensas, torres de vigia e pórticos de acampamento). Garante segurança real nas construções escoteiras."
+      },
+      {
+         "nome": "Desafios, Aventuras, Emoções",
+         "tempo_estimado": "2 horas a 2 horas e meia",
+         "ramos": [
+            "Escoteiro",
+            "Sênior"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Física",
+            "Social",
+            "Emocional"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Acampamento",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Quatro cartas-missão seladas com temas distintos (Base do Farol, Tubos de Urânio, Mensagem Cifrada e Ponte Pênsil)",
+            "Tubos de PVC com pesos para simular urânio, ímãs e ganchos de resgate",
+            "Espelhos sinalizadores e lanternas",
+            "Varas de pioneiria e cabos de tração",
+            "Pranchetas e tabelas de decodificação"
+         ],
+         "contexto_historia": "Uma missão especial multifacetada para a Tropa: quatro incidentes críticos ocorrem simultaneamente em diferentes pontos do setor (o farol marítimo ficou sem energia e precisa de conserto urgente; cilindros de urânio enriquecido caíram de um cargueiro militar em um cânion; uma mensagem diplomática ultra-secreta precisa ser interceptada; e uma ponte de evacuação precisa ser reconstruída). Cada Patrulha assume uma frente da operação.",
+         "objetivo": "Promover o rodízio e a especialização de competências técnicas variadas, cooperação interdisciplinar, rapidez de resposta e alto engajamento em cenários de simulação dinâmica.",
+         "preparacao_e_regras": [
+            "As 4 patrulhas da tropa recebem cada uma uma carta de missão diferente ao mesmo tempo.",
+            "Missão 1 (Base do Farol): Realizar sinalização ótica de longo alcance e reparar o circuito luminoso.",
+            "Missão 2 (Tubos de Urânio): Utilizar guindaste rústico com polias e ganchos para resgatar os tubos perigosos do fundo de uma fenda sem tocá-los.",
+            "Missão 3 (Mensagem Cifrada): Interceptar e decifrar um enigma complexo combinando cifras de substituição e mapas de azimutes.",
+            "Missão 4 (Ponte de Evacuação): Construir uma pinguela ou passarela de pioneiria segura com amarras para cruzar um obstáculo intransponível.",
+            "Ao completar sua missão, a patrulha ajuda a consolidar o relatório geral da Operação Global perante a Corte de Honra."
+         ],
+         "observacoes_dicas": "Excelente para grandes eventos e jogos distritais/regionais, pois mantém todas as patrulhas ocupadas simultaneamente com tarefas completamente distintas e de alta intensidade."
+      },
+      {
+         "nome": "Carta Prego do Século XXI - Luz, Câmera, Tropa Escoteira em Ação!",
+         "tempo_estimado": "Durante uma reunião de sede ou projeto de fim de semana (com postagem e edição)",
+         "ramos": [
+            "Escoteiro",
+            "Sênior",
+            "Pioneiro"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Social",
+            "Emocional",
+            "Espiritual"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Local fechado",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Smartphones com câmera de vídeo HD e conexão à internet",
+            "Computador ou aplicativo de edição simples de vídeo",
+            "Envelopes ou mensagens transmitidas via QR Code / E-mail / WhatsApp",
+            "Fantasias, adereços e elementos cênicos do tema sorteado",
+            "Canal da Tropa no YouTube ou pasta em nuvem para envio dos vídeos"
+         ],
+         "contexto_historia": "Unindo a secular tradição da Carta Prego às tecnologias digitais do século XXI. O Chefe envia os desafios digitais e ordens de produção cinematográfica. As patrulhas transformam-se em produtoras de cinema e equipes de reportagem investigativa, produzindo pequenos curtas-metragens e reportagens de utilidade pública baseadas nos artigos da Lei Escoteira e na conservação ambiental.",
+         "objetivo": "Integrar tecnologia e mídias modernas ao método escoteiro, desenvolver oratória, criatividade artística, expressão corporal, edição digital, trabalho em equipe e divulgação de valores cívicos e ecológicos.",
+         "preparacao_e_regras": [
+            "A Chefia envia a cada Patrulha um roteiro com 3 a 5 missões de filmagem (ex: encenar uma esquete sobre o 7º Artigo da Lei Escoteira; entrevistar um comerciante idoso sobre a história do bairro; realizar uma ação de limpeza de praça/parque e documentar o antes e depois; produzir um videoclipe de uma canção escoteira tradicional).",
+            "A Patrulha tem um tempo determinado (ex: 2 horas) para planejar o roteiro, filmar as tomadas externas, atuar e realizar uma edição simples com trilha e créditos.",
+            "Os vídeos são enviados e postados no canal oficial da Tropa no YouTube.",
+            "A Chefia e um júri convidado (pais e pioneiros) avaliam os vídeos com base em: criatividade, respeito aos valores escoteiros, edição, mensagem transmitida e participação de todos os membros da patrulha.",
+            "A melhor produção cinematográfica recebe o troféu 'Oscar da Tropa'."
+         ],
+         "observacoes_dicas": "Atrai enormemente a atenção dos jovens conectados. Estimula o bom uso da internet e das redes sociais como ferramentas de cidadania e preservação da memória escoteira."
+      },
+      {
+         "nome": "Rádio Vídeo Sênior",
+         "tempo_estimado": "Projeto semanal ou fim de semana especial com transmissão",
+         "ramos": [
+            "Sênior",
+            "Pioneiro"
+         ],
+         "areas_desenvolvimento": [
+            "Cognitiva",
+            "Social",
+            "Emocional",
+            "Espiritual"
+         ],
+         "tipos_atividade": [
+            "Jogos de sede",
+            "Local fechado",
+            "Local ao ar livre"
+         ],
+         "modalidades": [
+            "Básico",
+            "Do Ar",
+            "Do Mar"
+         ],
+         "materiais": [
+            "Equipamentos de gravação de áudio e vídeo (celulares, microfones de lapela, tripés)",
+            "Computadores com software de podcasting/edição ou plataforma de streaming (YouTube Live / rádio web)",
+            "Quatro instruções oficiais enviadas por e-mail (Aos Pais, Aos Monitores, À Patrulha e Relação de Tarefas)",
+            "Roteiros e cartões de temas de cidadania, ciência e história escoteira"
+         ],
+         "contexto_historia": "A Tropa Sênior assume a operação de uma moderna emissora de rádio e canal de streaming multimídia. As patrulhas recebem cartas de diretrizes secretas da emissora e devem produzir programas investigativos ao vivo, podcasts, esquetes cômicas de rádio-novela e reportagens de campo, envolvendo a comunidade local e as famílias dos jovens no debate de grandes temas sociais.",
+         "objetivo": "Desenvolver maturidade de comunicação no Ramo Sênior/Pioneiro, capacidade de síntese jornalística, argumentação ética, produção audiovisual avançada e engajamento comunitário.",
+         "preparacao_e_regras": [
+            "Instrução nº 01 (Aos Pais): Comunica os objetivos educativos e solicita o apoio familiar na logística das gravações.",
+            "Instrução nº 02 (Aos Monitores): Estabelece as regras de liderança, divisão de tarefas na patrulha e prazos rigorosos de entrega.",
+            "Instrução nº 03 (À Patrulha): Apresenta o Desafio Intelectual e o tema central do programa (ex: Meio Ambiente, Trânsito Seguro, História dos Pioneiros da Cidade, O Papel do Jovem no Mundo Atual).",
+            "Instrução nº 04 (Tarefas e Produção): A patrulha produz um bloco completo de rádio/vídeo (mínimo de 10 minutos) contendo: vinheta original, editorial reflexivo, entrevista gravada na rua, momento cultural e mensagem final da Lei Sênior.",
+            "Os programas são transmitidos para toda a comunidade escoteira e avaliados pela Corte de Honra quanto à profundidade, originalidade e impacto social."
+         ],
+         "observacoes_dicas": "Atividade de altíssimo impacto formativo para jovens de 15 a 21 anos. Prepara o jovem para debates acadêmicos, comunicação pública e projetos comunitários da Insígnia de B-P."
+      }
+   ]
+}

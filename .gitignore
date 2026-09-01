@@ -36,6 +36,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# dados pessoais extraídos (CPF, endereço, etc.) - nunca versionar
+/data
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI
+.claude
+
