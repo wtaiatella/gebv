@@ -110,7 +110,7 @@ export async function runScraper() {
 
     // Step 7: Extract data from modal
     console.log('Extracting data from modal...');
-    await page.waitForSelector('.modal-content', { visible: true, timeout: 30000 });
+    await page.waitForSelector('.modal-content', { state: 'visible', timeout: 30000 });
     
     const data = await page.evaluate(() => {
       const modalTitle = document.querySelector('.modal-title')?.textContent?.trim();
