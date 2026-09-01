@@ -59,9 +59,14 @@ export type Escoteiro = {
 };
 
 async function readJson<T>(relativePath: string): Promise<T> {
-  const filePath = path.join(process.cwd(), relativePath);
-  const raw = await readFile(filePath, 'utf-8');
-  return JSON.parse(raw) as T;
+  try {
+    const filePath = path.join(process.cwd(), relativePath);
+    const raw = await readFile(filePath, 'utf-8');
+    return JSON.parse(raw) as T;
+  } catch (error) {
+    console.warn(`[data] File not found or invalid: ${relativePath}, returning empty fallback.`);
+    return [] as unknown as T;
+  }
 }
 
 export async function getEscoteiros(): Promise<Escoteiro[]> {
