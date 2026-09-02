@@ -13,6 +13,7 @@
   "dependencies": {
     "lucide-react": "^1.14.0",
     "next": "16.2.6",
+    "pg": "^8.23.0",
     "playwright": "^1.60.0",
     "playwright-extra": "^4.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

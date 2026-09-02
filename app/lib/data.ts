@@ -58,6 +58,8 @@ export type Escoteiro = {
   progressao: Caminho[];
 };
 
+import { query } from '@/app/lib/db/pool';
+
 async function readJson<T>(relativePath: string): Promise<T> {
   try {
     const filePath = path.join(process.cwd(), relativePath);
@@ -69,7 +71,40 @@ async function readJson<T>(relativePath: string): Promise<T> {
   }
 }
 
-export async function getEscoteiros(): Promise<Escoteiro[]> {
+export type Ramo = 'Escoteiro' | 'Lobinho' | 'Sênior' | 'Pioneiro';
+
+export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro[]> {
+  // Tenta consultar do PostgreSQL
+  if (process.env.DATABASE_URL) {
+    try {
+      const resAssociados = await query<Associado>(
+        `SELECT dados_cadastrais_completos
+         FROM associados
+         WHERE ds_categoria = 'Beneficiário' AND ds_ramo = $1
+         ORDER BY nm_associado ASC`,
+        [ramo]
+      );
+
+      const resProgressoes = await query<{ cd_associado: string; caminhos: Caminho[] }>(
+        `SELECT cd_associado, caminhos FROM progressoes_escoteiro`
+      );
+
+      if (resAssociados.rows.length > 0) {
+        const progMap = new Map(resProgressoes.rows.map((p) => [p.cd_associado, p.caminhos]));
+        return resAssociados.rows.map((r) => {
+          const associado = (r as any).dados_cadastrais_completos as Associado;
+          return {
+            associado,
+            progressao: progMap.get(associado.cd_associado) ?? [],
+          };
+        });
+      }
+    } catch (dbErr) {
+      console.warn('[data] Falha ao consultar PostgreSQL, recorrendo ao fallback JSON local:', dbErr);
+    }
+  }
+
+  // Fallback para os arquivos JSON locais pré-existentes
   const [associados, progressoes] = await Promise.all([
     readJson<Associado[]>('data/associados.json'),
     readJson<ProgressaoRecord[]>('data/progressoes.json'),
@@ -78,7 +113,7 @@ export async function getEscoteiros(): Promise<Escoteiro[]> {
   const progressaoPorId = new Map(progressoes.map((p) => [p.cd_associado, p]));
 
   return associados
-    .filter((a) => a.dsCategoria === 'Beneficiário')
+    .filter((a) => a.dsCategoria === 'Beneficiário' && (!a.dsRamo || a.dsRamo === ramo))
     .map((associado) => ({
       associado,
       progressao: progressaoPorId.get(associado.cd_associado)?.caminhos ?? [],
