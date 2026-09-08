@@ -122,6 +122,14 @@ function buildProgressaoPayload(cdAssociado: string): string {
   );
 }
 
+function buildEspecialidadesAssociadoPayload(cdAssociado: string): string {
+  return `7|0|7|https://paxtu.escoteiros.org.br/paxtu/br.com.wallis.sgg.Sgg/|2A60FE1D79751ABBA940A75E669C617F|br.com.wallis.sgg.client.rpc.EspecialidadeItemAssociadoService|getEspecialidadesAssociado|I|java.lang.String/2004016611|115130551788830887137|1|2|3|4|2|5|6|${cdAssociado}|7|`;
+}
+
+function buildItensAssociadoEspecialidadePayload(cdAssociado: string, cdEspecialidade: string | number): string {
+  return `7|0|5|https://paxtu.escoteiros.org.br/paxtu/br.com.wallis.sgg.Sgg/|2A60FE1D79751ABBA940A75E669C617F|br.com.wallis.sgg.client.rpc.EspecialidadeItemAssociadoService|getItensAssociadoDtItem|I|1|2|3|4|2|5|5|${cdAssociado}|${cdEspecialidade}|`;
+}
+
 export async function fetchAllAssociados(): Promise<Associado[]> {
   const all: Associado[] = [];
   let offset = 0;
@@ -143,3 +151,77 @@ export async function fetchProgressao(cdAssociado: string): Promise<Caminho[]> {
   const text = await rpcCall('progressaoservice', buildProgressaoPayload(cdAssociado));
   return extractJsonBlobs(text);
 }
+
+export async function fetchEspecialidadesAssociado(cdAssociado: string): Promise<any[]> {
+  try {
+    const text = await rpcCall('especialidadeitemassociadoservice', buildEspecialidadesAssociadoPayload(cdAssociado));
+    const [blob] = extractJsonBlobs(text);
+    return blob?.data ?? [];
+  } catch (err) {
+    console.warn(`[PaxtuClient] Erro ao buscar especialidades para associado ${cdAssociado}:`, err);
+    return [];
+  }
+}
+
+export async function fetchItensAssociadoEspecialidade(
+  cdAssociado: string,
+  cdEspecialidade: string | number
+): Promise<any[]> {
+  try {
+    const text = await rpcCall(
+      'especialidadeitemassociadoservice',
+      buildItensAssociadoEspecialidadePayload(cdAssociado, cdEspecialidade)
+    );
+    const [blob] = extractJsonBlobs(text);
+    return blob?.data ?? [];
+  } catch (err) {
+    console.warn(
+      `[PaxtuClient] Erro ao buscar itens da especialidade ${cdEspecialidade} para associado ${cdAssociado}:`,
+      err
+    );
+    return [];
+  }
+}
+
+export async function fetchEspecialidadesCompletasAssociado(cdAssociado: string): Promise<any[]> {
+  const rawEsps = await fetchEspecialidadesAssociado(cdAssociado);
+  const result = [];
+
+  for (const esp of rawEsps) {
+    const cdEsp = esp.cd_especialidade || esp.cdEspecialidade;
+    if (!cdEsp || cdEsp === 'undefined') continue;
+
+    let itens: any[] = [];
+    try {
+      itens = await fetchItensAssociadoEspecialidade(cdAssociado, cdEsp);
+    } catch {
+      itens = [];
+    }
+
+    const dsEsp = esp.ds_especialidade || esp.dsEspecialidade || `Especialidade ${cdEsp}`;
+    const nrNivel = Number(esp.nr_nivel ?? esp.nrNivel ?? 0);
+    const dtNivel = esp.dt_nivel || esp.dtNivel || null;
+    const qtdItens = Number(esp.itens ?? esp.qtd_itens_concluidos ?? esp.qtdItensConcluidos ?? itens.length);
+
+    result.push({
+      cd_especialidade: String(cdEsp),
+      ds_especialidade: dsEsp,
+      nr_nivel: nrNivel,
+      dt_nivel: dtNivel,
+      qtd_itens_concluidos: qtdItens,
+      itens_conquistados: itens.map((it: any) => ({
+        cd_item: String(it.cd_item || it.cdItem || ''),
+        ds_item: it.ds_item
+          ? it.ds_item.replace(/!@#BARRA_R#@!!@#BARRA_N#@!|!@#BARRA_N#@!|!@#BARRA_R#@!/g, ' ').replace(/\s+/g, ' ').trim()
+          : (it.dsItem || ''),
+        dt_item: it.dt_item || it.dtItem || '',
+        nr_nivel: Number(it.nr_nivel ?? it.nrNivel ?? nrNivel),
+        check_escotista: it.check_escotista || 'confirmadoEscotista',
+      })),
+    });
+  }
+
+  return result;
+}
+
+

@@ -1,92 +1,25 @@
--- Schema de banco de dados para o GEBV Backup de Progressões e Catálogo Multi-Ramo
--- Compatível com PostgreSQL 14+
--- Nota: Para aplicar alterações em produção, use o runner de migrations: `npm run db:migrate`
-
-CREATE TABLE IF NOT EXISTS _migrations (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL UNIQUE,
-  applied_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
+-- Migration 002: Catálogo e Motor de Transição com Suporte Multi-Ramo (Lobinho, Escoteiro, Sênior, Pioneiro)
 
 -- ============================================================================
--- 1. Tabela Unificada de Pessoas (Beneficiários e Escotistas)
+-- 1. PROGRAMA ANTIGO (CATÁLOGO MULTI-RAMO E PROGRESSÕES)
 -- ============================================================================
-CREATE TABLE IF NOT EXISTS associados (
-  cd_associado VARCHAR(32) PRIMARY KEY,
-  nr_registro_formatado VARCHAR(32),
-  nm_associado VARCHAR(255) NOT NULL,
-  ds_categoria VARCHAR(64) NOT NULL, -- 'Beneficiário' | 'Escotista'
-  ds_ramo VARCHAR(64),               -- 'Lobinho', 'Escoteiro', 'Sênior', 'Pioneiro'
-  fl_status VARCHAR(32),
-  dt_nascimento VARCHAR(32),
-  ds_email VARCHAR(255),
-  ds_telefone_cel VARCHAR(64),
-  dados_cadastrais_completos JSONB NOT NULL DEFAULT '{}'::jsonb,
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
 
-CREATE INDEX IF NOT EXISTS idx_associados_ramo_categoria ON associados (ds_ramo, ds_categoria);
-
--- ============================================================================
--- 2. Histórico Bruto de Progressões (Backup / JSON Paxtu)
--- ============================================================================
-CREATE TABLE IF NOT EXISTS progressoes_escoteiro (
-  id SERIAL PRIMARY KEY,
-  cd_associado VARCHAR(32) NOT NULL REFERENCES associados(cd_associado) ON DELETE CASCADE,
-  caminhos JSONB NOT NULL DEFAULT '[]'::jsonb,
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT uq_progressoes_escoteiro_associado UNIQUE (cd_associado)
-);
-
--- ============================================================================
--- 3. Atividades Legadas
--- ============================================================================
-CREATE TABLE IF NOT EXISTS atividades_escoteiro (
-  id SERIAL PRIMARY KEY,
-  cd_associado VARCHAR(32) NOT NULL REFERENCES associados(cd_associado) ON DELETE CASCADE,
-  cd_caminho VARCHAR(64),
-  cd_competencia VARCHAR(64),
-  ds_atividade TEXT,
-  ds_desenvolvimento VARCHAR(128),
-  check_jovem VARCHAR(32),
-  check_escotista VARCHAR(32),
-  dt_check_jovem VARCHAR(32),
-  dt_check_escotista VARCHAR(32),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX IF NOT EXISTS idx_atividades_escoteiro_associado ON atividades_escoteiro (cd_associado);
-
--- ============================================================================
--- 4. Logs e Auditoria de Sincronizações
--- ============================================================================
-CREATE TABLE IF NOT EXISTS sync_logs (
-  id SERIAL PRIMARY KEY,
-  tipo VARCHAR(32) NOT NULL, -- 'lote_escoteiro' | 'individual'
-  cd_associado VARCHAR(32),
-  status VARCHAR(32) NOT NULL, -- 'sucesso' | 'erro' | 'parcial'
-  detalhes JSONB,
-  duration_ms INTEGER,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-
--- ============================================================================
--- 5. PROGRAMA ANTIGO (CATÁLOGO MULTI-RAMO E PROGRESSÕES)
--- ============================================================================
 CREATE TABLE IF NOT EXISTS pa_areas_desenvolvimento (
   id SERIAL PRIMARY KEY,
   ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro', -- 'Lobinho', 'Escoteiro', 'Sênior', 'Pioneiro'
-  nm_area VARCHAR(64) NOT NULL,
-  CONSTRAINT uq_pa_area_ramo UNIQUE (ds_ramo, nm_area)
+  nm_area VARCHAR(64) NOT NULL
 );
+ALTER TABLE pa_areas_desenvolvimento ADD COLUMN IF NOT EXISTS ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro';
+CREATE UNIQUE INDEX IF NOT EXISTS uq_pa_area_ramo ON pa_areas_desenvolvimento(ds_ramo, nm_area);
 
 CREATE TABLE IF NOT EXISTS pa_caminhos (
   id SERIAL PRIMARY KEY,
   ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro',
   cd_caminho_paxtu VARCHAR(16) NOT NULL,
-  nm_caminho VARCHAR(128) NOT NULL,
-  CONSTRAINT uq_pa_caminho_ramo UNIQUE (ds_ramo, cd_caminho_paxtu)
+  nm_caminho VARCHAR(128) NOT NULL
 );
+ALTER TABLE pa_caminhos ADD COLUMN IF NOT EXISTS ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro';
+CREATE UNIQUE INDEX IF NOT EXISTS uq_pa_caminho_ramo ON pa_caminhos(ds_ramo, cd_caminho_paxtu);
 
 CREATE TABLE IF NOT EXISTS pa_competencias (
   id SERIAL PRIMARY KEY,
@@ -97,7 +30,7 @@ CREATE TABLE IF NOT EXISTS pa_competencias (
   nr_competencia_ordem INTEGER,
   ds_competencia TEXT NOT NULL
 );
-
+ALTER TABLE pa_competencias ADD COLUMN IF NOT EXISTS ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro';
 CREATE INDEX IF NOT EXISTS idx_pa_comp_ramo ON pa_competencias(ds_ramo);
 
 CREATE TABLE IF NOT EXISTS pa_atividades (
@@ -106,15 +39,14 @@ CREATE TABLE IF NOT EXISTS pa_atividades (
   competencia_id INTEGER NOT NULL REFERENCES pa_competencias(id) ON DELETE CASCADE,
   cd_atividade_paxtu VARCHAR(32),
   cd_ueb VARCHAR(16) NOT NULL,
-  identificacao VARCHAR(32),
   nr_ordenacao INTEGER DEFAULT 0,
   ds_atividade TEXT NOT NULL
 );
-
+ALTER TABLE pa_atividades ADD COLUMN IF NOT EXISTS ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro';
 CREATE INDEX IF NOT EXISTS idx_pa_atividades_ramo_ueb ON pa_atividades(ds_ramo, cd_ueb);
-CREATE INDEX IF NOT EXISTS idx_pa_atividades_identificacao ON pa_atividades(identificacao);
 CREATE INDEX IF NOT EXISTS idx_pa_atividades_paxtu ON pa_atividades(cd_atividade_paxtu);
 
+-- Histórico de atividades do jovem no Programa Antigo (desmembrado do Paxtu)
 CREATE TABLE IF NOT EXISTS escoteiro_pa_atividades (
   id SERIAL PRIMARY KEY,
   cd_associado VARCHAR(32) NOT NULL REFERENCES associados(cd_associado) ON DELETE CASCADE,
@@ -130,15 +62,17 @@ CREATE TABLE IF NOT EXISTS escoteiro_pa_atividades (
 CREATE INDEX IF NOT EXISTS idx_escoteiro_pa_atividades_assoc ON escoteiro_pa_atividades(cd_associado);
 
 -- ============================================================================
--- 6. NOVO PROGRAMA EDUCATIVO (MULTI-RAMO: EIXOS, BLOCOS E AÇÕES)
+-- 2. NOVO PROGRAMA EDUCATIVO (MULTI-RAMO: EIXOS, BLOCOS E AÇÕES)
 -- ============================================================================
+
 CREATE TABLE IF NOT EXISTS pn_eixos (
   id SERIAL PRIMARY KEY,
   ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro',
   nm_eixo VARCHAR(128) NOT NULL,
-  nr_ordem INTEGER DEFAULT 0,
-  CONSTRAINT uq_pn_eixo_ramo UNIQUE (ds_ramo, nm_eixo)
+  nr_ordem INTEGER DEFAULT 0
 );
+ALTER TABLE pn_eixos ADD COLUMN IF NOT EXISTS ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro';
+CREATE UNIQUE INDEX IF NOT EXISTS uq_pn_eixo_ramo ON pn_eixos(ds_ramo, nm_eixo);
 
 CREATE TABLE IF NOT EXISTS pn_blocos (
   id SERIAL PRIMARY KEY,
@@ -151,6 +85,7 @@ CREATE TABLE IF NOT EXISTS pn_blocos (
   nr_ordem INTEGER DEFAULT 0,
   CONSTRAINT uq_pn_bloco_eixo UNIQUE (eixo_id, nm_bloco)
 );
+ALTER TABLE pn_blocos ADD COLUMN IF NOT EXISTS ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro';
 
 CREATE TABLE IF NOT EXISTS pn_acoes_educativas (
   id SERIAL PRIMARY KEY,
@@ -162,7 +97,7 @@ CREATE TABLE IF NOT EXISTS pn_acoes_educativas (
   regra_qtd_texto VARCHAR(64),
   nr_ordem INTEGER DEFAULT 0
 );
-
+ALTER TABLE pn_acoes_educativas ADD COLUMN IF NOT EXISTS ds_ramo VARCHAR(32) NOT NULL DEFAULT 'Escoteiro';
 CREATE INDEX IF NOT EXISTS idx_pn_acoes_bloco ON pn_acoes_educativas(bloco_id);
 CREATE INDEX IF NOT EXISTS idx_pn_acoes_ramo ON pn_acoes_educativas(ds_ramo);
 
@@ -174,8 +109,9 @@ CREATE TABLE IF NOT EXISTS pn_bloco_especialidades (
 );
 
 -- ============================================================================
--- 7. REGRAS DE EQUIVALÊNCIA E CONQUISTAS NO NOVO PROGRAMA
+-- 3. REGRAS DE EQUIVALÊNCIA E CONQUISTAS NO NOVO PROGRAMA
 -- ============================================================================
+
 CREATE TABLE IF NOT EXISTS pn_equivalencia_regras (
   id SERIAL PRIMARY KEY,
   acao_pn_id INTEGER NOT NULL REFERENCES pn_acoes_educativas(id) ON DELETE CASCADE,

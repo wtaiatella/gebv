@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, CheckCircle2, Circle, Clock } from 'lucide-react';
-import type { Escoteiro } from '@/app/lib/data';
+import { ChevronDown, CheckCircle2, Circle, Clock, Award, Sparkles } from 'lucide-react';
+import type { Escoteiro, EscoteiroEspecialidade } from '@/app/lib/data';
 
 const NOMES_CAMINHOS: Record<string, string> = {
   '4': 'Período Introdutório',
@@ -36,20 +36,107 @@ function agruparAtividades(atividades: Escoteiro['progressao'][number]['data']) 
   return grupos;
 }
 
+function getNivelBadge(nrNivel: number, dtNivel?: string) {
+  switch (nrNivel) {
+    case 3:
+      return (
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            padding: '0.2rem 0.6rem',
+            borderRadius: '6px',
+            fontSize: '0.78rem',
+            fontWeight: 700,
+            background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.25), rgba(202, 138, 4, 0.15))',
+            color: '#facc15',
+            border: '1px solid rgba(234, 179, 8, 0.4)',
+          }}
+        >
+          🥇 Nível 3 (Ouro) {dtNivel ? `• ${dtNivel}` : ''}
+        </span>
+      );
+    case 2:
+      return (
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            padding: '0.2rem 0.6rem',
+            borderRadius: '6px',
+            fontSize: '0.78rem',
+            fontWeight: 700,
+            background: 'linear-gradient(135deg, rgba(226, 232, 240, 0.2), rgba(148, 163, 184, 0.1))',
+            color: '#e2e8f0',
+            border: '1px solid rgba(226, 232, 240, 0.4)',
+          }}
+        >
+          🥈 Nível 2 (Prata) {dtNivel ? `• ${dtNivel}` : ''}
+        </span>
+      );
+    case 1:
+      return (
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            padding: '0.2rem 0.6rem',
+            borderRadius: '6px',
+            fontSize: '0.78rem',
+            fontWeight: 700,
+            background: 'linear-gradient(135deg, rgba(217, 119, 6, 0.25), rgba(180, 83, 9, 0.15))',
+            color: '#fb923c',
+            border: '1px solid rgba(217, 119, 6, 0.4)',
+          }}
+        >
+          🥉 Nível 1 (Bronze) {dtNivel ? `• ${dtNivel}` : ''}
+        </span>
+      );
+    default:
+      return (
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            padding: '0.2rem 0.6rem',
+            borderRadius: '6px',
+            fontSize: '0.78rem',
+            fontWeight: 600,
+            background: 'rgba(59, 130, 246, 0.15)',
+            color: '#60a5fa',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+          }}
+        >
+          ⏳ Em Andamento
+        </span>
+      );
+  }
+}
+
 type ProgressionViewProps = {
   caminhos: Escoteiro['progressao'];
+  especialidades?: Escoteiro['especialidades'];
 };
 
-export default function ProgressionView({ caminhos }: ProgressionViewProps) {
-  const [abertos, setAbertos] = useState<Set<string>>(() => new Set());
+export default function ProgressionView({ caminhos, especialidades = [] }: ProgressionViewProps) {
+  const [abertos, setAbertos] = useState<Set<string>>(() => new Set(['especialidades']));
+  const [espsAbertas, setEspsAbertas] = useState<Set<string>>(() => new Set());
 
-  if (!caminhos || caminhos.length === 0) {
-    return (
-      <p style={{ color: '#888', textAlign: 'center', marginTop: '2rem' }}>
-        Sem dados de progressão registrados para este jovem.
-      </p>
-    );
-  }
+  // Filtra registros inválidos caso existam
+  const espsValidas = especialidades.filter(
+    (e) => e && e.cd_especialidade && e.cd_especialidade !== 'undefined'
+  );
+
+  const totalConquistadas = espsValidas.filter((e) => e.nr_nivel > 0).length;
+  const totalEmAndamento = espsValidas.filter((e) => e.nr_nivel === 0).length;
+  const totalItensConcluidos = espsValidas.reduce(
+    (acc, e) => acc + (e.qtd_itens_concluidos || (e.itens ? e.itens.filter((it) => it.fl_conquistado).length : 0)),
+    0
+  );
 
   function toggle(codigo: string) {
     setAbertos((prev) => {
@@ -63,15 +150,36 @@ export default function ProgressionView({ caminhos }: ProgressionViewProps) {
     });
   }
 
+  function toggleEsp(cdEsp: string) {
+    setEspsAbertas((prev) => {
+      const next = new Set(prev);
+      if (next.has(cdEsp)) {
+        next.delete(cdEsp);
+      } else {
+        next.add(cdEsp);
+      }
+      return next;
+    });
+  }
+
+  if ((!caminhos || caminhos.length === 0) && (!espsValidas || espsValidas.length === 0)) {
+    return (
+      <p style={{ color: '#888', textAlign: 'center', marginTop: '2rem' }}>
+        Sem dados de progressão registrados para este jovem.
+      </p>
+    );
+  }
+
   return (
     <div className="caminhos">
+      {/* Blocos 1, 2, 3: Caminhos do Programa Antigo */}
       {caminhos.map((caminho, i) => {
         const codigo = caminho.data[0]?.cdCaminho ?? String(i + 1);
         const nome = NOMES_CAMINHOS[codigo] ?? `Caminho ${codigo}`;
         const feitos = caminho.data.filter((a) => a.checkEscotista === 'confirmadoEscotista').length;
         const pct = caminho.totalCount ? Math.round((feitos / caminho.totalCount) * 100) : 0;
         const aberto = abertos.has(codigo);
-        const prefixo = codigo === '4' ? 'P' : '';
+        const prefixo = codigo === '4' ? 'P-' : codigo === '5' ? 'PT-' : codigo === '6' ? 'RT-' : '';
         const grupos = agruparAtividades(caminho.data);
 
         return (
@@ -106,36 +214,60 @@ export default function ProgressionView({ caminhos }: ProgressionViewProps) {
                       <tr>
                         <th className="col-numero">#</th>
                         <th>Atividade</th>
-                        <th>Jovem</th>
-                        <th>Escotista</th>
-                        <th>Data</th>
+                        <th style={{ width: '70px', textAlign: 'center' }}>Jovem</th>
+                        <th style={{ width: '70px', textAlign: 'center' }}>Escotista</th>
+                        <th className="col-data">Data</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {atividades.map((atividade, idx) => (
-                        <tr key={`${atividade.cdAtividade ?? idx}`}>
-                          <td className="col-numero">
-                            {prefixo}
-                            {atividade.cdOrdenacao ?? idx + 1}
-                          </td>
-                          <td>{atividade.dsAtividade}</td>
-                          <td>
-                            <StatusIcon checked={atividade.checkJovem === 'feitoJovem'} />
-                          </td>
-                          <td>
-                            <StatusIcon checked={atividade.checkEscotista === 'confirmadoEscotista'} />
-                          </td>
-                          <td className="atividade-data">
-                            {atividade.dtCheckJovem ? (
-                              <>
-                                <Clock size={12} /> {atividade.dtCheckJovem}
-                              </>
-                            ) : (
-                              '-'
-                            )}
-                          </td>
-                        </tr>
-                      ))}
+                      {atividades.map((atividade, idx) => {
+                        const isEscotista =
+                          atividade.checkEscotista === 'confirmadoEscotista' ||
+                          atividade.checkEscotista === 'S' ||
+                          atividade.checkEscotista === '1' ||
+                          atividade.checkEscotista === 'true';
+
+                        const isJovem =
+                          atividade.checkJovem === 'feitoJovem' ||
+                          atividade.checkJovem === 'S' ||
+                          atividade.checkJovem === '1' ||
+                          atividade.checkJovem === 'true' ||
+                          Boolean(atividade.dtCheckJovem);
+
+                        const dataFormatada =
+                          atividade.dtCheckEscotista ||
+                          atividade.dtCheckJovem ||
+                          atividade.dtAtividade ||
+                          null;
+
+                        return (
+                          <tr key={`${atividade.cdAtividade ?? idx}`}>
+                            <td className="col-numero">
+                              {prefixo}
+                              {atividade.cdOrdenacao ?? idx + 1}
+                            </td>
+                            <td style={{ color: isEscotista ? '#f1f5f9' : isJovem ? '#e2e8f0' : '#64748b' }}>
+                              {atividade.dsAtividade}
+                            </td>
+                            <td style={{ textAlign: 'center' }}>
+                              <StatusIcon checked={isJovem} />
+                            </td>
+                            <td style={{ textAlign: 'center' }}>
+                              <StatusIcon checked={isEscotista} />
+                            </td>
+                            <td className="col-data">
+                              {dataFormatada ? (
+                                <span className="atividade-data">
+                                  <Clock size={12} style={{ flexShrink: 0 }} />
+                                  <span>{dataFormatada}</span>
+                                </span>
+                              ) : (
+                                <span style={{ color: '#555' }}>-</span>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -143,6 +275,181 @@ export default function ProgressionView({ caminhos }: ProgressionViewProps) {
           </div>
         );
       })}
+
+      {/* Bloco 4 (Última Posição): Especialidades Conquistadas e em Andamento */}
+      <div className="caminho" key="especialidades-bloco">
+        <button
+          type="button"
+          className="caminho-header caminho-header-toggle"
+          onClick={() => toggle('especialidades')}
+          aria-expanded={abertos.has('especialidades')}
+          style={{
+            borderColor: abertos.has('especialidades') ? 'rgba(234, 179, 8, 0.4)' : undefined,
+          }}
+        >
+          <span className="caminho-header-titulo">
+            <ChevronDown
+              size={18}
+              className={`caminho-chevron ${abertos.has('especialidades') ? 'aberto' : ''}`}
+              style={{ color: abertos.has('especialidades') ? '#facc15' : undefined }}
+            />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Award size={18} color="#facc15" />
+              <h3>Especialidades (Conquistadas e em Andamento)</h3>
+            </div>
+          </span>
+          <span className="caminho-pct" style={{ color: '#facc15', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            {totalConquistadas > 0 && <span>{totalConquistadas} conquistada{totalConquistadas > 1 ? 's' : ''}</span>}
+            {totalEmAndamento > 0 && (
+              <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>
+                • {totalEmAndamento} em andamento
+              </span>
+            )}
+            <span style={{ color: '#64748b', fontSize: '0.78rem' }}>({totalItensConcluidos} itens)</span>
+          </span>
+        </button>
+
+        <div className="progress-bar">
+          <div
+            className="progress-bar-fill"
+            style={{
+              width: totalConquistadas > 0 ? '100%' : totalItensConcluidos > 0 ? '40%' : '0%',
+              background: 'linear-gradient(90deg, #f59e0b, #fbbf24)',
+            }}
+          />
+        </div>
+
+        {abertos.has('especialidades') && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '0.5rem' }}>
+            {espsValidas.length === 0 ? (
+              <p style={{ color: '#888', textAlign: 'center', padding: '1.5rem', fontSize: '0.9rem' }}>
+                Nenhuma especialidade registrada no Paxtu para este jovem.
+              </p>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {espsValidas.map((esp) => {
+                  // Abre por padrão se houver apenas 1 especialidade, ou se clicada
+                  const isEspOpen = espsAbertas.has(esp.cd_especialidade) || (espsValidas.length === 1 && !espsAbertas.has(`closed_${esp.cd_especialidade}`));
+                  const itens = esp.itens || [];
+                  const concluidosCount = itens.filter((it) => it.fl_conquistado).length || esp.qtd_itens_concluidos;
+                  const totalItensCount = esp.total_itens || itens.length;
+
+                  return (
+                    <div
+                      key={esp.cd_especialidade}
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        transition: 'border-color 0.2s ease',
+                      }}
+                    >
+                      <div
+                        onClick={() => {
+                          if (espsValidas.length === 1) {
+                            if (isEspOpen) {
+                              setEspsAbertas((prev) => new Set([...prev, `closed_${esp.cd_especialidade}`]));
+                            } else {
+                              setEspsAbertas((prev) => {
+                                const next = new Set(prev);
+                                next.delete(`closed_${esp.cd_especialidade}`);
+                                return next;
+                              });
+                            }
+                          } else {
+                            toggleEsp(esp.cd_especialidade);
+                          }
+                        }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '0.85rem 1rem',
+                          cursor: 'pointer',
+                          userSelect: 'none',
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <ChevronDown
+                            size={16}
+                            style={{
+                              transform: isEspOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                              transition: 'transform 0.2s ease',
+                              color: '#94a3b8',
+                            }}
+                          />
+                          <span style={{ fontWeight: 600, fontSize: '0.95rem', color: '#f1f5f9' }}>
+                            {esp.ds_especialidade}
+                          </span>
+                        </div>
+
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <span style={{ fontSize: '0.82rem', color: '#94a3b8' }}>
+                            {concluidosCount} de {totalItensCount} itens concluídos
+                          </span>
+                          {getNivelBadge(esp.nr_nivel, esp.dt_nivel)}
+                        </div>
+                      </div>
+
+                      {isEspOpen && (
+                        <div style={{ padding: '0.5rem 1rem 1rem 1rem', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                          {itens.length === 0 ? (
+                            <p style={{ color: '#888', fontSize: '0.85rem', fontStyle: 'italic', padding: '0.5rem 0' }}>
+                              Itens detalhados não sincronizados individualmente.
+                            </p>
+                          ) : (
+                            <table className="atividades-table" style={{ fontSize: '0.85rem' }}>
+                              <thead>
+                                <tr>
+                                  <th className="col-numero" style={{ width: '45px' }}>#</th>
+                                  <th>Requisito / Atividade</th>
+                                  <th style={{ width: '70px', textAlign: 'center' }}>Jovem</th>
+                                  <th style={{ width: '70px', textAlign: 'center' }}>Escotista</th>
+                                  <th className="col-data">Data</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {itens.map((it, idx) => (
+                                  <tr key={it.cd_item || idx}>
+                                    <td className="col-numero">
+                                      #{it.cd_item || idx + 1}
+                                    </td>
+                                    <td style={{ color: it.fl_check_escotista ? '#f1f5f9' : it.fl_check_jovem ? '#e2e8f0' : '#64748b' }}>
+                                      {it.ds_item || `Requisito ${it.cd_item || idx + 1}`}
+                                    </td>
+                                    <td style={{ textAlign: 'center' }}>
+                                      <StatusIcon checked={it.fl_check_jovem} />
+                                    </td>
+                                    <td style={{ textAlign: 'center' }}>
+                                      <StatusIcon checked={it.fl_check_escotista} />
+                                    </td>
+                                    <td className="col-data">
+                                      {it.dt_item ? (
+                                        <span className="atividade-data">
+                                          <Clock size={12} style={{ flexShrink: 0 }} />
+                                          <span>{it.dt_item}</span>
+                                        </span>
+                                      ) : (
+                                        <span style={{ color: '#555' }}>-</span>
+                                      )}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
+

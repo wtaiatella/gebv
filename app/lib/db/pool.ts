@@ -1,4 +1,5 @@
-import { Pool, QueryResult, QueryResultRow } from 'pg';
+import pg, { Pool } from 'pg';
+import type { QueryResult, QueryResultRow, PoolClient } from 'pg';
 
 let pool: Pool | null = null;
 
@@ -32,7 +33,7 @@ export async function query<R extends QueryResultRow = any>(
   return p.query<R>(text, params);
 }
 
-export async function withTransaction<T>(callback: (client: any) => Promise<T>): Promise<T> {
+export async function withTransaction<T>(callback: (client: PoolClient) => Promise<T>): Promise<T> {
   const p = getPool();
   const client = await p.connect();
   try {

@@ -25,6 +25,88 @@ body {
   overflow-x: hidden;
 }
 
+/* Navbar */
+.navbar {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 2rem;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, var(--primary), #00b4d8);
+  color: #000;
+  font-weight: 900;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+}
+
+.brand-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #888;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #fff;
+  background: var(--glass);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -362,11 +444,18 @@ pre {
   background: var(--glass);
 }
 
+.col-data {
+  width: 180px;
+  min-width: 180px;
+  text-align: right;
+  white-space: nowrap;
+}
+
 .atividade-data {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  color: #888;
+  gap: 0.35rem;
+  color: #94a3b8;
   font-size: 0.8rem;
   white-space: nowrap;
 }
@@ -393,4 +482,15 @@ pre {
   color: #888;
   font-variant-numeric: tabular-nums;
   font-size: 0.8rem;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

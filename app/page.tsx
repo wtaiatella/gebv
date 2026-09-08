@@ -5,6 +5,7 @@ type Props = {
   searchParams: Promise<{
     jovem?: string;
     ramo?: string;
+    view?: 'novo' | 'antigo';
   }>;
 };
 
@@ -16,12 +17,14 @@ export default async function Home({ searchParams }: Props) {
 
   const escoteiros = await getEscoteiros(ramoValido);
   const selectedId = params.jovem || escoteiros[0]?.associado.cd_associado || '';
+  const initialView = params.view === 'antigo' ? 'antigo' : 'novo';
 
   return (
     <ScoutExplorer
       escoteiros={escoteiros}
       selectedId={selectedId}
       ramoAtual={ramoValido}
+      initialView={initialView}
     />
   );
 }
