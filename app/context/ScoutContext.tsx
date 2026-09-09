@@ -45,29 +45,27 @@ export function ScoutProvider({
   const [exibirMatriz, setExibirMatriz] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Sincroniza a URL suavemente sem reload
-  const syncUrl = useCallback((ramo: Ramo, jovemId: string, view: 'novo' | 'antigo') => {
+  // Sincroniza a URL suavemente e com segurança no ciclo de efeito do React
+  useEffect(() => {
     if (typeof window === 'undefined') return;
     const url = new URL(window.location.href);
-    url.searchParams.set('ramo', ramo);
-    if (jovemId) {
-      url.searchParams.set('jovem', jovemId);
+    url.searchParams.set('ramo', ramoAtual);
+    if (selectedId) {
+      url.searchParams.set('jovem', selectedId);
     } else {
       url.searchParams.delete('jovem');
     }
-    url.searchParams.set('view', view);
+    url.searchParams.set('view', viewMode);
     window.history.replaceState(null, '', url.pathname + url.search);
-  }, []);
+  }, [ramoAtual, selectedId, viewMode]);
 
   const setSelectedId = useCallback((id: string) => {
     setSelectedIdState(id);
-    syncUrl(ramoAtual, id, viewMode);
-  }, [ramoAtual, viewMode, syncUrl]);
+  }, []);
 
   const setViewMode = useCallback((mode: 'novo' | 'antigo') => {
     setViewModeState(mode);
-    syncUrl(ramoAtual, selectedId, mode);
-  }, [ramoAtual, selectedId, syncUrl]);
+  }, []);
 
   // Função para buscar a lista viva de escoteiros via API
   const refreshEscoteiros = useCallback(
@@ -86,9 +84,7 @@ export function ScoutProvider({
           // Se o jovem selecionado anteriormente ainda estiver na lista nova, mantém ele; caso contrário, seleciona o primeiro
           setSelectedIdState((currentId) => {
             const exists = newList.some((e) => e.associado.cd_associado === currentId);
-            const nextId = exists ? currentId : newList[0]?.associado.cd_associado || '';
-            syncUrl(ramo, nextId, viewMode);
-            return nextId;
+            return exists ? currentId : newList[0]?.associado.cd_associado || '';
           });
 
           return newList;
@@ -101,7 +97,7 @@ export function ScoutProvider({
         setIsLoading(false);
       }
     },
-    [ramoAtual, viewMode, syncUrl]
+    [ramoAtual]
   );
 
   // Troca de ramo no cliente
