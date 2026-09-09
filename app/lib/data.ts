@@ -115,7 +115,9 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
         `SELECT cd_associado, nm_associado, nr_registro_formatado, ds_categoria, ds_ramo, fl_status,
                 dt_nascimento, ds_email, ds_telefone_cel, dados_cadastrais_completos
          FROM associados
-         WHERE ds_categoria = 'Beneficiário' AND ds_ramo = $1 AND (fl_status IS NULL OR fl_status != 'I')
+         WHERE ds_categoria = 'Beneficiário' 
+           AND ds_ramo = $1 
+           AND (fl_status = 'S' OR fl_status = 'Ativo' OR fl_status = 'true' OR fl_status = '1' OR fl_status IS NULL)
          ORDER BY nm_associado ASC`,
         [ramo]
       );

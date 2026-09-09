@@ -282,6 +282,9 @@ export async function syncRamo(
     const membros = associados.filter((a) => {
       const catMatch = a.dsCategoria?.toLowerCase() === 'beneficiário' || a.dsCategoria?.toLowerCase() === 'beneficiario';
       if (!catMatch) return false;
+      const statusRaw = (a.flStatus || a.fl_status || 'S').trim().toUpperCase();
+      const isInactive = statusRaw === 'N' || statusRaw === 'I' || statusRaw === 'INATIVO' || statusRaw === 'FALSE' || statusRaw === '0' || statusRaw === 'DESLIGADO';
+      if (isInactive) return false;
       const r = a.dsRamo?.toLowerCase() || '';
       return (
         r === targetRamo ||
