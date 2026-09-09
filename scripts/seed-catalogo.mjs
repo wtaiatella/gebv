@@ -390,8 +390,12 @@ async function seedCatalogo() {
         const rawTodos = await readFile(path.join(process.cwd(), 'data', 'todos_associados_gebv.json'), 'utf-8');
         assocData = JSON.parse(rawTodos);
       } catch {
-        const rawAssoc = await readFile(path.join(process.cwd(), 'data', 'associados.json'), 'utf-8');
-        assocData = JSON.parse(rawAssoc);
+        try {
+          const rawAssoc = await readFile(path.join(process.cwd(), 'data', 'associados.json'), 'utf-8');
+          assocData = JSON.parse(rawAssoc);
+        } catch {
+          assocData = [];
+        }
       }
 
       for (const a of assocData) {
@@ -430,69 +434,6 @@ async function seedCatalogo() {
       console.log(`✓ ${assocData.length} associados sincronizados com a tabela associados.`);
     } catch (errAssoc) {
       console.warn('Aviso: Associados não importados:', errAssoc.message);
-    }
-
-    // -------------------------------------------------------------
-    // 6. Migrar histórico de progressoes.json para escoteiro_pa_atividades
-    // -------------------------------------------------------------
-    console.log('6. Migrando histórico dos escoteiros para escoteiro_pa_atividades...');
-    try {
-      const rawProg = await readFile(path.join(process.cwd(), 'data', 'progressoes.json'), 'utf-8');
-      const progList = JSON.parse(rawProg);
-
-      // Mapeamento de atividade_id por (cd_caminho_paxtu, cd_ueb)
-      const atvRes = await client.query(`
-        SELECT a.id, c.cd_caminho_paxtu, a.cd_ueb
-        FROM pa_atividades a
-        JOIN pa_competencias comp ON a.competencia_id = comp.id
-        JOIN pa_caminhos c ON comp.caminho_id = c.id
-      `);
-      const atvMap = new Map(atvRes.rows.map((r) => [`${r.cd_caminho_paxtu}_${r.cd_ueb}`, r.id]));
-
-      let checksCount = 0;
-      for (const p of progList) {
-        const cdAssociado = p.cd_associado;
-        if (!cdAssociado) continue;
-
-        for (const cam of p.caminhos || []) {
-          for (const atv of cam.data || []) {
-            const camId = atv.cdCaminho;
-            const ueb = atv.cdUeb;
-            const atvDbId = atvMap.get(`${camId}_${ueb}`);
-
-            if (atvDbId) {
-              const flJovem = atv.checkJovem === 'feitoJovem' || atv.checkJovem === 'S' || atv.checkJovem === '1' || atv.checkJovem === 'true' || !!atv.dtCheckJovem;
-              const flEscotista = atv.checkEscotista === 'confirmadoEscotista' || atv.checkEscotista === 'S' || atv.checkEscotista === '1' || atv.checkEscotista === 'true' || !!atv.dtCheckEscotista;
-
-              if (flJovem || flEscotista) {
-                await client.query(
-                  `INSERT INTO escoteiro_pa_atividades (
-                    cd_associado, atividade_id, fl_check_jovem, fl_check_escotista,
-                    dt_check_jovem, dt_check_escotista
-                  ) VALUES ($1, $2, $3, $4, $5, $6)
-                  ON CONFLICT (cd_associado, atividade_id) DO UPDATE SET
-                    fl_check_jovem = EXCLUDED.fl_check_jovem,
-                    fl_check_escotista = EXCLUDED.fl_check_escotista,
-                    dt_check_jovem = EXCLUDED.dt_check_jovem,
-                    dt_check_escotista = EXCLUDED.dt_check_escotista`,
-                  [
-                    cdAssociado,
-                    atvDbId,
-                    flJovem,
-                    flEscotista,
-                    atv.dtCheckJovem || null,
-                    atv.dtCheckEscotista || null,
-                  ]
-                );
-                checksCount++;
-              }
-            }
-          }
-        }
-      }
-      console.log(`✓ ${checksCount} checks de atividades importados para escoteiro_pa_atividades.`);
-    } catch (errHist) {
-      console.warn('Aviso: Histórico inicial de progressoes.json não importado:', errHist.message);
     }
 
     // -------------------------------------------------------------
@@ -538,24 +479,105 @@ async function seedCatalogo() {
     }
 
     // -------------------------------------------------------------
-    // 7. Migrar histórico de especialidades dos jovens (data/pa_especialidades_associados.json)
+    // 7. Migrar histórico de progressoes.json para escoteiro_pa_atividades
     // -------------------------------------------------------------
-    console.log('7. Migrando histórico de especialidades dos associados para escoteiro_pa_especialidades...');
+    console.log('7. Migrando histórico dos escoteiros para escoteiro_pa_atividades...');
+    try {
+      const rawProg = await readFile(path.join(process.cwd(), 'data', 'progressoes.json'), 'utf-8');
+      const progList = JSON.parse(rawProg);
+
+      // Mapeamento de atividade_id por (cd_caminho_paxtu, cd_ueb)
+      const atvRes = await client.query(`
+        SELECT a.id, c.cd_caminho_paxtu, a.cd_ueb
+        FROM pa_atividades a
+        JOIN pa_competencias comp ON a.competencia_id = comp.id
+        JOIN pa_caminhos c ON comp.caminho_id = c.id
+      `);
+      const atvMap = new Map(atvRes.rows.map((r) => [`${r.cd_caminho_paxtu}_${r.cd_ueb}`, r.id]));
+
+      let checksCount = 0;
+      for (const p of progList) {
+        const cdAssociado = String(p.cd_associado || '');
+        if (!cdAssociado) continue;
+
+        // Garante que o associado existe antes da inserção na tabela de ligação
+        await client.query(
+          `INSERT INTO associados (cd_associado, nm_associado, ds_categoria, ds_ramo, dados_cadastrais_completos)
+           VALUES ($1, $2, 'Beneficiário', 'Escoteiro', '{}'::jsonb)
+           ON CONFLICT (cd_associado) DO NOTHING`,
+          [cdAssociado, `Associado ${cdAssociado}`]
+        );
+
+        for (const cam of p.caminhos || []) {
+          for (const atv of cam.data || []) {
+            const camId = atv.cdCaminho;
+            const ueb = atv.cdUeb;
+            const atvDbId = atvMap.get(`${camId}_${ueb}`);
+
+            if (atvDbId) {
+              const flJovem = atv.checkJovem === 'feitoJovem' || atv.checkJovem === 'S' || atv.checkJovem === '1' || atv.checkJovem === 'true' || !!atv.dtCheckJovem;
+              const flEscotista = atv.checkEscotista === 'confirmadoEscotista' || atv.checkEscotista === 'S' || atv.checkEscotista === '1' || atv.checkEscotista === 'true' || !!atv.dtCheckEscotista;
+
+              if (flJovem || flEscotista) {
+                await client.query(
+                  `INSERT INTO escoteiro_pa_atividades (
+                    cd_associado, atividade_id, fl_check_jovem, fl_check_escotista,
+                    dt_check_jovem, dt_check_escotista
+                  ) VALUES ($1, $2, $3, $4, $5, $6)
+                  ON CONFLICT (cd_associado, atividade_id) DO UPDATE SET
+                    fl_check_jovem = EXCLUDED.fl_check_jovem,
+                    fl_check_escotista = EXCLUDED.fl_check_escotista,
+                    dt_check_jovem = EXCLUDED.dt_check_jovem,
+                    dt_check_escotista = EXCLUDED.dt_check_escotista`,
+                  [
+                    cdAssociado,
+                    atvDbId,
+                    flJovem,
+                    flEscotista,
+                    atv.dtCheckJovem || null,
+                    atv.dtCheckEscotista || null,
+                  ]
+                );
+                checksCount++;
+              }
+            }
+          }
+        }
+      }
+      console.log(`✓ ${checksCount} checks de atividades importados para escoteiro_pa_atividades.`);
+    } catch (errHist) {
+      console.warn('Aviso: Histórico inicial de progressoes.json não importado:', errHist.message);
+    }
+
+    // -------------------------------------------------------------
+    // 8. Migrar histórico de especialidades dos jovens (data/pa_especialidades_associados.json)
+    // -------------------------------------------------------------
+    console.log('8. Migrando histórico de especialidades dos associados para escoteiro_pa_especialidades...');
     try {
       const rawAssocEsps = await readFile(path.join(process.cwd(), 'data', 'pa_especialidades_associados.json'), 'utf-8');
       const assocEspsList = JSON.parse(rawAssocEsps);
 
       const espDbRes = await client.query(`SELECT id, cd_especialidade FROM pa_especialidades`);
-      const espDbMap = new Map(espDbRes.rows.map((r) => [r.cd_especialidade, r.id]));
+      const espDbMap = new Map(espDbRes.rows.map((r) => [String(r.cd_especialidade), r.id]));
 
       let countAssocEsps = 0;
       for (const assoc of assocEspsList) {
-        const cdAssociado = assoc.cd_associado;
+        const cdAssociado = String(assoc.cd_associado || '');
         if (!cdAssociado) continue;
 
+        // Garante que o associado existe
+        await client.query(
+          `INSERT INTO associados (cd_associado, nm_associado, ds_categoria, ds_ramo, dados_cadastrais_completos)
+           VALUES ($1, $2, 'Beneficiário', 'Escoteiro', '{}'::jsonb)
+           ON CONFLICT (cd_associado) DO NOTHING`,
+          [cdAssociado, `Associado ${cdAssociado}`]
+        );
+
         for (const esp of assoc.especialidades || []) {
-          if (!esp.cd_especialidade || esp.cd_especialidade === 'undefined') continue;
-          const espId = espDbMap.get(esp.cd_especialidade) || null;
+          const rawCdEsp = esp.cd_especialidade || esp.cdEspecialidade;
+          if (!rawCdEsp || rawCdEsp === 'undefined') continue;
+          const cdEsp = String(rawCdEsp);
+          const espId = espDbMap.get(cdEsp) || null;
           await client.query(
             `INSERT INTO escoteiro_pa_especialidades (
               cd_associado, especialidade_id, cd_especialidade, ds_especialidade,
@@ -572,8 +594,8 @@ async function seedCatalogo() {
             [
               cdAssociado,
               espId,
-              esp.cd_especialidade,
-              esp.ds_especialidade || `Especialidade ${esp.cd_especialidade}`,
+              cdEsp,
+              esp.ds_especialidade || `Especialidade ${cdEsp}`,
               esp.nr_nivel || 0,
               esp.dt_nivel || null,
               esp.qtd_itens_concluidos || 0,
