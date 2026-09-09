@@ -658,7 +658,7 @@ export async function processarTransicaoAssociado(
  */
 export async function processarTransicaoTodos(ds_ramo: string = 'Escoteiro') {
   const assocRes = await query<{ cd_associado: string }>(
-    `SELECT DISTINCT cd_associado FROM associados WHERE ds_ramo = $1 OR ($1 = 'Escoteiro' AND ds_ramo IS NULL)`,
+    `SELECT DISTINCT cd_associado FROM associados WHERE ds_categoria = 'Beneficiário' AND ds_ramo = $1 AND (fl_status IS NULL OR fl_status != 'I') ORDER BY cd_associado ASC`,
     [ds_ramo]
   );
 

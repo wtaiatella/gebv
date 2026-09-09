@@ -385,20 +385,27 @@ async function seedCatalogo() {
     // -------------------------------------------------------------
     console.log('5. Populando associados a partir de dados locais...');
     try {
-      let assocData = [];
+      const assocMap = new Map();
       try {
         const rawTodos = await readFile(path.join(process.cwd(), 'data', 'todos_associados_gebv.json'), 'utf-8');
-        assocData = JSON.parse(rawTodos);
-      } catch {
-        try {
-          const rawAssoc = await readFile(path.join(process.cwd(), 'data', 'associados.json'), 'utf-8');
-          assocData = JSON.parse(rawAssoc);
-        } catch {
-          assocData = [];
+        const listTodos = JSON.parse(rawTodos);
+        for (const a of listTodos) {
+          if (a.cd_associado) assocMap.set(String(a.cd_associado), a);
         }
-      }
+      } catch {}
 
-      for (const a of assocData) {
+      try {
+        const rawAssoc = await readFile(path.join(process.cwd(), 'data', 'associados.json'), 'utf-8');
+        const listAssoc = JSON.parse(rawAssoc);
+        for (const a of listAssoc) {
+          if (a.cd_associado) {
+            const existing = assocMap.get(String(a.cd_associado)) || {};
+            assocMap.set(String(a.cd_associado), { ...existing, ...a });
+          }
+        }
+      } catch {}
+
+      for (const a of assocMap.values()) {
         if (!a.cd_associado) continue;
         await client.query(
           `INSERT INTO associados (
@@ -431,7 +438,7 @@ async function seedCatalogo() {
           ]
         );
       }
-      console.log(`✓ ${assocData.length} associados sincronizados com a tabela associados.`);
+      console.log(`✓ ${assocMap.size} associados sincronizados com a tabela associados.`);
     } catch (errAssoc) {
       console.warn('Aviso: Associados não importados:', errAssoc.message);
     }

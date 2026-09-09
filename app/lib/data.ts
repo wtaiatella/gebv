@@ -100,10 +100,22 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
   // Tenta consultar do PostgreSQL
   if (process.env.DATABASE_URL) {
     try {
-      const resAssociados = await query<Associado>(
-        `SELECT dados_cadastrais_completos
+      const resAssociados = await query<{
+        cd_associado: string;
+        nm_associado: string;
+        nr_registro_formatado: string | null;
+        ds_categoria: string;
+        ds_ramo: string;
+        fl_status: string | null;
+        dt_nascimento: string | null;
+        ds_email: string | null;
+        ds_telefone_cel: string | null;
+        dados_cadastrais_completos: any;
+      }>(
+        `SELECT cd_associado, nm_associado, nr_registro_formatado, ds_categoria, ds_ramo, fl_status,
+                dt_nascimento, ds_email, ds_telefone_cel, dados_cadastrais_completos
          FROM associados
-         WHERE ds_categoria = 'Beneficiário' AND ds_ramo = $1
+         WHERE ds_categoria = 'Beneficiário' AND ds_ramo = $1 AND (fl_status IS NULL OR fl_status != 'I')
          ORDER BY nm_associado ASC`,
         [ramo]
       );
@@ -250,14 +262,32 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
           });
         }
 
-        return resAssociados.rows.map((r) => {
-          const associado = (r as any).dados_cadastrais_completos as Associado;
-          return {
-            associado,
-            progressao: progMap.get(associado.cd_associado) ?? [],
-            especialidades: espMap.get(associado.cd_associado) ?? [],
-          };
-        });
+        return resAssociados.rows
+          .map((r) => {
+            const rawDados =
+              typeof r.dados_cadastrais_completos === 'object' && r.dados_cadastrais_completos
+                ? r.dados_cadastrais_completos
+                : {};
+            const associado: Associado = {
+              ...rawDados,
+              cd_associado: String(r.cd_associado),
+              nm_associado: r.nm_associado || rawDados.nm_associado || `Associado ${r.cd_associado}`,
+              dsCategoria: r.ds_categoria || rawDados.dsCategoria || 'Beneficiário',
+              dsRamo: r.ds_ramo || rawDados.dsRamo || ramo,
+              nr_registro_formatado: r.nr_registro_formatado || rawDados.nr_registro_formatado || '',
+              dt_nascimento: r.dt_nascimento || rawDados.dt_nascimento || '',
+              ds_email: r.ds_email || rawDados.ds_email || '',
+              ds_telefone_cel: r.ds_telefone_cel || rawDados.ds_telefone_cel || '',
+              flStatus: r.fl_status || rawDados.flStatus || 'S',
+            };
+
+            return {
+              associado,
+              progressao: progMap.get(associado.cd_associado) ?? [],
+              especialidades: espMap.get(associado.cd_associado) ?? [],
+            };
+          })
+          .filter((e) => Boolean(e.associado.cd_associado && e.associado.nm_associado && e.associado.nm_associado.trim() !== ''));
       }
     } catch (dbErr) {
       console.warn('[data] Falha ao consultar PostgreSQL, recorrendo ao fallback JSON local:', dbErr);
