@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { RefreshCw, Loader2 } from 'lucide-react';
+import { RefreshCw, Loader2, Zap } from 'lucide-react';
 import type { Escoteiro, Ramo } from '@/app/lib/data';
 import { PaxtuConnectButton } from './scout/PaxtuLoginModal';
 import ProgressionView from './scout/ProgressionView';
@@ -18,10 +18,10 @@ type Props = {
 };
 
 const RAMOS: { label: string; value: Ramo }[] = [
-  { label: 'Tropa Escoteira', value: 'Escoteiro' },
-  { label: 'Alcateia (Lobinhos)', value: 'Lobinho' },
-  { label: 'Tropa Sênior', value: 'Sênior' },
-  { label: 'Clã Pioneiro', value: 'Pioneiro' },
+  { label: '🐺 Ramo Lobinho', value: 'Lobinho' },
+  { label: '⚜️ Ramo Escoteiro', value: 'Escoteiro' },
+  { label: '🏹 Ramo Sênior', value: 'Sênior' },
+  { label: '🧭 Clã Pioneiro', value: 'Pioneiro' },
 ];
 
 export default function ScoutExplorer({
@@ -38,7 +38,7 @@ export default function ScoutExplorer({
 
   const [syncProgress, setSyncProgress] = useState<{
     active: boolean;
-    type: 'section' | 'single';
+    type: 'section' | 'single' | 'recalc';
     percent: number;
     message: string;
     current?: number;
@@ -75,6 +75,46 @@ export default function ScoutExplorer({
     startTransition(() => {
       router.push(`/?${params.toString()}`);
     });
+  }
+
+  async function handleRecalcularTodos() {
+    if (syncProgress?.active) return;
+    setSyncProgress({
+      active: true,
+      type: 'recalc',
+      percent: 30,
+      message: `Recalculando regras de transição para todos os jovens do Ramo ${ramoAtual}...`,
+    });
+
+    try {
+      const res = await fetch('/api/transicao/lote', { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Falha ao recalcular transição em lote.');
+      }
+
+      setSyncProgress({
+        active: false,
+        type: 'recalc',
+        percent: 100,
+        message: `Transição recalculada com sucesso para ${data.total_processados} jovens!`,
+        isError: false,
+      });
+
+      startTransition(() => {
+        router.refresh();
+      });
+      setTimeout(() => setSyncProgress(null), 4000);
+    } catch (err: any) {
+      setSyncProgress({
+        active: false,
+        type: 'recalc',
+        percent: 100,
+        message: `Erro ao recalcular: ${err.message}`,
+        isError: true,
+      });
+      setTimeout(() => setSyncProgress(null), 6000);
+    }
   }
 
   async function handleSyncSection() {
@@ -475,6 +515,40 @@ export default function ScoutExplorer({
                 {syncProgress?.active && syncProgress.type === 'single'
                   ? 'Atualizando jovem...'
                   : 'Sincronizar dados deste jovem'}
+              </span>
+            </button>
+
+            {/* Botão 3: Recalcular Transição da Seção */}
+            <button
+              type="button"
+              onClick={handleRecalcularTodos}
+              disabled={syncProgress?.active}
+              style={{
+                background: 'rgba(234, 179, 8, 0.1)',
+                color: '#eab308',
+                border: '1.5px solid #eab308',
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                padding: '0.65rem 1.25rem',
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                cursor: syncProgress?.active ? 'not-allowed' : 'pointer',
+                opacity: syncProgress?.active ? 0.6 : 1,
+                transition: 'all 0.2s ease',
+              }}
+            >
+              {syncProgress?.active && syncProgress.type === 'recalc' ? (
+                <Loader2 className="animate-spin" size={16} />
+              ) : (
+                <Zap size={16} />
+              )}
+              <span>
+                {syncProgress?.active && syncProgress.type === 'recalc'
+                  ? 'Recalculando todos...'
+                  : 'Recalcular Transição da Seção'}
               </span>
             </button>
           </div>
