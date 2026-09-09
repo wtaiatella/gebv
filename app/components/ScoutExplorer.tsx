@@ -1,21 +1,14 @@
 'use client';
 
-import { useState, useMemo, useEffect, useTransition } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import Link from 'next/link';
 import { RefreshCw, Loader2, Zap } from 'lucide-react';
-import type { Escoteiro, Ramo } from '@/app/lib/data';
+import type { Ramo } from '@/app/lib/data';
+import { useScoutContext } from '@/app/context/ScoutContext';
 import { PaxtuConnectButton } from './scout/PaxtuLoginModal';
 import ProgressionView from './scout/ProgressionView';
 import NovoProgramaView from './scout/NovoProgramaView';
 import RegrasEquivalenciaView from './equivalencias/RegrasEquivalenciaView';
-
-type Props = {
-  escoteiros: Escoteiro[];
-  selectedId: string;
-  ramoAtual?: Ramo;
-  initialView?: 'novo' | 'antigo';
-};
 
 const RAMOS: { label: string; value: Ramo }[] = [
   { label: '🐺 Ramo Lobinho', value: 'Lobinho' },
@@ -24,17 +17,21 @@ const RAMOS: { label: string; value: Ramo }[] = [
   { label: '🧭 Clã Pioneiro', value: 'Pioneiro' },
 ];
 
-export default function ScoutExplorer({
-  escoteiros,
-  selectedId,
-  ramoAtual = 'Escoteiro',
-  initialView = 'novo',
-}: Props) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
-  const [viewMode, setViewMode] = useState<'novo' | 'antigo'>(initialView);
-  const [exibirMatriz, setExibirMatriz] = useState(false);
+export default function ScoutExplorer() {
+  const {
+    ramoAtual,
+    setRamoAtual,
+    escoteiros,
+    selectedId,
+    setSelectedId,
+    selectedScout,
+    viewMode,
+    setViewMode,
+    exibirMatriz,
+    setExibirMatriz,
+    isLoading: isContextLoading,
+    refreshEscoteiros,
+  } = useScoutContext();
 
   const [syncProgress, setSyncProgress] = useState<{
     active: boolean;
@@ -47,34 +44,15 @@ export default function ScoutExplorer({
     isError?: boolean;
   } | null>(null);
 
-  useEffect(() => {
-    setViewMode(initialView);
-  }, [initialView]);
+  const escoteiro = selectedScout;
+  const activeId = selectedId || escoteiro?.associado.cd_associado || '';
 
-  // Identifica o jovem selecionado
-  const escoteiro = useMemo(() => {
-    return escoteiros.find((e) => e.associado.cd_associado === selectedId) || escoteiros[0];
-  }, [escoteiros, selectedId]);
-
-  const activeId = escoteiro?.associado.cd_associado ?? '';
-
-  function handleRamoChange(novoRamo: Ramo) {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('ramo', novoRamo);
-    params.delete('jovem');
-
-    startTransition(() => {
-      router.push(`/?${params.toString()}`);
-    });
+  async function handleRamoChange(novoRamo: Ramo) {
+    await setRamoAtual(novoRamo);
   }
 
   function handleJovemChange(novoId: string) {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('jovem', novoId);
-
-    startTransition(() => {
-      router.push(`/?${params.toString()}`);
-    });
+    setSelectedId(novoId);
   }
 
   async function handleRecalcularTodos() {
@@ -101,9 +79,8 @@ export default function ScoutExplorer({
         isError: false,
       });
 
-      startTransition(() => {
-        router.refresh();
-      });
+      // Atualiza a lista e o contexto em memória instantaneamente
+      await refreshEscoteiros();
       setTimeout(() => setSyncProgress(null), 4000);
     } catch (err: any) {
       setSyncProgress({
@@ -195,9 +172,7 @@ export default function ScoutExplorer({
         }
       }
 
-      startTransition(() => {
-        router.refresh();
-      });
+      await refreshEscoteiros();
 
       setTimeout(() => {
         setSyncProgress((prev) => (prev?.active ? prev : null));
@@ -273,9 +248,7 @@ export default function ScoutExplorer({
         isError: false,
       });
 
-      startTransition(() => {
-        router.refresh();
-      });
+      await refreshEscoteiros();
       setTimeout(() => setSyncProgress(null), 4000);
     } catch (err: any) {
       clearTimeout(pTimer1);
@@ -419,7 +392,7 @@ export default function ScoutExplorer({
               <select
                 className="scout-select"
                 value={activeId}
-                disabled={isPending || escoteiros.length === 0}
+                disabled={isContextLoading || escoteiros.length === 0}
                 onChange={(e) => handleJovemChange(e.target.value)}
                 style={{
                   width: '100%',
@@ -431,7 +404,7 @@ export default function ScoutExplorer({
                   fontSize: '0.98rem',
                   fontWeight: 500,
                   cursor: 'pointer',
-                  opacity: isPending ? 0.7 : 1,
+                  opacity: isContextLoading ? 0.7 : 1,
                 }}
               >
                 {escoteiros.length === 0 ? (

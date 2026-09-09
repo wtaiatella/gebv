@@ -45,8 +45,10 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
     }
   }, [cdAssociado, ramoAtual]);
 
-  async function fetchProgresso() {
-    setLoading(true);
+  async function fetchProgresso(isBackground: boolean = false) {
+    if (!isBackground) {
+      setLoading(true);
+    }
     setError(null);
     try {
       const res = await fetch(`/api/progressoes/novo-modelo/${cdAssociado}?ramo=${ramoAtual}`);
@@ -67,7 +69,9 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
     } catch (err: any) {
       setError(err.message || 'Erro ao carregar progressão');
     } finally {
-      setLoading(false);
+      if (!isBackground) {
+        setLoading(false);
+      }
     }
   }
 
@@ -83,7 +87,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
         throw new Error(json.error || 'Erro no processamento da transição');
       }
 
-      await fetchProgresso();
+      await fetchProgresso(true);
       showFeedback('global', 'Transição recalculada com sucesso a partir dos dados do Paxtu!');
     } catch (err: any) {
       alert(`Erro: ${err.message}`);
@@ -163,7 +167,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
       if (!json.success) throw new Error(json.error || 'Erro ao salvar ação');
 
       showFeedback(acaoId, '✓ Salvo!');
-      await fetchProgresso();
+      await fetchProgresso(true);
     } catch (err: any) {
       alert(`Erro ao salvar: ${err.message}`);
     } finally {
@@ -197,7 +201,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
       if (!json.success) throw new Error(json.error || 'Erro ao salvar ações do bloco');
 
       showFeedback(`bloco_${bloco.bloco_id}`, '✓ Bloco atualizado com sucesso!');
-      await fetchProgresso();
+      await fetchProgresso(true);
     } catch (err: any) {
       alert(`Erro: ${err.message}`);
     } finally {
@@ -261,7 +265,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
     return (
       <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--error)' }}>
         <p>{error || 'Não foi possível carregar o novo modelo.'}</p>
-        <button onClick={fetchProgresso} style={{ margin: '1rem auto 0' }}>
+        <button onClick={() => fetchProgresso()} style={{ margin: '1rem auto 0' }}>
           Tentar Novamente
         </button>
       </div>

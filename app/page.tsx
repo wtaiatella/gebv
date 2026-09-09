@@ -1,5 +1,8 @@
 import ScoutExplorer from '@/app/components/ScoutExplorer';
 import { getEscoteiros, Ramo } from '@/app/lib/data';
+import { ScoutProvider } from '@/app/context/ScoutContext';
+
+export const dynamic = 'force-dynamic';
 
 type Props = {
   searchParams: Promise<{
@@ -20,11 +23,14 @@ export default async function Home({ searchParams }: Props) {
   const initialView = params.view === 'antigo' ? 'antigo' : 'novo';
 
   return (
-    <ScoutExplorer
-      escoteiros={escoteiros}
-      selectedId={selectedId}
-      ramoAtual={ramoValido}
+    <ScoutProvider
+      initialEscoteiros={escoteiros}
+      initialRamo={ramoValido}
+      initialSelectedId={selectedId}
       initialView={initialView}
-    />
+    >
+      <ScoutExplorer />
+    </ScoutProvider>
   );
 }
+
