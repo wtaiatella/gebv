@@ -216,7 +216,8 @@ export async function fetchEspecialidadesCompletasAssociado(cdAssociado: string)
           : (it.dsItem || ''),
         dt_item: it.dt_item || it.dtItem || '',
         nr_nivel: Number(it.nr_nivel ?? it.nrNivel ?? nrNivel),
-        check_escotista: it.check_escotista || 'confirmadoEscotista',
+        check_escotista: it.check_escotista || it.checkEscotista || '',
+        check_jovem: it.check_jovem || it.checkJovem || '',
       })),
     });
   }

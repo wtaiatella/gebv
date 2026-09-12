@@ -416,7 +416,21 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                     const isExpandido = blocosExpandidos[bloco.bloco_id] ?? modoTabelaGeral;
                     const acoesDoBloco = data.acoes_por_bloco[bloco.bloco_id] || [];
                     const fixas = acoesDoBloco.filter((a) => a.tp_acao === 'Fixa');
-                    const variaveis = acoesDoBloco.filter((a) => a.tp_acao !== 'Fixa');
+                    const variaveisPadrao = acoesDoBloco.filter(
+                      (a) => (a.tp_acao === 'Variável' || a.tp_acao === 'Variavel') && a.modalidade !== 'PA'
+                    );
+                    const variaveisPA = acoesDoBloco.filter((a) => a.modalidade === 'PA');
+                    const substitutivas = acoesDoBloco.filter(
+                      (a) =>
+                        a.tp_acao === 'Substitutiva' ||
+                        a.tp_acao === 'Substitui Variável' ||
+                        a.modalidade === 'Substitutiva'
+                    );
+                    const variaveis = [...variaveisPadrao, ...variaveisPA];
+
+                    const padraoDone = variaveisPadrao.filter((v) => localAcoesStatus[v.id]).length;
+                    const paDone = variaveisPA.filter((p) => localAcoesStatus[p.id]).length;
+                    const subDone = substitutivas.filter((s) => localAcoesStatus[s.id]).length;
                     const isSavingThisBloco = savingBlocoId === bloco.bloco_id;
                     const blocoFeedback = feedbackMsg?.id === `bloco_${bloco.bloco_id}` ? feedbackMsg.text : null;
 
@@ -619,7 +633,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                             )}
 
                             {/* SEÇÃO 2: AÇÕES EDUCATIVAS VARIADAS (Design Limpo e Transparente) */}
-                            {variaveis.length > 0 && (
+                            {(variaveis.length > 0 || substitutivas.length > 0) && (
                               <div
                                 style={{
                                   background: 'rgba(234, 179, 8, 0.03)',
@@ -634,19 +648,60 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                     alignItems: 'center',
+                                    flexWrap: 'wrap',
+                                    gap: '0.5rem',
                                     marginBottom: '0.35rem',
                                   }}
                                 >
                                   <div
                                     style={{
-                                      fontSize: '1.3rem',
-                                      fontWeight: 800,
-                                      color: '#eab308',
-                                      textTransform: 'uppercase',
-                                      letterSpacing: '0.05em',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      flexWrap: 'wrap',
+                                      gap: '0.6rem',
                                     }}
                                   >
-                                    Ações Educativas Variadas ({variaveis.filter((v) => localAcoesStatus[v.id]).length}/{bloco.nr_acoes_variaveis_exigidas})
+                                    <span
+                                      style={{
+                                        fontSize: '1.3rem',
+                                        fontWeight: 800,
+                                        color: '#eab308',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em',
+                                      }}
+                                    >
+                                      Ações Educativas Variadas ({padraoDone}/{bloco.nr_acoes_variaveis_exigidas})
+                                    </span>
+                                    {variaveisPA.length > 0 && (
+                                      <span
+                                        style={{
+                                          fontSize: '0.82rem',
+                                          fontWeight: 700,
+                                          color: '#c084fc',
+                                          background: 'rgba(168, 85, 247, 0.15)',
+                                          border: '1px solid rgba(168, 85, 247, 0.35)',
+                                          padding: '0.15rem 0.55rem',
+                                          borderRadius: '6px',
+                                        }}
+                                      >
+                                        (PA {paDone})
+                                      </span>
+                                    )}
+                                    {substitutivas.length > 0 && (
+                                      <span
+                                        style={{
+                                          fontSize: '0.82rem',
+                                          fontWeight: 700,
+                                          color: '#fbbf24',
+                                          background: 'rgba(251, 191, 36, 0.15)',
+                                          border: '1px solid rgba(251, 191, 36, 0.35)',
+                                          padding: '0.15rem 0.55rem',
+                                          borderRadius: '6px',
+                                        }}
+                                      >
+                                        (Substitutivas {subDone})
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
 
@@ -654,14 +709,14 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                   Realizar ao menos <strong style={{ color: '#fff' }}>{bloco.nr_acoes_variaveis_exigidas} ações</strong> dentre as listadas abaixo:
                                 </div>
 
-                                {/* Linhas Transparentes de Ações Variadas */}
+                                {/* Linhas Transparentes de Ações Variadas (Padrão + PA) */}
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                                   {variaveis.map((acao, idx) => (
                                     <AcaoEquivalenciaRow
                                       key={acao.id}
                                       acao={acao}
                                       nmBloco={bloco.nm_bloco}
-                                      isLast={idx === variaveis.length - 1}
+                                      isLast={idx === variaveis.length - 1 && substitutivas.length === 0}
                                       isExpandido={isExpandido}
                                       isChecked={Boolean(localAcoesStatus[acao.id])}
                                       isSaving={savingAcaoId === acao.id}
@@ -672,6 +727,65 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                     />
                                   ))}
                                 </div>
+
+                                {/* Seção Destacada: Atividades Substitutivas */}
+                                {substitutivas.length > 0 && (
+                                  <div style={{ marginTop: '1.25rem' }}>
+                                    <div
+                                      style={{
+                                        paddingTop: '0.9rem',
+                                        borderTop: '2px dashed rgba(251, 191, 36, 0.35)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.65rem',
+                                        marginBottom: '0.5rem',
+                                      }}
+                                    >
+                                      <span
+                                        style={{
+                                          background: 'linear-gradient(135deg, #d97706, #b45309)',
+                                          color: '#fff',
+                                          fontWeight: 800,
+                                          fontSize: '0.75rem',
+                                          padding: '0.2rem 0.55rem',
+                                          borderRadius: '6px',
+                                          letterSpacing: '0.05em',
+                                          textTransform: 'uppercase',
+                                        }}
+                                      >
+                                        OU
+                                      </span>
+                                      <span
+                                        style={{
+                                          fontSize: '0.95rem',
+                                          fontWeight: 700,
+                                          color: '#fde68a',
+                                          letterSpacing: '0.02em',
+                                        }}
+                                      >
+                                        Conquistar as seguintes insígnias/especialidades:
+                                      </span>
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                      {substitutivas.map((acao, idx) => (
+                                        <AcaoEquivalenciaRow
+                                          key={acao.id}
+                                          acao={acao}
+                                          nmBloco={bloco.nm_bloco}
+                                          isLast={idx === substitutivas.length - 1}
+                                          isExpandido={isExpandido}
+                                          isChecked={Boolean(localAcoesStatus[acao.id])}
+                                          isSaving={savingAcaoId === acao.id}
+                                          feedback={feedbackMsg?.id === acao.id ? feedbackMsg.text : null}
+                                          onToggle={() => handleCheckboxToggle(acao.id)}
+                                          onSave={() => handleSaveAcao(acao.id, bloco.bloco_id)}
+                                          onEditRegra={() => handleOpenEditRegra(acao, bloco.nm_bloco)}
+                                        />
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             )}
 
@@ -815,8 +929,28 @@ function AcaoEquivalenciaRow({
                 <span
                   style={{
                     fontSize: '0.72rem',
-                    color: acao.modalidade === 'Ar' ? '#38bdf8' : '#22d3ee',
-                    background: 'rgba(255, 255, 255, 0.08)',
+                    color:
+                      acao.modalidade === 'Ar'
+                        ? '#38bdf8'
+                        : acao.modalidade === 'Mar'
+                        ? '#22d3ee'
+                        : acao.modalidade === 'PA'
+                        ? '#c084fc'
+                        : acao.modalidade === 'Substitutiva' || acao.tp_acao === 'Substitutiva'
+                        ? '#fbbf24'
+                        : '#a1a1aa',
+                    background:
+                      acao.modalidade === 'PA'
+                        ? 'rgba(168, 85, 247, 0.18)'
+                        : acao.modalidade === 'Substitutiva' || acao.tp_acao === 'Substitutiva'
+                        ? 'rgba(251, 191, 36, 0.18)'
+                        : 'rgba(255, 255, 255, 0.08)',
+                    border:
+                      acao.modalidade === 'PA'
+                        ? '1px solid rgba(168, 85, 247, 0.4)'
+                        : acao.modalidade === 'Substitutiva' || acao.tp_acao === 'Substitutiva'
+                        ? '1px solid rgba(251, 191, 36, 0.4)'
+                        : 'none',
                     padding: '0.15rem 0.45rem',
                     borderRadius: '4px',
                     fontWeight: 700,

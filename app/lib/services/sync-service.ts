@@ -304,6 +304,17 @@ export async function syncRamo(
       for (const a of associados) {
         await upsertAssociado(client, a);
       }
+
+      // Inativa no banco associados do ramo que não constam na lista ativa retornada pelo Paxtu
+      const activeIds = membros.map((m) => String(m.cd_associado));
+      if (activeIds.length > 0) {
+        await client.query(
+          `UPDATE associados 
+           SET fl_status = 'Inativo', updated_at = CURRENT_TIMESTAMP 
+           WHERE ds_ramo = $1 AND cd_associado != ALL($2::text[])`,
+          [ds_ramo, activeIds]
+        );
+      }
     });
 
     const total = membros.length;

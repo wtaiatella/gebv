@@ -131,6 +131,9 @@ async function seedCatalogo() {
     await client.query(`DELETE FROM escoteiro_pn_acoes WHERE acao_id IN (SELECT id FROM pn_acoes_educativas WHERE ds_ramo = $1)`, [dsRamo]);
     await client.query(`DELETE FROM pn_equivalencia_regras WHERE acao_pn_id IN (SELECT id FROM pn_acoes_educativas WHERE ds_ramo = $1)`, [dsRamo]);
     await client.query(`DELETE FROM pn_acoes_educativas WHERE ds_ramo = $1`, [dsRamo]);
+    await client.query(`DELETE FROM escoteiro_pn_blocos_status WHERE bloco_id IN (SELECT id FROM pn_blocos WHERE ds_ramo = $1)`, [dsRamo]);
+    await client.query(`DELETE FROM pn_blocos WHERE ds_ramo = $1`, [dsRamo]);
+    await client.query(`DELETE FROM pn_eixos WHERE ds_ramo = $1`, [dsRamo]);
 
     // Eixos
     for (let i = 0; i < pnCatalogo.eixos.length; i++) {
@@ -245,44 +248,23 @@ async function seedCatalogo() {
       return { nivel, list };
     }
 
-    for (const acao of allDbAcoes) {
-      const normBloco = acao.norm_bloco;
-      const normAcao = acao.norm_acao;
+    for (let i = 0; i < allDbAcoes.length; i++) {
+      const acao = allDbAcoes[i];
+      const directRegra = equivCatalogo.regras[i];
 
-      // 1. Procura regras da planilha que correspondam a esta ação
-      const matchedRegras = equivCatalogo.regras.filter((r) => {
-        if (!r.bloco || !r.ds_acao_c) return false;
-        const rNormBloco = normalizeText(r.bloco);
-        const rNormAcao = normalizeText(r.ds_acao_c);
-        if (rNormBloco !== normBloco) return false;
-        return (
-          rNormAcao === normAcao ||
-          (rNormAcao.length > 20 && normAcao.startsWith(rNormAcao.slice(0, 30))) ||
-          (normAcao.length > 20 && rNormAcao.startsWith(normAcao.slice(0, 30))) ||
-          normAcao.includes(rNormAcao) ||
-          rNormAcao.includes(normAcao)
-        );
-      });
+      // Pistas, Rumo e Especialidades da regra
+      const pistasSet = new Set(directRegra?.refs_pistas_ueb || []);
+      const rumoSet = new Set(directRegra?.refs_rumo_ueb || []);
+      const espSet = new Set(directRegra?.refs_especialidades || []);
+      let minCount = directRegra?.min_count || 1;
 
-      // 2. Extrai e consolida itens de Pistas, Rumo e Especialidades
-      const pistasSet = new Set();
-      const rumoSet = new Set();
-      const espSet = new Set();
-      let minCount = 1;
-      let labelTextParts = [];
-
-      for (const r of matchedRegras) {
-        (r.refs_pistas_ueb || []).forEach((p) => pistasSet.add(p));
-        (r.refs_rumo_ueb || []).forEach((rm) => rumoSet.add(rm));
-        (r.refs_especialidades || []).forEach((e) => espSet.add(e));
-        if (r.min_count && r.min_count > minCount) minCount = r.min_count;
-        if (r.label_f_h && r.label_f_h.trim()) labelTextParts.push(r.label_f_h.trim());
+      // Também extrai especialidades declaradas no texto da própria ação se não houver nenhuma
+      if (espSet.size === 0 && pistasSet.size === 0 && rumoSet.size === 0) {
+        const parsedTextEsp = parseSpecialtiesFromText(acao.ds_acao);
+        parsedTextEsp.list.forEach((e) => espSet.add(e));
       }
 
-      // 3. Também extrai especialidades declaradas no texto da própria ação
-      const parsedTextEsp = parseSpecialtiesFromText(acao.ds_acao);
-      parsedTextEsp.list.forEach((e) => espSet.add(e));
-      const nivelMin = parsedTextEsp.nivel > 1 ? parsedTextEsp.nivel : (acao.ds_acao.toLowerCase().includes('nível 3') ? 3 : 1);
+      const nivelMin = directRegra?.nivel_min_especialidade || (acao.ds_acao.toLowerCase().includes('nível 3') ? 3 : (acao.ds_acao.toLowerCase().includes('nível 2') || acao.ds_acao.toLowerCase().includes('nivel 2') ? 2 : 1));
 
       const pistasArr = Array.from(pistasSet);
       const rumoArr = Array.from(rumoSet);
@@ -290,18 +272,24 @@ async function seedCatalogo() {
 
       const totalOrigens = pistasArr.length + rumoArr.length + espArr.length;
 
-      // 4. Determina Operação e Descrição
-      let operacao = 'SEM_EQUIVALENCIA';
+      // Determina Operação e Descrição
+      let operacao = directRegra?.tp_regra || 'SEM_EQUIVALENCIA';
       let descricaoOrigem = 'Sem relação';
       let requerValidacaoManual = false;
 
+      if (directRegra?.label_f_h && directRegra.label_f_h.trim() && directRegra.label_f_h !== '0') {
+        descricaoOrigem = directRegra.label_f_h.trim();
+      }
+
       if (espArr.length > 0 && pistasArr.length === 0 && rumoArr.length === 0) {
         operacao = 'ESPECIALIDADES';
-        const nivelLabel = nivelMin > 1 ? ` (Nível ${nivelMin})` : '';
-        if (espArr.length <= 5) {
-          descricaoOrigem = `Especialidade${nivelLabel}: ${espArr.join(', ')}`;
-        } else {
-          descricaoOrigem = `Especialidade${nivelLabel}: ${espArr.slice(0, 6).join(', ')} e mais ${espArr.length - 6} opções`;
+        const nivelLabel = ` (Nível ${nivelMin}+)`;
+        if (!descricaoOrigem || descricaoOrigem === 'Sem relação') {
+          if (espArr.length <= 5) {
+            descricaoOrigem = `Especialidade${nivelLabel}: ${espArr.join(', ')}`;
+          } else {
+            descricaoOrigem = `Especialidade${nivelLabel}: ${espArr.slice(0, 6).join(', ')} e mais ${espArr.length - 6} opções`;
+          }
         }
       } else if (totalOrigens > 0) {
         if (minCount > 1) {
@@ -317,7 +305,9 @@ async function seedCatalogo() {
         if (rumoArr.length > 0) descParts.push(`Rumo ${rumoArr.join(', ')}`);
         if (espArr.length > 0) descParts.push(`Esp. ${espArr.slice(0, 3).join(', ')}`);
 
-        descricaoOrigem = descParts.join(' ou ');
+        if (!descricaoOrigem || descricaoOrigem === 'Sem relação') {
+          descricaoOrigem = descParts.join(' ou ');
+        }
       } else {
         operacao = 'SEM_EQUIVALENCIA';
         descricaoOrigem = 'Sem relação';
@@ -325,7 +315,7 @@ async function seedCatalogo() {
       }
 
       // Caso especial: Especialidade sobre tema de seu interesse / conhecimento novo (sem mapeamento fixo, requer validação do escotista)
-      if (normAcao.includes('conquistar no ramo escoteiro uma especialidade sobre um tema de seu interesse')) {
+      if (acao.norm_acao.includes('conquistar no ramo escoteiro uma especialidade sobre um tema de seu interesse')) {
         operacao = 'SEM_EQUIVALENCIA';
         descricaoOrigem = 'Sem relação';
         pistasArr.length = 0;
@@ -368,7 +358,7 @@ async function seedCatalogo() {
             origem_especialidades: espArr,
             min_count: minCount,
             nivel_min_especialidade: nivelMin,
-            matched_labels: labelTextParts,
+            matched_labels: directRegra?.label_f_h || '',
           }),
         ]
       );

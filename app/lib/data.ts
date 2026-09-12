@@ -117,7 +117,10 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
          FROM associados
          WHERE ds_categoria = 'Beneficiário' 
            AND ds_ramo = $1 
-           AND (fl_status = 'S' OR fl_status = 'Ativo' OR fl_status = 'true' OR fl_status = '1' OR fl_status IS NULL)
+           AND (
+             fl_status IS NULL 
+             OR fl_status IN ('jaRegistrado', 'registroValido', 'jaGravado', 'S', 'Ativo', 'true', '1')
+           )
          ORDER BY nm_associado ASC`,
         [ramo]
       );
@@ -200,13 +203,14 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
 
               const checkJovemVal = conq ? (conq.check_jovem || conq.checkJovem || '') : '';
               const flCheckJovem =
+                flCheckEscotista ||
                 checkJovemVal === 'feitoJovem' ||
                 checkJovemVal === 'S' ||
                 checkJovemVal === '1' ||
-                checkJovemVal === 'true' ||
-                Boolean(conq?.dt_item || conq?.dtItem);
+                checkJovemVal === 'true';
 
               const flConquistado = flCheckEscotista;
+              const dateVal = (flCheckEscotista || flCheckJovem) ? (conq?.dt_item || conq?.dtItem || (flConquistado ? row.dt_nivel : undefined) || undefined) : undefined;
 
               return {
                 cd_item: cat.cd_item,
@@ -214,7 +218,7 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
                 fl_conquistado: flConquistado,
                 fl_check_escotista: flCheckEscotista,
                 fl_check_jovem: flCheckJovem,
-                dt_item: conq?.dt_item || conq?.dtItem || (flConquistado ? row.dt_nivel || undefined : undefined),
+                dt_item: dateVal,
                 nr_nivel: conq?.nr_nivel || conq?.nrNivel || row.nr_nivel,
                 check_escotista: flCheckEscotista ? 'confirmadoEscotista' : undefined,
                 check_jovem: flCheckJovem ? 'feitoJovem' : undefined,
@@ -231,11 +235,13 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
 
               const checkJovemVal = conq.check_jovem || conq.checkJovem || '';
               const flCheckJovem =
+                flCheckEscotista ||
                 checkJovemVal === 'feitoJovem' ||
                 checkJovemVal === 'S' ||
                 checkJovemVal === '1' ||
-                checkJovemVal === 'true' ||
-                Boolean(conq.dt_item || conq.dtItem);
+                checkJovemVal === 'true';
+
+              const dateVal = (flCheckEscotista || flCheckJovem) ? (conq.dt_item || conq.dtItem || row.dt_nivel || undefined) : undefined;
 
               return {
                 cd_item: String(conq.cd_item || conq.cdItem || idx + 1),
@@ -243,7 +249,7 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
                 fl_conquistado: flCheckEscotista,
                 fl_check_escotista: flCheckEscotista,
                 fl_check_jovem: flCheckJovem,
-                dt_item: conq.dt_item || conq.dtItem || row.dt_nivel || undefined,
+                dt_item: dateVal,
                 nr_nivel: conq.nr_nivel || conq.nrNivel || row.nr_nivel,
                 check_escotista: flCheckEscotista ? 'confirmadoEscotista' : undefined,
                 check_jovem: flCheckJovem ? 'feitoJovem' : undefined,

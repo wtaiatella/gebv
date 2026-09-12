@@ -20,8 +20,8 @@ async function run() {
     for (const r of res.resultados.slice(0, 30)) {
       const cdStr = String(r.associado?.cd_associado || '');
       const nome = r.associado?.nm_associado || `Associado ${cdStr}`;
-      const acoes = r.resumo?.total_acoes_conquistadas ?? 0;
-      const blocos = `${r.resumo?.blocos_concluidos ?? 0}/${r.resumo?.total_blocos ?? 18}`;
+      const acoes = r.estatisticas?.total_concluidas ?? 0;
+      const blocos = `${r.estatisticas?.blocos_concluidos ?? 0}/${r.estatisticas?.total_blocos ?? 18}`;
       console.log(
         `| ${cdStr.padEnd(12)} | ${nome.slice(0, 30).padEnd(30)} | ${String(acoes).padStart(15)} | ${blocos.padStart(11)} |`
       );
@@ -29,7 +29,7 @@ async function run() {
     console.log('---------------------------------------------------------------------------------');
 
     // Mostra detalhe do primeiro jovem com atividades
-    const firstWithActions = res.resultados.find((r) => (r.resumo?.total_acoes_conquistadas ?? 0) > 0);
+    const firstWithActions = res.resultados.find((r) => (r.estatisticas?.total_concluidas ?? 0) > 0);
     if (firstWithActions) {
       const cdStr = String(firstWithActions.associado?.cd_associado || '');
       const nome = firstWithActions.associado?.nm_associado || cdStr;

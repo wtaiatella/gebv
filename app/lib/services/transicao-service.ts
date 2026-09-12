@@ -33,8 +33,8 @@ export interface RefEspecialidadePaItem {
 export interface AcaoProgressoItem {
   id: number;
   bloco_id: number;
-  tp_acao: 'Fixa' | 'Variável' | 'Substitui Variável';
-  modalidade: 'Básico' | 'Ar' | 'Mar';
+  tp_acao: 'Fixa' | 'Variável' | 'Variavel' | 'Substitui Variável' | 'Substitutiva' | string;
+  modalidade: 'Básico' | 'Ar' | 'Mar' | 'PA' | 'Substitutiva' | string;
   ds_acao: string;
   regra_qtd_texto: string | null;
   nr_ordem: number;
@@ -107,16 +107,16 @@ export async function recalcularStatusBlocos(client: any, cd_associado: string, 
 
   // Carrega todas as ações do ramo
   const acoesRes = await client.query(
-    `SELECT a.id, a.bloco_id, a.tp_acao, COALESCE(ea.fl_concluido, false) as fl_concluido
+    `SELECT a.id, a.bloco_id, a.tp_acao, a.modalidade, COALESCE(ea.fl_concluido, false) as fl_concluido
      FROM pn_acoes_educativas a
      LEFT JOIN escoteiro_pn_acoes ea ON ea.acao_id = a.id AND ea.cd_associado = $1
      WHERE a.ds_ramo = $2`,
     [cd_associado, ds_ramo]
   );
 
-  const acoesPorBloco = new Map<number, { fixasTotal: number; fixasDone: number; varTotal: number; varDone: number }>();
+  const acoesPorBloco = new Map<number, { fixasTotal: number; fixasDone: number; varTotal: number; varDone: number; paDone: number; subDone: number }>();
   for (const b of blocosRes.rows) {
-    acoesPorBloco.set(b.id, { fixasTotal: 0, fixasDone: 0, varTotal: 0, varDone: 0 });
+    acoesPorBloco.set(b.id, { fixasTotal: 0, fixasDone: 0, varTotal: 0, varDone: 0, paDone: 0, subDone: 0 });
   }
 
   for (const a of acoesRes.rows) {
@@ -125,6 +125,10 @@ export async function recalcularStatusBlocos(client: any, cd_associado: string, 
       if (a.tp_acao === 'Fixa') {
         bObj.fixasTotal++;
         if (a.fl_concluido) bObj.fixasDone++;
+      } else if (a.tp_acao === 'Substitutiva' || a.modalidade === 'Substitutiva') {
+        if (a.fl_concluido) bObj.subDone++;
+      } else if (a.modalidade === 'PA') {
+        if (a.fl_concluido) bObj.paDone++;
       } else {
         bObj.varTotal++;
         if (a.fl_concluido) bObj.varDone++;
@@ -200,10 +204,13 @@ export async function getProgressoNovoModelo(
   const completedPistas = new Set<string>();
   const completedRumo = new Set<string>();
   for (const row of oldActivitiesRes.rows) {
-    if (row.cd_ueb.startsWith('P-') || row.cd_caminho_paxtu === '5' || row.cd_caminho_paxtu === 'PISTA') {
+    const numOnly = (row.cd_ueb || '').replace(/\D/g, '');
+    if (row.cd_ueb.startsWith('P') || row.cd_caminho_paxtu === '4' || row.cd_caminho_paxtu === '5' || row.cd_caminho_paxtu === 'PISTA') {
+      completedPistas.add(numOnly);
       completedPistas.add(row.cd_ueb);
     }
-    if (row.cd_ueb.startsWith('R-') || row.cd_caminho_paxtu === '6' || row.cd_caminho_paxtu === 'RUMO' || row.cd_caminho_paxtu === 'TRAVESSIA') {
+    if (row.cd_ueb.startsWith('R') || row.cd_caminho_paxtu === '6' || row.cd_caminho_paxtu === 'RUMO' || row.cd_caminho_paxtu === 'TRAVESSIA') {
+      completedRumo.add(numOnly);
       completedRumo.add(row.cd_ueb);
     }
   }
@@ -296,16 +303,21 @@ export async function getProgressoNovoModelo(
   const paRumoMap = new Map<string, { identificacao: string; ds_atividade: string }>();
 
   for (const row of paAtivRes.rows) {
-    if (row.cd_caminho_paxtu === '5') {
-      paPistasMap.set(row.cd_ueb, {
-        identificacao: row.identificacao || `PT-${row.cd_ueb}`,
+    const numOnly = (row.cd_ueb || '').replace(/\D/g, '');
+    if (row.cd_caminho_paxtu === '4' || row.cd_caminho_paxtu === '5' || (row.cd_ueb || '').startsWith('P')) {
+      const item = {
+        identificacao: row.identificacao || `PT-${numOnly || row.cd_ueb}`,
         ds_atividade: row.ds_atividade,
-      });
-    } else if (row.cd_caminho_paxtu === '6') {
-      paRumoMap.set(row.cd_ueb, {
-        identificacao: row.identificacao || `RT-${row.cd_ueb}`,
+      };
+      if (numOnly) paPistasMap.set(numOnly, item);
+      paPistasMap.set(row.cd_ueb, item);
+    } else if (row.cd_caminho_paxtu === '6' || (row.cd_ueb || '').startsWith('R')) {
+      const item = {
+        identificacao: row.identificacao || `RT-${numOnly || row.cd_ueb}`,
         ds_atividade: row.ds_atividade,
-      });
+      };
+      if (numOnly) paRumoMap.set(numOnly, item);
+      paRumoMap.set(row.cd_ueb, item);
     }
   }
 
@@ -551,10 +563,13 @@ export async function processarTransicaoAssociado(
     const completedRumo = new Set<string>();
 
     for (const row of oldActivitiesRes.rows) {
-      if (row.cd_ueb.startsWith('P-') || row.cd_caminho_paxtu === '5' || row.cd_caminho_paxtu === 'PISTA') {
+      const numOnly = (row.cd_ueb || '').replace(/\D/g, '');
+      if (row.cd_ueb.startsWith('P') || row.cd_caminho_paxtu === '4' || row.cd_caminho_paxtu === '5' || row.cd_caminho_paxtu === 'PISTA') {
+        if (numOnly) completedPistas.add(numOnly);
         completedPistas.add(row.cd_ueb);
       }
-      if (row.cd_ueb.startsWith('R-') || row.cd_caminho_paxtu === '6' || row.cd_caminho_paxtu === 'RUMO' || row.cd_caminho_paxtu === 'TRAVESSIA') {
+      if (row.cd_ueb.startsWith('R') || row.cd_caminho_paxtu === '6' || row.cd_caminho_paxtu === 'RUMO' || row.cd_caminho_paxtu === 'TRAVESSIA') {
+        if (numOnly) completedRumo.add(numOnly);
         completedRumo.add(row.cd_ueb);
       }
     }
@@ -662,7 +677,10 @@ export async function processarTransicaoTodos(ds_ramo: string = 'Escoteiro') {
      FROM associados 
      WHERE ds_categoria = 'Beneficiário' 
        AND ds_ramo = $1 
-       AND (fl_status = 'S' OR fl_status = 'Ativo' OR fl_status = 'true' OR fl_status = '1' OR fl_status IS NULL) 
+       AND (
+         fl_status IS NULL 
+         OR fl_status IN ('jaRegistrado', 'registroValido', 'jaGravado', 'S', 'Ativo', 'true', '1')
+       ) 
      ORDER BY cd_associado ASC`,
     [ds_ramo]
   );
