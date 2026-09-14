@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { loginPaxtu } from '@/app/lib/paxtu/auth';
-import { setSessionCookie } from '@/app/lib/paxtu/client';
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,7 +14,6 @@ export async function POST(request: NextRequest) {
     }
 
     const cookie = await loginPaxtu(user.trim(), password.trim());
-    setSessionCookie(cookie);
 
     // Retorna sucesso e seta o cookie na resposta HTTP do browser (para persistir entre abas/sessões)
     const response = NextResponse.json({

@@ -7,14 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:migrate": "node --env-file=.env scripts/db-migrate.mjs",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
     "catalogo:extract": "python3 scripts/extract-catalogo-regras.py",
     "db:seed-catalogo": "node --env-file=.env scripts/seed-catalogo.mjs",
     "progressoes:transicao": "npx tsx --env-file=.env scripts/run-transicao.mjs",
     "paxtu:login": "node --env-file=.env scripts/paxtu-login.mjs",
-    "paxtu:scrape": "node --env-file=.env scripts/paxtu-scrape.mjs"
+    "paxtu:scrape": "node --env-file=.env scripts/paxtu-scrape.mjs",
+    "test:integration": "npx tsx --env-file=.env tests/integration/transicao.test.ts"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.3",
     "lucide-react": "^1.14.0",
     "next": "16.2.6",
     "pg": "^8.23.0",
@@ -31,6 +34,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "prisma": "^6.19.3",
     "typescript": "^5"
   }
 }

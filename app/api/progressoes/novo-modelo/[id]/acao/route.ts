@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { toggleAcaoNovoModelo } from '@/app/lib/services/transicao-service';
+import { normalizeRamo, Ramo } from '@/app/lib/ramo';
 
 type Params = {
   params: Promise<{ id: string }>;
@@ -15,13 +16,15 @@ export async function POST(request: Request, { params }: Params) {
       return NextResponse.json({ success: false, error: 'Parâmetros incompletos' }, { status: 400 });
     }
 
+    const ramoNorm = ramo ? normalizeRamo(ramo) : Ramo.ESCOTEIRO;
+
     const res = await toggleAcaoNovoModelo(
       cd_associado,
       parseInt(acao_id, 10),
       Boolean(fl_concluido),
       cd_escotista,
       ds_observacao,
-      ramo || 'Escoteiro'
+      ramoNorm
     );
 
     return NextResponse.json({

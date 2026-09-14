@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { processarTransicaoAssociado } from '@/app/lib/services/transicao-service';
+import { normalizeRamoOrNull } from '@/app/lib/ramo';
 
 export async function POST(
   request: NextRequest,
@@ -14,7 +15,10 @@ export async function POST(
       );
     }
 
-    const resultado = await processarTransicaoAssociado(id);
+    const ramoParam = request.nextUrl.searchParams.get('ramo');
+    const ramo = ramoParam ? normalizeRamoOrNull(ramoParam) : null;
+
+    const resultado = await processarTransicaoAssociado(id, ramo || undefined);
     return NextResponse.json({
       success: true,
       cd_associado: id,

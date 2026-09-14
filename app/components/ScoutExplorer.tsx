@@ -65,7 +65,7 @@ export default function ScoutExplorer() {
     });
 
     try {
-      const res = await fetch('/api/transicao/lote', { method: 'POST' });
+      const res = await fetch(`/api/transicao/lote?ramo=${ramoAtual.toLowerCase()}`, { method: 'POST' });
       const data = await res.json();
       if (!res.ok || !data.success) {
         throw new Error(data.error || 'Falha ao recalcular transição em lote.');
@@ -104,7 +104,7 @@ export default function ScoutExplorer() {
     });
 
     try {
-      const endpoint = ramoAtual === 'Escoteiro' ? '/api/sync/escoteiro' : `/api/sync/ramo/${ramoAtual.toLowerCase()}`;
+      const endpoint = `/api/sync/ramo/${ramoAtual.toLowerCase()}`;
       const res = await fetch(endpoint, { method: 'POST' });
 
       if (!res.ok && res.status !== 200) {

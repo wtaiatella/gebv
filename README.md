@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GEBV — Gestão e Transição do Novo Programa Escoteiro
 
-## Getting Started
+Sistema web moderno (Next.js 15 App Router + Prisma 6 + PostgreSQL) para extração segura, equivalência de competências e acompanhamento de progressões do programa antigo para o Novo Programa Escoteiro da UEB.
 
-First, run the development server:
+---
+
+## 🚀 Requisitos e Configuração
+
+### 1. Variáveis de Ambiente (`.env`)
+
+```ini
+# Conexão principal com o banco PostgreSQL (utilizada pelo Prisma e scripts)
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/gebv"
+
+# Cookie de sessão opcional para execução de scripts de teste Paxtu (via CLI)
+PAXTU_COOKIE=""
+
+# Ambiente de execução
+NODE_ENV="development"
+```
+
+### 2. Comandos Prisma
+
+```bash
+# Gerar os tipos do Prisma Client (@prisma/client)
+npm run prisma:generate
+
+# Aplicar migrações pendentes no banco de dados
+npm run prisma:migrate
+```
+
+### 3. Execução em Desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse em [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📡 Endpoints da API
 
-## Learn More
+### Sincronização Paxtu 100
+- **`POST /api/sync/ramo/[ramo]`**: Sincronização completa de seção via streaming NDJSON. Suporta os ramos `lobinho` (branch 2), `escoteiro` (branch 1), `senior` (branch 3) e `pioneiro` (branch 4).
+- **`POST /api/sync/[id]`**: Sincronização sob demanda da ficha de progressão e especialidades de um associado específico.
+- **`POST /api/paxtu/login`**: Autenticação no Paxtu com emissão de cookie HTTP seguro (`paxtu_session`) para suporte a multi-sessão isolada por usuário.
 
-To learn more about Next.js, take a look at the following resources:
+### Motor de Equivalência e Transição
+- **`POST /api/transicao/[id]?ramo=[ramo]`**: Executa o recálculo atômico das regras de equivalência para um associado.
+- **`POST /api/transicao/lote?ramo=[ramo]`**: Executa o recálculo em lote para todos os associados ativos do ramo selecionado.
+- **`GET /api/progressoes/novo-modelo/[id]?ramo=[ramo]`**: Retorna a visão completa dos 18 blocos transicionados, percentuais, estatísticas e detalhes de equivalência.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Ajuste Manual de Ações
+- **`POST /api/progressoes/novo-modelo/[id]/acao`**: Conclusão ou reversão manual de ação (`OrigemConquista.MANUAL_CHEFE`) com recálculo imediato do status do bloco.
+- **`POST /api/progressoes/novo-modelo/[id]/bloco-save-all`**: Persistência em lote de todas as ações de um bloco específico em transação única.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Catálogo e Regras de Equivalência
+- **`GET /api/regras-equivalencia?ramo=[ramo]`**: Listagem das regras de equivalência, eixos, blocos e catálogo PA para autocomplete.
+- **`PUT /api/regras-equivalencia/[id]`**: Atualização de regra de equivalência (operação, itens UEB, especialidades exigidas, contagem mínima).
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Scripts Utilitários
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **`npx tsx scripts/run-transicao.mjs`**: Executa o motor de transição para todos os jovens e imprime uma tabela formatada no terminal com contagem de ações e blocos concluídos.
+- **`npx tsx scripts/migrate-legacy-data.mjs`**: Migração e sanitização histórica de dados legados para os modelos oficiais do Prisma.
