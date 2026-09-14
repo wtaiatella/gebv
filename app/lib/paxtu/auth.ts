@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 
-const PAXTU_HOME = 'https://paxtu.escoteiros.org.br/paxtu/main.do';
+const PAXTU_LOGIN_URL = 'https://paxtu100.escoteiros.org.br/login';
 
 export async function loginPaxtu(user: string, pass: string): Promise<string> {
   if (!user || !pass) {
@@ -14,7 +14,7 @@ export async function loginPaxtu(user: string, pass: string): Promise<string> {
 
   const context = await browser.newContext({
     userAgent:
-      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36',
     viewport: { width: 1280, height: 800 },
   });
 
@@ -27,40 +27,41 @@ export async function loginPaxtu(user: string, pass: string): Promise<string> {
   const page = await context.newPage();
 
   try {
-    await page.goto(PAXTU_HOME, { waitUntil: 'networkidle', timeout: 45000 });
+    await page.goto(PAXTU_LOGIN_URL, { waitUntil: 'domcontentloaded', timeout: 45000 });
 
-    const loginForm = await page.$('input[name="dsLogin"]');
-    if (loginForm) {
-      await page.fill('input[name="dsLogin"]', user);
-      await page.fill('input[name="dsSenha"]', pass);
+    // Keycloak login selectors
+    const usernameInput = await page.waitForSelector('input[name="username"], #username', { timeout: 30000 }).catch(() => null);
+    if (usernameInput) {
+      await page.fill('input[name="username"], #username', user);
+      await page.fill('input[name="password"], #password', pass);
 
       await Promise.all([
-        page
-          .waitForResponse(
-            (res) => res.url().includes('loginservice') || res.url().includes('index.jsp'),
-            { timeout: 45000 }
-          )
-          .catch(() => {}),
-        page.getByRole('button', { name: 'Login' }).click(),
+        page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 45000 }).catch(() => {}),
+        page.click('input[type="submit"], #kc-login, button[type="submit"]'),
       ]);
 
-      await page.waitForTimeout(3000);
+      await page.waitForTimeout(2000);
     }
 
-    await page.waitForLoadState('networkidle', { timeout: 45000 });
+    await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
 
     const cookies = await context.cookies();
-    const jsessionid = cookies.find((c) => c.name === 'JSESSIONID')?.value;
+    const sessionCookie = cookies.find((c) => c.name === 'paxtu100_session')?.value;
+    const xsrfToken = cookies.find((c) => c.name === 'XSRF-TOKEN')?.value;
     const cfClearance = cookies.find((c) => c.name === 'cf_clearance')?.value;
 
-    if (!jsessionid) {
-      throw new Error('Não foi possível autenticar no Paxtu (Antigo). Verifique seu usuário e senha.');
+    if (!sessionCookie) {
+      throw new Error('Não foi possível autenticar no Paxtu 100. Verifique seu usuário e senha.');
     }
 
-    const cookieParts = [`JSESSIONID=${jsessionid}`];
+    const cookieParts: string[] = [];
+    if (xsrfToken) cookieParts.push(`XSRF-TOKEN=${xsrfToken}`);
+    cookieParts.push(`paxtu100_session=${sessionCookie}`);
     if (cfClearance) cookieParts.push(`cf_clearance=${cfClearance}`);
+
     return cookieParts.join('; ');
   } finally {
     await browser.close();
   }
 }
+

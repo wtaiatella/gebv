@@ -342,36 +342,43 @@ export async function syncRamo(
       };
     }
 
-    for (let i = 0; i < total; i++) {
-      const m = membros[i];
-      const current = i + 1;
-      const percent = Math.round(20 + ((i + 1) / total) * 75);
+    const CONCURRENCY = 3;
+    let completed = 0;
 
-      onProgress?.({
-        type: 'progress',
-        current,
-        total,
-        percent,
-        nome: m.nm_associado,
-        cd_associado: m.cd_associado,
-        message: `Sincronizando ${m.nm_associado} (${current} de ${total})...`,
-      });
-
-      try {
-        const [caminhos, especialidades] = await Promise.all([
-          fetchProgressao(m.cd_associado),
-          fetchEspecialidadesCompletasAssociado(m.cd_associado),
-        ]);
-        await withTransaction(async (client) => {
-          await upsertProgressaoEscoteiro(client, m.cd_associado, caminhos, ds_ramo);
-          await upsertEspecialidadesAssociado(client, m.cd_associado, especialidades);
-        });
-        sucessos++;
-      } catch (err: any) {
-        falhas++;
-        erros.push({ cd_associado: m.cd_associado, error: err.message });
-      }
+    for (let i = 0; i < total; i += CONCURRENCY) {
+      const chunk = membros.slice(i, i + CONCURRENCY);
+      await Promise.all(
+        chunk.map(async (m) => {
+          try {
+            const [caminhos, especialidades] = await Promise.all([
+              fetchProgressao(m.cd_associado, ds_ramo),
+              fetchEspecialidadesCompletasAssociado(m.cd_associado),
+            ]);
+            await withTransaction(async (client) => {
+              await upsertProgressaoEscoteiro(client, m.cd_associado, caminhos, ds_ramo);
+              await upsertEspecialidadesAssociado(client, m.cd_associado, especialidades);
+            });
+            sucessos++;
+          } catch (err: any) {
+            falhas++;
+            erros.push({ cd_associado: m.cd_associado, error: err.message });
+          } finally {
+            completed++;
+            const percent = Math.round(20 + (completed / total) * 75);
+            onProgress?.({
+              type: 'progress',
+              current: completed,
+              total,
+              percent,
+              nome: m.nm_associado,
+              cd_associado: m.cd_associado,
+              message: `Sincronizando ${m.nm_associado} (${completed} de ${total})...`,
+            });
+          }
+        })
+      );
     }
+
 
     const duration = Date.now() - start;
     const status = falhas === 0 ? 'sucesso' : sucessos > 0 ? 'parcial' : 'erro';

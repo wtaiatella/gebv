@@ -33,7 +33,7 @@ export function PaxtuLoginModal({ isOpen, onClose, onSuccess }: PaxtuLoginModalP
 
       const data = await res.json();
       if (!res.ok || !data.success) {
-        throw new Error(data.error || 'Falha no login do Paxtu (Antigo).');
+        throw new Error(data.error || 'Falha no login do Paxtu 100.');
       }
 
       onSuccess(username);
@@ -101,10 +101,10 @@ export function PaxtuLoginModal({ isOpen, onClose, onSuccess }: PaxtuLoginModalP
             <KeyRound size={28} />
           </div>
           <h2 style={{ fontSize: '1.25rem', color: '#fff', margin: 0 }}>
-            Conectar ao Paxtu (Antigo)
+            Conectar ao Paxtu 100
           </h2>
           <p style={{ color: '#888', fontSize: '0.85rem', marginTop: '0.5rem' }}>
-            Digite suas credenciais de escotista para autorizar a sincronização. Suas credenciais não são salvas no servidor.
+            Digite suas credenciais do Meu Paxtu / Keycloak para autorizar a sincronização com a UEL.
           </p>
         </div>
 
@@ -127,7 +127,7 @@ export function PaxtuLoginModal({ isOpen, onClose, onSuccess }: PaxtuLoginModalP
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div>
             <label style={{ display: 'block', fontSize: '0.85rem', color: '#bbb', marginBottom: '0.4rem' }}>
-              Usuário / Registro Paxtu (Antigo)
+              Usuário / Registro / CPF
             </label>
             <div style={{ position: 'relative' }}>
               <User
@@ -136,7 +136,7 @@ export function PaxtuLoginModal({ isOpen, onClose, onSuccess }: PaxtuLoginModalP
               />
               <input
                 type="text"
-                placeholder="Ex: wagner190"
+                placeholder="Ex: 016166-7 ou CPF"
                 value={username}
                 disabled={loading}
                 onChange={(e) => setUsername(e.target.value)}
@@ -199,7 +199,7 @@ export function PaxtuLoginModal({ isOpen, onClose, onSuccess }: PaxtuLoginModalP
             }}
           >
             {loading ? <Loader2 className="animate-spin" size={18} /> : <LogIn size={18} />}
-            {loading ? 'Autenticando no Paxtu (Antigo)...' : 'Conectar e Autenticar'}
+            {loading ? 'Autenticando no Paxtu 100...' : 'Conectar e Autenticar'}
           </button>
         </form>
       </div>
@@ -233,12 +233,12 @@ export function PaxtuConnectButton() {
         {loggedUser ? (
           <>
             <CheckCircle2 size={16} />
-            <span>Paxtu (Antigo): <strong>{loggedUser}</strong></span>
+            <span>Paxtu 100: <strong>{loggedUser}</strong></span>
           </>
         ) : (
           <>
             <LogIn size={16} />
-            <span>Conectar Paxtu (Antigo)</span>
+            <span>Conectar Paxtu 100</span>
           </>
         )}
       </button>
@@ -251,3 +251,4 @@ export function PaxtuConnectButton() {
     </>
   );
 }
+
