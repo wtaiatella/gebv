@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getProgressoNovoModelo } from '@/app/lib/services/transicao-service';
+import { normalizeRamo, Ramo } from '@/app/lib/ramo';
 
 type Params = {
   params: Promise<{ id: string }>;
@@ -9,7 +10,8 @@ export async function GET(request: Request, { params }: Params) {
   try {
     const { id } = await params;
     const { searchParams } = new URL(request.url);
-    const dsRamo = searchParams.get('ramo') || 'Escoteiro';
+    const ramoParam = searchParams.get('ramo');
+    const dsRamo = ramoParam ? normalizeRamo(ramoParam) : Ramo.ESCOTEIRO;
 
     if (!id) {
       return NextResponse.json({ success: false, error: 'Código do associado não fornecido' }, { status: 400 });

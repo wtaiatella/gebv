@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getEscoteiros, Ramo } from '@/app/lib/data';
+import { getEscoteiros } from '@/app/lib/data';
+import { normalizeRamo, ramoToDisplayName } from '@/app/lib/ramo';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,16 +8,19 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const ramoParam = searchParams.get('ramo') || 'Escoteiro';
-    const ramoValido: Ramo = (['Escoteiro', 'Lobinho', 'Sênior', 'Pioneiro'].includes(ramoParam)
-      ? ramoParam
-      : 'Escoteiro') as Ramo;
+    let ramoEnum;
+    try {
+      ramoEnum = normalizeRamo(ramoParam);
+    } catch {
+      ramoEnum = normalizeRamo('Escoteiro');
+    }
 
-    const escoteiros = await getEscoteiros(ramoValido);
+    const escoteiros = await getEscoteiros(ramoEnum);
 
     return NextResponse.json(
       {
         success: true,
-        ramo: ramoValido,
+        ramo: ramoToDisplayName(ramoEnum),
         total: escoteiros.length,
         escoteiros,
       },

@@ -1,94 +1,135 @@
 import { NextResponse } from 'next/server';
-import { query } from '@/app/lib/db/pool';
+import { prisma } from '@/app/lib/prisma';
+import { normalizeRamo, Ramo } from '@/app/lib/ramo';
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const dsRamo = searchParams.get('ramo') || 'Escoteiro';
+    const ramoParam = searchParams.get('ramo');
+    const ramo = ramoParam ? normalizeRamo(ramoParam) : Ramo.ESCOTEIRO;
 
-    // 1. Busca todas as regras com dados das ações, blocos e eixos
-    const regrasResult = await query(
-      `SELECT 
-        r.id,
-        r.acao_pn_id,
-        r.operacao,
-        r.descricao_origem,
-        r.origem_pistas_ueb,
-        r.origem_rumo_ueb,
-        r.origem_especialidades,
-        r.nivel_min_especialidade,
-        r.min_count,
-        r.fl_requer_validacao_manual,
-        r.updated_at,
-        a.ds_acao,
-        a.tp_acao,
-        a.modalidade,
-        a.regra_qtd_texto,
-        a.nr_ordem as nr_ordem_acao,
-        b.id as bloco_id,
-        b.nm_bloco,
-        b.ds_intencionalidade,
-        b.nr_ordem as nr_ordem_bloco,
-        e.id as eixo_id,
-        e.nm_eixo,
-        a.ds_ramo
-      FROM pn_equivalencia_regras r
-      JOIN pn_acoes_educativas a ON a.id = r.acao_pn_id
-      JOIN pn_blocos b ON b.id = a.bloco_id
-      JOIN pn_eixos e ON e.id = b.eixo_id
-      WHERE a.ds_ramo = $1
-      ORDER BY e.nr_ordem ASC, b.nr_ordem ASC, a.nr_ordem ASC`,
-      [dsRamo]
-    );
+    // 1. Busca todas as regras do ramo com dados das ações, blocos e eixos
+    const regrasDb = await prisma.pnEquivalenciaRegra.findMany({
+      where: {
+        acao: {
+          ds_ramo: ramo,
+        },
+      },
+      include: {
+        acao: {
+          include: {
+            bloco: {
+              include: {
+                eixo: true,
+              },
+            },
+          },
+        },
+      },
+      orderBy: [
+        { acao: { bloco: { eixo: { nr_ordem: 'asc' } } } },
+        { acao: { bloco: { nr_ordem: 'asc' } } },
+        { acao: { nr_ordem: 'asc' } },
+      ],
+    });
+
+    const regras = regrasDb.map((r) => ({
+      id: r.id,
+      acao_pn_id: r.acao_pn_id,
+      operacao: r.operacao,
+      descricao_origem: r.descricao_origem,
+      origem_pistas_ueb: r.origem_pistas_ueb,
+      origem_rumo_ueb: r.origem_rumo_ueb,
+      origem_especialidades: r.origem_especialidades,
+      nivel_min_especialidade: r.nivel_min_especialidade,
+      min_count: r.min_count,
+      fl_requer_validacao_manual: r.fl_requer_validacao_manual,
+      updated_at: r.updated_at,
+      ds_acao: r.acao.ds_acao,
+      tp_acao: r.acao.tp_acao,
+      modalidade: r.acao.modalidade,
+      regra_qtd_texto: r.acao.regra_qtd_texto,
+      nr_ordem_acao: r.acao.nr_ordem,
+      bloco_id: r.acao.bloco_id,
+      nm_bloco: r.acao.bloco.nm_bloco,
+      ds_intencionalidade: r.acao.bloco.ds_intencionalidade,
+      nr_ordem_bloco: r.acao.bloco.nr_ordem,
+      eixo_id: r.acao.bloco.eixo_id,
+      nm_eixo: r.acao.bloco.eixo.nm_eixo,
+      ds_ramo: r.acao.ds_ramo,
+    }));
 
     // 2. Busca lista de Eixos
-    const eixosResult = await query(
-      `SELECT id, nm_eixo, nr_ordem FROM pn_eixos WHERE ds_ramo = $1 ORDER BY nr_ordem ASC`,
-      [dsRamo]
-    );
+    const eixosDb = await prisma.pnEixo.findMany({
+      where: { ds_ramo: ramo },
+      orderBy: { nr_ordem: 'asc' },
+    });
+    const eixos = eixosDb.map((e) => ({
+      id: e.id,
+      nm_eixo: e.nm_eixo,
+      nr_ordem: e.nr_ordem,
+    }));
 
     // 3. Busca lista de Blocos
-    const blocosResult = await query(
-      `SELECT b.id, b.eixo_id, b.nm_bloco, b.nr_ordem, b.ds_intencionalidade, e.nm_eixo 
-       FROM pn_blocos b
-       JOIN pn_eixos e ON e.id = b.eixo_id
-       WHERE b.ds_ramo = $1 
-       ORDER BY b.nr_ordem ASC`,
-      [dsRamo]
-    );
+    const blocosDb = await prisma.pnBloco.findMany({
+      where: { ds_ramo: ramo },
+      include: { eixo: true },
+      orderBy: { nr_ordem: 'asc' },
+    });
+    const blocos = blocosDb.map((b) => ({
+      id: b.id,
+      eixo_id: b.eixo_id,
+      nm_bloco: b.nm_bloco,
+      nr_ordem: b.nr_ordem,
+      ds_intencionalidade: b.ds_intencionalidade,
+      nm_eixo: b.eixo.nm_eixo,
+    }));
 
-    // 4. Busca catálogo de atividades do Programa Antigo (Pistas e Rumo) para autocomplete/chips
-    const paAtividadesResult = await query(
-      `SELECT 
-        a.id,
-        a.cd_ueb,
-        a.identificacao,
-        a.ds_atividade,
-        a.nr_ordenacao,
-        c.cd_caminho_paxtu,
-        c.nm_caminho,
-        comp.ds_competencia
-       FROM pa_atividades a
-       JOIN pa_competencias comp ON comp.id = a.competencia_id
-       JOIN pa_caminhos c ON c.id = comp.caminho_id
-       WHERE a.ds_ramo = $1
-       ORDER BY c.cd_caminho_paxtu, a.nr_ordenacao`,
-      [dsRamo]
-    );
+    // 4. Busca catálogo de atividades do Programa Antigo (Pistas e Rumo)
+    const paAtividadesDb = await prisma.paAtividade.findMany({
+      where: { ds_ramo: ramo },
+      include: {
+        competencia: {
+          include: {
+            caminho: true,
+          },
+        },
+      },
+      orderBy: [
+        { competencia: { caminho: { cd_caminho_paxtu: 'asc' } } },
+        { nr_ordenacao: 'asc' },
+      ],
+    });
+    const pa_atividades = paAtividadesDb.map((a) => ({
+      id: a.id,
+      cd_ueb: a.cd_ueb,
+      identificacao: a.identificacao,
+      ds_atividade: a.ds_atividade,
+      nr_ordenacao: a.nr_ordenacao,
+      cd_caminho_paxtu: a.competencia?.caminho?.cd_caminho_paxtu || null,
+      nm_caminho: a.competencia?.caminho?.nm_caminho || null,
+      ds_competencia: a.competencia?.ds_competencia || null,
+    }));
 
-    // 5. Lista oficial de especialidades do Programa Antigo (pa_especialidades)
-    const espResult = await query(
-      `SELECT cd_especialidade, ds_especialidade FROM pa_especialidades ORDER BY ds_especialidade ASC`
-    );
+    // 5. Lista oficial de especialidades do Programa Antigo
+    const espResult = await prisma.paEspecialidade.findMany({
+      select: {
+        cd_especialidade: true,
+        ds_especialidade: true,
+      },
+      orderBy: {
+        ds_especialidade: 'asc',
+      },
+    });
 
     return NextResponse.json({
       success: true,
-      ramo: dsRamo,
-      regras: regrasResult.rows,
-      eixos: eixosResult.rows,
-      blocos: blocosResult.rows,
-      pa_atividades: paAtividadesResult.rows,
-      especialidades_catalogo: espResult.rows,
+      ramo,
+      regras,
+      eixos,
+      blocos,
+      pa_atividades,
+      especialidades_catalogo: espResult,
     });
   } catch (error: any) {
     console.error('[API Regras Equivalência] Erro ao carregar regras:', error);

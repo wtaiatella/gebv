@@ -1,36 +1,35 @@
 import type { Associado, Atividade, Caminho } from '@/app/lib/data';
+import { PaxtuSessionExpiredError, PaxtuApiError } from './errors';
+
+export { PaxtuSessionExpiredError, PaxtuApiError };
 
 const BASE_URL = 'https://paxtu100.escoteiros.org.br';
-const PAGE_SIZE = 20;
 
-let activeSessionCookie: string | null = null;
-let cachedCsrfToken: string | null = null;
-let lastCookieForCsrf: string | null = null;
-
-
-export function setSessionCookie(cookie: string) {
-  activeSessionCookie = cookie;
-  cachedCsrfToken = null;
-  lastCookieForCsrf = null;
-}
-
-export function getSessionCookie(): string | null {
-  return activeSessionCookie || process.env.PAXTU_COOKIE || null;
-}
-
-function getCookie(): string {
-  const cookie = getSessionCookie();
+export function resolveSessionCookie(explicitCookie?: string | null): string {
+  const cookie = explicitCookie || process.env.PAXTU_COOKIE;
   if (!cookie) {
-    throw new Error('Sessão do Paxtu 100 não configurada. Clique em "Conectar Paxtu 100" para autenticar.');
+    throw new PaxtuSessionExpiredError('Sessão do Paxtu 100 não configurada. Por favor, conecte suas credenciais.');
   }
   return cookie;
 }
 
-function getHeaders(extraHeaders: Record<string, string> = {}): HeadersInit {
+// Suporte deprecado para compatibilidade retroativa (sem estado global de memória)
+export function setSessionCookie(_cookie: string) {
+  // Cookies de sessão agora são estritamente por request via cabeçalhos HTTP
+}
+export function getSessionCookie(): string | null {
+  return process.env.PAXTU_COOKIE || null;
+}
+
+function getCookie(explicitCookie?: string | null): string {
+  return resolveSessionCookie(explicitCookie);
+}
+
+function getHeaders(cookie: string, extraHeaders: Record<string, string> = {}): HeadersInit {
   return {
     accept: 'application/json, text/javascript, */*; q=0.01',
     'accept-language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
-    cookie: getCookie(),
+    cookie,
     'user-agent':
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36',
     'x-requested-with': 'XMLHttpRequest',
@@ -40,37 +39,34 @@ function getHeaders(extraHeaders: Record<string, string> = {}): HeadersInit {
 }
 
 /**
- * Extrai token CSRF a partir da página /associado/lista com cache
+ * Extrai token CSRF a partir da página /associado/lista
  */
-async function getCsrfToken(forceRefresh = false): Promise<string> {
-  const currentCookie = getCookie();
-  if (!forceRefresh && cachedCsrfToken && lastCookieForCsrf === currentCookie) {
-    return cachedCsrfToken;
+export async function getCsrfToken(cookie?: string, forceRefresh = false): Promise<string> {
+  const sessionCookie = getCookie(cookie);
+  const res = await fetch(`${BASE_URL}/associado/lista`, {
+    headers: getHeaders(sessionCookie, { accept: 'text/html' }),
+  });
+
+  if (res.status === 401 || res.status === 419 || res.url.includes('/login') || res.url.includes('keycloak')) {
+    throw new PaxtuSessionExpiredError();
   }
 
-  const res = await fetch(`${BASE_URL}/associado/lista`, {
-    headers: getHeaders({ accept: 'text/html' }),
-  });
   const html = await res.text();
   const metaMatch = html.match(/<meta name="csrf-token" content="([^"]+)"/);
   if (metaMatch) {
-    cachedCsrfToken = metaMatch[1];
-    lastCookieForCsrf = currentCookie;
-    return cachedCsrfToken;
+    return metaMatch[1];
   }
 
   throw new Error('Não foi possível obter o token CSRF do Paxtu 100.');
 }
 
-
 /**
  * Analisa o bloco HTML retornado pela listagem e extrai os associados
  */
-function parseAssociadosFromHtml(html: string): Associado[] {
+export function parseAssociadosFromHtml(html: string): Associado[] {
   const list: Associado[] = [];
   const seen = new Set<string>();
 
-  // Bloco desktop com classe paxtu-info
   const desktopBlocks = [...html.matchAll(/data-bs-associate="(\d+)"[^>]*>([\s\S]*?)(?=(<div[^>]*data-bs-associate=|<hr class="paxtu-divider"|$))/g)];
 
   for (const match of desktopBlocks) {
@@ -98,6 +94,7 @@ function parseAssociadosFromHtml(html: string): Associado[] {
     const dsCategoria = isAdulto ? 'Escotista' : 'Beneficiário';
 
     seen.add(cdAssociado);
+
     list.push({
       cd_associado: cdAssociado,
       nm_associado: nmAssociado,
@@ -129,19 +126,40 @@ function parseAssociadosFromHtml(html: string): Associado[] {
   return list;
 }
 
+export interface FetchAssociadosOptions {
+  branchId?: number;
+  category?: number;
+  status?: string;
+  cookie?: string;
+}
+
 /**
- * Busca a lista completa de associados paginada
+ * Busca a lista completa de associados paginada por ramo
+ * Utiliza branch_id={1..4}, category=1 (Beneficiários), status=S (Ativo)
  */
-export async function fetchAllAssociados(): Promise<Associado[]> {
+export async function fetchAllAssociados(options: FetchAssociadosOptions = {}): Promise<Associado[]> {
+  const sessionCookie = getCookie(options.cookie);
+  const branchId = options.branchId;
+  const category = options.category ?? 1; // Default: 1 (Beneficiários)
+  const status = options.status ?? 'S';   // Default: S (Ativos)
+
   const all: Associado[] = [];
   let page = 1;
 
   while (true) {
-    const url = `${BASE_URL}/associado/associado/lista/carregar?page=${page}&status=S`;
-    const res = await fetch(url, { headers: getHeaders() });
+    let url = `${BASE_URL}/associado/associado/lista/carregar?page=${page}&category=${category}&status=${status}`;
+    if (branchId !== undefined) {
+      url += `&branch_id=${branchId}`;
+    }
+
+    const res = await fetch(url, { headers: getHeaders(sessionCookie) });
+
+    if (res.status === 401 || res.status === 419 || res.url.includes('/login')) {
+      throw new PaxtuSessionExpiredError();
+    }
 
     if (!res.ok) {
-      throw new Error(`Falha ao buscar associados na página ${page} (HTTP ${res.status})`);
+      throw new PaxtuApiError(`Falha ao buscar associados na página ${page}`, res.status, url);
     }
 
     const text = await res.text();
@@ -150,20 +168,18 @@ export async function fetchAllAssociados(): Promise<Associado[]> {
       json = JSON.parse(text);
     } catch {
       if (text.includes('login') || text.includes('<!DOCTYPE')) {
-        throw new Error('Sessão do Paxtu 100 expirada ou inválida. Conecte suas credenciais pelo botão "Conectar Paxtu 100".');
+        throw new PaxtuSessionExpiredError();
       }
       throw new Error(`Resposta inválida do Paxtu 100 na página ${page}.`);
     }
 
     if (!json || !json.html) break;
 
-
     const records = parseAssociadosFromHtml(json.html);
     if (records.length === 0) break;
 
     all.push(...records);
 
-    // Continua para a próxima página enquanto houver link rel="next" ou page=N+1 na paginação
     const hasNextPage = Boolean(
       json.pagination && (
         json.pagination.includes(`page=${page + 1}`) ||
@@ -182,56 +198,111 @@ export async function fetchAllAssociados(): Promise<Associado[]> {
   return all;
 }
 
+/**
+ * Dispara sincronização retroativa no Paxtu 100 antes da extração (FR-2)
+ */
+export async function sincronizarRetroativo(cdAssociado: string, cookie?: string): Promise<boolean> {
+  const sessionCookie = getCookie(cookie);
+  try {
+    const csrfToken = await getCsrfToken(sessionCookie);
+    const res = await fetch(`${BASE_URL}/associado/associado/progressoes/sincronizar-retroativo`, {
+      method: 'POST',
+      headers: getHeaders(sessionCookie, {
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'x-csrf-token': csrfToken,
+      }),
+      body: new URLSearchParams({
+        associate_code: cdAssociado,
+      }),
+    });
+
+    if (res.status === 401 || res.status === 419 || res.url.includes('/login')) {
+      throw new PaxtuSessionExpiredError();
+    }
+
+    return res.ok;
+  } catch (err: any) {
+    if (err instanceof PaxtuSessionExpiredError) throw err;
+    console.warn(`[Paxtu100] Sincronização retroativa falhou para ${cdAssociado}:`, err.message);
+    return false;
+  }
+}
 
 /**
- * Mapeamento dos Ramos para os branch IDs do Paxtu 100
- * 1: Escoteiro, 2: Lobinho, 3: Sênior, 4: Pioneiro
+ * Busca as competências de uma seção/ramo do associado
  */
-const RAMO_TO_BRANCH_ID: Record<string, number> = {
-  escoteiro: 1,
-  lobinho: 2,
-  sênior: 3,
-  senior: 3,
-  pioneiro: 4,
-};
+export async function fetchCompetenciasAssociado(
+  cdAssociado: string,
+  branchId: number,
+  cookie?: string
+): Promise<any[]> {
+  const sessionCookie = getCookie(cookie);
+  const url = `${BASE_URL}/associado/associado/progressoes/competences/show?associate_code=${cdAssociado}&branch=${branchId}`;
+  const res = await fetch(url, { headers: getHeaders(sessionCookie) });
+
+  if (res.status === 401 || res.status === 419 || res.url.includes('/login')) {
+    throw new PaxtuSessionExpiredError();
+  }
+
+  if (!res.ok) return [];
+  const json = await res.json().catch(() => []);
+  return Array.isArray(json) ? json : [];
+}
+
+/**
+ * Busca as atividades de uma competência específica
+ */
+export async function fetchAtividadesCompetencia(
+  cdAssociado: string,
+  competenceId: number | string,
+  cookie?: string
+): Promise<any[]> {
+  const sessionCookie = getCookie(cookie);
+  const url = `${BASE_URL}/associado/associado/progressoes/competences/activities?associate_code=${cdAssociado}&competence_id=${competenceId}`;
+  const res = await fetch(url, { headers: getHeaders(sessionCookie) });
+
+  if (res.status === 401 || res.status === 419 || res.url.includes('/login')) {
+    throw new PaxtuSessionExpiredError();
+  }
+
+  if (!res.ok) return [];
+  const json: any = await res.json().catch(() => null);
+  if (!json) return [];
+  return Array.isArray(json) ? json : (json.activities || []);
+}
 
 /**
  * Busca as progressões do PA (Programa de Atividades) para o associado
  */
-export async function fetchProgressao(cdAssociado: string, dsRamo?: string): Promise<Caminho[]> {
-  const branchesToQuery = dsRamo && RAMO_TO_BRANCH_ID[dsRamo.toLowerCase()]
-    ? [RAMO_TO_BRANCH_ID[dsRamo.toLowerCase()]]
-    : [1, 2, 3, 4];
+export async function fetchProgressao(
+  cdAssociado: string,
+  branchId?: number,
+  cookie?: string
+): Promise<Caminho[]> {
+  const sessionCookie = getCookie(cookie);
+  // 1. Sincronização retroativa prévia
+  await sincronizarRetroativo(cdAssociado, sessionCookie);
 
+  const branchesToQuery = branchId !== undefined ? [branchId] : [1, 2, 3, 4];
   const caminhosMap = new Map<string, { totalCount: number; data: Atividade[] }>();
 
   for (const branch of branchesToQuery) {
     try {
-      const compUrl = `${BASE_URL}/associado/associado/progressoes/competences/show?associate_code=${cdAssociado}&branch=${branch}`;
-      const compRes = await fetch(compUrl, { headers: getHeaders() });
-      if (!compRes.ok) continue;
-
-      const competences: any = await compRes.json().catch(() => null);
-      if (!Array.isArray(competences) || competences.length === 0) continue;
+      const competences = await fetchCompetenciasAssociado(cdAssociado, branch, sessionCookie);
+      if (competences.length === 0) continue;
 
       const validCompetences = competences.filter(
-        (comp) => comp.tipo !== 'caminho_direto' && comp.id && !(typeof comp.id === 'string' && comp.id.startsWith('caminho_'))
+        (comp: any) => comp.tipo !== 'caminho_direto' && comp.id && !(typeof comp.id === 'string' && comp.id.startsWith('caminho_'))
       );
 
       await Promise.all(
-        validCompetences.map(async (comp) => {
+        validCompetences.map(async (comp: any) => {
           const caminhoId = String(comp.caminho_id || comp.cd_caminho || '0');
           if (!caminhosMap.has(caminhoId)) {
             caminhosMap.set(caminhoId, { totalCount: 0, data: [] });
           }
 
-          const actUrl = `${BASE_URL}/associado/associado/progressoes/competences/activities?associate_code=${cdAssociado}&competence_id=${comp.id}`;
-          const actRes = await fetch(actUrl, { headers: getHeaders() });
-          if (!actRes.ok) return;
-
-          const actJson: any = await actRes.json().catch(() => null);
-          if (!actJson) return;
-          const activities: any[] = Array.isArray(actJson) ? actJson : (actJson.activities || []);
+          const activities = await fetchAtividadesCompetencia(cdAssociado, comp.id, sessionCookie);
 
           for (const act of activities) {
             const atvId = String(act.id || act.codigo || '');
@@ -256,50 +327,43 @@ export async function fetchProgressao(cdAssociado: string, dsRamo?: string): Pro
           }
         })
       );
-    } catch {}
+    } catch (err: any) {
+      if (err instanceof PaxtuSessionExpiredError) throw err;
+      console.warn(`[Paxtu100] Erro ao buscar ramo ${branch} para ${cdAssociado}:`, err.message);
+    }
   }
 
   return Array.from(caminhosMap.values());
 }
 
 /**
- * Busca os detalhes de uma especialidade do associado (itens cumpridos e datas)
+ * T025: Formaliza e tipa a extração dos IDs de especialidades conquistadas do perfil HTML
  */
-export async function fetchItensAssociadoEspecialidade(
+export async function fetchEspecialidadesDoPerfil(
   cdAssociado: string,
-  cdEspecialidade: string | number
-): Promise<any[]> {
-  try {
-    const url = `${BASE_URL}/associado/associado/progressoes/especialidades/${cdEspecialidade}/${cdAssociado}`;
-    const res = await fetch(url, { headers: getHeaders() });
-    if (!res.ok) return [];
+  cookie?: string
+): Promise<{ id: number }[]> {
+  const sessionCookie = getCookie(cookie);
+  let csrfToken = await getCsrfToken(sessionCookie);
 
-    const json = await res.json().catch(() => null);
-    if (!json || !json.itens) return [];
+  let profileRes = await fetch(`${BASE_URL}/associado/perfil`, {
+    method: 'POST',
+    headers: getHeaders(sessionCookie, {
+      'content-type': 'application/x-www-form-urlencoded',
+      'x-csrf-token': csrfToken,
+      accept: 'text/html',
+    }),
+    body: new URLSearchParams({
+      associate_code: cdAssociado,
+      _token: csrfToken,
+    }),
+  });
 
-    return Object.values(json.itens).map((it: any) => ({
-      cd_item: String(it.cd_item || ''),
-      ds_item: it.ds_item || '',
-      dt_item: it.dt_item || '',
-      nr_nivel: Number(it.nr_nivel ?? json.nr_nivel ?? 0),
-      check_escotista: it.dt_item ? 'confirmadoEscotista' : '',
-      check_jovem: it.dt_item ? 'feitoJovem' : '',
-    }));
-  } catch (err) {
-    console.warn(`[Paxtu100] Erro ao buscar itens da especialidade ${cdEspecialidade} para ${cdAssociado}:`, err);
-    return [];
-  }
-}
-
-/**
- * Busca todas as especialidades e seus itens detalhados para o associado em paralelo
- */
-export async function fetchEspecialidadesCompletasAssociado(cdAssociado: string): Promise<any[]> {
-  try {
-    let csrfToken = await getCsrfToken();
-    let profileRes = await fetch(`${BASE_URL}/associado/perfil`, {
+  if (profileRes.status === 419) {
+    csrfToken = await getCsrfToken(sessionCookie, true);
+    profileRes = await fetch(`${BASE_URL}/associado/perfil`, {
       method: 'POST',
-      headers: getHeaders({
+      headers: getHeaders(sessionCookie, {
         'content-type': 'application/x-www-form-urlencoded',
         'x-csrf-token': csrfToken,
         accept: 'text/html',
@@ -309,72 +373,87 @@ export async function fetchEspecialidadesCompletasAssociado(cdAssociado: string)
         _token: csrfToken,
       }),
     });
+  }
 
-    if (profileRes.status === 419) {
-      csrfToken = await getCsrfToken(true);
-      profileRes = await fetch(`${BASE_URL}/associado/perfil`, {
-        method: 'POST',
-        headers: getHeaders({
-          'content-type': 'application/x-www-form-urlencoded',
-          'x-csrf-token': csrfToken,
-          accept: 'text/html',
-        }),
-        body: new URLSearchParams({
-          associate_code: cdAssociado,
-          _token: csrfToken,
-        }),
-      });
-    }
+  if (profileRes.status === 401 || profileRes.status === 419 || profileRes.url.includes('/login')) {
+    throw new PaxtuSessionExpiredError();
+  }
 
-    if (!profileRes.ok) {
-      console.warn(`[Paxtu100] Perfil do associado ${cdAssociado} retornou HTTP ${profileRes.status}`);
-      return [];
-    }
+  if (!profileRes.ok) {
+    console.warn(`[Paxtu100] Perfil do associado ${cdAssociado} retornou HTTP ${profileRes.status}`);
+    return [];
+  }
 
+  const html = await profileRes.text();
+  const specialtyCards = [
+    ...html.matchAll(/class="[^"]*specialty-card[^"]*"[^>]*data-specialty-id="(\d+)"/g),
+  ];
+  const uniqueIds = [...new Set(specialtyCards.map((m) => Number(m[1])))].filter((id) => !isNaN(id) && id > 0);
 
-    const html = await profileRes.text();
-    const specialtyCards = [...html.matchAll(/class="[^"]*specialty-card[^"]*"[^>]*data-specialty-id="(\d+)"/g)];
-    const uniqueIds = [...new Set(specialtyCards.map((m) => m[1]))];
+  return uniqueIds.map((id) => ({ id }));
+}
+
+/**
+ * Busca os detalhes de uma especialidade individual do associado
+ */
+export async function fetchDetalhesEspecialidade(
+  cdEspecialidade: string | number,
+  cdAssociado: string,
+  cookie?: string
+): Promise<any | null> {
+  const sessionCookie = getCookie(cookie);
+  const url = `${BASE_URL}/associado/associado/progressoes/especialidades/${cdEspecialidade}/${cdAssociado}`;
+  const res = await fetch(url, { headers: getHeaders(sessionCookie) });
+
+  if (res.status === 401 || res.status === 419 || res.url.includes('/login')) {
+    throw new PaxtuSessionExpiredError();
+  }
+
+  if (!res.ok) return null;
+  const json = await res.json().catch(() => null);
+  if (!json) return null;
+
+  const itensList = Object.values(json.itens || {}).map((it: any) => ({
+    cd_item: String(it.cd_item || ''),
+    ds_item: it.ds_item || '',
+    dt_item: it.dt_item || '',
+    nr_nivel: Number(it.nr_nivel ?? json.nr_nivel ?? 0),
+    check_escotista: it.dt_item ? 'confirmadoEscotista' : '',
+    check_jovem: it.dt_item ? 'feitoJovem' : '',
+  }));
+
+  const concluidos = itensList.filter((it: any) => Boolean(it.dt_item)).length;
+
+  return {
+    cd_especialidade: String(cdEspecialidade),
+    ds_especialidade: json.ds_especialidade || `Especialidade ${cdEspecialidade}`,
+    nr_nivel: Number(json.nr_nivel ?? 0),
+    dt_nivel: json.dt_nivel || null,
+    qtd_itens_concluidos: concluidos,
+    itens_conquistados: itensList,
+  };
+}
+
+/**
+ * Busca todas as especialidades e seus itens detalhados para o associado
+ */
+export async function fetchEspecialidadesCompletasAssociado(
+  cdAssociado: string,
+  cookie?: string
+): Promise<any[]> {
+  const sessionCookie = getCookie(cookie);
+  try {
+    const especialidadesList = await fetchEspecialidadesDoPerfil(cdAssociado, sessionCookie);
+    if (especialidadesList.length === 0) return [];
 
     const results = await Promise.all(
-      uniqueIds.map(async (cdEsp) => {
-        try {
-          const espUrl = `${BASE_URL}/associado/associado/progressoes/especialidades/${cdEsp}/${cdAssociado}`;
-          const espRes = await fetch(espUrl, { headers: getHeaders() });
-          if (!espRes.ok) return null;
-
-          const espJson = await espRes.json().catch(() => null);
-          if (!espJson) return null;
-
-          const itensList = Object.values(espJson.itens || {}).map((it: any) => ({
-            cd_item: String(it.cd_item || ''),
-            ds_item: it.ds_item || '',
-            dt_item: it.dt_item || '',
-            nr_nivel: Number(it.nr_nivel ?? espJson.nr_nivel ?? 0),
-            check_escotista: it.dt_item ? 'confirmadoEscotista' : '',
-            check_jovem: it.dt_item ? 'feitoJovem' : '',
-          }));
-
-          const concluidos = itensList.filter((it: any) => Boolean(it.dt_item)).length;
-
-          return {
-            cd_especialidade: String(cdEsp),
-            ds_especialidade: espJson.ds_especialidade || `Especialidade ${cdEsp}`,
-            nr_nivel: Number(espJson.nr_nivel ?? 0),
-            dt_nivel: espJson.dt_nivel || null,
-            qtd_itens_concluidos: concluidos,
-            itens_conquistados: itensList,
-          };
-        } catch {
-          return null;
-        }
-      })
+      especialidadesList.map((esp) => fetchDetalhesEspecialidade(esp.id, cdAssociado, sessionCookie))
     );
 
     return results.filter(Boolean);
   } catch (err: any) {
-    console.warn(`[Paxtu100] Erro geral ao buscar especialidades para ${cdAssociado}:`, err.message);
+    if (err instanceof PaxtuSessionExpiredError) throw err;
+    console.warn(`[Paxtu100] Erro ao buscar especialidades completas para ${cdAssociado}:`, err.message);
     return [];
   }
 }
-

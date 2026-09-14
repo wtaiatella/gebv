@@ -1,31 +1,34 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import prisma from '@/app/lib/prisma';
+import { normalizeRamo, ramoToDisplayName, Ramo as RamoEnum } from '@/app/lib/ramo';
 
 export type Associado = {
   cd_associado: string;
   nm_associado: string;
-  dsCategoria: string;
-  dsRamo: string;
-  dt_nascimento: string;
-  nr_registro: string;
-  nr_grupo: string;
-  nr_grupo_regiao: string;
-  ds_cidade: string;
-  ds_bairro: string;
-  ds_endereco: string;
-  nr_residencia: string;
-  ds_complemento: string;
-  ds_cep: string;
-  nm_estado: string;
-  ds_telefone_cel: string;
-  ds_telefone_res: string;
-  ds_email: string;
-  ds_ano_ingresso: string;
-  ds_escolaridade: string;
-  ds_profissao: string;
-  flStatus: string;
-  dt_validade: string;
-  [key: string]: string | undefined;
+  dsCategoria?: string;
+  dsRamo?: string;
+  dt_nascimento?: string;
+  nr_registro?: string;
+  nr_registro_formatado?: string;
+  nr_grupo?: string;
+  nr_grupo_regiao?: string;
+  ds_cidade?: string;
+  ds_bairro?: string;
+  ds_endereco?: string;
+  nr_residencia?: string;
+  ds_complemento?: string;
+  ds_cep?: string;
+  nm_estado?: string;
+  ds_telefone_cel?: string;
+  ds_telefone_res?: string;
+  ds_email?: string;
+  ds_ano_ingresso?: string;
+  ds_escolaridade?: string;
+  ds_profissao?: string;
+  flStatus?: string;
+  dt_validade?: string;
+  [key: string]: any;
 };
 
 export type Atividade = {
@@ -81,7 +84,7 @@ export type Escoteiro = {
   especialidades?: EscoteiroEspecialidade[];
 };
 
-import { query } from '@/app/lib/db/pool';
+export type Ramo = 'Escoteiro' | 'Lobinho' | 'Sênior' | 'Pioneiro' | RamoEnum;
 
 async function readJson<T>(relativePath: string): Promise<T> {
   try {
@@ -94,54 +97,61 @@ async function readJson<T>(relativePath: string): Promise<T> {
   }
 }
 
-export type Ramo = 'Escoteiro' | 'Lobinho' | 'Sênior' | 'Pioneiro';
+export async function getEscoteiros(ramoInput: string | Ramo = 'Escoteiro'): Promise<Escoteiro[]> {
+  const ramoEnum = normalizeRamo(String(ramoInput));
+  const ramoDisplay = ramoToDisplayName(ramoEnum);
 
-export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro[]> {
-  // Tenta consultar do PostgreSQL
   if (process.env.DATABASE_URL) {
     try {
-      const resAssociados = await query<{
-        cd_associado: string;
-        nm_associado: string;
-        nr_registro_formatado: string | null;
-        ds_categoria: string;
-        ds_ramo: string;
-        fl_status: string | null;
-        dt_nascimento: string | null;
-        ds_email: string | null;
-        ds_telefone_cel: string | null;
-        dados_cadastrais_completos: any;
-      }>(
-        `SELECT cd_associado, nm_associado, nr_registro_formatado, ds_categoria, ds_ramo, fl_status,
-                dt_nascimento, ds_email, ds_telefone_cel, dados_cadastrais_completos
-         FROM associados
-         WHERE ds_categoria = 'Beneficiário' 
-           AND ds_ramo = $1 
-           AND (
-             fl_status IS NULL 
-             OR fl_status IN ('jaRegistrado', 'registroValido', 'jaGravado', 'S', 'Ativo', 'true', '1')
-           )
-         ORDER BY nm_associado ASC`,
-        [ramo]
-      );
+      // 1. Busca associados com backup paxtu, progressoes_pa e especialidades
+      const associadosDb = await prisma.associado.findMany({
+        where: {
+          ds_categoria: 'BENEFICIARIO',
+          ds_ramo: ramoEnum,
+          fl_status: 'ATIVO',
+        },
+        include: {
+          progressao_paxtu: true,
+          progressoes_pa: true,
+          progressoes_especialidades: {
+            include: {
+              especialidade: true,
+            },
+            orderBy: [{ nr_nivel: 'desc' }, { ds_especialidade: 'asc' }],
+          },
+        },
+        orderBy: {
+          nm_associado: 'asc',
+        },
+      });
 
-      const resProgressoes = await query<{ cd_associado: string; caminhos: Caminho[] }>(
-        `SELECT cd_associado, caminhos FROM progressoes_escoteiro`
-      );
+      // 2. Busca catálogo oficial de caminhos e atividades do Programa Antigo (PA)
+      const caminhosCatalogoDb = await prisma.paCaminho.findMany({
+        where: { ds_ramo: ramoEnum },
+        include: {
+          competencias: {
+            include: {
+              area: true,
+              atividades: {
+                orderBy: { id: 'asc' },
+              },
+            },
+            orderBy: { id: 'asc' },
+          },
+        },
+        orderBy: { id: 'asc' },
+      });
 
-      // Busca catálogo de itens oficiais de todas as especialidades
-      const resItensCatalogo = await query<{
-        cd_especialidade: string;
-        cd_item: string;
-        ds_item: string;
-      }>(
-        `SELECT cd_especialidade, cd_item, ds_item
-         FROM pa_especialidades_itens
-         ORDER BY cd_especialidade, CAST(cd_item AS INT) ASC`
-      );
+      // 3. Busca catálogo de itens oficiais de todas as especialidades
+      const itensCatalogoDb = await prisma.paEspecialidadeItem.findMany({
+        orderBy: [
+          { cd_especialidade: 'asc' },
+          { id: 'asc' },
+        ],
+      });
 
       const catalogoItensMap = new Map<string, { cd_item: string; ds_item: string }[]>();
-      for (const item of resItensCatalogo.rows) {
+      for (const item of itensCatalogoDb) {
         if (!catalogoItensMap.has(item.cd_especialidade)) {
           catalogoItensMap.set(item.cd_especialidade, []);
         }
@@ -151,154 +161,227 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
         });
       }
 
-      const resEspecialidades = await query<{
-        cd_associado: string;
-        cd_especialidade: string;
-        ds_especialidade: string;
-        nr_nivel: number;
-        dt_nivel: string | null;
-        qtd_itens_concluidos: number;
-        itens_detalhados: any[];
-        total_itens: number | null;
-      }>(
-        `SELECT e.cd_associado, e.cd_especialidade, e.ds_especialidade, e.nr_nivel, e.dt_nivel,
-                e.qtd_itens_concluidos, e.itens_detalhados, p.total_itens
-         FROM escoteiro_pa_especialidades e
-         LEFT JOIN pa_especialidades p ON e.especialidade_id = p.id OR e.cd_especialidade = p.cd_especialidade
-         WHERE e.cd_especialidade IS NOT NULL AND e.cd_especialidade != 'undefined'
-         ORDER BY e.nr_nivel DESC, e.ds_especialidade ASC`
-      );
+      if (associadosDb.length > 0) {
+        return associadosDb.map((r) => {
+          const rawDados =
+            typeof r.dados_cadastrais_completos === 'object' && r.dados_cadastrais_completos
+              ? (r.dados_cadastrais_completos as Record<string, any>)
+              : {};
 
-      if (resAssociados.rows.length > 0) {
-        const progMap = new Map(resProgressoes.rows.map((p) => [p.cd_associado, p.caminhos]));
-        
-        const espMap = new Map<string, EscoteiroEspecialidade[]>();
-        for (const row of resEspecialidades.rows) {
-          if (!espMap.has(row.cd_associado)) {
-            espMap.set(row.cd_associado, []);
-          }
+          const dtNascStr = r.dt_nascimento
+            ? r.dt_nascimento.toISOString().split('T')[0]
+            : rawDados.dt_nascimento || '';
 
-          const catItens = catalogoItensMap.get(row.cd_especialidade) || [];
-          const conqList = Array.isArray(row.itens_detalhados) ? row.itens_detalhados : [];
-          const conqMap = new Map<string, any>();
+          const associado: Associado = {
+            ...rawDados,
+            cd_associado: String(r.cd_associado),
+            nm_associado: r.nm_associado || rawDados.nm_associado || `Associado ${r.cd_associado}`,
+            dsCategoria: 'Beneficiário',
+            dsRamo: ramoDisplay,
+            nr_registro_formatado: r.nr_registro_formatado || rawDados.nr_registro_formatado || '',
+            dt_nascimento: dtNascStr,
+            ds_email: r.ds_email || rawDados.ds_email || '',
+            ds_telefone_cel: r.ds_telefone_cel || rawDados.ds_telefone_cel || '',
+            flStatus: 'S',
+          };
 
-          for (const conq of conqList) {
-            const code = String(conq.cd_item || conq.cdItem || conq.cdOrdenacao || '');
-            if (code) {
-              conqMap.set(code, conq);
+          // Monta caminhos a partir do catálogo oficial ordenado do banco de dados
+          let caminhos: Caminho[] = [];
+          if (caminhosCatalogoDb.length > 0) {
+            const dbPaMap = new Map<number, (typeof r.progressoes_pa)[0]>();
+            for (const p of r.progressoes_pa || []) {
+              dbPaMap.set(p.atividade_id, p);
             }
-          }
 
-          let mergedItens: ItemEspecialidade[] = [];
-          if (catItens.length > 0) {
-            mergedItens = catItens.map((cat) => {
-              const conq = conqMap.get(String(cat.cd_item));
-              
-              const checkEscotistaVal = conq ? (conq.check_escotista || conq.checkEscotista || '') : '';
-              const flCheckEscotista =
-                checkEscotistaVal === 'confirmadoEscotista' ||
-                checkEscotistaVal === 'S' ||
-                checkEscotistaVal === '1' ||
-                checkEscotistaVal === 'true';
+            const paxtuMap = new Map<string, any>();
+            const caminhosPaxtuRaw = Array.isArray(r.progressao_paxtu?.caminhos)
+              ? (r.progressao_paxtu.caminhos as any[])
+              : [];
 
-              const checkJovemVal = conq ? (conq.check_jovem || conq.checkJovem || '') : '';
-              const flCheckJovem =
-                flCheckEscotista ||
-                checkJovemVal === 'feitoJovem' ||
-                checkJovemVal === 'S' ||
-                checkJovemVal === '1' ||
-                checkJovemVal === 'true';
+            for (const c of caminhosPaxtuRaw) {
+              const cdCam = c.data?.[0]?.cdCaminho || '';
+              for (const a of c.data || []) {
+                if (a.cdAtividade) paxtuMap.set(String(a.cdAtividade), a);
+                if (a.cdUeb) {
+                  paxtuMap.set(`${cdCam}_${a.cdUeb}`, a);
+                  paxtuMap.set(String(a.cdUeb), a);
+                }
+                if (a.dsAtividade) {
+                  paxtuMap.set(a.dsAtividade.trim().toLowerCase(), a);
+                }
+              }
+            }
 
-              const flConquistado = flCheckEscotista;
-              const dateVal = (flCheckEscotista || flCheckJovem) ? (conq?.dt_item || conq?.dtItem || (flConquistado ? row.dt_nivel : undefined) || undefined) : undefined;
+            caminhos = caminhosCatalogoDb.map((camDb) => {
+              const atividades: Atividade[] = [];
+
+              for (const compDb of camDb.competencias) {
+                for (const ativDb of compDb.atividades) {
+                  const pDb = dbPaMap.get(ativDb.id);
+                  const pPaxtu =
+                    (ativDb.cd_atividade_paxtu && paxtuMap.get(String(ativDb.cd_atividade_paxtu))) ||
+                    paxtuMap.get(`${camDb.cd_caminho_paxtu}_${ativDb.cd_ueb}`) ||
+                    paxtuMap.get(ativDb.ds_atividade.trim().toLowerCase());
+
+                  const isEscotista = Boolean(
+                    pDb?.fl_check_escotista ||
+                    pPaxtu?.checkEscotista === 'confirmadoEscotista' ||
+                    pPaxtu?.checkEscotista === 'S' ||
+                    pPaxtu?.checkEscotista === '1' ||
+                    pPaxtu?.checkEscotista === 'true'
+                  );
+
+                  const isJovem = Boolean(
+                    isEscotista ||
+                    pDb?.fl_check_jovem ||
+                    pPaxtu?.checkJovem === 'feitoJovem' ||
+                    pPaxtu?.checkJovem === 'S' ||
+                    pPaxtu?.checkJovem === '1' ||
+                    pPaxtu?.checkJovem === 'true' ||
+                    Boolean(pPaxtu?.dtCheckJovem)
+                  );
+
+                  const dtDb = pDb?.dt_check_escotista || pDb?.dt_check_jovem;
+                  const dtStr = dtDb
+                    ? dtDb.toISOString().split('T')[0]
+                    : (pPaxtu?.dtCheckEscotista || pPaxtu?.dtCheckJovem || pPaxtu?.dtAtividade || undefined);
+
+                  atividades.push({
+                    cdCaminho: camDb.cd_caminho_paxtu || String(camDb.id),
+                    cdCompetencia: String(compDb.id),
+                    cdAtividade: String(ativDb.cd_atividade_paxtu || ativDb.id),
+                    cdUeb: ativDb.cd_ueb,
+                    cdOrdenacao: String(ativDb.nr_ordenacao),
+                    identificacao: ativDb.identificacao || undefined,
+                    dsAtividade: ativDb.ds_atividade,
+                    dsDesenvolvimento: compDb.area?.nm_area || compDb.ds_competencia || 'Geral',
+                    checkEscotista: isEscotista ? 'confirmadoEscotista' : undefined,
+                    checkJovem: isJovem ? 'feitoJovem' : undefined,
+                    dtCheckEscotista: isEscotista ? dtStr : undefined,
+                    dtCheckJovem: isJovem ? dtStr : undefined,
+                    dtAtividade: dtStr,
+                  });
+                }
+              }
 
               return {
-                cd_item: cat.cd_item,
-                ds_item: cat.ds_item || conq?.ds_item || conq?.dsItem || `Item ${cat.cd_item}`,
-                fl_conquistado: flConquistado,
-                fl_check_escotista: flCheckEscotista,
-                fl_check_jovem: flCheckJovem,
-                dt_item: dateVal,
-                nr_nivel: conq?.nr_nivel || conq?.nrNivel || row.nr_nivel,
-                check_escotista: flCheckEscotista ? 'confirmadoEscotista' : undefined,
-                check_jovem: flCheckJovem ? 'feitoJovem' : undefined,
+                totalCount: atividades.length,
+                data: atividades,
               };
             });
           } else {
-            mergedItens = conqList.map((conq, idx) => {
-              const checkEscotistaVal = conq.check_escotista || conq.checkEscotista || '';
-              const flCheckEscotista =
-                checkEscotistaVal === 'confirmadoEscotista' ||
-                checkEscotistaVal === 'S' ||
-                checkEscotistaVal === '1' ||
-                checkEscotistaVal === 'true';
-
-              const checkJovemVal = conq.check_jovem || conq.checkJovem || '';
-              const flCheckJovem =
-                flCheckEscotista ||
-                checkJovemVal === 'feitoJovem' ||
-                checkJovemVal === 'S' ||
-                checkJovemVal === '1' ||
-                checkJovemVal === 'true';
-
-              const dateVal = (flCheckEscotista || flCheckJovem) ? (conq.dt_item || conq.dtItem || row.dt_nivel || undefined) : undefined;
-
-              return {
-                cd_item: String(conq.cd_item || conq.cdItem || idx + 1),
-                ds_item: conq.ds_item || conq.dsItem || `Item ${conq.cd_item || idx + 1}`,
-                fl_conquistado: flCheckEscotista,
-                fl_check_escotista: flCheckEscotista,
-                fl_check_jovem: flCheckJovem,
-                dt_item: dateVal,
-                nr_nivel: conq.nr_nivel || conq.nrNivel || row.nr_nivel,
-                check_escotista: flCheckEscotista ? 'confirmadoEscotista' : undefined,
-                check_jovem: flCheckJovem ? 'feitoJovem' : undefined,
-              };
-            });
+            caminhos = Array.isArray(r.progressao_paxtu?.caminhos)
+              ? (r.progressao_paxtu.caminhos as unknown as Caminho[])
+              : [];
           }
 
-          const concluidosCount = mergedItens.filter((it) => it.fl_check_escotista).length;
+          const especialidades: EscoteiroEspecialidade[] = r.progressoes_especialidades.map((esp) => {
+            const catItens = catalogoItensMap.get(esp.cd_especialidade) || [];
+            const conqList = Array.isArray(esp.itens_detalhados) ? (esp.itens_detalhados as any[]) : [];
+            const conqMap = new Map<string, any>();
 
-          espMap.get(row.cd_associado)!.push({
-            cd_especialidade: row.cd_especialidade,
-            ds_especialidade: row.ds_especialidade,
-            nr_nivel: row.nr_nivel,
-            dt_nivel: row.dt_nivel || undefined,
-            qtd_itens_concluidos: concluidosCount || row.qtd_itens_concluidos,
-            total_itens: catItens.length || row.total_itens || mergedItens.length,
-            itens: mergedItens,
-          });
-        }
+            for (const conq of conqList) {
+              const code = String(conq.cd_item || conq.cdItem || conq.cdOrdenacao || '');
+              if (code) {
+                conqMap.set(code, conq);
+              }
+            }
 
-        return resAssociados.rows
-          .map((r) => {
-            const rawDados =
-              typeof r.dados_cadastrais_completos === 'object' && r.dados_cadastrais_completos
-                ? r.dados_cadastrais_completos
-                : {};
-            const associado: Associado = {
-              ...rawDados,
-              cd_associado: String(r.cd_associado),
-              nm_associado: r.nm_associado || rawDados.nm_associado || `Associado ${r.cd_associado}`,
-              dsCategoria: r.ds_categoria || rawDados.dsCategoria || 'Beneficiário',
-              dsRamo: r.ds_ramo || rawDados.dsRamo || ramo,
-              nr_registro_formatado: r.nr_registro_formatado || rawDados.nr_registro_formatado || '',
-              dt_nascimento: r.dt_nascimento || rawDados.dt_nascimento || '',
-              ds_email: r.ds_email || rawDados.ds_email || '',
-              ds_telefone_cel: r.ds_telefone_cel || rawDados.ds_telefone_cel || '',
-              flStatus: r.fl_status || rawDados.flStatus || 'S',
-            };
+            let mergedItens: ItemEspecialidade[] = [];
+            if (catItens.length > 0) {
+              mergedItens = catItens.map((cat) => {
+                const conq = conqMap.get(String(cat.cd_item));
+                const checkEscotistaVal = conq ? (conq.check_escotista || conq.checkEscotista || '') : '';
+                const flCheckEscotista =
+                  checkEscotistaVal === 'confirmadoEscotista' ||
+                  checkEscotistaVal === 'S' ||
+                  checkEscotistaVal === '1' ||
+                  checkEscotistaVal === 'true';
+
+                const checkJovemVal = conq ? (conq.check_jovem || conq.checkJovem || '') : '';
+                const flCheckJovem =
+                  flCheckEscotista ||
+                  checkJovemVal === 'feitoJovem' ||
+                  checkJovemVal === 'S' ||
+                  checkJovemVal === '1' ||
+                  checkJovemVal === 'true';
+
+                const flConquistado = flCheckEscotista;
+                const dtNivelStr = esp.dt_nivel ? esp.dt_nivel.toISOString().split('T')[0] : undefined;
+                const dateVal = (flCheckEscotista || flCheckJovem)
+                  ? (conq?.dt_item || conq?.dtItem || (flConquistado ? dtNivelStr : undefined) || undefined)
+                  : undefined;
+
+                return {
+                  cd_item: cat.cd_item,
+                  ds_item: cat.ds_item || conq?.ds_item || conq?.dsItem || `Item ${cat.cd_item}`,
+                  fl_conquistado: flConquistado,
+                  fl_check_escotista: flCheckEscotista,
+                  fl_check_jovem: flCheckJovem,
+                  dt_item: dateVal,
+                  nr_nivel: conq?.nr_nivel || conq?.nrNivel || esp.nr_nivel,
+                  check_escotista: flCheckEscotista ? 'confirmadoEscotista' : undefined,
+                  check_jovem: flCheckJovem ? 'feitoJovem' : undefined,
+                };
+              });
+            } else {
+              mergedItens = conqList.map((conq, idx) => {
+                const checkEscotistaVal = conq.check_escotista || conq.checkEscotista || '';
+                const flCheckEscotista =
+                  checkEscotistaVal === 'confirmadoEscotista' ||
+                  checkEscotistaVal === 'S' ||
+                  checkEscotistaVal === '1' ||
+                  checkEscotistaVal === 'true';
+
+                const checkJovemVal = conq.check_jovem || conq.checkJovem || '';
+                const flCheckJovem =
+                  flCheckEscotista ||
+                  checkJovemVal === 'feitoJovem' ||
+                  checkJovemVal === 'S' ||
+                  checkJovemVal === '1' ||
+                  checkJovemVal === 'true';
+
+                const dtNivelStr = esp.dt_nivel ? esp.dt_nivel.toISOString().split('T')[0] : undefined;
+                const dateVal = (flCheckEscotista || flCheckJovem)
+                  ? (conq.dt_item || conq.dtItem || dtNivelStr || undefined)
+                  : undefined;
+
+                return {
+                  cd_item: String(conq.cd_item || conq.cdItem || idx + 1),
+                  ds_item: conq.ds_item || conq.dsItem || `Item ${conq.cd_item || idx + 1}`,
+                  fl_conquistado: flCheckEscotista,
+                  fl_check_escotista: flCheckEscotista,
+                  fl_check_jovem: flCheckJovem,
+                  dt_item: dateVal,
+                  nr_nivel: conq.nr_nivel || conq.nrNivel || esp.nr_nivel,
+                  check_escotista: flCheckEscotista ? 'confirmadoEscotista' : undefined,
+                  check_jovem: flCheckJovem ? 'feitoJovem' : undefined,
+                };
+              });
+            }
+
+            const concluidosCount = mergedItens.filter((it) => it.fl_check_escotista).length;
 
             return {
-              associado,
-              progressao: progMap.get(associado.cd_associado) ?? [],
-              especialidades: espMap.get(associado.cd_associado) ?? [],
+              cd_especialidade: esp.cd_especialidade,
+              ds_especialidade: esp.ds_especialidade,
+              nr_nivel: esp.nr_nivel,
+              dt_nivel: esp.dt_nivel ? esp.dt_nivel.toISOString().split('T')[0] : undefined,
+              qtd_itens_concluidos: concluidosCount || esp.qtd_itens_concluidos,
+              total_itens: catItens.length || esp.especialidade?.total_itens || mergedItens.length,
+              itens: mergedItens,
             };
-          })
-          .filter((e) => Boolean(e.associado.cd_associado && e.associado.nm_associado && e.associado.nm_associado.trim() !== ''));
+          });
+
+          return {
+            associado,
+            progressao: caminhos,
+            especialidades,
+          };
+        });
       }
     } catch (dbErr) {
-      console.warn('[data] Falha ao consultar PostgreSQL, recorrendo ao fallback JSON local:', dbErr);
+      console.warn('[data] Falha ao consultar PostgreSQL/Prisma, recorrendo ao fallback JSON local:', dbErr);
     }
   }
 
@@ -351,6 +434,7 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
 
               const checkJovemVal = conq ? (conq.check_jovem || conq.checkJovem || '') : '';
               const flCheckJovem =
+                flCheckEscotista ||
                 checkJovemVal === 'feitoJovem' ||
                 checkJovemVal === 'S' ||
                 checkJovemVal === '1' ||
@@ -420,7 +504,7 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
   }
 
   return associados
-    .filter((a) => a.dsCategoria === 'Beneficiário' && (!a.dsRamo || a.dsRamo === ramo))
+    .filter((a) => a.dsCategoria === 'Beneficiário' && (!a.dsRamo || a.dsRamo === ramoDisplay))
     .map((associado) => ({
       associado,
       progressao: progressaoPorId.get(associado.cd_associado)?.caminhos ?? [],
@@ -428,5 +512,3 @@ export async function getEscoteiros(ramo: Ramo = 'Escoteiro'): Promise<Escoteiro
     }))
     .sort((a, b) => a.associado.nm_associado.localeCompare(b.associado.nm_associado, 'pt-BR'));
 }
-
-

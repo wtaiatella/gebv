@@ -14,22 +14,19 @@ export async function POST(
       );
     }
 
-    const cookieHeader = request.cookies.get('paxtu_session')?.value;
-    if (cookieHeader) {
-      const { setSessionCookie } = await import('@/app/lib/paxtu/client');
-      setSessionCookie(cookieHeader);
-    }
+    const cookieHeader = request.cookies.get('paxtu_session')?.value || request.headers.get('x-paxtu-cookie') || undefined;
 
-    const result = await syncAssociado(id);
+    const result = await syncAssociado(id, cookieHeader);
     return NextResponse.json(result);
   } catch (error: any) {
     console.error('[API /api/sync/[id] Error]:', error);
+    const isAuth = error.name === 'PaxtuSessionExpiredError';
     return NextResponse.json(
       {
         success: false,
         error: error.message || 'Falha ao sincronizar dados do associado.',
       },
-      { status: 500 }
+      { status: isAuth ? 401 : 500 }
     );
   }
 }

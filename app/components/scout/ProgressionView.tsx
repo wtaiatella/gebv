@@ -123,7 +123,7 @@ type ProgressionViewProps = {
 };
 
 export default function ProgressionView({ caminhos, especialidades = [] }: ProgressionViewProps) {
-  const [abertos, setAbertos] = useState<Set<string>>(() => new Set(['especialidades']));
+  const [abertos, setAbertos] = useState<Set<string>>(() => new Set(['4', '5', 'especialidades']));
   const [espsAbertas, setEspsAbertas] = useState<Set<string>>(() => new Set());
 
   // Filtra registros inválidos caso existam
@@ -243,8 +243,7 @@ export default function ProgressionView({ caminhos, especialidades = [] }: Progr
                         return (
                           <tr key={`${atividade.cdAtividade ?? idx}`}>
                             <td className="col-numero">
-                              {prefixo}
-                              {atividade.cdOrdenacao ?? idx + 1}
+                              {atividade.identificacao || `${prefixo}${atividade.cdOrdenacao ?? idx + 1}`}
                             </td>
                             <td style={{ color: isEscotista ? '#f1f5f9' : isJovem ? '#e2e8f0' : '#64748b' }}>
                               {atividade.dsAtividade}
