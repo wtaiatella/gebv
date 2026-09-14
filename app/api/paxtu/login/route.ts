@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     // Retorna sucesso e seta o cookie na resposta HTTP do browser (para persistir entre abas/sessões)
     const response = NextResponse.json({
       success: true,
-      message: 'Autenticado com sucesso no Paxtu (Antigo)!',
+      message: 'Autenticado com sucesso no Paxtu 100!',
       user,
     });
 
@@ -38,9 +38,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error.message || 'Falha ao conectar no Paxtu (Antigo).',
+        error: error.message || 'Falha ao conectar no Paxtu 100.',
       },
       { status: 401 }
     );
   }
 }
+
