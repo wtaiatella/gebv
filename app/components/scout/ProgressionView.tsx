@@ -120,9 +120,14 @@ function getNivelBadge(nrNivel: number, dtNivel?: string) {
 type ProgressionViewProps = {
   caminhos: Escoteiro['progressao'];
   especialidades?: Escoteiro['especialidades'];
+  catalogoDisponivel?: boolean;
 };
 
-export default function ProgressionView({ caminhos, especialidades = [] }: ProgressionViewProps) {
+export default function ProgressionView({
+  caminhos,
+  especialidades = [],
+  catalogoDisponivel = true,
+}: ProgressionViewProps) {
   const [abertos, setAbertos] = useState<Set<string>>(() => new Set(['4', '5', 'especialidades']));
   const [espsAbertas, setEspsAbertas] = useState<Set<string>>(() => new Set());
 
@@ -160,6 +165,14 @@ export default function ProgressionView({ caminhos, especialidades = [] }: Progr
       }
       return next;
     });
+  }
+
+  if (catalogoDisponivel === false) {
+    return (
+      <p style={{ color: '#888', textAlign: 'center', marginTop: '2rem' }}>
+        Catálogo de progressão do Programa Antigo em desenvolvimento para este ramo.
+      </p>
+    );
   }
 
   if ((!caminhos || caminhos.length === 0) && (!espsValidas || espsValidas.length === 0)) {

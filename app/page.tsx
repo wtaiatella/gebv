@@ -18,13 +18,14 @@ export default async function Home({ searchParams }: Props) {
     ? params.ramo
     : 'Escoteiro') as Ramo;
 
-  const escoteiros = await getEscoteiros(ramoValido);
+  const { escoteiros, catalogoDisponivel } = await getEscoteiros(ramoValido);
   const selectedId = params.jovem || escoteiros[0]?.associado.cd_associado || '';
   const initialView = params.view === 'antigo' ? 'antigo' : 'novo';
 
   return (
     <ScoutProvider
       initialEscoteiros={escoteiros}
+      initialCatalogoDisponivel={catalogoDisponivel}
       initialRamo={ramoValido}
       initialSelectedId={selectedId}
       initialView={initialView}

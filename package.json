@@ -11,10 +11,12 @@
     "prisma:migrate": "prisma migrate dev",
     "catalogo:extract": "python3 scripts/extract-catalogo-regras.py",
     "db:seed-catalogo": "node --env-file=.env scripts/seed-catalogo.mjs",
+    "db:backfill-progressao": "npx tsx --env-file=.env scripts/backfill-progressao-relacional.mjs",
     "progressoes:transicao": "npx tsx --env-file=.env scripts/run-transicao.mjs",
     "paxtu:login": "node --env-file=.env scripts/paxtu-login.mjs",
     "paxtu:scrape": "node --env-file=.env scripts/paxtu-scrape.mjs",
-    "test:integration": "npx tsx --env-file=.env tests/integration/transicao.test.ts"
+    "test:integration": "npx tsx --env-file=.env tests/integration/transicao.test.ts",
+    "test:progressao-relacional": "npx tsx --env-file=.env tests/integration/progressao-relacional.test.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

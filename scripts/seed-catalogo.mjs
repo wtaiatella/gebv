@@ -33,11 +33,10 @@ async function seedCatalogo() {
     // -------------------------------------------------------------
     // 2. Popular Programa Antigo
     // -------------------------------------------------------------
-    const dsRamo = 'Escoteiro';
+    const dsRamo = 'ESCOTEIRO';
     console.log(`2. Populando tabelas do Programa Antigo (pa_*) para o ramo ${dsRamo}...`);
     
     // Limpeza idempotente do catálogo do Programa Antigo para este ramo
-    await client.query(`DELETE FROM escoteiro_pa_atividades WHERE atividade_id IN (SELECT id FROM pa_atividades WHERE ds_ramo = $1)`, [dsRamo]);
     await client.query(`DELETE FROM pa_atividades WHERE ds_ramo = $1`, [dsRamo]);
     await client.query(`DELETE FROM pa_competencias WHERE ds_ramo = $1`, [dsRamo]);
 
@@ -106,12 +105,13 @@ async function seedCatalogo() {
       const identificacao = `${prefixo}${nrOrd}`;
 
       await client.query(
-        `INSERT INTO pa_atividades (ds_ramo, competencia_id, cd_atividade_paxtu, cd_ueb, identificacao, nr_ordenacao, ds_atividade)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        `INSERT INTO pa_atividades (ds_ramo, competencia_id, cd_atividade_paxtu, cd_caminho_paxtu, cd_ueb, identificacao, nr_ordenacao, ds_atividade)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
         [
           dsRamo,
           compDbId,
           paxtuInfo.cd_atividade_paxtu || null,
+          item.cd_caminho_paxtu || null,
           item.cd_ueb,
           identificacao,
           nrOrd,
@@ -119,6 +119,16 @@ async function seedCatalogo() {
         ]
       );
     }
+
+    // Backfill garantido de cd_caminho_paxtu para quaisquer linhas existentes
+    await client.query(`
+      UPDATE pa_atividades a
+      SET cd_caminho_paxtu = c.cd_caminho_paxtu
+      FROM pa_competencias comp
+      JOIN pa_caminhos c ON comp.caminho_id = c.id
+      WHERE comp.id = a.competencia_id
+        AND a.cd_caminho_paxtu IS NULL
+    `);
 
     console.log('✓ Programa Antigo populado com sucesso.');
 
@@ -128,10 +138,8 @@ async function seedCatalogo() {
     console.log(`3. Populando tabelas do Novo Programa (pn_*) para o ramo ${dsRamo}...`);
 
     // Limpeza idempotente do catálogo do Novo Programa para este ramo
-    await client.query(`DELETE FROM escoteiro_pn_acoes WHERE acao_id IN (SELECT id FROM pn_acoes_educativas WHERE ds_ramo = $1)`, [dsRamo]);
     await client.query(`DELETE FROM pn_equivalencia_regras WHERE acao_pn_id IN (SELECT id FROM pn_acoes_educativas WHERE ds_ramo = $1)`, [dsRamo]);
     await client.query(`DELETE FROM pn_acoes_educativas WHERE ds_ramo = $1`, [dsRamo]);
-    await client.query(`DELETE FROM escoteiro_pn_blocos_status WHERE bloco_id IN (SELECT id FROM pn_blocos WHERE ds_ramo = $1)`, [dsRamo]);
     await client.query(`DELETE FROM pn_blocos WHERE ds_ramo = $1`, [dsRamo]);
     await client.query(`DELETE FROM pn_eixos WHERE ds_ramo = $1`, [dsRamo]);
 
@@ -200,14 +208,28 @@ async function seedCatalogo() {
       const ac = pnCatalogo.acoes[i];
       const blocoId = blocoMap.get(ac.bloco.toLowerCase());
       if (blocoId) {
+        let tpAcao = 'VARIAVEL';
+        if (ac.tp_acao) {
+          const t = ac.tp_acao.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          if (['FIXA', 'VARIAVEL', 'SUBSTITUTIVA', 'PA'].includes(t)) tpAcao = t;
+        }
+        if (ac.modalidade === 'PA') tpAcao = 'PA';
+        if (ac.modalidade === 'Substitutiva') tpAcao = 'SUBSTITUTIVA';
+
+        let mod = 'BASICO';
+        if (ac.modalidade) {
+          const m = ac.modalidade.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          if (['AR', 'MAR'].includes(m)) mod = m;
+        }
+
         const acRes = await client.query(
           `INSERT INTO pn_acoes_educativas (ds_ramo, bloco_id, tp_acao, modalidade, ds_acao, regra_qtd_texto, nr_ordem)
            VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
           [
             dsRamo,
             blocoId,
-            ac.tp_acao || 'Variável',
-            ac.modalidade || 'Básico',
+            tpAcao,
+            mod,
             ac.ds_acao,
             ac.regra_qtd_texto || null,
             i + 1,
