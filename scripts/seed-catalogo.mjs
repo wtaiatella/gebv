@@ -98,9 +98,18 @@ async function seedCatalogo() {
     const dsRamo = 'ESCOTEIRO';
     console.log(`2. Populando tabelas do Programa Antigo (pa_*) para o ramo ${dsRamo}...`);
     
-    // Limpeza idempotente do catálogo do Programa Antigo para este ramo
-    await client.query(`DELETE FROM pa_atividades WHERE ds_ramo = $1`, [dsRamo]);
-    await client.query(`DELETE FROM pa_competencias WHERE ds_ramo = $1`, [dsRamo]);
+    // Carrega competências existentes em cache em vez de truncar tabelas (preserva progressao_pa)
+    const compCache = new Map();
+    const existingComps = await client.query(
+      `SELECT comp.id, comp.ds_ramo, c.cd_caminho_paxtu, comp.ds_competencia 
+       FROM pa_competencias comp
+       JOIN pa_caminhos c ON comp.caminho_id = c.id
+       WHERE comp.ds_ramo = $1`,
+      [dsRamo]
+    );
+    for (const r of existingComps.rows) {
+      compCache.set(`${r.ds_ramo}_${r.cd_caminho_paxtu}_${r.ds_competencia}`, r.id);
+    }
 
     // Áreas de desenvolvimento
     for (const area of paCatalogo.areas) {
@@ -130,7 +139,6 @@ async function seedCatalogo() {
       ...paCatalogo.pistas_items,
       ...paCatalogo.rumo_items,
     ];
-    const compCache = new Map();
 
     for (const item of allAntigoItems) {
       const camId = caminhoMap.get(item.cd_caminho_paxtu);
@@ -168,7 +176,13 @@ async function seedCatalogo() {
 
       await client.query(
         `INSERT INTO pa_atividades (ds_ramo, competencia_id, cd_atividade_paxtu, cd_caminho_paxtu, cd_ueb, identificacao, nr_ordenacao, ds_atividade)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+         ON CONFLICT (ds_ramo, cd_caminho_paxtu, cd_ueb) DO UPDATE SET
+           competencia_id = EXCLUDED.competencia_id,
+           cd_atividade_paxtu = COALESCE(EXCLUDED.cd_atividade_paxtu, pa_atividades.cd_atividade_paxtu),
+           identificacao = EXCLUDED.identificacao,
+           nr_ordenacao = EXCLUDED.nr_ordenacao,
+           ds_atividade = EXCLUDED.ds_atividade`,
         [
           dsRamo,
           compDbId,
@@ -192,6 +206,9 @@ async function seedCatalogo() {
         AND a.cd_caminho_paxtu IS NULL
     `);
 
+    // Limpeza de itens espúrios (ex: RT-0 / cd_ueb = '0')
+    await client.query(`DELETE FROM pa_atividades WHERE ds_ramo = $1 AND cd_ueb = '0'`, [dsRamo]);
+
     console.log('✓ Programa Antigo populado com sucesso.');
 
     // -------------------------------------------------------------
@@ -203,7 +220,7 @@ async function seedCatalogo() {
     await client.query(`DELETE FROM pn_equivalencia_regras WHERE acao_pn_id IN (SELECT id FROM pn_acoes_educativas WHERE ds_ramo = $1)`, [dsRamo]);
     await client.query(`DELETE FROM pn_acoes_educativas WHERE ds_ramo = $1`, [dsRamo]);
     await client.query(`DELETE FROM pn_blocos WHERE ds_ramo = $1`, [dsRamo]);
-    await client.query(`DELETE FROM pn_eixos WHERE ds_ramo = $1`, [dsRamo]);
+    // Eixos são mantidos e atualizados via ON CONFLICT para preservar chaves estrangeiras
 
     // Eixos
     for (let i = 0; i < pnCatalogo.eixos.length; i++) {
@@ -682,7 +699,7 @@ async function seedCatalogo() {
     // -------------------------------------------------------------
     // 8. Migrar histórico de especialidades dos jovens (data/pa_especialidades_associados.json)
     // -------------------------------------------------------------
-    console.log('8. Migrando histórico de especialidades dos associados para escoteiro_pa_especialidades...');
+    console.log('8. Migrando histórico de especialidades dos associados para progressao_especialidade_pa...');
     try {
       const rawAssocEsps = await readFile(path.join(process.cwd(), 'data', 'pa_especialidades_associados.json'), 'utf-8');
       const assocEspsList = JSON.parse(rawAssocEsps);
@@ -709,7 +726,7 @@ async function seedCatalogo() {
           const cdEsp = String(rawCdEsp);
           const espId = espDbMap.get(cdEsp) || null;
           await client.query(
-            `INSERT INTO escoteiro_pa_especialidades (
+            `INSERT INTO progressao_especialidade_pa (
               cd_associado, especialidade_id, cd_especialidade, ds_especialidade,
               nr_nivel, dt_nivel, qtd_itens_concluidos, itens_detalhados, updated_at
             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, CURRENT_TIMESTAMP)

@@ -146,11 +146,28 @@ model PaAtividade {
   @@map("pa_atividades")
 }
 
+// -------------------------------------------------------------
+// 3. Catálogo de Especialidades do Programa Antigo (PA)
+// -------------------------------------------------------------
+model PaEspecialidadeGrupo {
+  id             Int               @id @default(autoincrement())
+  nm_grupo       String            @unique @db.VarChar(128)
+  nr_ordem       Int               @default(0)
+  especialidades PaEspecialidade[]
+
+  @@map("pa_especialidades_grupos")
+}
+
 model PaEspecialidade {
   id               Int                         @id @default(autoincrement())
   cd_especialidade String                      @unique @db.VarChar(50)
   ds_especialidade String                      @db.VarChar(255)
+  slug             String?                     @unique @db.VarChar(128)
+  grupo_id         Int?
+  image_url        String?                     @db.VarChar(500)
   total_itens      Int?                        @default(0)
+
+  grupo            PaEspecialidadeGrupo?       @relation(fields: [grupo_id], references: [id], onDelete: SetNull)
   itens            PaEspecialidadeItem[]
   progressoes      ProgressaoEspecialidadePa[]
 
@@ -172,26 +189,35 @@ model PaEspecialidadeItem {
   @@map("pa_especialidades_itens")
 }
 
+// -------------------------------------------------------------
 // 3.1. Catálogo de Especialidades do Novo Programa (PN)
+// -------------------------------------------------------------
 model PnEspecialidade {
   id               Int                   @id @default(autoincrement())
   cd_especialidade String?               @db.VarChar(50)
-  ds_especialidade String                @unique @db.VarChar(255)
-  ds_area          String?               @db.VarChar(100)
+  ds_especialidade String                @db.VarChar(255)
+  slug             String                @unique @db.VarChar(128)
+  eixo_id          Int?
+  ramo             String?               @db.VarChar(50)
+  imagem_url       String?               @db.VarChar(500)
   total_itens      Int?                  @default(0)
   created_at       DateTime              @default(now())
   updated_at       DateTime              @default(now()) @updatedAt
 
+  eixo             PnEixo?               @relation(fields: [eixo_id], references: [id], onDelete: SetNull)
   itens            PnEspecialidadeItem[]
 
+  @@unique([ds_especialidade, ramo])
   @@map("pn_especialidades")
 }
 
 model PnEspecialidadeItem {
   id               Int              @id @default(autoincrement())
   especialidade_id Int?
-  cd_item          String?          @db.VarChar(50)
+  cd_especialidade String?          @db.VarChar(50)
+  cd_item          String           @db.VarChar(50)
   nr_item          Int?
+  ds_etapa         String?          @db.VarChar(50)
   ds_item          String           @db.Text
   embedding        Float[]          @default([])
   created_at       DateTime         @default(now())
@@ -269,11 +295,12 @@ model ProgressaoEspecialidadeItemPa {
 
 // 5. Catálogo Programa Novo (PN)
 model PnEixo {
-  id       Int       @id @default(autoincrement())
-  ds_ramo  Ramo      @default(ESCOTEIRO)
-  nm_eixo  String    @db.VarChar(128)
-  nr_ordem Int       @default(0)
-  blocos   PnBloco[]
+  id             Int               @id @default(autoincrement())
+  ds_ramo        Ramo              @default(ESCOTEIRO)
+  nm_eixo        String            @db.VarChar(128)
+  nr_ordem       Int               @default(0)
+  blocos         PnBloco[]
+  especialidades PnEspecialidade[]
 
   @@unique([ds_ramo, nm_eixo])
   @@map("pn_eixos")
