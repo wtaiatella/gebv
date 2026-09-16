@@ -15,13 +15,14 @@ export async function GET(request: NextRequest) {
       ramoEnum = normalizeRamo('Escoteiro');
     }
 
-    const escoteiros = await getEscoteiros(ramoEnum);
+    const { escoteiros, catalogoDisponivel } = await getEscoteiros(ramoEnum);
 
     return NextResponse.json(
       {
         success: true,
         ramo: ramoToDisplayName(ramoEnum),
         total: escoteiros.length,
+        catalogoDisponivel,
         escoteiros,
       },
       {

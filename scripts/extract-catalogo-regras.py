@@ -16,8 +16,21 @@ DOCS_DIR = os.path.join(BASE_DIR, 'docs')
 OUT_DIR = os.path.join(BASE_DIR, 'data', 'catalogo')
 os.makedirs(OUT_DIR, exist_ok=True)
 
-FILE_EQUIV = os.path.join(DOCS_DIR, 'Planilha Equivalência Ramo Escoteiro .xlsx')
-FILE_NOVO = os.path.join(DOCS_DIR, 'Progressão Escoteiro - Novo Programa.xlsx')
+def find_file(candidates):
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+    return candidates[0]
+
+FILE_EQUIV = find_file([
+    os.path.join(DOCS_DIR, 'transição', 'escoteiro', '2026 02 26 - Equiparação progressão ramo escoteiro.xlsx'),
+    os.path.join(DOCS_DIR, 'transição', 'escoteiro', 'Planilha Equivalência Ramo Escoteiro .xlsx'),
+    os.path.join(DOCS_DIR, 'Planilha Equivalência Ramo Escoteiro .xlsx'),
+])
+FILE_NOVO = find_file([
+    os.path.join(DOCS_DIR, 'transição', 'escoteiro', 'Progressão Escoteiro - Novo Programa.xlsx'),
+    os.path.join(DOCS_DIR, 'Progressão Escoteiro - Novo Programa.xlsx'),
+])
 FILE_PROG_SAMPLE = os.path.join(BASE_DIR, 'data', 'progressoes.json')
 
 def load_xlsx_data(file_path):
@@ -115,6 +128,10 @@ if os.path.exists(FILE_PROG_SAMPLE):
                             'ds_atividade': ds,
                             'ds_area': area
                         }
+elif os.path.exists(os.path.join(OUT_DIR, 'pa_catalogo.json')):
+    with open(os.path.join(OUT_DIR, 'pa_catalogo.json'), 'r', encoding='utf-8') as f:
+        _existing_cat = json.load(f)
+        pa_atividades_map = _existing_cat.get('atividades_map', {})
 
 # Complementar textos de competências a partir das abas 'Pistas e Trilha' e 'Rumo e Travessia'
 def parse_antigo_sheet(sheet_name, caminho_id):
@@ -131,27 +148,29 @@ def parse_antigo_sheet(sheet_name, caminho_id):
         if not c_val:
             continue
             
-        # Detecta título de área
-        upper = c_val.upper()
-        if 'FÍSICO' in upper or 'FISICO' in upper:
-            current_area = 'Desenvolvimento físico'
-            continue
-        elif 'INTELECTUAL' in upper:
-            current_area = 'Desenvolvimento intelectual'
-            continue
-        elif 'CARÁTER' in upper or 'CARATER' in upper:
-            current_area = 'Desenvolvimento do caráter'
-            continue
-        elif 'AFETIVO' in upper:
-            current_area = 'Desenvolvimento afetivo'
-            continue
-        elif 'SOCIAL' in upper:
-            current_area = 'Desenvolvimento social'
-            continue
-        elif 'ESPIRITUAL' in upper:
-            current_area = 'Desenvolvimento espiritual'
+        # Detecta título de área apenas quando coluna B não tem número e texto é igual ao nome da área
+        upper = c_val.upper().strip()
+        if not b_val and upper in ['FÍSICO', 'FISICO', 'INTELECTUAL', 'CARÁTER', 'CARATER', 'AFETIVO', 'SOCIAL', 'ESPIRITUAL']:
+            if 'FÍSICO' in upper or 'FISICO' in upper:
+                current_area = 'Desenvolvimento físico'
+            elif 'INTELECTUAL' in upper:
+                current_area = 'Desenvolvimento intelectual'
+            elif 'CARÁTER' in upper or 'CARATER' in upper:
+                current_area = 'Desenvolvimento do caráter'
+            elif 'AFETIVO' in upper:
+                current_area = 'Desenvolvimento afetivo'
+            elif 'SOCIAL' in upper:
+                current_area = 'Desenvolvimento social'
+            elif 'ESPIRITUAL' in upper:
+                current_area = 'Desenvolvimento espiritual'
             continue
             
+        # Se for texto de continuidade/substituição (ex: linha 178 de Rumo e Travessia com B=0 ou início 'OU')
+        if b_val == '0' or c_val.upper().startswith('OU ') or c_val.upper().startswith('OU('):
+            if items:
+                items[-1]['ds_atividade'] = f"{items[-1]['ds_atividade']}\n{c_val}"
+            continue
+
         # Se não tem índice em B (ou B vazio), é competência
         if not b_val and len(c_val) > 20:
             current_competencia = c_val
@@ -187,6 +206,10 @@ if os.path.exists(FILE_PROG_SAMPLE):
                             'ds_area': 'Desenvolvimento do caráter',
                             'ds_atividade': atv.get('dsAtividade')
                         })
+elif os.path.exists(os.path.join(OUT_DIR, 'pa_catalogo.json')):
+    with open(os.path.join(OUT_DIR, 'pa_catalogo.json'), 'r', encoding='utf-8') as f:
+        _existing_cat = json.load(f)
+        intro_items = _existing_cat.get('intro_items', [])
 
 pa_catalogo = {
     'caminhos': pa_caminhos_def,
@@ -207,17 +230,22 @@ print("2. Extraindo catálogo do Novo Programa Educativo (18 Blocos)...")
 novo_sheets = load_xlsx_data(FILE_NOVO)
 prog_pessoal = novo_sheets.get('Progressão Pessoal', {})
 
-# 2.1 Eixos e Blocos
+def safe_int(v, default=0):
+    try:
+        return int(float(str(v).strip()))
+    except (ValueError, TypeError):
+        return default
+
 blocos_meta = {}
 for r_idx in range(4, 22):
     row = prog_pessoal.get(r_idx, {})
     eixo = row.get('A', {}).get('val', '').strip()
     bloco = row.get('B', {}).get('val', '').strip()
-    fixa = int(float(row.get('C', {}).get('val', '0') or 0))
-    var_total = int(float(row.get('D', {}).get('val', '0') or 0))
-    var_meta = int(float(row.get('E', {}).get('val', '0') or 0))
-    subst = int(float(row.get('F', {}).get('val', '0') or 0))
-    total_realizar = int(float(row.get('G', {}).get('val', '0') or 0))
+    fixa = safe_int(row.get('C', {}).get('val', '0'))
+    var_total = safe_int(row.get('D', {}).get('val', '0'))
+    var_meta = safe_int(row.get('E', {}).get('val', '0'))
+    subst = safe_int(row.get('F', {}).get('val', '0'))
+    total_realizar = safe_int(row.get('G', {}).get('val', '0'))
     
     if eixo and bloco:
         blocos_meta[bloco] = {

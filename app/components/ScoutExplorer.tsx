@@ -31,6 +31,7 @@ export default function ScoutExplorer() {
     setExibirMatriz,
     isLoading: isContextLoading,
     refreshEscoteiros,
+    catalogoDisponivel,
   } = useScoutContext();
 
   const [syncProgress, setSyncProgress] = useState<{
@@ -712,6 +713,7 @@ export default function ScoutExplorer() {
               <ProgressionView
                 caminhos={escoteiro.progressao}
                 especialidades={escoteiro.especialidades}
+                catalogoDisponivel={catalogoDisponivel}
               />
             )}
           </section>

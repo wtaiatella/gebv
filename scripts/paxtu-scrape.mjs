@@ -123,7 +123,7 @@ async function fetchProgressao(cdAssociado) {
     if (!Array.isArray(competences) || competences.length === 0) continue;
 
     for (const comp of competences) {
-      if (comp.tipo === 'caminho_direto' || !comp.id || (typeof comp.id === 'string' && comp.id.startsWith('caminho_'))) {
+      if (!comp.id) {
         continue;
       }
 

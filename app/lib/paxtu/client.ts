@@ -292,7 +292,7 @@ export async function fetchProgressao(
       if (competences.length === 0) continue;
 
       const validCompetences = competences.filter(
-        (comp: any) => comp.tipo !== 'caminho_direto' && comp.id && !(typeof comp.id === 'string' && comp.id.startsWith('caminho_'))
+        (comp: any) => comp.id !== undefined && comp.id !== null
       );
 
       await Promise.all(

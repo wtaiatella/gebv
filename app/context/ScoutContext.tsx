@@ -7,6 +7,7 @@ type ScoutContextType = {
   ramoAtual: Ramo;
   setRamoAtual: (ramo: Ramo) => Promise<void>;
   escoteiros: Escoteiro[];
+  catalogoDisponivel: boolean;
   selectedId: string;
   setSelectedId: (id: string) => void;
   selectedScout: Escoteiro | null;
@@ -23,6 +24,7 @@ const ScoutContext = createContext<ScoutContextType | null>(null);
 type ScoutProviderProps = {
   children: React.ReactNode;
   initialEscoteiros: Escoteiro[];
+  initialCatalogoDisponivel?: boolean;
   initialRamo?: Ramo;
   initialSelectedId?: string;
   initialView?: 'novo' | 'antigo';
@@ -31,12 +33,14 @@ type ScoutProviderProps = {
 export function ScoutProvider({
   children,
   initialEscoteiros,
+  initialCatalogoDisponivel = true,
   initialRamo = 'Escoteiro',
   initialSelectedId = '',
   initialView = 'novo',
 }: ScoutProviderProps) {
   const [ramoAtual, setRamoState] = useState<Ramo>(initialRamo);
   const [escoteiros, setEscoteiros] = useState<Escoteiro[]>(initialEscoteiros);
+  const [catalogoDisponivel, setCatalogoDisponivel] = useState<boolean>(initialCatalogoDisponivel);
   const [selectedId, setSelectedIdState] = useState<string>(() => {
     if (initialSelectedId) return initialSelectedId;
     return initialEscoteiros[0]?.associado.cd_associado || '';
@@ -80,6 +84,9 @@ export function ScoutProvider({
         if (data.success && Array.isArray(data.escoteiros)) {
           const newList: Escoteiro[] = data.escoteiros;
           setEscoteiros(newList);
+          if (typeof data.catalogoDisponivel === 'boolean') {
+            setCatalogoDisponivel(data.catalogoDisponivel);
+          }
 
           // Se o jovem selecionado anteriormente ainda estiver na lista nova, mantém ele; caso contrário, seleciona o primeiro
           setSelectedIdState((currentId) => {
@@ -120,6 +127,7 @@ export function ScoutProvider({
       ramoAtual,
       setRamoAtual,
       escoteiros,
+      catalogoDisponivel,
       selectedId,
       setSelectedId,
       selectedScout,
@@ -134,6 +142,7 @@ export function ScoutProvider({
       ramoAtual,
       setRamoAtual,
       escoteiros,
+      catalogoDisponivel,
       selectedId,
       setSelectedId,
       selectedScout,
