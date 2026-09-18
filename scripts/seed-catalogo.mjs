@@ -16,19 +16,81 @@ async function seedCatalogo() {
   const client = await pool.connect();
 
   try {
-    await client.query('BEGIN');
-
-    console.log('1. Lendo arquivos do catálogo gerados em data/catalogo/...');
+    console.log('1. Lendo arquivos do catálogo gerados em data/catalogo/ e data/especialidades/...');
     const baseDir = path.join(process.cwd(), 'data', 'catalogo');
-    const [rawPa, rawPn, rawEquiv] = await Promise.all([
+    const espPaPath = path.join(process.cwd(), 'data', 'especialidades', 'pa', 'especialidades_pa.json');
+    const espPnPath = path.join(process.cwd(), 'data', 'especialidades', 'pn', 'especialidades_pn.json');
+
+    const [rawPa, rawPn, rawEquiv, rawEsps, rawPnEsps] = await Promise.all([
       readFile(path.join(baseDir, 'pa_catalogo.json'), 'utf-8'),
       readFile(path.join(baseDir, 'pn_catalogo.json'), 'utf-8'),
       readFile(path.join(baseDir, 'equivalencias.json'), 'utf-8'),
+      readFile(espPaPath, 'utf-8'),
+      readFile(espPnPath, 'utf-8'),
     ]);
 
     const paCatalogo = JSON.parse(rawPa);
     const pnCatalogo = JSON.parse(rawPn);
     const equivCatalogo = JSON.parse(rawEquiv);
+    const espsList = JSON.parse(rawEsps);
+    const pnEspsList = JSON.parse(rawPnEsps);
+
+    // -------------------------------------------------------------
+    // GUARDRAILS DE INTEGRIDADE (ANTI-DESTRUTIVOS)
+    // -------------------------------------------------------------
+    const MIN_ACOES_ESCOTEIRO = 400;
+
+    // 1. Validação do Catálogo do Programa Antigo (PA)
+    if (!paCatalogo.pistas_items || paCatalogo.pistas_items.length === 0 ||
+        !paCatalogo.rumo_items || paCatalogo.rumo_items.length === 0) {
+      throw new Error('ABORTADO: pa_catalogo.json inválido ou sem itens de Pistas/Rumo.');
+    }
+
+    // 2. Validação do Catálogo do Novo Programa (PN)
+    if (!pnCatalogo.acoes || pnCatalogo.acoes.length < MIN_ACOES_ESCOTEIRO) {
+      throw new Error(`ABORTADO: pn_catalogo.json possui ${pnCatalogo.acoes?.length || 0} ações. Mínimo exigido: ${MIN_ACOES_ESCOTEIRO}.`);
+    }
+
+    if (!pnCatalogo.blocos || pnCatalogo.blocos.length !== 18) {
+      throw new Error(`ABORTADO: pn_catalogo.json possui ${pnCatalogo.blocos?.length || 0} blocos. Esperado: 18.`);
+    }
+
+    for (const b of pnCatalogo.blocos) {
+      if (!b.nr_acoes_fixas_obrigatorias && !b.nr_acoes_variaveis_exigidas) {
+        throw new Error(`ABORTADO: Bloco "${b.bloco}" possui metas de ações zeradas.`);
+      }
+    }
+
+    // 3. Validação de Regras de Equivalência (Paridade 1:1 estrita)
+    if (!equivCatalogo.regras || equivCatalogo.regras.length !== pnCatalogo.acoes.length) {
+      throw new Error(`ABORTADO: equivalencias.json (${equivCatalogo.regras?.length || 0} regras) não coincide 1:1 com ações (${pnCatalogo.acoes.length}).`);
+    }
+
+    // 4. Validação do Catálogo de Especialidades (PA e PN)
+    const MIN_ESPECIALIDADES_PA = 250; // real atual: 275
+    const MIN_ESPECIALIDADES_PN = 180; // real atual: 206
+
+    if (!Array.isArray(espsList) || espsList.length < MIN_ESPECIALIDADES_PA) {
+      throw new Error(`ABORTADO: especialidades_pa.json possui ${espsList?.length || 0} especialidades. Mínimo exigido: ${MIN_ESPECIALIDADES_PA}.`);
+    }
+    for (const esp of espsList) {
+      if (!esp.itens || esp.itens.length === 0) {
+        throw new Error(`ABORTADO: especialidade PA "${esp.titulo || esp.slug}" possui zero itens.`);
+      }
+    }
+
+    if (!Array.isArray(pnEspsList) || pnEspsList.length < MIN_ESPECIALIDADES_PN) {
+      throw new Error(`ABORTADO: especialidades_pn.json possui ${pnEspsList?.length || 0} especialidades. Mínimo exigido: ${MIN_ESPECIALIDADES_PN}.`);
+    }
+    for (const esp of pnEspsList) {
+      if (!esp.itens || esp.itens.length === 0) {
+        throw new Error(`ABORTADO: especialidade PN "${esp.titulo || esp.slug}" possui zero itens.`);
+      }
+    }
+
+    console.log('✓ Guardrails de integridade de dados validados com sucesso (catálogo 18 blocos + especialidades PA/PN).');
+
+    await client.query('BEGIN');
 
     // -------------------------------------------------------------
     // 2. Popular Programa Antigo
@@ -243,6 +305,7 @@ async function seedCatalogo() {
           ds_acao: ac.ds_acao,
           norm_acao: normalizeText(ac.ds_acao),
           norm_bloco: normalizeText(ac.bloco),
+          chave: ac.chave,
         });
       }
     }
@@ -250,58 +313,39 @@ async function seedCatalogo() {
     console.log(`✓ Novo Programa populado com sucesso: ${allDbAcoes.length} ações.`);
 
     // -------------------------------------------------------------
-    // 4. Popular Regras de Equivalência (1:1 com pn_acoes_educativas)
+    // 4. Popular Regras de Equivalência (1:1 com pn_acoes_educativas por chave)
     // -------------------------------------------------------------
     console.log('4. Populando Regras de Equivalência consolidadas por ação (pn_equivalencia_regras)...');
     
-    // Função auxiliar para extrair especialidades e nível do texto da ação
-    function parseSpecialtiesFromText(text) {
-      const lower = text.toLowerCase();
-      let nivel = 1;
-      if (lower.includes('nível 2') || lower.includes('nivel 2')) nivel = 2;
-      else if (lower.includes('nível 3') || lower.includes('nivel 3')) nivel = 3;
-
-      const list = [];
-      if (lower.includes('especialidade') && text.includes(':')) {
-        const parts = text.split(':', 2)[1];
-        const items = parts.split(/,|\be\b/i).map((s) => s.trim().replace(/[.;]$/, '')).filter((s) => s.length > 2);
-        list.push(...items);
-      }
-      return { nivel, list };
-    }
+    const regrasPorChave = new Map(
+      equivCatalogo.regras.map((r) => [r.chave, r])
+    );
 
     for (let i = 0; i < allDbAcoes.length; i++) {
       const acao = allDbAcoes[i];
-      const directRegra = equivCatalogo.regras[i];
+      const chave = acao.chave;
+      const directRegra = regrasPorChave.get(chave);
 
-      // Pistas, Rumo e Especialidades da regra
-      const pistasSet = new Set(directRegra?.refs_pistas_ueb || []);
-      const rumoSet = new Set(directRegra?.refs_rumo_ueb || []);
-      const espSet = new Set(directRegra?.refs_especialidades || []);
-      let minCount = directRegra?.min_count || 1;
-
-      // Também extrai especialidades declaradas no texto da própria ação se não houver nenhuma
-      if (espSet.size === 0 && pistasSet.size === 0 && rumoSet.size === 0) {
-        const parsedTextEsp = parseSpecialtiesFromText(acao.ds_acao);
-        parsedTextEsp.list.forEach((e) => espSet.add(e));
+      if (!directRegra) {
+        throw new Error(`ABORTADO: ação "${acao.ds_acao}" (chave ${chave}) não possui regra correspondente em equivalencias.json.`);
       }
 
-      const nivelMin = directRegra?.nivel_min_especialidade || (acao.ds_acao.toLowerCase().includes('nível 3') ? 3 : (acao.ds_acao.toLowerCase().includes('nível 2') || acao.ds_acao.toLowerCase().includes('nivel 2') ? 2 : 1));
+      // Pistas, Rumo e Especialidades da regra
+      const pistasSet = new Set(directRegra.refs_pistas_ueb || []);
+      const rumoSet = new Set(directRegra.refs_rumo_ueb || []);
+      const espSet = new Set(directRegra.refs_especialidades || []);
+      let minCount = directRegra.min_count || 1;
+      const nivelMin = directRegra.nivel_min_especialidade || 1;
 
       const pistasArr = Array.from(pistasSet);
       const rumoArr = Array.from(rumoSet);
       const espArr = Array.from(espSet);
-
       const totalOrigens = pistasArr.length + rumoArr.length + espArr.length;
 
       // Determina Operação e Descrição
-      let operacao = directRegra?.tp_regra || 'SEM_EQUIVALENCIA';
-      let descricaoOrigem = 'Sem relação';
-      let requerValidacaoManual = false;
-
-      if (directRegra?.label_f_h && directRegra.label_f_h.trim() && directRegra.label_f_h !== '0') {
-        descricaoOrigem = directRegra.label_f_h.trim();
-      }
+      let operacao = directRegra.tp_regra || 'SEM_EQUIVALENCIA';
+      let descricaoOrigem = directRegra.label_f_h?.trim() || 'Sem relação';
+      let requerValidacaoManual = (operacao === 'SEM_EQUIVALENCIA' || totalOrigens === 0);
 
       if (espArr.length > 0 && pistasArr.length === 0 && rumoArr.length === 0) {
         operacao = 'ESPECIALIDADES';
@@ -333,16 +377,6 @@ async function seedCatalogo() {
       } else {
         operacao = 'SEM_EQUIVALENCIA';
         descricaoOrigem = 'Sem relação';
-        requerValidacaoManual = true;
-      }
-
-      // Caso especial: Especialidade sobre tema de seu interesse / conhecimento novo (sem mapeamento fixo, requer validação do escotista)
-      if (acao.norm_acao.includes('conquistar no ramo escoteiro uma especialidade sobre um tema de seu interesse')) {
-        operacao = 'SEM_EQUIVALENCIA';
-        descricaoOrigem = 'Sem relação';
-        pistasArr.length = 0;
-        rumoArr.length = 0;
-        espArr.length = 0;
         requerValidacaoManual = true;
       }
 
@@ -380,7 +414,7 @@ async function seedCatalogo() {
             origem_especialidades: espArr,
             min_count: minCount,
             nivel_min_especialidade: nivelMin,
-            matched_labels: directRegra?.label_f_h || '',
+            matched_labels: directRegra.label_f_h || '',
           }),
         ]
       );
@@ -456,46 +490,123 @@ async function seedCatalogo() {
     }
 
     // -------------------------------------------------------------
-    // 6. Popular Catálogo de Especialidades do Programa Antigo (pa_especialidades / pa_especialidades_itens)
+    // 6. Popular Grupos e Catálogo de Especialidades do Programa Antigo (PA)
     // -------------------------------------------------------------
-    console.log('6. Populando catálogo de Especialidades do Programa Antigo...');
-    try {
-      const rawEsps = await readFile(path.join(process.cwd(), 'data', 'pa_especialidades_catalogo.json'), 'utf-8');
-      const espsList = JSON.parse(rawEsps);
-
-      let totalItensSeed = 0;
-      for (const esp of espsList) {
-        const espRes = await client.query(
-          `INSERT INTO pa_especialidades (cd_especialidade, ds_especialidade, total_itens)
-           VALUES ($1, $2, $3)
-           ON CONFLICT (cd_especialidade) DO UPDATE SET
-             ds_especialidade = EXCLUDED.ds_especialidade,
-             total_itens = EXCLUDED.total_itens
-           RETURNING id`,
-          [esp.cd_especialidade, esp.ds_especialidade, esp.total_itens || 0]
-        );
-        const espId = espRes.rows[0].id;
-
-        for (const item of esp.itens || []) {
-          const cleanDsItem = (item.ds_item || '')
-            .replace(/!@#BARRA_R#@!!@#BARRA_N#@!|!@#BARRA_N#@!|!@#BARRA_R#@!/g, ' ')
-            .replace(/\s+/g, ' ')
-            .trim();
-          await client.query(
-            `INSERT INTO pa_especialidades_itens (especialidade_id, cd_especialidade, cd_item, ds_item)
-             VALUES ($1, $2, $3, $4)
-             ON CONFLICT (cd_especialidade, cd_item) DO UPDATE SET
-               especialidade_id = EXCLUDED.especialidade_id,
-               ds_item = EXCLUDED.ds_item`,
-            [espId, esp.cd_especialidade, item.cd_item, cleanDsItem]
-          );
-          totalItensSeed++;
-        }
-      }
-      console.log(`✓ ${espsList.length} especialidades e ${totalItensSeed} itens de catálogo semeados com sucesso.`);
-    } catch (errEsp) {
-      console.warn('Aviso: Catálogo de especialidades não semeado:', errEsp.message);
+    console.log('6. Populando grupos de Especialidades do Programa Antigo (pa_especialidades_grupos)...');
+    const paGrupos = [
+      { nm_grupo: 'Ciência e Tecnologia', nr_ordem: 1 },
+      { nm_grupo: 'Cultura', nr_ordem: 2 },
+      { nm_grupo: 'Desportos', nr_ordem: 3 },
+      { nm_grupo: 'Habilidades Escoteiras', nr_ordem: 4 },
+      { nm_grupo: 'Serviços', nr_ordem: 5 },
+    ];
+    const grupoMap = new Map();
+    for (const g of paGrupos) {
+      const gRes = await client.query(
+        `INSERT INTO pa_especialidades_grupos (nm_grupo, nr_ordem)
+         VALUES ($1, $2)
+         ON CONFLICT (nm_grupo) DO UPDATE SET nr_ordem = EXCLUDED.nr_ordem
+         RETURNING id, nm_grupo`,
+        [g.nm_grupo, g.nr_ordem]
+      );
+      grupoMap.set(gRes.rows[0].nm_grupo.toLowerCase(), gRes.rows[0].id);
     }
+    console.log(`✓ ${paGrupos.length} grupos de especialidades PA semeados.`);
+
+    console.log('6.1. Populando catálogo de Especialidades do Programa Antigo (pa_especialidades / pa_especialidades_itens)...');
+    let totalItensSeed = 0;
+    for (const esp of espsList) {
+      const grupoId = grupoMap.get((esp.grupo || '').toLowerCase()) || null;
+      const imageUrl = esp.imagem_caminho_public || (esp.imagem_arquivo ? `/images/especialidades/pa/${esp.imagem_arquivo}` : null);
+      const cdEsp = String(esp.cd_especialidade || `WEB-${esp.slug}`);
+      const totalItens = esp.total_itens || (esp.itens ? esp.itens.length : 0);
+
+      const espRes = await client.query(
+        `INSERT INTO pa_especialidades (cd_especialidade, ds_especialidade, slug, grupo_id, image_url, total_itens)
+         VALUES ($1, $2, $3, $4, $5, $6)
+         ON CONFLICT (cd_especialidade) DO UPDATE SET
+           ds_especialidade = EXCLUDED.ds_especialidade,
+           slug = EXCLUDED.slug,
+           grupo_id = EXCLUDED.grupo_id,
+           image_url = EXCLUDED.image_url,
+           total_itens = EXCLUDED.total_itens
+         RETURNING id`,
+        [cdEsp, esp.titulo, esp.slug, grupoId, imageUrl, totalItens]
+      );
+      const espId = espRes.rows[0].id;
+
+      for (const item of esp.itens || []) {
+        const cdItem = String(item.cd_item || item.nr_item);
+        const cleanDsItem = (item.ds_item || '')
+          .replace(/!@#BARRA_R#@!!@#BARRA_N#@!|!@#BARRA_N#@!|!@#BARRA_R#@!/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+        await client.query(
+          `INSERT INTO pa_especialidades_itens (especialidade_id, cd_especialidade, cd_item, ds_item)
+           VALUES ($1, $2, $3, $4)
+           ON CONFLICT (cd_especialidade, cd_item) DO UPDATE SET
+             especialidade_id = EXCLUDED.especialidade_id,
+             ds_item = EXCLUDED.ds_item`,
+          [espId, cdEsp, cdItem, cleanDsItem]
+        );
+        totalItensSeed++;
+      }
+    }
+    console.log(`✓ ${espsList.length} especialidades e ${totalItensSeed} itens de catálogo PA semeados com sucesso.`);
+
+    // -------------------------------------------------------------
+    // 6.2. Popular Catálogo de Especialidades do Programa Novo (pn_especialidades / pn_especialidades_itens)
+    // -------------------------------------------------------------
+    console.log('6.2. Populando catálogo de Especialidades do Programa Novo (pn_especialidades / pn_especialidades_itens)...');
+    const pnEixosRes = await client.query(`SELECT id, nm_eixo FROM pn_eixos`);
+    const pnEixoMap = new Map();
+    for (const row of pnEixosRes.rows) {
+      pnEixoMap.set(row.nm_eixo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''), row.id);
+    }
+
+    let totalPnItensSeed = 0;
+    for (const esp of pnEspsList) {
+      const normArea = (esp.ds_area || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const eixoId = pnEixoMap.get(normArea) || null;
+      const imageUrl = esp.imagem_caminho_public || (esp.imagem_arquivo ? `/images/especialidades/pn/${esp.imagem_arquivo}` : null);
+      const totalItens = esp.total_itens || (esp.itens ? esp.itens.length : 0);
+
+      const espRes = await client.query(
+        `INSERT INTO pn_especialidades (slug, ds_especialidade, cd_especialidade, eixo_id, ramo, imagem_url, total_itens)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)
+         ON CONFLICT (slug) DO UPDATE SET
+           ds_especialidade = EXCLUDED.ds_especialidade,
+           cd_especialidade = EXCLUDED.cd_especialidade,
+           eixo_id = EXCLUDED.eixo_id,
+           ramo = EXCLUDED.ramo,
+           imagem_url = EXCLUDED.imagem_url,
+           total_itens = EXCLUDED.total_itens,
+           updated_at = CURRENT_TIMESTAMP
+         RETURNING id`,
+        [esp.slug, esp.titulo || esp.ds_especialidade, esp.cd_especialidade || null, eixoId, esp.ramo || null, imageUrl, totalItens]
+      );
+      const espId = espRes.rows[0].id;
+
+      await client.query(`DELETE FROM pn_especialidades_itens WHERE especialidade_id = $1`, [espId]);
+
+      for (const item of esp.itens || []) {
+        const cdItem = String(item.cd_item || item.nr_item);
+        const nrItem = parseInt(item.nr_item || item.cd_item, 10) || null;
+        const dsEtapa = item.etapa || item.ds_etapa || null;
+        const cleanDsItem = (item.ds_item || '')
+          .replace(/!@#BARRA_R#@!!@#BARRA_N#@!|!@#BARRA_N#@!|!@#BARRA_R#@!/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+
+        await client.query(
+          `INSERT INTO pn_especialidades_itens (especialidade_id, cd_especialidade, cd_item, nr_item, ds_etapa, ds_item)
+           VALUES ($1, $2, $3, $4, $5, $6)`,
+          [espId, esp.cd_especialidade || null, cdItem, nrItem, dsEtapa, cleanDsItem]
+        );
+        totalPnItensSeed++;
+      }
+    }
+    console.log(`✓ ${pnEspsList.length} especialidades e ${totalPnItensSeed} itens de catálogo PN semeados com sucesso.`);
 
     // -------------------------------------------------------------
     // 7. Migrar histórico de progressoes.json para escoteiro_pa_atividades

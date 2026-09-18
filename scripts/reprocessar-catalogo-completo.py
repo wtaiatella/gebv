@@ -140,9 +140,9 @@ def parse_especialidades_from_text(raw_text):
         return esps, 1
     
     nivel = 1
-    if 'n2+' in text.lower() or 'nível 2' in text.lower() or 'nivel 2' in text.lower() or 'n2' in text.lower():
+    if any(k in text.lower() for k in ['n2+', 'nível 2', 'nivel 2', 'n2']):
         nivel = 2
-    elif 'n3+' in text.lower() or 'n3' in text.lower():
+    elif any(k in text.lower() for k in ['n3+', 'nível 3', 'nivel 3', 'n3']):
         nivel = 3
         
     # Limpa sufixos de nível
@@ -153,10 +153,30 @@ def parse_especialidades_from_text(raw_text):
         parts = re.split(r'[,;]|\bOR\b|\be\b', cleaned, flags=re.IGNORECASE)
         for p in parts:
             p_str = p.strip()
-            if p_str and len(p_str) > 2 and not p_str.lower().startswith('rumo') and not p_str.lower().startswith('pista'):
+            if p_str and len(p_str) > 2 and not p_str.lower().startswith('rumo') and not p_str.lower().startswith('pista') and not p_str.isdigit():
                 esps.append(p_str)
                 
     return esps, nivel
+
+def parse_regra_estrutural(ws, r):
+    """Lê D=tipo, depois pares (E,F),(G,H),(I,J)... como (referência, operador)."""
+    tipo = clean_str(ws.cell(r, 4).value)  # coluna D
+    refs_raw = []
+    col = 5  # coluna E
+    while col <= ws.max_column:
+        ref_val = clean_str(ws.cell(r, col).value)
+        if ref_val:
+            refs_raw.append(ref_val)
+        col += 2  # pula o operador (F, H, J...)
+    return tipo, refs_raw
+
+def classificar_referencia(ref_text):
+    """Classifica uma referência isolada (uma célula) em pistas/rumo/especialidade."""
+    pistas, rumo = parse_pa_refs_from_text(ref_text)
+    esps, nivel = [], 1
+    if not pistas and not rumo:
+        esps, nivel = parse_especialidades_from_text(ref_text)
+    return pistas, rumo, esps, nivel
 
 def parse_atividades_pa_bloco(raw_text):
     """Extrai a lista de itens PA complementares do cabeçalho do bloco (ex: I22, I23, F4, etc.)"""
@@ -225,18 +245,15 @@ for sheet_name in target_sheets:
         c1 = clean_str(ws.cell(r, 1).value)
         c2 = clean_str(ws.cell(r, 2).value)
         c3 = clean_str(ws.cell(r, 3).value)
-        row_vals = [ws.cell(r, c).value for c in range(4, 25)]
-        while row_vals and row_vals[-1] is None:
-            row_vals.pop()
-        row_vals_clean = [clean_str(x) for x in row_vals if clean_str(x)]
+        tipo_d, refs_raw = parse_regra_estrutural(ws, r)
         
         if 'inicio do bloco' in c2.lower() or 'inicio do bloco' in c1.lower():
             if current_bloco_rows:
                 blocos_raw.append(current_bloco_rows)
-            current_bloco_rows = [{'row': r, 'tipo': c2, 'texto': c3 if c3 else c2, 'regras': row_vals_clean}]
+            current_bloco_rows = [{'row': r, 'tipo': c2, 'texto': c3 if c3 else c2, 'tipo_d': tipo_d, 'refs_raw': refs_raw}]
         else:
-            if current_bloco_rows and (c2 or c3 or row_vals_clean):
-                current_bloco_rows.append({'row': r, 'tipo': c2, 'texto': c3, 'regras': row_vals_clean})
+            if current_bloco_rows and (c2 or c3 or refs_raw or tipo_d):
+                current_bloco_rows.append({'row': r, 'tipo': c2, 'texto': c3, 'tipo_d': tipo_d, 'refs_raw': refs_raw})
                 
     if current_bloco_rows:
         blocos_raw.append(current_bloco_rows)
@@ -260,10 +277,11 @@ for sheet_name in target_sheets:
         for item in b_rows:
             tipo = item['tipo'].lower()
             texto = item['texto']
-            regras = item['regras']
             r_idx = item['row']
+            tipo_d = item['tipo_d']
+            refs_raw = item['refs_raw']
             
-            if not tipo and not texto and not regras:
+            if not tipo and not texto and not refs_raw:
                 continue
                 
             if 'intencionalidade' in tipo or 'intencionalidade' in texto.lower():
@@ -280,7 +298,8 @@ for sheet_name in target_sheets:
                     substitutivas_list.append({
                         'excel_row': r_idx,
                         'ds_item': texto,
-                        'regras': regras
+                        'tipo_d': tipo_d,
+                        'refs_raw': refs_raw
                     })
                 continue
             elif tipo == 'fixas':
@@ -289,7 +308,8 @@ for sheet_name in target_sheets:
                     'tp_acao': 'Fixa',
                     'modalidade': 'Básico',
                     'ds_acao': texto,
-                    'regras': regras
+                    'tipo_d': tipo_d,
+                    'refs_raw': refs_raw
                 })
             elif tipo == 'fixas ar':
                 fixas_list.append({
@@ -297,7 +317,8 @@ for sheet_name in target_sheets:
                     'tp_acao': 'Fixa',
                     'modalidade': 'Ar',
                     'ds_acao': texto,
-                    'regras': regras
+                    'tipo_d': tipo_d,
+                    'refs_raw': refs_raw
                 })
             elif tipo == 'fixas mar':
                 fixas_list.append({
@@ -305,7 +326,8 @@ for sheet_name in target_sheets:
                     'tp_acao': 'Fixa',
                     'modalidade': 'Mar',
                     'ds_acao': texto,
-                    'regras': regras
+                    'tipo_d': tipo_d,
+                    'refs_raw': refs_raw
                 })
             elif tipo == 'variaveis':
                 variaveis_list.append({
@@ -313,7 +335,8 @@ for sheet_name in target_sheets:
                     'tp_acao': 'Variável',
                     'modalidade': 'Básico',
                     'ds_acao': texto,
-                    'regras': regras
+                    'tipo_d': tipo_d,
+                    'refs_raw': refs_raw
                 })
             elif tipo == 'variaveis ar':
                 variaveis_list.append({
@@ -321,7 +344,8 @@ for sheet_name in target_sheets:
                     'tp_acao': 'Variável',
                     'modalidade': 'Ar',
                     'ds_acao': texto,
-                    'regras': regras
+                    'tipo_d': tipo_d,
+                    'refs_raw': refs_raw
                 })
             elif tipo == 'variaveis mar':
                 variaveis_list.append({
@@ -329,21 +353,21 @@ for sheet_name in target_sheets:
                     'tp_acao': 'Variável',
                     'modalidade': 'Mar',
                     'ds_acao': texto,
-                    'regras': regras
+                    'tipo_d': tipo_d,
+                    'refs_raw': refs_raw
                 })
             elif 'especialidade' in tipo:
                 if not texto.lower().startswith('especialidades que podem') and not texto.lower().startswith('conquistar ao menos uma'):
                     esps_compl.append({
                         'excel_row': r_idx,
                         'nome': texto,
-                        'regras': regras
+                        'tipo_d': tipo_d,
+                        'refs_raw': refs_raw
                     })
 
-        b_norm = normalize_text_key(nm_bloco)
-        
         # Ação consolidada de especialidades complementares
         if len(esps_compl) > 0:
-            is_bloco_1 = ('aprendizagem' in b_norm and 'vocacional' in b_norm)
+            is_bloco_1 = ('aprendizagem' in nm_bloco.lower() and 'vocacional' in nm_bloco.lower())
             nivel_min_esp = 1 if is_bloco_1 else 2
             nomes_esps = [e['nome'] for e in esps_compl]
             ds_esps_acao = f"Conquistar ao menos uma das seguintes especialidades no nível {nivel_min_esp}+: " + ", ".join(nomes_esps)
@@ -352,7 +376,8 @@ for sheet_name in target_sheets:
                 'tp_acao': 'Variável',
                 'modalidade': 'Básico',
                 'ds_acao': ds_esps_acao,
-                'regras': ['especialidade', f"{nivel_min_esp}+"],
+                'tipo_d': 'especialidade',
+                'refs_raw': [f"{e} N{nivel_min_esp}+" for e in nomes_esps],
                 'is_esps_compl': True,
                 'esps_list': nomes_esps,
                 'nivel_min_esp': nivel_min_esp
@@ -378,19 +403,22 @@ for sheet_name in target_sheets:
         
         # 5. Processar Fixas
         for fix in fixas_list:
+            chave = f"{nm_bloco}::{fix['excel_row']}"
             pistas_set = []
             rumo_set = []
             esp_set = []
+            nivel_min_esp = 1
             
-            regras_str = ' '.join(fix['regras'])
-            p_f, r_f = parse_pa_refs_from_text(regras_str)
-            pistas_set.extend(p_f)
-            rumo_set.extend(r_f)
-            
-            for rg in fix['regras']:
-                e_list, _ = parse_especialidades_from_text(rg)
-                for e in e_list:
-                    if e not in esp_set: esp_set.append(e)
+            for ref in fix['refs_raw']:
+                p, r, e, nv = classificar_referencia(ref)
+                for x in p:
+                    if x not in pistas_set: pistas_set.append(x)
+                for x in r:
+                    if x not in rumo_set: rumo_set.append(x)
+                for x in e:
+                    if x not in esp_set: esp_set.append(x)
+                if nv > nivel_min_esp:
+                    nivel_min_esp = nv
             
             tp_regra = 'DIRETA'
             total_refs = len(pistas_set) + len(rumo_set) + len(esp_set)
@@ -401,9 +429,10 @@ for sheet_name in target_sheets:
             elif total_refs > 1:
                 tp_regra = 'OR'
                 
-            label_fh = ' | '.join(fix['regras']) if fix['regras'] else f"Modalidade do {fix['modalidade']}" if fix['modalidade'] != 'Básico' else 'Alterar manualmente'
+            label_fh = ' | '.join(fix['refs_raw']) if fix['refs_raw'] else f"Modalidade do {fix['modalidade']}" if fix['modalidade'] != 'Básico' else (fix['tipo_d'] or 'Alterar manualmente')
             
             parsed_acoes.append({
+                'chave': chave,
                 'excel_row': fix['excel_row'],
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
@@ -414,11 +443,13 @@ for sheet_name in target_sheets:
             })
             
             parsed_regras.append({
+                'chave': chave,
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
                 'tipo_acao': 'Fixa',
                 'excel_row': fix['excel_row'],
                 'ds_acao_c': fix['ds_acao'],
+                'tipo_regra_origem': fix['tipo_d'],
                 'label_f_h': label_fh,
                 'tp_regra': tp_regra,
                 'min_count': 1,
@@ -429,28 +460,32 @@ for sheet_name in target_sheets:
             
         # 6. Processar Variáveis
         for var in variaveis_list:
-            pistas_set = []
-            rumo_set = []
-            esp_set = []
-            nivel_min_esp = 1
-            
             if var.get('is_esps_compl'):
+                chave = f"{nm_bloco}::ESP_COMPL"
                 esp_set = var['esps_list']
                 tp_regra = 'ESPECIALIDADES'
                 nivel_min_esp = var.get('nivel_min_esp', 2)
                 label_fh = f"Especialidade (Nível {nivel_min_esp}+): {', '.join(esp_set[:6])}" + (f" e mais {len(esp_set)-6} opções" if len(esp_set) > 6 else "")
+                pistas_set = []
+                rumo_set = []
             else:
-                regras_str = ' '.join(var['regras'])
-                p_f, r_f = parse_pa_refs_from_text(regras_str)
-                pistas_set.extend(p_f)
-                rumo_set.extend(r_f)
+                chave = f"{nm_bloco}::{var['excel_row']}"
+                pistas_set = []
+                rumo_set = []
+                esp_set = []
+                nivel_min_esp = 1
                 
-                for rg in var['regras']:
-                    e_list, nv = parse_especialidades_from_text(rg)
-                    if nv > nivel_min_esp: nivel_min_esp = nv
-                    for e in e_list:
-                        if e not in esp_set: esp_set.append(e)
-                
+                for ref in var['refs_raw']:
+                    p, r, e, nv = classificar_referencia(ref)
+                    for x in p:
+                        if x not in pistas_set: pistas_set.append(x)
+                    for x in r:
+                        if x not in rumo_set: rumo_set.append(x)
+                    for x in e:
+                        if x not in esp_set: esp_set.append(x)
+                    if nv > nivel_min_esp:
+                        nivel_min_esp = nv
+                        
                 tp_regra = 'DIRETA'
                 total_refs = len(pistas_set) + len(rumo_set) + len(esp_set)
                 if total_refs == 0:
@@ -459,9 +494,10 @@ for sheet_name in target_sheets:
                     tp_regra = 'ESPECIALIDADES'
                 elif total_refs > 1:
                     tp_regra = 'OR'
-                label_fh = ' | '.join(var['regras']) if var['regras'] else f"Modalidade do {var['modalidade']}" if var['modalidade'] != 'Básico' else 'Alterar manualmente'
+                label_fh = ' | '.join(var['refs_raw']) if var['refs_raw'] else f"Modalidade do {var['modalidade']}" if var['modalidade'] != 'Básico' else (var['tipo_d'] or 'Alterar manualmente')
                 
             parsed_acoes.append({
+                'chave': chave,
                 'excel_row': var['excel_row'],
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
@@ -472,11 +508,13 @@ for sheet_name in target_sheets:
             })
             
             parsed_regras.append({
+                'chave': chave,
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
                 'tipo_acao': 'Variável',
                 'excel_row': var['excel_row'],
                 'ds_acao_c': var['ds_acao'],
+                'tipo_regra_origem': var['tipo_d'],
                 'label_f_h': label_fh,
                 'tp_regra': tp_regra,
                 'min_count': 1,
@@ -488,11 +526,13 @@ for sheet_name in target_sheets:
             
         # 7. Injetar Atividades PA Complementares na sequência das Variáveis com TAG 'PA'
         for pt_num in pt_refs:
+            chave = f"{nm_bloco}::PT_{pt_num}"
             pa_key = f"PT-{pt_num}"
             pa_info = pa_atividades_map.get(pa_key, {})
             ds_texto = pa_info.get('ds_atividade') or f"Atividade de Pistas e Trilha nº {pt_num}"
             
             parsed_acoes.append({
+                'chave': chave,
                 'excel_row': 0,
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
@@ -503,11 +543,13 @@ for sheet_name in target_sheets:
             })
             
             parsed_regras.append({
+                'chave': chave,
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
                 'tipo_acao': 'Variável',
                 'excel_row': 0,
                 'ds_acao_c': ds_texto,
+                'tipo_regra_origem': 'PA Complementar',
                 'label_f_h': f"Pista {pt_num}",
                 'tp_regra': 'DIRETA',
                 'min_count': 1,
@@ -517,11 +559,13 @@ for sheet_name in target_sheets:
             })
             
         for rt_num in rt_refs:
+            chave = f"{nm_bloco}::RT_{rt_num}"
             pa_key = f"RT-{rt_num}"
             pa_info = pa_atividades_map.get(pa_key, {})
             ds_texto = pa_info.get('ds_atividade') or f"Atividade de Rumo e Travessia nº {rt_num}"
             
             parsed_acoes.append({
+                'chave': chave,
                 'excel_row': 0,
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
@@ -532,11 +576,13 @@ for sheet_name in target_sheets:
             })
             
             parsed_regras.append({
+                'chave': chave,
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
                 'tipo_acao': 'Variável',
                 'excel_row': 0,
                 'ds_acao_c': ds_texto,
+                'tipo_regra_origem': 'PA Complementar',
                 'label_f_h': f"Rumo {rt_num}",
                 'tp_regra': 'DIRETA',
                 'min_count': 1,
@@ -547,8 +593,10 @@ for sheet_name in target_sheets:
             
         # 8. Injetar Atividades Substitutivas
         for sub in substitutivas_list:
+            chave = f"{nm_bloco}::{sub['excel_row']}"
             ds_sub = sub['ds_item']
             parsed_acoes.append({
+                'chave': chave,
                 'excel_row': sub['excel_row'],
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
@@ -559,11 +607,13 @@ for sheet_name in target_sheets:
             })
             
             parsed_regras.append({
+                'chave': chave,
                 'eixo': eixo_nm,
                 'bloco': nm_bloco,
                 'tipo_acao': 'Substitutiva',
                 'excel_row': sub['excel_row'],
                 'ds_acao_c': ds_sub,
+                'tipo_regra_origem': sub['tipo_d'],
                 'label_f_h': f"Especialidade/Insígnia: {ds_sub}",
                 'tp_regra': 'ESPECIALIDADES',
                 'min_count': 1,
@@ -578,6 +628,20 @@ print(f"Total de Blocos: {len(parsed_blocos)}")
 print(f"Total de Ações PN (Fixas + Variáveis + PA + Substitutivas): {len(parsed_acoes)}")
 print(f"Total de Regras de Equivalência: {len(parsed_regras)}")
 print(f"=======================================================")
+
+# Asserções de sanidade estrita
+if len(parsed_blocos) != 18:
+    raise ValueError(f"ERRO: Esperado 18 blocos, obtido {len(parsed_blocos)}")
+if len(parsed_acoes) != 448:
+    raise ValueError(f"ERRO: Esperado 448 ações PN, obtido {len(parsed_acoes)}")
+if len(parsed_regras) != len(parsed_acoes):
+    raise ValueError(f"ERRO: Descompasso entre ações ({len(parsed_acoes)}) e regras ({len(parsed_regras)})")
+if len({r['chave'] for r in parsed_regras}) != len(parsed_regras):
+    raise ValueError("ERRO: chave duplicada em parsed_regras — casamento ação↔regra deixaria de ser único")
+chaves_acoes = [a['chave'] for a in parsed_acoes]
+chaves_regras = [r['chave'] for r in parsed_regras]
+if chaves_acoes != chaves_regras:
+    raise ValueError("ERRO: Ordem ou lista de chaves de parsed_acoes não coincide com parsed_regras")
 
 pn_out = {
     'eixos': eixos_list,
