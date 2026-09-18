@@ -37,7 +37,14 @@ yarn-error.log*
 .vercel
 
 # dados pessoais extraídos (CPF, endereço, etc.) - nunca versionar
-/data
+/data/*
+!/data/especialidades
+!/data/especialidades/**
+/data/especialidades/**/images
+!/data/catalogo/
+/data/catalogo/*
+!/data/catalogo/pn_catalogo.json
+!/data/catalogo/equivalencias.json
 
 # typescript
 *.tsbuildinfo

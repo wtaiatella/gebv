@@ -31,7 +31,7 @@ function getHeaders(cookie: string, extraHeaders: Record<string, string> = {}): 
     'accept-language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
     cookie,
     'user-agent':
-      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
     'x-requested-with': 'XMLHttpRequest',
     referer: `${BASE_URL}/associado/lista`,
     ...extraHeaders,
@@ -306,7 +306,9 @@ export async function fetchProgressao(
 
           for (const act of activities) {
             const atvId = String(act.id || act.codigo || '');
-            const isConcluida = Boolean(act.concluida || act.status_escotista === 'confirmadoEscotista' || act.data_conclusao);
+            // Paxtu100 preenche data_conclusao mesmo em atividades não concluídas (ex.: status_escotista
+            // "conversar"), então não pode ser usado como sinal de conclusão — só concluida/status_escotista.
+            const isConcluida = Boolean(act.concluida) || act.status_escotista === 'confirmadoEscotista';
 
             const item: Atividade = {
               cdCaminho: caminhoId,
@@ -315,9 +317,9 @@ export async function fetchProgressao(
               cdUeb: String(act.codigo || atvId),
               dsAtividade: act.descricao || comp.nome || '',
               checkEscotista: isConcluida ? 'confirmadoEscotista' : '',
-              dtCheckEscotista: act.data_conclusao || '',
+              dtCheckEscotista: isConcluida ? act.data_conclusao || '' : '',
               checkJovem: isConcluida ? 'feitoJovem' : '',
-              dtCheckJovem: act.data_conclusao || '',
+              dtCheckJovem: isConcluida ? act.data_conclusao || '' : '',
               dtAtividade: act.data_conclusao || '',
             };
 

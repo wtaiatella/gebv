@@ -9,7 +9,7 @@
     "lint": "eslint",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "catalogo:extract": "python3 scripts/extract-catalogo-regras.py",
+    "catalogo:extract": "python3 scripts/reprocessar-catalogo-completo.py",
     "db:seed-catalogo": "node --env-file=.env scripts/seed-catalogo.mjs",
     "db:backfill-progressao": "npx tsx --env-file=.env scripts/backfill-progressao-relacional.mjs",
     "progressoes:transicao": "npx tsx --env-file=.env scripts/run-transicao.mjs",

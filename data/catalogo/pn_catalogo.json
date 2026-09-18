@@ -1,0 +1,4636 @@
+{
+  "eixos": [
+    "Habilidades para a Vida",
+    "Meio Ambiente",
+    "Paz e Desenvolvimento",
+    "Saúde e Bem-Estar"
+  ],
+  "blocos": [
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 1,
+      "ds_intencionalidade": "Explorar temas que despertam seu interesse, buscar informações confiáveis para aprender mais e experimentar novas ideias e recursos, aplicando esse conhecimento em atividades e projetos de serviço."
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 2,
+      "ds_intencionalidade": "Assumir diferentes papéis em sua patrulha, sabendo quando colaborar e quando liderar. Aprender a administrar seu dinheiro para realizar atividades e projetos, além de planejar e avaliar tarefas junto com o grupo, tomando decisões de forma responsável."
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 3,
+      "ds_intencionalidade": "Usar a criatividade para encontrar soluções práticas para os desafios do dia a dia, analisando diferentes alternativas antes de tomar uma decisão."
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 4,
+      "ds_intencionalidade": "Reconhecer e compreender suas emoções, aprender a lidar com elas de maneira respeitosa e desenvolver resiliência ao enfrentar desafios e superar dificuldades."
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 5,
+      "ds_intencionalidade": "Praticar o consumo consciente diariamente, evitando desperdícios e ajudando a preservar os recursos naturais"
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 6,
+      "ds_intencionalidade": "Se envolver em atividades e projetos para reduzir os impactos ambientais e combater as mudanças climáticas."
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 7,
+      "ds_intencionalidade": "Cuidar dos animais e das plantas, entendendo como as atitudes humanas podem protegê-los ou prejudicá-los."
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "nr_acoes_fixas_obrigatorias": 8,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 8,
+      "ds_intencionalidade": "Aproveitar as atividades ao ar livre com responsabilidade, respeitando a natureza e deixando os lugares sempre melhores do que encontrou."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 9,
+      "ds_intencionalidade": "Realizar  boas  ações diariamente  e  trabalhar em  equipe para organizar atividades e projetos de serviço que beneficiem a comunidade"
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "nr_acoes_fixas_obrigatorias": 3,
+      "nr_acoes_variaveis_exigidas": 2,
+      "nr_ordem": 10,
+      "ds_intencionalidade": "Participar das decisões da tropa, contribuindo com suas ideias, respeitando as opiniões dos colegas e se comprometendo a seguir o que foi decidido coletivamente."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 11,
+      "ds_intencionalidade": "Explorar e valorizar a cultura de sua comunidade e de seus país, conhecendo costumes, tradições, folclore e geografia, e propor atividades para compartilhar esses conhecimentos com os outros."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 12,
+      "ds_intencionalidade": "Promover a paz, a inclusão e a diversidade em suas ações diárias, respeitando e demonstrando interesse por diferentes crenças e tradições espirituais."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 13,
+      "ds_intencionalidade": "Atuar de acordo com seus valores pessoais e os princípios do Movimento Escoteiro, vivenciando sua Promessa e a Lei Escoteira em todas as suas atitudes."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "nr_acoes_fixas_obrigatorias": 3,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 14,
+      "ds_intencionalidade": "Compreender e respeitar as mudanças do seu próprio corpo e das outras pessoas, independentemente de aparência, identidade ou orientação sexual. Se desafiar a superar suas limitações físicas e aprender técnicas básicas de primeiros socorros."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 15,
+      "ds_intencionalidade": "Explora a espiritualidade observado as maravilhas da natureza, praticando a solidariedade e conhecendo diferentes crenças. Além disso, se esforça para viver seus princípios diariamente."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 16,
+      "ds_intencionalidade": "Cuidar da própria saúde praticando exercícios físicos, mantendo uma alimentação equilibrada e garantindo bons hábitos de higiene pessoal e organização do seu espaço."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 2,
+      "nr_ordem": 17,
+      "ds_intencionalidade": "Adotar práticas que ajudam a manter o equilíbrio da saúde mental, buscando estratégias para lidar com desafios e contribuindo para o bem-estar das pessoas ao seu redor."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 18,
+      "ds_intencionalidade": "Criar laços de amizade de forma saudável, respeitosa e empática, fortalecendo suas relações pessoais de positiva."
+    }
+  ],
+  "acoes": [
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::6",
+      "excel_row": 6,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar, no Ramo Escoteiro, uma especialidade sobre um tema de seu interesse e que seja um conhecimento novo.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::7",
+      "excel_row": 7,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Em conjunto com a sua patrulha, realizar um Percurso de Gilwell de pelo menos 3km.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::8",
+      "excel_row": 8,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Fixa",
+      "modalidade": "Ar",
+      "ds_acao": "Visitar, com a patrulha ou tropa, um aeroporto  ou aeroclube, identificando tipos de aeronaves e procedimentos de pouso e decolagem",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::9",
+      "excel_row": 9,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Visitar, com a patrulha ou tropa, um porto, marina ou iate clube, conhecendo seu funcionamento e os tipos de embarcações.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::11",
+      "excel_row": 11,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Enviar e receber mensagens simples em Alfabeto Fonético,Código  Internacional  de  Sinais,  Semáfora,  Heliografia,  Cifra de César ou Criptografia.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::12",
+      "excel_row": 12,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar com a sua patrulha: hospital,  quartel de bombeiros, delegacia,  empresas,  comércios locais ou outros para conhecer o funcionamento de diferentes profissões",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::13",
+      "excel_row": 13,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer o funcionamento de serviços de internet, rádio e TV e usar esses conhecimentos para resolver problemas técnicos.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::14",
+      "excel_row": 14,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Convidar um especialista da comunidade para dialogar com a tropa e esclarecer dúvidas sobre determinado  tema ou profissão",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::15",
+      "excel_row": 15,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Utilizar corretamente um radiocomunicador em atividade da patrulha",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::16",
+      "excel_row": 16,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar uma pesquisa sobre um tema escolhido e apresentar os resultados para a patrulha ou tropa em formato criativo (cartaz, teatro, vídeo, oficina)",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::17",
+      "excel_row": 17,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e executar, em conjunto com a sua patrulha, uma ação de serviço  comunitário baseada em informações pesquisadas sobre necessidades locais",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::55",
+      "excel_row": 55,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Conhecer e demostrar o funcionamento de um sistema de localização por satélite",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::56",
+      "excel_row": 56,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Aprender a história e características de uma aeronave de sua escolha",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::57",
+      "excel_row": 57,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Mar",
+      "ds_acao": "Realizar manutenção de uma embracação, incluindo faxina, reparo. pintura ou substituição de peças.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::58",
+      "excel_row": 58,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Mar",
+      "ds_acao": "Calcular um rumo magnético e corrigir a rota quando se aproxima de uma linha isogônica",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Aeronáutica, Arquitetura e Urbanismo, Astronomia, Biblioteconomia, Cartografia, Comunicações, Confeitaria, Construção Civil, Criptografia, Culinária, Design  de Interiores, E-Sports, Etiqueta, Fiscalização de Pátio de Aeródromo, GPS, Informática, Jornalismo, Manicure, Manutenção Elétrica, Marcenaria, Marinharia, Matemática, Mecânica de Automóveis, Planador, Prevenção de Incêndio, Produção  Gráfica, Programação, Química, Radioamadorismo, Radioescuta, Redes de Computadores, Segurança no Trânsito, Simulação Aérea, Sinalização, Vendas, Web Design",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::PT_22",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Utilizar um mapa e uma bússola para orientar-se.",
+      "regra_qtd_texto": "PA Complementar (Pista 22)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::PT_23",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar as técnicas de “tocaia” em um jogo com sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 23)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::PT_24",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Explorar com sua patrulha ou tropa a comunidade onde vive, identificando problemas e buscando soluções.",
+      "regra_qtd_texto": "PA Complementar (Pista 24)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::PT_25",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Estimar altura e distâncias utilizando distintos métodos.",
+      "regra_qtd_texto": "PA Complementar (Pista 25)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::PT_26",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ler um livro e após a leitura apresentar um resumo a patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 26)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::PT_32",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Demonstrar que utiliza as especialidades que conquista para colaborar em sua patrulha, casa ou escola.",
+      "regra_qtd_texto": "PA Complementar (Pista 32)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::PT_33",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar um escoteiro da patrulha a conquistar uma especialidade.",
+      "regra_qtd_texto": "PA Complementar (Pista 33)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::RT_21",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar previsão do tempo por indícios naturais e por instrumentos.",
+      "regra_qtd_texto": "PA Complementar (Rumo 21)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::RT_22",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Traçar e seguir sinais de pista em um percurso de, pelo menos, 1 km no campo ou 2 km em área urbana",
+      "regra_qtd_texto": "PA Complementar (Rumo 22)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::RT_23",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Orientar-se utilizando recursos naturais (estrelas, método do relógio), assim como usando uma bússola e um mapa",
+      "regra_qtd_texto": "PA Complementar (Rumo 23)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::RT_24",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ler pelo menos um capítulo do livro “Escotismo para Rapazes”",
+      "regra_qtd_texto": "PA Complementar (Rumo 24)"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::61",
+      "excel_row": 61,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Insígnia do Aprender",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::62",
+      "excel_row": 62,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Insígnia da Modalidade do Mar - Grumete",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL::63",
+      "excel_row": 63,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "APRENDIZAGEM CONTINUA E DESENVOLVIMENTO VOCACIONAL",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Insígnia da Modalidade do Ar - Aviador",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::69",
+      "excel_row": 69,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Montar corretamente uma mochila para um acampamento, mantendo o equipamento em bom estado",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::70",
+      "excel_row": 70,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Navegar em uma embarcação a vela ou remo, montando-a corretamente, identificando as partes (proa, popa, bombordo, boreste), usando o colete salva-vidas e respeitando as regras de segurança",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::72",
+      "excel_row": 72,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Contribuir para o planejamento e a organização de uma excursão de patrulha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::73",
+      "excel_row": 73,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Fazer uma excursão urbana com a sua patrulha ou tropa, se locomovendo por meio de transportes públicos como ônibus, trens, metrô, entre outros.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::74",
+      "excel_row": 74,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Pesquisar e realizar as compras dos alimentos para um acampamento,  apresentando  para a patrulha uma prestação de contas.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::75",
+      "excel_row": 75,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Saber onde encontrar, identificando em um mapa, os principais serviços públicos na cidade.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::76",
+      "excel_row": 76,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e executar em patrulha um projeto de captação de recursos para participação em uma atividade escoteira.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::77",
+      "excel_row": 77,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de atividades ou oficinas sobre finanças pessoais.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::78",
+      "excel_row": 78,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Assumir pelo menos três encargos diferentes na patrulha, sendo bem avaliado pelos seus companheiros.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::79",
+      "excel_row": 79,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Administrar o fundo de patrulha por pelo menos três meses, registrando  receitas e despesas, e utilizar os recursos em atividades planejadas pela patrulha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::80",
+      "excel_row": 80,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Registrar receitas e despesas simples ou da mesada em planilha ou caderno por um período determinado.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::81",
+      "excel_row": 81,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conduzir uma reunião de patrulha como monitor ou secretário, registrando decisões e acompanhando sua execução.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Administração, Educação Financeira, Empreendedorismo, Oratória",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::PT_28",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de, pelo menos, dois jogos democráticos de sua tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 28)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::PT_29",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente de seu conselho de patrulha contribuindo com ideias e pontos de vista.",
+      "regra_qtd_texto": "PA Complementar (Pista 29)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::PT_30",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da organização e planejamento de uma excursão de patrulha; e contribuir com ideias para as atividades de patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 30)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::PT_31",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Avaliar as atividades juntamente com sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 31)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::PT_73",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Assumir distintas responsabilidades nas atividades de sua patrulha e sua tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 73)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::PT_74",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Colaborar para definição de metas da sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 74)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::PT_75",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Assumir e desempenhar satisfatoriamente um cargo na patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 75)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::PT_76",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar das decisões que toma seu conselho de patrulha, contribuindo com ideias, votando e assumindo responsabilidades em distintas tarefas, atividades e projetos",
+      "regra_qtd_texto": "PA Complementar (Pista 76)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::RT_25",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de, pelo menos, três jogos democráticos da tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 25)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::RT_26",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da avaliação de uma atividade regional.",
+      "regra_qtd_texto": "PA Complementar (Rumo 26)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::RT_27",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Explorar algum tema de seu interesse e compartilho com sua patrulha ou tropa",
+      "regra_qtd_texto": "PA Complementar (Rumo 27)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::RT_28",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar técnicas de medição de distância ou altura em uma atividade de patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 28)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::RT_51",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Desempenhar um cargo de patrulha por pelo menos um ciclo de programa",
+      "regra_qtd_texto": "PA Complementar (Rumo 51)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::RT_52",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Capacitar-se para desempenhar seu cargo na patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 52)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::RT_53",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Avaliar seu desempenho e de seus amigos nos cargos de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 53)"
+    },
+    {
+      "chave": "AUTONOMIA E LIDERANÇA::RT_54",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "AUTONOMIA E LIDERANÇA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um festival de talentos na tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 54)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::93",
+      "excel_row": 93,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Animar  um  Fogo  de  Conselho  em  um  acampamento  da patrulha ou de tropa.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::94",
+      "excel_row": 94,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar conceitos básicos de estruturas (cavaletes, encaixes, ancoragens) em projetos como pontes, balsas, pórticos ou outras pioneirias.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::95",
+      "excel_row": 95,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Fixa",
+      "modalidade": "Ar",
+      "ds_acao": "Construir uma pipa, planador e foguete, testando aerodinâmica, planagem e propulsão.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::96",
+      "excel_row": 96,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Confeccionar e utilizar uma jangada, canoa ou bote para embarcar a sua patrulha, respeitando as regras de segurança.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::98",
+      "excel_row": 98,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar uma atividade de divulgação  do  escotismo no  colégio, usando  diferentes recursos: vídeos, cartazes, panfletos, entre outros.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::99",
+      "excel_row": 99,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer e cantar canções e danças apropriadas para diferentes momentos.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::100",
+      "excel_row": 100,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar uma campanha publicitária divertida promovendo algum projeto ou atividade da patrulha ou Tropa Escoteira",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::101",
+      "excel_row": 101,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Construir equipamentos improvisados de campo (mesa, suporte, abrigo, utensílios) utilizando materiais disponíveis.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::102",
+      "excel_row": 102,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Propor e implementar soluções criativas para reduzir custos de uma atividade, aproveitando materiais recicláveis ou doados.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::103",
+      "excel_row": 103,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ensinar e aplicar dois novos jogos para sua tropa.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::104",
+      "excel_row": 104,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar alternativas criativas para decorar o canto da patrulha ou o acampamento.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::105",
+      "excel_row": 105,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um festival de talentos na tropa.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::106",
+      "excel_row": 106,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Improvisar apresentações artísticas (esquetes, músicas, danças) em um Fogo  de Conselho, explorando recursos disponíveis.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::107",
+      "excel_row": 107,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar um vídeo de divulgação das atividades de sua patrulha ou tropa.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::123",
+      "excel_row": 123,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Demonstrar com 1 (um) experimento simples os seguintes princìpios: a) Sustentação das asas, explicando quais as forças envolvidas; b) O funcionamento de um aeróstato, e como sua altitudepode ser controlado.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::124",
+      "excel_row": 124,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Mar",
+      "ds_acao": "Fazer um trabalho artesanal marinheiro com cabos, usando nós característicos da marinharia.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Arte Digital, Artes Visuais, Artesanato, Comédia, Costura e Estilismo, Encadernação, Grafite, HQ, Maquete, Pintura, Plastimodelismo, Propaganda e Marketing, Robótica, Videomaker",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::PT_34",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um fogo de conselho e de uma apresentação com sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 34)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::PT_35",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Construir, com sucata, um instrumento musical.",
+      "regra_qtd_texto": "PA Complementar (Pista 35)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::PT_36",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer e cantar algumas canções e danças tradicionais do Movimento Escoteiro e de sua tropa, em especial, o Hino Alerta.",
+      "regra_qtd_texto": "PA Complementar (Pista 36)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::PT_37",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ler e escrever mensagens usando um código secreto de sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 37)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::PT_38",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Utilizar corretamente um rádio comunicador numa atividade de sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 38)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::PT_39",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Montar um blog, lista de e-mails ou projeto similar que contribua para melhorar a comunicação em sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 39)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::RT_36",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ser responsável por apresentar as canções, durante o fogo de conselho de um acampamento de tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 36)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::RT_38",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ensinar a outros escoteiros algumas canções tradicionais do movimento.",
+      "regra_qtd_texto": "PA Complementar (Rumo 38)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::RT_41",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber como funcionam os serviços que uso (telefone, internet, rádio, TV...) e procuro usar estes conhecimentos para solucionar problemas técnicos habituais.",
+      "regra_qtd_texto": "PA Complementar (Rumo 41)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::RT_42",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer e ser capaz de enviar e receber mensagens simples com uma das seguintes formas de comunicação: morse, semáfora, LIBRAS",
+      "regra_qtd_texto": "PA Complementar (Rumo 42)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::RT_43",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Desenhar um croqui de um lugar de acampamento utilizando sinais topográficos, e participar do projeto e instalação das pioneirias de acampamento, aplicando pelo menos os seguintes nós e amarras: direito, volta do fiel ou volta da ribeira, nó de escota, nó em oito, volta redonda com dois cotes, amarra quadrada e diagonal.",
+      "regra_qtd_texto": "PA Complementar (Rumo 43)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::RT_44",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar os conceitos básicos de estruturas (cavaletes, encaixes, ancoragens) nos projetos e montagem de  construções como pontes, balsas, etc.",
+      "regra_qtd_texto": "PA Complementar (Rumo 44)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::RT_45",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Confeccionar “falcaças”, nó “catau”, laís de guia, cadeira de bombeiro e demonstrar os cuidados básicos com as cordas.",
+      "regra_qtd_texto": "PA Complementar (Rumo 45)"
+    },
+    {
+      "chave": "CRIATIVIDADE E INOVAÇÃO::RT_46",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "CRIATIVIDADE E INOVAÇÃO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Construir e pernoitar em um abrigo natural.",
+      "regra_qtd_texto": "PA Complementar (Rumo 46)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::131",
+      "excel_row": 131,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar situações perigosas e de maus tratos, sabendo como agir e a quem recorrer.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::133",
+      "excel_row": 133,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conversar com a patrulha sobre pontos fortes e de melhoria no desempenho da equipe em atividades e acampamentos.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::134",
+      "excel_row": 134,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar seus medos e suas emoções diante a um obstáculo desafiador, trabalhando para conseguir superá-lo.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::135",
+      "excel_row": 135,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em um acampamento, participar de um turno de ronda com outro  companheiro de patrulha, refletindo sobre o cuidado com o outro.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::136",
+      "excel_row": 136,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de jogos ou competições, respeitando regras e resultados.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::137",
+      "excel_row": 137,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em uma atividade de patrulha ou de tropa aplicar técnicas de respiração, relaxamento ou meditação antes de um grande desafio.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::138",
+      "excel_row": 138,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de rodas de conversa ou momentos de partilha após atividades intensas, ouvindo e respeitando as emoções dos demais.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::139",
+      "excel_row": 139,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Escrever uma pequena carta para si mesmo com palavras de incentivo, lembrando de suas qualidades e dando sugestões de como você pode superar desafios futuros.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::140",
+      "excel_row": 140,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar e encenar uma pequena história em que o personagem passa por dificuldades e encontra formas saudáveis de lidar com elas.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::PT_43",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Propor objetivos e ações para melhorar em alguns aspectos da sua vida.",
+      "regra_qtd_texto": "PA Complementar (Pista 43)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::PT_42",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da construção de um fogão suspenso ou forno de acampamento.",
+      "regra_qtd_texto": "PA Complementar (Pista 42)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::PT_44",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da avaliação de sua progressão pessoal e das de seus companheiros em conselho de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 44)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::PT_45",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Avaliar o seu desempenho e o de seus companheiros nos cargos de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 45)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::PT_52",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Respeitar e apoiar as decisões tomadas no conselho de patrulha, ainda que não esteja de acordo.",
+      "regra_qtd_texto": "PA Complementar (Pista 52)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::PT_53",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar a melhorar a organização de seu conselho de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 53)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::PT_54",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da eleição do monitor da sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 54)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_47",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Propor objetivos e ações para melhorar em alguns aspectos de sua vida na tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 47)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_48",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente na avaliação de sua progressão pessoal e de seus companheiros no conselho de patrulha",
+      "regra_qtd_texto": "PA Complementar (Rumo 48)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_49",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma reunião onde são tratados os aspectos positivos e negativos de sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 49)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_50",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar a um companheiro em sua progressão pessoal.",
+      "regra_qtd_texto": "PA Complementar (Rumo 50)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_63",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Demonstrar as técnicas de resgate de pessoas em afogamento.",
+      "regra_qtd_texto": "PA Complementar (Rumo 63)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_64",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ultrapassar algum obstáculo utilizando cordas (“falsa baiana”, “comando crawn”, etc.).",
+      "regra_qtd_texto": "PA Complementar (Rumo 64)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_65",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer um relato no livro de patrulha de uma atividade que lhe marcou.",
+      "regra_qtd_texto": "PA Complementar (Rumo 65)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_66",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os princípios para obter uma boa comunicação e os aplicar em minhas conversas com os outros.",
+      "regra_qtd_texto": "PA Complementar (Rumo 66)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_67",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de debates e discussões no conselho de patrulha e Assembleia de Tropa, se manifestado de forma respeitosa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 67)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_68",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Visitar outro grupo escoteiro",
+      "regra_qtd_texto": "PA Complementar (Rumo 68)"
+    },
+    {
+      "chave": "INTELIGÊNCIA EMOCIONAL::RT_69",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "INTELIGÊNCIA EMOCIONAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Contribuir para a manutenção do espírito escoteiro e de patrulha na tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 69)"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::6",
+      "excel_row": 6,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Em acampamentos e excursões, criar soluções para melhorar a higiene e conforto e classificar os resíduos em categorias, tratando-os adequadamente.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::7",
+      "excel_row": 7,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar adequadamente e adquirir as quantidades dos alimentos para refeições em um acampamento  para sua patrulha, evitando desperdício.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::8",
+      "excel_row": 8,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Fixa",
+      "modalidade": "Ar",
+      "ds_acao": "Identificar algumas aves da região, seus hábitos e compreender a relação das espécies com os métodos de voo e aerodinâmica.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::9",
+      "excel_row": 9,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Conhecer as características do bioma aquático local e os riscos para esse bioma.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::11",
+      "excel_row": 11,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Registrar e analisar o consumo de água e energia da sua residência, buscando ideias para economizar, e apresentar para sua patrulha os resultados.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::12",
+      "excel_row": 12,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Avaliar o impacto ambiental de uma atividade e apresentar alternativas mais sustentáveis.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::13",
+      "excel_row": 13,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar uma estação de energia renovável, uma estação de tratamento de água, uma cooperativa ou usina de reciclagem ou outras opções semelhantes.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::14",
+      "excel_row": 14,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Consertar objetos simples, como brinquedos ou pequenos eletrodomésticos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::15",
+      "excel_row": 15,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Utilizar embalagens retornáveis ou reutilizáveis nas refeições de campo, evitando descartáveis.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::16",
+      "excel_row": 16,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Separar resíduos orgânicos e criar um sistema de compostagem caseira",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::17",
+      "excel_row": 17,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar uma campanha educativa para a tropa sobre consumo consciente e economia de recursos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::18",
+      "excel_row": 18,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Trocar roupas, livros ou jogos com amigos e familiares em vez de comprar novos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::19",
+      "excel_row": 19,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar, com sua patrulha, uma campanha de conscientização sobre consumo responsável.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::20",
+      "excel_row": 20,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Confeccionar utensílios ou equipamentos a partir de materiais reciclados para uso nas atividades da patrulha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::21",
+      "excel_row": 21,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e realizar as refeições de um dia de acampamento sem carne, garantindo a ingestão adequada de proteínas.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::22",
+      "excel_row": 22,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar, cuidar e fazer reparos nos materiais da patrulha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Agricultura, Aquicultura, Energia, Horticultura, Reduzir, Reciclar e Reutilizar",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::RT_39",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Construir um fogão solar e utilizar para uma refeição em um acampamento de patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 39)"
+    },
+    {
+      "chave": "CONSUMO RESPONSÁVEL::RT_40",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "CONSUMO RESPONSÁVEL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Construir um chuveiro de acampamento.",
+      "regra_qtd_texto": "PA Complementar (Rumo 40)"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::36",
+      "excel_row": 36,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em um acampamento, criar uma estação meteorológica simples para registrar temperatura, umidade, direção do vento, nuvens e possíveis mudanças no tempo.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::37",
+      "excel_row": 37,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar da construção de um fogão solar e usá-lo em um acampamento de patrulha ou tropa.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::38",
+      "excel_row": 38,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma excursão urbana com foco ecológico, identificando situações de risco para a sociedade referentes às mudanças climáticas.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::39",
+      "excel_row": 39,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar ou participar de uma atividade com uma organização que atua em prol do meio ambiente.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::40",
+      "excel_row": 40,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em uma excursão ou acampamento em área não urbana, identificar ações prejudiciais à natureza, como extrativismo e mineração, e listar seus impactos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::41",
+      "excel_row": 41,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e participar de uma excursão, utilizando meios de transporte que dependem de fontes de energia limpa (bicicleta, ônibus elétrico, embarcação a remo, entre outros).",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::42",
+      "excel_row": 42,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar, com sua patrulha ou tropa, um projeto de conscientização sobre o uso de energia e água em sua escola, condomínio ou sede da UEL.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::43",
+      "excel_row": 43,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de mutirões de plantio de mudas ou cultivo de uma horta em casa, na escola ou na UEL.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Agricultura, Energia, Jardinagem e Paisagismo, Metereologia, Escoteiros pela Energia Solar",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::PT_27",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber utilizar alguma técnica de previsão do tempo por indícios naturais.",
+      "regra_qtd_texto": "PA Complementar (Pista 27)"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::RT_100",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Visitar uma organização que trabalha e favor do meio ambiente e fazer uma pesquisa sobre os principais problemas ambientais do Brasil e os apresentar para sua tropa ou sua escola.",
+      "regra_qtd_texto": "PA Complementar (Rumo 100)"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::RT_101",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um projeto de conservação ambiental",
+      "regra_qtd_texto": "PA Complementar (Rumo 101)"
+    },
+    {
+      "chave": "MUDANÇAS CLIMÁTICAS::RT_102",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "MUDANÇAS CLIMÁTICAS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber identificar as pegadas de pelo menos cinco animais da fauna brasileira, e confeccionar pelo menos um molde em bom estado.\nOU (em substituição aos itens anteriores): Conquistar a Insígnia Mundial do Meio Ambiente, no Ramo Escoteiro.",
+      "regra_qtd_texto": "PA Complementar (Rumo 102)"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::57",
+      "excel_row": 57,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar, em patrulha, de uma atividade de exploração em ambiente natural, reconhecendo a fauna e a flora locais e identificando riscos à preservação, além de propor soluções para evitá-los",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::59",
+      "excel_row": 59,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Reconhecer os animais venenosos e peçonhentos da região e saber como agir em casos de picadas ou contaminação",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::60",
+      "excel_row": 60,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e executar um projeto ambiental com a patrulha ou tropa.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::61",
+      "excel_row": 61,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Plantar uma espécie nativa e observar seu crescimento, registrando cada etapa.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::62",
+      "excel_row": 62,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar as pegadas de pelo menos cinco animais da fauna brasileira e realizar levantamento das pegadas em áreas naturais.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::63",
+      "excel_row": 63,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade de mergulho que tenha o objetivo de conhecer e explorar a vida na água.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::64",
+      "excel_row": 64,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade de observação de animais noturnos com sua patrulha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::65",
+      "excel_row": 65,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Observar e registrar espécies de aves, insetos, plantas ou outros animais durante um acampamento ou excursão.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::66",
+      "excel_row": 66,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar parques, reservas ou centros de proteção ambiental para conhecer ações de preservação da fauna e da flora.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::67",
+      "excel_row": 67,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Construir comedouros ou bebedouros para aves e instalar em áreas adequadas, acompanhando seu uso.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::68",
+      "excel_row": 68,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar materiais educativos, como vídeos ou posts, sobre a importância de preservar a biodiversidade.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Animais Venenosos e Peçonhentos, Aquarismo, Biologia, Cuidados Animais de Estimação, Entomologia, Geologia, Melipolicultura, Microbiologia, Zoologia, Oceanologia, Botânica, Campeões da Natureza",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::PT_94",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um projeto ambiental com sua patrulha ou tropa e aplicar as normas de acampamento de baixo impacto em acampamentos e excursões.",
+      "regra_qtd_texto": "PA Complementar (Pista 94)"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::PT_95",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar levantamento de pegadas de animais de sua região.",
+      "regra_qtd_texto": "PA Complementar (Pista 95)"
+    },
+    {
+      "chave": "PRESERVAÇÃO DA BIODIVERSIDADE::PT_96",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "PRESERVAÇÃO DA BIODIVERSIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma excursão urbana com motivo ecológico",
+      "regra_qtd_texto": "PA Complementar (Pista 96)"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::89",
+      "excel_row": 89,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Montar o campo de patrulha com pioneirias como mesa, pórtico e canto do lenhador, utilizando amarras adequadas.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::90",
+      "excel_row": 90,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar os nós direito, correr, aselha, volta do fiel, escota, durante um acampamento sabendo sua utilização.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::91",
+      "excel_row": 91,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Escolher corretamente o local para montagem da barraca, incluindo técnicas de montagem, desmontagem e acondicionamento durante um acampamento de patrulha ou tropa.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::92",
+      "excel_row": 92,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Manusear corretamente ferramentas de corte e sapa durante um acampamento de patrulha ou tropa, zelando pela segurança e realizando reparos.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::93",
+      "excel_row": 93,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Preparar e executar uma fogueira para uma refeição mateira durante um acampamento de patrulha ou tropa, seguindo as técnicas de segurança.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::94",
+      "excel_row": 94,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de ao menos duas excursões ao ar livre (patrulha ou tropa), utilizando normas de baixo impacto ambiental.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::95",
+      "excel_row": 95,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de ao menos dois acampamentos ao ar livre (patrulha ou tropa), utilizando normas de baixo impacto ambiental.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::96",
+      "excel_row": 96,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Orientar-se com recursos naturais, bússola e mapa, utilizando azimutes",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::98",
+      "excel_row": 98,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Durante uma atividade náutica, utilizar nós de modalidade do mar, como lais de guia, nó de cunho, pinha de retinida e nó de defensa",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::100",
+      "excel_row": 100,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um percurso no campo de pelo menos 1  km utilizando sinais de pista.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::101",
+      "excel_row": 101,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Colaborar na preparação de alimentos para a patrulha em pelo menos três atividades ao ar livre, sendo uma delas no estilo comida mateira, sem utensílios.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::102",
+      "excel_row": 102,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Desenvolver soluções para purificação e consumo de água em um acampamento",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::103",
+      "excel_row": 103,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar técnicas de “tocaia\" em jogos com a patrulha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::104",
+      "excel_row": 104,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar da construção de um fogão suspenso ou forno de acampamento para o preparo de uma refeição.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::105",
+      "excel_row": 105,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Construir e  pernoitar em um bivaque ou abrigo natural durante uma atividade de patrulha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::106",
+      "excel_row": 106,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Confeccionar falcaças, nó catau, lais de guia, pescador, oito duplo e demonstrar cuidados com as cordas.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::107",
+      "excel_row": 107,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade aquática com a tropa, seguindo as normas de segurança.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::108",
+      "excel_row": 108,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Desenhar um croqui de um acampamento, usando sinais topográficos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Corrida de Orientação, Culinária Mateira, Escalada, Espeleoturismo, Ferramentas de Corte, Mountain Bike, Pesca, Rastreamento, Acampamento, Excursões, Montanhismo, Pioneiria, Sobrevivência",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::PT_1",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de pelo menos 5 atividades ao ar livre  da patrulha (jornadas, excursões, acampamentos de patrulha ou tropa) utilizando normas de baixo impacto ambiental.",
+      "regra_qtd_texto": "PA Complementar (Pista 1)"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::PT_21",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Traçar e seguir sinais de pista em um percurso de pelo menos 500 metros em área de campo, e pelo menos 1.000 metros em área urbana.",
+      "regra_qtd_texto": "PA Complementar (Pista 21)"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::PT_40",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente da construção de pioneiras num acampamento de tropa, aplicando pelo menos os seguintes nós e amarras: direito, volta do fiel ou volta da ribeira, nó de escota, amarra quadrada e diagonal.",
+      "regra_qtd_texto": "PA Complementar (Pista 40)"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::PT_41",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber utilizar e conservar as ferramentas típicas de uma patrulha (machadinha, facão, etc.) e demonstrar os cuidados básicos com os utensílios de campo (como lampiões e fogareiros).",
+      "regra_qtd_texto": "PA Complementar (Pista 41)"
+    },
+    {
+      "chave": "VIDA AO AR LIVRE::PT_42",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "VIDA AO AR LIVRE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da construção de um fogão suspenso ou forno de acampamento.",
+      "regra_qtd_texto": "PA Complementar (Pista 42)"
+    },
+    {
+      "chave": "COMUNIDADE::6",
+      "excel_row": 6,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar, sozinho ou em patrulha, uma necessidade da comunidade e planejar e executar uma ação comunitária.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "COMUNIDADE::7",
+      "excel_row": 7,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar os riscos de desastres naturais na comunidade e conhecer os hospitais e contatos de emergência, sabendo quando acionar cada um.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "COMUNIDADE::9",
+      "excel_row": 9,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar o conhecimento adquirido nas especialidades em ações de serviço à comunidade.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "COMUNIDADE::10",
+      "excel_row": 10,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente de pelo menos uma campanha de serviço e desenvolvimento comunitário organizadas pela UEL, distrito ou região.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "COMUNIDADE::11",
+      "excel_row": 11,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar uma oficina de brinquedos, doando os itens consertados para uma instituição que atende crianças carentes.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "COMUNIDADE::12",
+      "excel_row": 12,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Colaborar em ações organizadas por outras instituições de serviço.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "COMUNIDADE::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Inclusão, Libras",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "COMUNIDADE::PT_80",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar boas ações individuais e participar de boas ações coletivas com sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 80)"
+    },
+    {
+      "chave": "COMUNIDADE::PT_81",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um MutCom.",
+      "regra_qtd_texto": "PA Complementar (Pista 81)"
+    },
+    {
+      "chave": "COMUNIDADE::RT_33",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar as especialidades em ações de serviço da comunidade.",
+      "regra_qtd_texto": "PA Complementar (Rumo 33)"
+    },
+    {
+      "chave": "COMUNIDADE::RT_34",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar a outros jovens na conquista das especialidades",
+      "regra_qtd_texto": "PA Complementar (Rumo 34)"
+    },
+    {
+      "chave": "COMUNIDADE::RT_35",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Propor a sua patrulha e tropa ideias de ações a serviço da comunidade",
+      "regra_qtd_texto": "PA Complementar (Rumo 35)"
+    },
+    {
+      "chave": "COMUNIDADE::RT_88",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar uma das alternativas abaixo:\na. Convidar seus vizinhos e conhecidos para colaborar em algum mutirão de ajuda à vítimas de desastres naturais.\nb. Planejar e executar seu projeto para a Insígnia da Ação Comunitária.\nc. Participar ativamente de alguma campanha de auxílio à comunidade.",
+      "regra_qtd_texto": "PA Complementar (Rumo 88)"
+    },
+    {
+      "chave": "COMUNIDADE::RT_89",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber onde encontrar os principais serviços públicos na sua cidade.",
+      "regra_qtd_texto": "PA Complementar (Rumo 89)"
+    },
+    {
+      "chave": "COMUNIDADE::RT_90",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar, com sua patrulha, de um “safári fotográfico” em sua cidade.",
+      "regra_qtd_texto": "PA Complementar (Rumo 90)"
+    },
+    {
+      "chave": "COMUNIDADE::RT_91",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Identificar problemas da sua cidade e propor soluções",
+      "regra_qtd_texto": "PA Complementar (Rumo 91)"
+    },
+    {
+      "chave": "COMUNIDADE::18",
+      "excel_row": 18,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Defesa Civil",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "COMUNIDADE::19",
+      "excel_row": 19,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Mensageiros da Paz",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "COMUNIDADE::20",
+      "excel_row": 20,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "COMUNIDADE",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Insíginia da Ação Comunitária",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "DEMOCRACIA::26",
+      "excel_row": 26,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente das decisões do Conselho de Patrulha, contribuindo com ideias, votando e assumindo responsabilidades, respeitando os resultados",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "DEMOCRACIA::27",
+      "excel_row": 27,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente das decisões da Assembleia de Tropa, contribuindo com ideias, votando e assumindo responsabilidades, respeitando os resultados",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "DEMOCRACIA::28",
+      "excel_row": 28,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar da eleição de monitor da patrulha e das decisões de encargos, respeitando os resultados",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "DEMOCRACIA::30",
+      "excel_row": 30,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar a sede administrativa de qualquer um dos três poderes, e explicar a importância e as particularidades desta forma de governo, conhecendo a constituição e os símbolos nacionais, do estado e município.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "DEMOCRACIA::31",
+      "excel_row": 31,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer a estrutura do Grupo Escoteiro ou Seção Autônoma e participar de uma Assembleia de Grupo Escoteiro.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "DEMOCRACIA::32",
+      "excel_row": 32,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente de um fórum de jovens do grupo escoteiro.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "DEMOCRACIA::33",
+      "excel_row": 33,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Aprender e  compartilhar sobre a história do  voto  e da democracia no Brasil.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "DEMOCRACIA::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Prevenção às Fake News, Geografia, Paz e Justiça",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "DEMOCRACIA::PT_59",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um debate sobre um filme ou um documentário com temática ambiental ou social.",
+      "regra_qtd_texto": "PA Complementar (Pista 59)"
+    },
+    {
+      "chave": "DEMOCRACIA::PT_60",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente nas assembleias expressando sua opinião de forma respeitosa.",
+      "regra_qtd_texto": "PA Complementar (Pista 60)"
+    },
+    {
+      "chave": "DEMOCRACIA::PT_61",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Propor temas para debater em seu conselho de patrulha",
+      "regra_qtd_texto": "PA Complementar (Pista 61)"
+    },
+    {
+      "chave": "DEMOCRACIA::PT_62",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da avaliação de um acampamento de tropa",
+      "regra_qtd_texto": "PA Complementar (Pista 62)"
+    },
+    {
+      "chave": "DEMOCRACIA::PT_77",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente de uma Assembleia de Tropa, analisando as normas de convivência e propondo melhorias.",
+      "regra_qtd_texto": "PA Complementar (Pista 77)"
+    },
+    {
+      "chave": "DEMOCRACIA::PT_78",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Estudar sobre a organização do Escotismo brasileiro e apresentar o resultado para sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 78)"
+    },
+    {
+      "chave": "DEMOCRACIA::PT_79",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a estrutura de um grupo escoteiro.",
+      "regra_qtd_texto": "PA Complementar (Pista 79)"
+    },
+    {
+      "chave": "DEMOCRACIA::RT_81",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber o que é a Constituição Brasileira, conhecer os símbolos nacionais e saber cantar o Hino Nacional.",
+      "regra_qtd_texto": "PA Complementar (Rumo 81)"
+    },
+    {
+      "chave": "DEMOCRACIA::RT_82",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Visitar a câmara de vereadores de seu município.",
+      "regra_qtd_texto": "PA Complementar (Rumo 82)"
+    },
+    {
+      "chave": "DEMOCRACIA::RT_83",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber as diferenças entre o poder legislativo, executivo e judiciário.",
+      "regra_qtd_texto": "PA Complementar (Rumo 83)"
+    },
+    {
+      "chave": "DEMOCRACIA::RT_84",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Assistir a uma assembleia de seu grupo escoteiro.",
+      "regra_qtd_texto": "PA Complementar (Rumo 84)"
+    },
+    {
+      "chave": "DEMOCRACIA::RT_85",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente de uma Assembleia de Tropa, analisando as normas de convivência e propondo melhorias.",
+      "regra_qtd_texto": "PA Complementar (Rumo 85)"
+    },
+    {
+      "chave": "DEMOCRACIA::RT_86",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar sobre a organização do Escotismo brasileiro e mundial, e apresentar o resultado para a tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 86)"
+    },
+    {
+      "chave": "DEMOCRACIA::RT_87",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "DEMOCRACIA",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Apresentar a estrutura de um grupo escoteiro para um novo membro da patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 87)"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::44",
+      "excel_row": 44,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar o hasteamento ou arriamento da bandeira em cerimônia de abertura ou encerramento de atividade.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "HERANÇA CULTURAL::46",
+      "excel_row": 46,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Desenvolver sua \"Árvore Genealógica”, pesquisando seu sobrenome, significado e a história dos seus antepassados, situando-os no contexto histórico, e apresentá-la para sua patrulha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::47",
+      "excel_row": 47,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar das cerimônias com os símbolos nacionais e cantar o Hino Nacional corretamente.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::48",
+      "excel_row": 48,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar  para  sua  patrulha  ou  tropa  histórias  de mulheres que se destacaram em nosso país.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::49",
+      "excel_row": 49,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar, com sua patrulha, de uma comemoração ou festa típica da sua região.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::50",
+      "excel_row": 50,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar, com sua patrulha, de um safari fotográfico em sua cidade, identificando os locais de importância histórica da localidade.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::51",
+      "excel_row": 51,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um jantar festivo representando um estado diferente do seu.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::52",
+      "excel_row": 52,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar jogos e atividades típicas da sua região.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::53",
+      "excel_row": 53,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar museus, centros culturais ou  pontos históricos locais para conhecer o patrimônio da região",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::54",
+      "excel_row": 54,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Investigar  lendas,  histórias  ou  personagens  do  folclore brasileiro e dramatizá-los em esquetes no Fogo de Conselho",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::55",
+      "excel_row": 55,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar canções e danças típicas do Brasil.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::56",
+      "excel_row": 56,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Confeccionar artesanato típico de alguma região do Brasil.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::57",
+      "excel_row": 57,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar a cultura da sua cidade em um evento regional ou nacional, como feira das cidades ou noite folclórica.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::58",
+      "excel_row": 58,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Especialidades que podem complementar as Ações Educativas Variáveis",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Anime, Arqueologia, Arte da Marinharia, Artes Cênicas, Capoeira, Civilizações da Antiguidade, Cosplay, Culinária Típica, Danças Folclóricas, História Aeroespacial, História da Aviação, História Brasileira, História da Arte, História do Escotismo, História Local, História Marítima, Literatura, Mitologias, Museologia, Origami, Paleontologia, Poesia",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::PT_84",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar, junto com sua patrulha, de uma comemoração típica de sua região.",
+      "regra_qtd_texto": "PA Complementar (Pista 84)"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::PT_85",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um jantar festivo na tropa, representando um estado diferente do seu.",
+      "regra_qtd_texto": "PA Complementar (Pista 85)"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::PT_86",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar e colocar em prática alguns jogos e atividades típicas dos habitantes da região onde você vive.",
+      "regra_qtd_texto": "PA Complementar (Pista 86)"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::PT_87",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um evento cívico, com sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 87)"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::83",
+      "excel_row": 83,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Brasilidades",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::84",
+      "excel_row": 84,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Genealogia",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "HERANÇA CULTURAL::85",
+      "excel_row": 85,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "HERANÇA CULTURAL",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Tradições dos Povos Originários (por equiparação a antiga Tradições Indígenas)",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::91",
+      "excel_row": 91,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar  uma  atividade  para  a  patrulha  sobre  Direitos Humanos ou os Direitos da Criança e do Adolescente.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::93",
+      "excel_row": 93,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Convidar a patrulha a cooperar em ações organizadas por uma comunidade em favor de pessoas vulneráveis.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::94",
+      "excel_row": 94,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma excursão com sua patrulha ou tropa visitando diferentes templos e conhecendo um pouco mais sobre cada religião.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::95",
+      "excel_row": 95,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de eventos de trocas culturais entre jovens de diferentes origens para estimular o respeito mútuo.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::96",
+      "excel_row": 96,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade com outro grupo escoteiro ou seção autônoma e refletir sobre o que é Fraternidade Mundial Escoteira.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::97",
+      "excel_row": 97,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer as diferentes denominações de fé e crença de amigos da patrulha, tropa, escola e comunidade.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::98",
+      "excel_row": 98,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Promover  uma  campanha  que  incentive  atitudes  de respeito e cooperação entre todos.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::99",
+      "excel_row": 99,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Convidar representantes de diferentes crenças para compartilhar experiências e responder perguntas da tropa",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::100",
+      "excel_row": 100,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar  com  sua  patrulha  ou seção  um  calendário  de celebrações religiosas das diferentes denominações de fé e crença ali presentes.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Geografia, História Mundial, Inclusão, Libras, Línguas, Paz e Justiça",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::PT_65",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de atividades nas quais se promove a igualdade de direitos e deveres entre as pessoas.",
+      "regra_qtd_texto": "PA Complementar (Pista 65)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::PT_66",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Compartilhar por igual com seus irmãos as tarefas domésticas.",
+      "regra_qtd_texto": "PA Complementar (Pista 66)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::PT_67",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Investigar sobre mulheres que se destacaram na história de nosso país.",
+      "regra_qtd_texto": "PA Complementar (Pista 67)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::PT_71",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Investigar sobre a vida de pessoas que lutaram pelos direitos humanos no Brasil e no mundo, e apresentar para a Tropa",
+      "regra_qtd_texto": "PA Complementar (Pista 71)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::PT_92",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade da sua patrulha e/ou tropa em que se promova a paz e compreensão entre as pessoas.",
+      "regra_qtd_texto": "PA Complementar (Pista 92)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::PT_93",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar sobre a vida de pessoas que trabalharam pela paz no Brasil e apresentar o resultado para sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 93)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::PT_107",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer as diferentes confissões religiosas as quais pertencem seus amigos de patrulha, tropa, escola de comunidade.",
+      "regra_qtd_texto": "PA Complementar (Pista 107)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::PT_108",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar os principais pontos de uma confissão religiosa diferente da sua e apresentar para a tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 108)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_70",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente de uma mobilização para minimizar algum problema social.",
+      "regra_qtd_texto": "PA Complementar (Rumo 70)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_71",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber a quem recorrer em caso de maus tratos a outras pessoas.",
+      "regra_qtd_texto": "PA Complementar (Rumo 71)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_72",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar algum companheiro de sua patrulha a conquistar algum objetivo ou melhorar em algum aspecto.",
+      "regra_qtd_texto": "PA Complementar (Rumo 72)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_78",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Propor a sua patrulha e tropa atividades e projetos relacionados com os Direitos Humanos.",
+      "regra_qtd_texto": "PA Complementar (Rumo 78)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_79",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar sobre os principais problemas de violência escolar que afetam a sua comunidade e fazer apresentação para a patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 79)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_80",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade em que se promovem os Direitos das Crianças e Adolescentes.",
+      "regra_qtd_texto": "PA Complementar (Rumo 80)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_99",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar pelo menos uma das alternativas abaixo",
+      "regra_qtd_texto": "PA Complementar (Rumo 99)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_112",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Discutir com sua patrulha um episódio histórico que expresse o efeito prejudicial do fanatismo religioso",
+      "regra_qtd_texto": "PA Complementar (Rumo 112)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::RT_113",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Confeccionar um calendário de celebrações e festividades religiosas das religiões dos escoteiros da sua patrulha",
+      "regra_qtd_texto": "PA Complementar (Rumo 113)"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::110",
+      "excel_row": 110,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Insíginia da Lusofonia",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::111",
+      "excel_row": 111,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Insíginia do Cone Sul",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "PROMOÇÃO DA PAZ::112",
+      "excel_row": 112,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "PROMOÇÃO DA PAZ",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Diálogos pela Paz",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "VALORES::118",
+      "excel_row": 118,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Avaliar, com seus companheiros de patrulha, a vivência da Promessa e Lei Escoteira.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VALORES::120",
+      "excel_row": 120,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar da avaliação da sua Progressão Pessoal e dos companheiros da patrulha",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "VALORES::121",
+      "excel_row": 121,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Explicar o significado da Lei e da Promessa Escoteira aos novos membros da patrulha.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "VALORES::122",
+      "excel_row": 122,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Auxiliar  um  companheiro  de  patrulha  a  realizar  sua Promessa Escoteira.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "VALORES::123",
+      "excel_row": 123,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Explicar aos novos membros da patrulha os significados da flor-de-lis e da Saudação Escoteira.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "VALORES::124",
+      "excel_row": 124,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer e cantar o Hino Alerta",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "VALORES::125",
+      "excel_row": 125,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Especialidades que podem complementar as Ações Educativas Variáveis",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "VALORES::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Fogo de Conselho, História do Escotismo",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "VALORES::PT_46",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Explicar o significado da Lei e da Promessa Escoteiras aos novos integrantes da sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 46)"
+    },
+    {
+      "chave": "VALORES::PT_47",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar corretamente das cerimônias com os símbolos nacionais e saber cantar o Hino Nacional.",
+      "regra_qtd_texto": "PA Complementar (Pista 47)"
+    },
+    {
+      "chave": "VALORES::PT_48",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Explicar, a partir do seu ponto de vista, o que significa ser leal.",
+      "regra_qtd_texto": "PA Complementar (Pista 48)"
+    },
+    {
+      "chave": "VALORES::PT_49",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar o conceito de lealdade em jogos e atividades de sua patrulha e tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 49)"
+    },
+    {
+      "chave": "VALORES::PT_63",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Auxiliar  a um novo integrante da patrulha a se ambientar.",
+      "regra_qtd_texto": "PA Complementar (Pista 63)"
+    },
+    {
+      "chave": "VALORES::PT_64",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Convidar sua patrulha para uma reunião em sua residência.",
+      "regra_qtd_texto": "PA Complementar (Pista 64)"
+    },
+    {
+      "chave": "VALORES::PT_88",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Explicar aos novos integrantes de sua patrulha os significados da flor de lis e saudação escoteira.",
+      "regra_qtd_texto": "PA Complementar (Pista 88)"
+    },
+    {
+      "chave": "VALORES::PT_89",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a história de seu grupo escoteiro e seus símbolos.",
+      "regra_qtd_texto": "PA Complementar (Pista 89)"
+    },
+    {
+      "chave": "VALORES::PT_90",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade, distrital, regional e ou Jamboree Nacional.",
+      "regra_qtd_texto": "PA Complementar (Pista 90)"
+    },
+    {
+      "chave": "VALORES::PT_91",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um JOTI ou JOTA.",
+      "regra_qtd_texto": "PA Complementar (Pista 91)"
+    },
+    {
+      "chave": "VALORES::PT_100",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade de serviço comunitário com os integrantes de sua comunidade religiosa.",
+      "regra_qtd_texto": "PA Complementar (Pista 100)"
+    },
+    {
+      "chave": "VALORES::PT_101",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar os ensinamentos de sua confissão religiosa nas coisas que faz no seu dia-a-dia.",
+      "regra_qtd_texto": "PA Complementar (Pista 101)"
+    },
+    {
+      "chave": "VALORES::PT_102",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Apresentar à tropa um pequeno relato de ensinamentos da sua confissão religiosa.",
+      "regra_qtd_texto": "PA Complementar (Pista 102)"
+    },
+    {
+      "chave": "VALORES::RT_55",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Auxiliar um companheiro de patrulha a realizar sua Promessa escoteira",
+      "regra_qtd_texto": "PA Complementar (Rumo 55)"
+    },
+    {
+      "chave": "VALORES::RT_56",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Avaliar com seus companheiros a vivência da Promessa e Lei Escoteiras na patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 56)"
+    },
+    {
+      "chave": "VALORES::RT_57",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Cantar com sua patrulha a Canção da Promessa",
+      "regra_qtd_texto": "PA Complementar (Rumo 57)"
+    },
+    {
+      "chave": "VALORES::RT_58",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a história de Caio Viana Martins",
+      "regra_qtd_texto": "PA Complementar (Rumo 58)"
+    },
+    {
+      "chave": "VALORES::RT_59",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar boas ações pessoais e junto com sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 59)"
+    },
+    {
+      "chave": "VALORES::RT_95",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade escoteira distrital, regional, nacional ou internacional.",
+      "regra_qtd_texto": "PA Complementar (Rumo 95)"
+    },
+    {
+      "chave": "VALORES::RT_96",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar sobre a história do Escotismo no Brasil e organizar uma apresentação para sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 96)"
+    },
+    {
+      "chave": "VALORES::RT_97",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar uma atividade com uma patrulha de um grupo escoteiro distinto do seu",
+      "regra_qtd_texto": "PA Complementar (Rumo 97)"
+    },
+    {
+      "chave": "VALORES::RT_98",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um JOTI ou JOTA",
+      "regra_qtd_texto": "PA Complementar (Rumo 98)"
+    },
+    {
+      "chave": "VALORES::RT_109",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar os ensinamentos de sua religião nas coisas que faz em sua vida.",
+      "regra_qtd_texto": "PA Complementar (Rumo 109)"
+    },
+    {
+      "chave": "VALORES::RT_110",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Avaliar suas ações de acordo com os ensinamentos de sua religião.",
+      "regra_qtd_texto": "PA Complementar (Rumo 110)"
+    },
+    {
+      "chave": "VALORES::RT_111",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Convidar sua patrulha para cooperar em ações, organizadas por sua comunidade religiosa, em favor de desassistidos.",
+      "regra_qtd_texto": "PA Complementar (Rumo 111)"
+    },
+    {
+      "chave": "VALORES::130",
+      "excel_row": 130,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "VALORES",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Escotismo Mundial",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::6",
+      "excel_row": 6,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer as ações iniciais em acidentes e como cuidar de:\n- pequenos cortes;\n- contusões;\n- escoriações;\n- queimaduras e\n- picadas de animais peçonhentos.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::7",
+      "excel_row": 7,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar técnicas de bandagens e transporte de feridos.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::8",
+      "excel_row": 8,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Cuidar da segurança física e mental nas atividades escoteiras, respeitando os limites próprios e dos outros, e seguindo as orientações dos escotistas.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::10",
+      "excel_row": 10,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer as medidas do seu corpo (palmo, envergadura, passo simples e duplo) e aplicá-las durante uma excursão com sua patrulha",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::11",
+      "excel_row": 11,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade, oficina, palestra que trate dos malefícios dos seguintes assuntos: anorexia, bulimia, drogas, álcool, cigarro e cigarros eletrônicos.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::12",
+      "excel_row": 12,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Saber contato dos órgãos de emergência e saber como informar os sinais vitais e situação da vítima.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::13",
+      "excel_row": 13,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar  de  uma  simulação  de  acidente  e  atuar  em conjunto com a sua patrulha.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::14",
+      "excel_row": 14,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Proteger-se do sol e do frio durante as atividades, identificando casos de desidratação e insolação, e respeitar os limites do seu corpo.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::15",
+      "excel_row": 15,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Demonstrar  como  ajudar  uma  pessoa  em  casos  de obstrução das vias aéreas e convulsões",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::16",
+      "excel_row": 16,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer os  itens  que  compõem a caixa  de  primeiros socorros da patrulha e mantê-la organizada.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::17",
+      "excel_row": 17,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Saber agir em casos de hemorragia.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::26",
+      "excel_row": 26,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Mar",
+      "ds_acao": "Arremessar um cabo de retinida com pinha ou bóia salva-vidas a 10 metros, utilizando a técnica de lançamento para salvamento, e conhecer as técnicas de natação para salvamento, transporte, reanimação e aquecimento de afogados.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Babá, Cuidados com Idosos, Maquiagem, Vigilância Epidemiológica, Salvamento, Segurança e Emergência Náutica, Segurança",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::PT_4",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os elementos que compõem a caixa de primeiros socorros da patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 4)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::PT_5",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer as ações iniciais que devem ser tomadas num acidente e saber como cuidar de ferimentos leves; bandagens e transporte de feridos, pequenos cortes e insetos",
+      "regra_qtd_texto": "PA Complementar (Pista 5)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::PT_6",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar medidas de segurança nas atividades de patrulha e tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 6)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::PT_7",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber como prevenir os males da exposição ao sol: insolação, desidratação, queimaduras, câncer de pele.",
+      "regra_qtd_texto": "PA Complementar (Pista 7)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::PT_82",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer um croqui da área onde reside, identificando os serviços públicos de seu bairro.",
+      "regra_qtd_texto": "PA Complementar (Pista 82)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::PT_83",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a localização e número de telefone dos distintos serviços públicos de seu bairro.",
+      "regra_qtd_texto": "PA Complementar (Pista 83)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::RT_1",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de pelo menos 5 atividades ao ar livre da patrulha (acampamentos ou excursões) utilizando normas de baixo impacto ambiental.",
+      "regra_qtd_texto": "PA Complementar (Rumo 1)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::RT_2",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber explicar as mudanças que estão acontecendo no seu corpo; conhecer os males da anorexia, bulimia, os perigos do álcool e cigarro e manter hábitos de higiene pessoal.",
+      "regra_qtd_texto": "PA Complementar (Rumo 2)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::RT_3",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma Jornada de Travessia.",
+      "regra_qtd_texto": "PA Complementar (Rumo 3)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::RT_4",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Reconhecer os tipos mais comuns de animais venenosos e peçonhentos de sua região.",
+      "regra_qtd_texto": "PA Complementar (Rumo 4)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::RT_5",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Manter em dia os elementos que compõem a caixa de primeiros socorros da patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 5)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::RT_6",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar medidas gerais de segurança em caso de acidentes, e saber determinar a ordem de prioridades quando assistir a um acidente e utilizar distintas técnicas para o transporte de feridos.",
+      "regra_qtd_texto": "PA Complementar (Rumo 6)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::RT_7",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber agir em casos de hemorragia",
+      "regra_qtd_texto": "PA Complementar (Rumo 7)"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::29",
+      "excel_row": 29,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Anatomia Humana",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::30",
+      "excel_row": 30,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Prevenção em Saúde",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "CUIDADO COM O CORPO::31",
+      "excel_row": 31,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "CUIDADO COM O CORPO",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Primeiros Socorros",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::36",
+      "excel_row": 36,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Fazer reflexões espirituais rotineiras na tropa ou patrulha, ao ar livre.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::37",
+      "excel_row": 37,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar um pequeno relato à patrulha ou tropa sobre os ensinamentos de sua crença ou religião",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::38",
+      "excel_row": 38,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Auxiliar   na  realização   de  uma  celebração  de  sua comunidade religiosa.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::39",
+      "excel_row": 39,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Celebrar sua crença ou religião regularmente.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::40",
+      "excel_row": 40,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Colaborar na organização de um culto interconfessional em uma atividade escoteira.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::41",
+      "excel_row": 41,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um momento de reflexão e conexão com um ambiente natural em que possa apreciar e agradecer a beleza do mundo natural.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::PT_97",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer orações rotineiras na tropa ou patrulha, inclusive a “oração do escoteiro”.",
+      "regra_qtd_texto": "PA Complementar (Pista 97)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::PT_98",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar das celebrações de sua confissão religiosa",
+      "regra_qtd_texto": "PA Complementar (Pista 98)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::PT_99",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar reflexões junto a sua patrulha nas excursões e acampamentos.",
+      "regra_qtd_texto": "PA Complementar (Pista 99)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::PT_103",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da construção de um espaço de reflexão em um acampamento de tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 103)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::PT_104",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Orar utilizando uma oração própria da tropa ou de sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 104)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::PT_105",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Praticar a oração como forma de relacionar-se com Deus.",
+      "regra_qtd_texto": "PA Complementar (Pista 105)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::PT_106",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar ou contribuir com um livreto de orações para a sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 106)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::RT_103",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar regularmente dos cultos da sua religião.",
+      "regra_qtd_texto": "PA Complementar (Rumo 103)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::RT_104",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Auxiliar na realização de uma celebração de sua comunidade religiosa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 104)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::RT_105",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ler pelo menos um livro sagrado da sua fé.",
+      "regra_qtd_texto": "PA Complementar (Rumo 105)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::RT_106",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar atividades de reflexão em acampamento ou excursão com sua patrulha ou tropa",
+      "regra_qtd_texto": "PA Complementar (Rumo 106)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::RT_107",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar a projetar e construir, junto com sua patrulha ou tropa, um lugar para oração e reflexão no acampamento",
+      "regra_qtd_texto": "PA Complementar (Rumo 107)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::RT_108",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar com sua patrulha e sua família momentos de oração.",
+      "regra_qtd_texto": "PA Complementar (Rumo 108)"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::44",
+      "excel_row": 44,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Yoga",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "ESPIRITUALIDADE::45",
+      "excel_row": 45,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "ESPIRITUALIDADE",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Diálogo Inter-religioso",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::51",
+      "excel_row": 51,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e executar um cardápio completo e saudável (café da manhã, almoço e jantar) para a patrulha em acampamento.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::52",
+      "excel_row": 52,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer e aplicar normas de limpeza no tratamento e conservação de alimentos nas atividades de patrulha",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::54",
+      "excel_row": 54,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Manter hábitos de higiene pessoal, utilizar o vestuário ou uniforme adequadamente, demonstrando aplicação correta dos distintivos.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::55",
+      "excel_row": 55,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Contribuir para manter a sede do grupo e canto de patrulha em ordem e em perfeito estado de conservação.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::56",
+      "excel_row": 56,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Montar um  cronograma semanal, equilibrando  estudos, responsabilidades e momentos de lazer.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::57",
+      "excel_row": 57,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Praticar uma atividade física regularmente.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::58",
+      "excel_row": 58,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Promover um piquenique com alimentos saudáveis com sua patrulha ou tropa.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::59",
+      "excel_row": 59,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Manter adequada rotina de sono e alimentação saudável",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::60",
+      "excel_row": 60,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Saber o que são as indicações de rótulos, o que são gorduras saturadas, conservantes, corantes além dos selos de advertência.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::61",
+      "excel_row": 61,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Arrumar e limpar seu quarto e contribuir nas rotinas da casa.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Artes Marciais, Canoagem, Ciclismo, Corrida de Rua, Culinária Vegetariana, Cuidados Bucais, Dança, Desportos Inclusivos, Esportes de Quadra, Futebol, Ginásticas (equiparada com as antigas Ginástica e Ginástica Rítmica), Ginástica, Ginástica Rítmica, Hipismo, Mergulho, Natação, Patinação, Plantas Medicinais, Remo, Skateboard, Slackline, Técnicas Verticais, Tênis, Tênis de Mesa, Tiro com Arco, Triatlo, Vela, Yoga",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_2",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer e aplicar normas de limpeza no tratamento e na conservação de alimentos nas atividades de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 2)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_3",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aferir seu passo duplo, conhecer as medidas de seu corpo e aplicar-las em avaliações e medições.",
+      "regra_qtd_texto": "PA Complementar (Pista 3)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_8",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Manter hábitos de higiene individual, demonstrar cuidado com o vestuário ou uniforme escoteiro e utilizar corretamente os distintivos e emblemas.",
+      "regra_qtd_texto": "PA Complementar (Pista 8)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_9",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Classificar o lixo em diferentes categorias e saber como tratar os diferentes tipos de resíduos de acampamentos ou excursões utilizando “engenhocas” para melhorar a higiene e o conforto nos acampamentos.",
+      "regra_qtd_texto": "PA Complementar (Pista 9)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_10",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da manutenção do canto de patrulha, conhecer os materiais de sua patrulha e contribuir para a sua conservação, organização e limpeza.",
+      "regra_qtd_texto": "PA Complementar (Pista 10)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_11",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Montar corretamente uma mochila para um acampamento de 3 dias e manter seu equipamento pessoal em bom estado.",
+      "regra_qtd_texto": "PA Complementar (Pista 11)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_13",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Colaborar na elaboração de alimentos (como cozinheiro ou copeiro) em pelo menos três atividades ao ar livre da patrulha; (jornadas, excursões ou acampamento de patrulha).",
+      "regra_qtd_texto": "PA Complementar (Pista 13)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_14",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Montar uma solução para purificação de água em acampamentos",
+      "regra_qtd_texto": "PA Complementar (Pista 14)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_15",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Utilizar diversos tipos de fogos de acampamento, de maneira adequada e segura.",
+      "regra_qtd_texto": "PA Complementar (Pista 15)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_19",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar regularmente uma atividade física ou o esporte que escolheu.",
+      "regra_qtd_texto": "PA Complementar (Pista 19)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::PT_20",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de diversos jogos com sua patrulha e tropa respeitando as regras e aos demais participantes.",
+      "regra_qtd_texto": "PA Complementar (Pista 20)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_8",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade de limpeza e organização do canto de patrulha (em sede).",
+      "regra_qtd_texto": "PA Complementar (Rumo 8)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_9",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Propor e executar uma atividade de melhoria em algum local visitado pela patrulha em acampamentos e manter em ordem seu quarto e objetos pessoais.",
+      "regra_qtd_texto": "PA Complementar (Rumo 9)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_10",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Demonstrar cuidado com seu vestuário ou uniforme escoteiro e costurar os seus distintivos e insígnias",
+      "regra_qtd_texto": "PA Complementar (Rumo 10)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_11",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Montar corretamente uma mochila para um acampamento de cinco dias e manter o equipamentos de sua patrulha em bom estado.",
+      "regra_qtd_texto": "PA Complementar (Rumo 11)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_12",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Preparar cinco refeições para sua patrulha, incluindo a preparação de um prato quente e de uma sobremesa sendo três refeições em fogueira ou fogão de campo.",
+      "regra_qtd_texto": "PA Complementar (Rumo 12)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_13",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Montar o cardápio de um acampamento de patrulha de fim de semana e fazer as refeições de maneira equilibrada, durante as atividades de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 13)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_14",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Cozinhar ao ar livre sem utensílios (comida mateira), respeitando as normas de limpeza",
+      "regra_qtd_texto": "PA Complementar (Rumo 14)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_19",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar regularmente uma atividade física ou esporte, demonstrando progresso em seu desempenho",
+      "regra_qtd_texto": "PA Complementar (Rumo 19)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::RT_20",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de diversos jogos com outros grupos escoteiros, respeitando as regras e os demais participantes.",
+      "regra_qtd_texto": "PA Complementar (Rumo 20)"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::93",
+      "excel_row": 93,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Noções Desportivas",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "HÁBITOS SAUDÁVEIS::94",
+      "excel_row": 94,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "HÁBITOS SAUDÁVEIS",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Nutrição",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "SAÚDE MENTAL::100",
+      "excel_row": 100,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer o conceito de Espaços Seguros e aplicá-los em todas as atividades de sua patrulha ou tropa.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "SAÚDE MENTAL::101",
+      "excel_row": 101,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Aprender a identificar sinais de tristeza ou isolamento em colegas e saber como oferecer apoio inicial, como conversar com respeito e buscar ajuda de um adulto de confiança.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "SAÚDE MENTAL::103",
+      "excel_row": 103,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar  de  uma  atividade  sobre  a  importância  do autocuidado e da saúde mental.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "SAÚDE MENTAL::104",
+      "excel_row": 104,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conduzir uma sessão de relaxamento como yoga, meditação, caminhadas silenciosas na natureza, alongamentos, entre outras, para sua patrulha ou tropa",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "SAÚDE MENTAL::105",
+      "excel_row": 105,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar sua rotina de atividades semanais, considerando a importância do equilíbrio entre as atividades do mundo digital e real e realizar uma atividade de bem-estar offline.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "SAÚDE MENTAL::106",
+      "excel_row": 106,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Propor momentos de descontração com a família ao ar livre, evitando o uso da tecnologia e compartilhar como foi a experiência",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "SAÚDE MENTAL::107",
+      "excel_row": 107,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar com sua patrulha de uma atividade que promova o contato com seus sentidos e promova momentos de equilíbrio emocional como por exemplo: uma trilha sensorial, pintura livre, roda de canções, observação de céu ou fogueira, entre outros.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "SAÚDE MENTAL::ESP_COMPL",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 2+: Aeromodelismo, Canto, Coleções, Cubo  Mágico, Dança, Expressão Musical, Ioiô, Jogos de Cartas Colecionáveis, Jogos de Tabuleiro, Mágica e Ilusionismo, Plastimodelismo, Maquiagem, Pipas, Quebra-Cabeças, RPG, Xadrez",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_16",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar seu tempo utilizando uma agenda ou instrumento similar.",
+      "regra_qtd_texto": "PA Complementar (Pista 16)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_17",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar, dentro do prazo, as suas tarefas escolares",
+      "regra_qtd_texto": "PA Complementar (Pista 17)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_18",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Frequentar regularmente as atividades e reuniões da sua patrulha e da tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 18)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_50",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar como animador em um acampamento de sua patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 50)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_51",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer  historias de pessoas que se sobrepuseram em momentos difíceis e os relatar aos seus companheiros de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 51)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_55",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar os malefícios de drogas e entorpecentes.",
+      "regra_qtd_texto": "PA Complementar (Pista 55)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_56",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Contribuir na manutenção de livro de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Pista 56)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_57",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um turno de ronda em um acampamento de tropa.",
+      "regra_qtd_texto": "PA Complementar (Pista 57)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::PT_58",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Registrar, em algum tipo de diario ou arquivo, os principais momentos da sua historia pessoal.",
+      "regra_qtd_texto": "PA Complementar (Pista 58)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::RT_15",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar suas atividades em um calendário semanal.",
+      "regra_qtd_texto": "PA Complementar (Rumo 15)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::RT_16",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Classificar suas atividades segundo um critério de prioridades.",
+      "regra_qtd_texto": "PA Complementar (Rumo 16)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::RT_17",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar regularmente das atividades e reuniões de sua patrulha, contribuindo com ideias e sugestões para as atividades.",
+      "regra_qtd_texto": "PA Complementar (Rumo 17)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::RT_18",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Desenvolver um passatempo ou hobbie.",
+      "regra_qtd_texto": "PA Complementar (Rumo 18)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::RT_60",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar uma “oficina de brinquedos” com sua patrulha, doando os itens consertados para uma instituição de crianças carentes.",
+      "regra_qtd_texto": "PA Complementar (Rumo 60)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::RT_61",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer e cantar canções apropriadas para distintos momentos.",
+      "regra_qtd_texto": "PA Complementar (Rumo 61)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::RT_62",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Criar um vídeo e disponibilizar na internet com uma campanha publicitária divertida promovendo o grupo escoteiro.",
+      "regra_qtd_texto": "PA Complementar (Rumo 62)"
+    },
+    {
+      "chave": "SAÚDE MENTAL::127",
+      "excel_row": 127,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "SAÚDE MENTAL",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Prevenção aos Vícios (adaptado Prev Alcoolismo + Prev uso de Drogras)",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::133",
+      "excel_row": 133,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar uma campanha para combater o bullying e cyberbullying para a comunidade.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::135",
+      "excel_row": 135,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar   de   jogos   com   a   patrulha   ou   a   tropa, respeitando as regras e seus participantes.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::136",
+      "excel_row": 136,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar uma atividade de patrulha em sua casa ou na\ncasa de um membro da patrulha.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::137",
+      "excel_row": 137,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ensinar uma canção escoteira a outros escoteiros.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::138",
+      "excel_row": 138,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ajudar   outro   membro   da   UEL   a   conquistar  uma especialidade ou insígnias.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::139",
+      "excel_row": 139,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Propor metas para melhorar a convivência na vida na patrulha e na tropa, compreendendo como todos se sentem quanto a isso.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::140",
+      "excel_row": 140,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar  de  uma  atividade  entre  diferentes  grupos\nescoteiros ou atividade regional ou nacional.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::141",
+      "excel_row": 141,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Acolher os novos integrantes da patrulha",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::142",
+      "excel_row": 142,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Assumir tarefas domésticas para melhorar a convivência em casa",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::143",
+      "excel_row": 143,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade da tropa com a família ou responsáveis",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::144",
+      "excel_row": 144,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Convidar um colega da mesma faixa etária para participar de um Fogo de Conselho, integrado a sua patrulha e com o devido “Registro de Visitante”.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::145",
+      "excel_row": 145,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Participar de um torneio de aeromodelos",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::PT_68",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma cerimônia com a presença dos pais, responsáveis ou irmãos.",
+      "regra_qtd_texto": "PA Complementar (Pista 68)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::PT_69",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade de sua patrulha junto aos seus pais, responsáveis, irmãos.",
+      "regra_qtd_texto": "PA Complementar (Pista 69)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::PT_70",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Solicitar ajuda dos seus pais ou familiares para capacitar a patrulha em algum tema de interesse (por exemplo: cozinha, mecânica, pintura, etc.).",
+      "regra_qtd_texto": "PA Complementar (Pista 70)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_29",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Preparar materiais para as representações artísticas de sua patrulha ou tropa.",
+      "regra_qtd_texto": "PA Complementar (Rumo 29)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_30",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar um dia de jogos na casa de um companheiro de patrulha.",
+      "regra_qtd_texto": "PA Complementar (Rumo 30)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_31",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Propor e colaborar na organização de atividades de sua patrulha e tropa",
+      "regra_qtd_texto": "PA Complementar (Rumo 31)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_32",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar no seu colégio uma atividade de divulgação do grupo escoteiro.",
+      "regra_qtd_texto": "PA Complementar (Rumo 32)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_73",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Auxiliar sua patrulha, tropa ou grupo a ter um número equilibrado de meninas e meninos",
+      "regra_qtd_texto": "PA Complementar (Rumo 73)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_74",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ir com minha patrulha ao teatro ou cinema com outros jovens de ambos os sexos.",
+      "regra_qtd_texto": "PA Complementar (Rumo 74)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_75",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar uma boa ação com membros de sua família.",
+      "regra_qtd_texto": "PA Complementar (Rumo 75)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_76",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar um projeto ou atividade de patrulha com a ajuda de seus pais ou familiares.",
+      "regra_qtd_texto": "PA Complementar (Rumo 76)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::RT_77",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Assumir a responsabilidade de uma tarefa domestica na sua casa, por pelo menos três meses.",
+      "regra_qtd_texto": "PA Complementar (Rumo 77)"
+    },
+    {
+      "chave": "VÍNCULOS SAUDÁVEIS::148",
+      "excel_row": 148,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "VÍNCULOS SAUDÁVEIS",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Substitutiva",
+      "ds_acao": "Prevenção ao Bullying",
+      "regra_qtd_texto": "Atividade Substitutiva do Bloco"
+    }
+  ]
+}
