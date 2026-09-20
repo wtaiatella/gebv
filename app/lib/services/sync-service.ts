@@ -69,57 +69,63 @@ export async function upsertAssociado(a: Associado, ramoPadrao?: RamoEnum): Prom
 
 export async function upsertProgressaoPaxtu(
   cd_associado: string,
-  caminhos: Caminho[]
+  caminhos: Caminho[],
+  dadosBrutos?: any
 ): Promise<void> {
+  const payloadBruto = dadosBrutos ?? { caminhos, especialidades: [], insignias: [] };
   await prisma.progressaoPaxtu.upsert({
     where: { cd_associado },
     create: {
       cd_associado,
-      caminhos: caminhos as any,
+      dados_brutos: payloadBruto as any,
     },
     update: {
-      caminhos: caminhos as any,
+      dados_brutos: payloadBruto as any,
     },
   });
+}
+
+export async function upsertProgressaoPaxtuBruto(
+  cd_associado: string,
+  dadosBrutos: any
+): Promise<void> {
+  return upsertProgressaoPaxtu(cd_associado, [], dadosBrutos);
 }
 
 export interface PaxtuAtividadeItem {
   cdCaminho?: string | number;
   cdUeb?: string;
   cdAtividade?: string | number;
+  codigo?: string | number;
+  id?: string | number;
   [key: string]: any;
 }
 
 /**
- * Resolução pura em 2 etapas para encontrar a atividade no catálogo relacional:
- * 1. Correspondência direta por cd_caminho_paxtu + cd_ueb
- * 2. Fallback por cd_atividade_paxtu (quando cd_ueb degrada para o próprio id ou via cdAtividade)
+ * Resolução direta para encontrar a atividade no catálogo relacional:
+ * 1. Correspondência direta por cd_caminho_paxtu + cd_atividade_paxtu
+ * 2. Fallback por cd_atividade_paxtu isolado
  */
 export function resolveAtividadeCatalogo(
-  mapCaminhoUeb: Map<string, number>,
+  mapCaminhoAtividade: Map<string, number>,
   mapCdAtividadePaxtu: Map<string, number>,
   item: PaxtuAtividadeItem
 ): number | undefined {
   const camId = item.cdCaminho !== undefined && item.cdCaminho !== null ? String(item.cdCaminho) : '';
-  const ueb = item.cdUeb !== undefined && item.cdUeb !== null ? String(item.cdUeb) : '';
+  const atvId = String(item.cdAtividade ?? item.codigo ?? item.id ?? item.cdUeb ?? '');
 
-  // 1. Critério primário: caminho + cd_ueb
-  if (camId && ueb) {
-    const key = `${camId}_${ueb}`;
-    const id = mapCaminhoUeb.get(key);
+  // 1. Critério primário: caminho + cd_atividade_paxtu
+  if (camId && atvId) {
+    const key = `${camId}_${atvId}`;
+    const id = mapCaminhoAtividade.get(key);
     if (id !== undefined) {
       return id;
     }
   }
 
   // 2. Critério secundário: cd_atividade_paxtu isolado
-  const atvId = item.cdAtividade !== undefined && item.cdAtividade !== null ? String(item.cdAtividade) : '';
   if (atvId && mapCdAtividadePaxtu.has(atvId)) {
     return mapCdAtividadePaxtu.get(atvId);
-  }
-
-  if (ueb && mapCdAtividadePaxtu.has(ueb)) {
-    return mapCdAtividadePaxtu.get(ueb);
   }
 
   return undefined;
@@ -137,7 +143,6 @@ export async function upsertProgressaoPa(
     where: { ds_ramo: ramoEnum },
     select: {
       id: true,
-      cd_ueb: true,
       cd_caminho_paxtu: true,
       cd_atividade_paxtu: true,
       competencia: {
@@ -152,13 +157,13 @@ export async function upsertProgressaoPa(
     },
   });
 
-  const mapCaminhoUeb = new Map<string, number>();
+  const mapCaminhoAtividade = new Map<string, number>();
   const mapCdAtividadePaxtu = new Map<string, number>();
 
   for (const atv of atividadesDb) {
-    const caminhoCode = atv.cd_caminho_paxtu || atv.competencia.caminho?.cd_caminho_paxtu || '';
-    if (caminhoCode && atv.cd_ueb) {
-      mapCaminhoUeb.set(`${caminhoCode}_${atv.cd_ueb}`, atv.id);
+    const caminhoCode = atv.cd_caminho_paxtu || atv.competencia?.caminho?.cd_caminho_paxtu || '';
+    if (caminhoCode && atv.cd_atividade_paxtu) {
+      mapCaminhoAtividade.set(`${caminhoCode}_${atv.cd_atividade_paxtu}`, atv.id);
     }
     if (atv.cd_atividade_paxtu) {
       mapCdAtividadePaxtu.set(String(atv.cd_atividade_paxtu), atv.id);
@@ -168,25 +173,31 @@ export async function upsertProgressaoPa(
   for (const caminho of caminhos) {
     if (!caminho.data) continue;
     for (const atv of caminho.data) {
-      const atvDbId = resolveAtividadeCatalogo(mapCaminhoUeb, mapCdAtividadePaxtu, atv);
+      const atvDbId = resolveAtividadeCatalogo(mapCaminhoAtividade, mapCdAtividadePaxtu, atv);
 
       if (atvDbId) {
-        const flJovem =
-          atv.checkJovem === 'feitoJovem' ||
-          atv.checkJovem === 'S' ||
-          atv.checkJovem === '1' ||
-          atv.checkJovem === 'true' ||
-          Boolean(atv.dtCheckJovem);
-
-        const flEscotista =
+        const isConcluida =
+          Boolean(atv.concluida) ||
+          atv.status_escotista === 'confirmadoEscotista' ||
+          atv.statusEscotista === 'confirmadoEscotista' ||
           atv.checkEscotista === 'confirmadoEscotista' ||
           atv.checkEscotista === 'S' ||
           atv.checkEscotista === '1' ||
-          atv.checkEscotista === 'true' ||
-          Boolean(atv.dtCheckEscotista);
+          atv.checkEscotista === 'true';
 
-        const dtJovem = flJovem && atv.dtCheckJovem ? new Date(atv.dtCheckJovem) : null;
-        const dtEscotista = flEscotista && atv.dtCheckEscotista ? new Date(atv.dtCheckEscotista) : null;
+        const statusEscotista =
+          atv.status_escotista ||
+          atv.statusEscotista ||
+          (isConcluida ? 'confirmadoEscotista' : (atv.checkEscotista || null));
+
+        const rawDate =
+          atv.data_conclusao ||
+          atv.dataConclusao ||
+          atv.dtCheckEscotista ||
+          atv.dtAtividade ||
+          atv.dtCheckJovem;
+        const parsedDate = rawDate ? new Date(rawDate) : null;
+        const validDate = parsedDate && !isNaN(parsedDate.getTime()) ? parsedDate : null;
 
         await prisma.progressaoPa.upsert({
           where: {
@@ -198,16 +209,14 @@ export async function upsertProgressaoPa(
           create: {
             cd_associado,
             atividade_id: atvDbId,
-            fl_check_jovem: flJovem,
-            fl_check_escotista: flEscotista,
-            dt_check_jovem: dtJovem && !isNaN(dtJovem.getTime()) ? dtJovem : null,
-            dt_check_escotista: dtEscotista && !isNaN(dtEscotista.getTime()) ? dtEscotista : null,
+            concluida: isConcluida,
+            status_escotista: statusEscotista,
+            data_conclusao: validDate,
           },
           update: {
-            fl_check_jovem: flJovem,
-            fl_check_escotista: flEscotista,
-            dt_check_jovem: dtJovem && !isNaN(dtJovem.getTime()) ? dtJovem : null,
-            dt_check_escotista: dtEscotista && !isNaN(dtEscotista.getTime()) ? dtEscotista : null,
+            concluida: isConcluida,
+            status_escotista: statusEscotista,
+            data_conclusao: validDate,
           },
         });
       }
@@ -236,7 +245,7 @@ export async function upsertEspecialidadesAssociado(
     const dtNivel = esp.dt_nivel ? new Date(esp.dt_nivel) : null;
     const validDtNivel = dtNivel && !isNaN(dtNivel.getTime()) ? dtNivel : null;
 
-    const itensList = esp.itens_conquistados || esp.itens_detalhados || [];
+    const itensList = esp.itens_conquistados || esp.itens_detalhados || esp.itens || [];
     const qtdItens = Number(esp.qtd_itens_concluidos ?? esp.qtdItensConcluidos ?? itensList.length);
 
     await prisma.progressaoEspecialidadePa.upsert({
@@ -300,7 +309,7 @@ export async function upsertItensEspecialidadeAssociado(
 
   for (const it of itens) {
     processados++;
-    const cdItem = String(it.cd_item ?? it.cdItem ?? '');
+    const cdItem = String(it.cd_item ?? it.cdItem ?? it.codigo ?? '');
     const itemId = itemMap.get(cdItem);
 
     if (!itemId) {
@@ -308,35 +317,16 @@ export async function upsertItensEspecialidadeAssociado(
       continue;
     }
 
-    const flJovem =
-      it.check_jovem === 'feitoJovem' ||
-      it.check_jovem === 'S' ||
-      it.check_jovem === '1' ||
-      it.check_jovem === 'true' ||
-      it.fl_check_jovem === true ||
-      it.checkJovem === 'feitoJovem' ||
-      Boolean(it.dt_item || it.dtCheckJovem || it.dt_check_jovem);
-
-    const flEscotista =
-      it.check_escotista === 'confirmadoEscotista' ||
-      it.check_escotista === 'S' ||
-      it.check_escotista === '1' ||
-      it.check_escotista === 'true' ||
-      it.fl_check_escotista === true ||
-      it.checkEscotista === 'confirmadoEscotista' ||
-      Boolean(it.dt_item || it.dtCheckEscotista || it.dt_check_escotista);
-
     const rawDate =
       it.dt_item ||
-      it.dtCheckJovem ||
-      it.dt_check_jovem ||
       it.dtCheckEscotista ||
-      it.dt_check_escotista;
+      it.dtCheckJovem ||
+      it.dt_check_escotista ||
+      it.dt_check_jovem;
     const parsedDate = rawDate ? new Date(rawDate) : null;
     const validDate = parsedDate && !isNaN(parsedDate.getTime()) ? parsedDate : null;
 
-    const dtJovem = flJovem ? validDate : null;
-    const dtEscotista = flEscotista ? validDate : null;
+    const isConcluida = Boolean(validDate);
 
     await prisma.progressaoEspecialidadeItemPa.upsert({
       where: {
@@ -348,20 +338,16 @@ export async function upsertItensEspecialidadeAssociado(
       create: {
         cd_associado,
         especialidade_item_id: itemId,
-        fl_check_jovem: flJovem,
-        fl_check_escotista: flEscotista,
-        dt_check_jovem: dtJovem,
-        dt_check_escotista: dtEscotista,
+        concluida: isConcluida,
+        data_conclusao: isConcluida ? validDate : null,
       },
       update: {
-        fl_check_jovem: flJovem,
-        fl_check_escotista: flEscotista,
-        dt_check_jovem: dtJovem,
-        dt_check_escotista: dtEscotista,
+        concluida: isConcluida,
+        data_conclusao: isConcluida ? validDate : null,
       },
     });
 
-    if (flJovem || flEscotista) {
+    if (isConcluida) {
       migrados++;
     }
   }
@@ -400,7 +386,12 @@ export async function syncAssociado(cd_associado: string, cookie?: string) {
     }
 
     // 4. Salva dados no banco via Prisma
-    await upsertProgressaoPaxtu(cd_associado, caminhos);
+    const dadosBrutos = {
+      caminhos,
+      especialidades,
+      insignias: [],
+    };
+    await upsertProgressaoPaxtu(cd_associado, caminhos, dadosBrutos);
     await upsertProgressaoPa(cd_associado, caminhos, ramoEnum);
     await upsertEspecialidadesAssociado(cd_associado, especialidades);
 
@@ -551,7 +542,12 @@ export async function syncRamo(
               fetchEspecialidadesCompletasAssociado(m.cd_associado, cookie),
             ]);
 
-            await upsertProgressaoPaxtu(m.cd_associado, caminhos);
+            const dadosBrutos = {
+              caminhos,
+              especialidades,
+              insignias: [],
+            };
+            await upsertProgressaoPaxtu(m.cd_associado, caminhos, dadosBrutos);
             await upsertProgressaoPa(m.cd_associado, caminhos, ramoEnum);
             await upsertEspecialidadesAssociado(m.cd_associado, especialidades);
 

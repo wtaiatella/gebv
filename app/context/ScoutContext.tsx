@@ -3,6 +3,8 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import type { Escoteiro, Ramo } from '@/app/lib/data';
 
+type ViewMode = 'novo' | 'antigo' | 'especialidades';
+
 type ScoutContextType = {
   ramoAtual: Ramo;
   setRamoAtual: (ramo: Ramo) => Promise<void>;
@@ -11,8 +13,8 @@ type ScoutContextType = {
   selectedId: string;
   setSelectedId: (id: string) => void;
   selectedScout: Escoteiro | null;
-  viewMode: 'novo' | 'antigo';
-  setViewMode: (mode: 'novo' | 'antigo') => void;
+  viewMode: ViewMode;
+  setViewMode: (mode: ViewMode) => void;
   exibirMatriz: boolean;
   setExibirMatriz: (show: boolean) => void;
   isLoading: boolean;
@@ -27,7 +29,7 @@ type ScoutProviderProps = {
   initialCatalogoDisponivel?: boolean;
   initialRamo?: Ramo;
   initialSelectedId?: string;
-  initialView?: 'novo' | 'antigo';
+  initialView?: ViewMode;
 };
 
 export function ScoutProvider({
@@ -45,7 +47,7 @@ export function ScoutProvider({
     if (initialSelectedId) return initialSelectedId;
     return initialEscoteiros[0]?.associado.cd_associado || '';
   });
-  const [viewMode, setViewModeState] = useState<'novo' | 'antigo'>(initialView);
+  const [viewMode, setViewModeState] = useState<ViewMode>(initialView);
   const [exibirMatriz, setExibirMatriz] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,7 +69,7 @@ export function ScoutProvider({
     setSelectedIdState(id);
   }, []);
 
-  const setViewMode = useCallback((mode: 'novo' | 'antigo') => {
+  const setViewMode = useCallback((mode: ViewMode) => {
     setViewModeState(mode);
   }, []);
 
