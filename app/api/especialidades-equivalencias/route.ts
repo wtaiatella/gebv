@@ -15,6 +15,51 @@ function cosineSimilarity(a: number[] | null | undefined, b: number[] | null | u
   return dot / (Math.sqrt(normA) * Math.sqrt(normB));
 }
 
+interface CachedPaItem {
+  id: number;
+  pa_especialidade_id: number;
+  ds_especialidade: string;
+  cd_item: string;
+  ds_item: string;
+  embedding: number[];
+}
+
+let cachedItensPa: CachedPaItem[] | null = null;
+let loadingItensPaPromise: Promise<CachedPaItem[]> | null = null;
+
+async function getTodosItensPa(): Promise<CachedPaItem[]> {
+  if (cachedItensPa) return cachedItensPa;
+  if (!loadingItensPaPromise) {
+    loadingItensPaPromise = prisma.paEspecialidadeItem
+      .findMany({
+        select: {
+          id: true,
+          cd_item: true,
+          ds_item: true,
+          embedding: true,
+          especialidade: {
+            select: {
+              id: true,
+              ds_especialidade: true,
+            },
+          },
+        },
+      })
+      .then((raw) => {
+        cachedItensPa = raw.map((item) => ({
+          id: item.id,
+          pa_especialidade_id: item.especialidade.id,
+          ds_especialidade: item.especialidade.ds_especialidade,
+          cd_item: item.cd_item,
+          ds_item: item.ds_item,
+          embedding: item.embedding,
+        }));
+        return cachedItensPa;
+      });
+  }
+  return loadingItensPaPromise;
+}
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -74,11 +119,7 @@ export async function GET(req: NextRequest) {
         },
         relacoes_pa: {
           include: {
-            pa_especialidade: {
-              include: {
-                itens: true,
-              },
-            },
+            pa_especialidade: true,
           },
         },
       },
@@ -94,27 +135,8 @@ export async function GET(req: NextRequest) {
       ds_especialidade: rel.pa_especialidade.ds_especialidade,
     }));
 
-    const itensPaCandidatos: {
-      id: number;
-      pa_especialidade_id: number;
-      ds_especialidade: string;
-      cd_item: string;
-      ds_item: string;
-      embedding: number[];
-    }[] = [];
-
-    for (const rel of pnEsp.relacoes_pa) {
-      for (const item of rel.pa_especialidade.itens) {
-        itensPaCandidatos.push({
-          id: item.id,
-          pa_especialidade_id: rel.pa_especialidade.id,
-          ds_especialidade: rel.pa_especialidade.ds_especialidade,
-          cd_item: item.cd_item,
-          ds_item: item.ds_item,
-          embedding: item.embedding,
-        });
-      }
-    }
+    // Carrega todos os itens de todas as especialidades PA (em cache de memória no Node)
+    const todosItensPa = await getTodosItensPa();
 
     const itensResultado = pnEsp.itens.map((pnItem) => {
       const regrasAprovadas = pnItem.equivalencias_regras.map((r) => ({
@@ -126,7 +148,8 @@ export async function GET(req: NextRequest) {
         score: r.score_similaridade,
       }));
 
-      const sugestoes = itensPaCandidatos
+      // Calcula similaridade semântica contra todo o catálogo de itens PA
+      const sugestoes = todosItensPa
         .map((paItem) => {
           const score = cosineSimilarity(pnItem.embedding, paItem.embedding);
           return {

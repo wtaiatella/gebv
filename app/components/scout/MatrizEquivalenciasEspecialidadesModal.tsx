@@ -63,6 +63,11 @@ export default function MatrizEquivalenciasEspecialidadesModal({
   const [carregandoDetalhe, setCarregandoDetalhe] = useState(false);
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
+  const [itensExpandidos, setItensExpandidos] = useState<Record<number, boolean>>({});
+
+  const toggleExpandir = (itemId: number) => {
+    setItensExpandidos((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
+  };
 
   // 1. Carrega lista de especialidades PN ao abrir ou trocar ramo
   useEffect(() => {
@@ -401,7 +406,7 @@ export default function MatrizEquivalenciasEspecialidadesModal({
             </span>
             {paCorrelatas.length === 0 ? (
               <span style={{ fontSize: '0.8rem', color: '#64748b', fontStyle: 'italic' }}>
-                Nenhuma PA correlata vinculada ainda. Vincule ao lado para calcular similaridades.
+                Nenhuma PA vinculada especificamente (busca semântica ativa em todo o catálogo PA).
               </span>
             ) : (
               paCorrelatas.map((pa) => (
@@ -596,19 +601,24 @@ export default function MatrizEquivalenciasEspecialidadesModal({
                       )}
                     </div>
 
-                    {/* Coluna Direita: Sugestões Semânticas de PAs Correlatas */}
+                    {/* Coluna Direita: Sugestões Semânticas (Catálogo Global PA) */}
                     <div>
-                      <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#94a3b8', display: 'block', marginBottom: '0.5rem' }}>
-                        SUGESTÕES SEMÂNTICAS DAS PAs CORRELATAS ({item.sugestoes.length})
-                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#94a3b8' }}>
+                          SUGESTÕES SEMÂNTICAS (CATÁLOGO GLOBAL PA)
+                        </span>
+                        <span style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                          {item.sugestoes.length} correspondências
+                        </span>
+                      </div>
 
                       {item.sugestoes.length === 0 ? (
                         <p style={{ fontSize: '0.82rem', color: '#64748b', fontStyle: 'italic', margin: 0 }}>
-                          Vincule uma PA correlata acima para calcular similaridades semânticas.
+                          Nenhuma correspondência encontrada no catálogo PA.
                         </p>
                       ) : (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                          {item.sugestoes.slice(0, 3).map((sug) => {
+                          {(itensExpandidos[item.id] ? item.sugestoes : item.sugestoes.slice(0, 3)).map((sug) => {
                             const jaAprovado = item.regras_aprovadas.some((r) => r.pa_item_id === sug.pa_item_id);
                             const scorePct = Math.round(sug.score * 100);
                             const scoreColor = scorePct >= 80 ? '#4ade80' : scorePct >= 70 ? '#facc15' : '#94a3b8';
@@ -671,6 +681,30 @@ export default function MatrizEquivalenciasEspecialidadesModal({
                               </div>
                             );
                           })}
+
+                          {item.sugestoes.length > 3 && (
+                            <button
+                              onClick={() => toggleExpandir(item.id)}
+                              style={{
+                                marginTop: '4px',
+                                width: '100%',
+                                padding: '0.35rem 0.6rem',
+                                borderRadius: '6px',
+                                backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                                border: '1px dashed rgba(255, 255, 255, 0.12)',
+                                color: '#94a3b8',
+                                fontSize: '0.75rem',
+                                fontWeight: 500,
+                                cursor: 'pointer',
+                                textAlign: 'center',
+                                transition: 'all 0.15s ease',
+                              }}
+                            >
+                              {itensExpandidos[item.id]
+                                ? '▲ Mostrar menos (top 3)'
+                                : `▼ Ver mais ${item.sugestoes.length - 3} sugestões do catálogo PA`}
+                            </button>
+                          )}
                         </div>
                       )}
                     </div>

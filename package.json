@@ -16,9 +16,9 @@
     "paxtu:login": "node --env-file=.env scripts/paxtu-login.mjs",
     "paxtu:scrape": "node --env-file=.env scripts/paxtu-scrape.mjs",
     "paxtu:fetch-raw": "node --env-file=.env scripts/fetch-antonia-raw.mjs",
-    "test:integration": "npx tsx --env-file=.env tests/integration/transicao.test.ts",
-    "test:progressao-relacional": "npx tsx --env-file=.env tests/integration/progressao-relacional.test.ts",
-    "test:especialidades": "npx tsx --env-file=.env tests/integration/especialidades-transicao.test.ts"
+    "test:integration": "npx -y tsx --env-file=.env tests/integration/transicao.test.ts",
+    "test:progressao-relacional": "npx -y tsx --env-file=.env tests/integration/progressao-relacional.test.ts",
+    "test:especialidades": "npx -y tsx --env-file=.env tests/integration/especialidades-transicao.test.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
