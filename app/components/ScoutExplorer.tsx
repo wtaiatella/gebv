@@ -10,7 +10,7 @@ import ProgressionView from './scout/ProgressionView';
 import NovoProgramaView from './scout/NovoProgramaView';
 import EspecialidadesPnView from './scout/EspecialidadesPnView';
 import RegrasEquivalenciaView from './equivalencias/RegrasEquivalenciaView';
-import MatrizEquivalenciasEspecialidadesModal from './scout/MatrizEquivalenciasEspecialidadesModal';
+import MatrizEquivalenciasEspecialidadesView from './scout/MatrizEquivalenciasEspecialidadesView';
 
 const RAMOS: { label: string; value: Ramo }[] = [
   { label: '🐺 Ramo Lobinho', value: 'Lobinho' },
@@ -144,15 +144,15 @@ export default function ScoutExplorer() {
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
+
         buffer += decoder.decode(value, { stream: true });
         const lines = buffer.split('\n');
-        buffer = lines.pop() ?? '';
+        buffer = lines.pop() || '';
 
         for (const line of lines) {
-          const trimmed = line.trim();
-          if (!trimmed) continue;
+          if (!line.trim()) continue;
           try {
-            const json = JSON.parse(trimmed);
+            const json = JSON.parse(line.trim());
             if (json.type === 'error') {
               throw new Error(json.message || 'Erro durante a sincronização.');
             }
@@ -345,9 +345,9 @@ export default function ScoutExplorer() {
             border: '1px solid var(--glass-border)',
           }}
         >
-          {/* Coluna Esquerda: Abas de Ramos (Pills) + Select do Jovem */}
+          {/* Coluna Esquerda: Abas de Ramos (Pills) + Recalcular Seção + Select do Jovem */}
           <div style={{ flex: 1, minWidth: '320px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {/* Pills dos Ramos */}
+            {/* Pills dos Ramos + Botão Recalcular Seção (conforme menu-novo.png) */}
             <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', alignItems: 'center' }}>
               {RAMOS.map(({ label, value }) => {
                 const isSelected = ramoAtual === value;
@@ -373,6 +373,43 @@ export default function ScoutExplorer() {
                   </button>
                 );
               })}
+
+              {/* Botão Recalcular Transição da Seção ao lado dos Ramos (menu-novo.png) */}
+              <button
+                type="button"
+                onClick={handleRecalcularTodos}
+                disabled={syncProgress?.active}
+                style={{
+                  background: 'rgba(234, 179, 8, 0.06)',
+                  color: '#eab308',
+                  border: '1.5px solid #ca8a04',
+                  fontWeight: 700,
+                  fontSize: '0.86rem',
+                  padding: '0.55rem 1.25rem',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.45rem',
+                  cursor: syncProgress?.active ? 'not-allowed' : 'pointer',
+                  opacity: syncProgress?.active ? 0.6 : 1,
+                  transition: 'all 0.2s ease',
+                  marginLeft: '0.25rem',
+                }}
+              >
+                {syncProgress?.active && syncProgress.type === 'recalc' ? (
+                  <Loader2 className="animate-spin" size={16} />
+                ) : (
+                  <Zap size={16} />
+                )}
+                <span>
+                  {syncProgress?.active && syncProgress.type === 'recalc'
+                    ? 'Recalculando...'
+                    : viewMode === 'especialidades'
+                      ? 'Recalcular Especialidades da Seção'
+                      : 'Recalcular Transição da Seção'}
+                </span>
+              </button>
             </div>
 
             {/* Dropdown de Jovens */}
@@ -408,7 +445,7 @@ export default function ScoutExplorer() {
             </div>
           </div>
 
-          {/* Coluna Direita: Dois Botões Empilhados de Sincronização */}
+          {/* Coluna Direita: Apenas Dois Botões Empilhados de Sincronização (menu-novo.png) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', minWidth: '260px' }}>
             {/* Botão 1: Sincronizar Seção */}
             <button
@@ -476,42 +513,6 @@ export default function ScoutExplorer() {
                 {syncProgress?.active && syncProgress.type === 'single'
                   ? 'Atualizando jovem...'
                   : 'Sincronizar dados deste jovem'}
-              </span>
-            </button>
-
-            {/* Botão 3: Recalcular Transição da Seção */}
-            <button
-              type="button"
-              onClick={handleRecalcularTodos}
-              disabled={syncProgress?.active}
-              style={{
-                background: 'rgba(234, 179, 8, 0.1)',
-                color: '#eab308',
-                border: '1.5px solid #eab308',
-                fontWeight: 700,
-                fontSize: '0.85rem',
-                padding: '0.65rem 1.25rem',
-                borderRadius: '12px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.5rem',
-                cursor: syncProgress?.active ? 'not-allowed' : 'pointer',
-                opacity: syncProgress?.active ? 0.6 : 1,
-                transition: 'all 0.2s ease',
-              }}
-            >
-              {syncProgress?.active && syncProgress.type === 'recalc' ? (
-                <Loader2 className="animate-spin" size={16} />
-              ) : (
-                <Zap size={16} />
-              )}
-              <span>
-                {syncProgress?.active && syncProgress.type === 'recalc'
-                  ? 'Recalculando...'
-                  : viewMode === 'especialidades'
-                  ? 'Recalcular Especialidades da Seção'
-                  : 'Recalcular Transição da Seção'}
               </span>
             </button>
           </div>
@@ -625,20 +626,21 @@ export default function ScoutExplorer() {
               border: '1px solid var(--glass-border)',
             }}
           >
-            {/* Abas de Alternância Novo vs Antigo vs Especialidades + Toggle Matriz Reposicionado */}
+            {/* Abas Principais + Toggle Checkbox Matriz de Equivalência */}
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'space-between',
                 alignItems: 'center',
-                gap: '1rem',
+                justifyContent: 'space-between',
+                gap: '0.6rem',
                 marginBottom: '1.75rem',
                 borderBottom: '1px solid var(--glass-border)',
                 paddingBottom: '1.25rem',
                 flexWrap: 'wrap',
               }}
             >
-              <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                {/* Aba 1: 18 Blocos */}
                 <button
                   type="button"
                   onClick={() => setViewMode('novo')}
@@ -650,17 +652,18 @@ export default function ScoutExplorer() {
                     fontSize: '0.9rem',
                     fontWeight: 700,
                     borderRadius: '10px',
-                    boxShadow: viewMode === 'novo' ? '0 4px 12px rgba(0, 255, 136, 0.3)' : 'none',
+                    boxShadow: viewMode === 'novo' ? '0 4px 14px rgba(0, 255, 136, 0.35)' : 'none',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.4rem',
+                    gap: '0.45rem',
                     transition: 'all 0.2s ease',
                   }}
                 >
                   <span>🧩</span> Programa Atualizado (18 Blocos)
                 </button>
 
+                {/* Aba 2: Programa Antigo */}
                 <button
                   type="button"
                   onClick={() => setViewMode('antigo')}
@@ -672,17 +675,18 @@ export default function ScoutExplorer() {
                     fontSize: '0.9rem',
                     fontWeight: 700,
                     borderRadius: '10px',
-                    boxShadow: viewMode === 'antigo' ? '0 4px 12px rgba(0, 255, 136, 0.3)' : 'none',
+                    boxShadow: viewMode === 'antigo' ? '0 4px 14px rgba(0, 255, 136, 0.35)' : 'none',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.4rem',
+                    gap: '0.45rem',
                     transition: 'all 0.2s ease',
                   }}
                 >
                   <span>📜</span> Programa Antigo (Paxtu)
                 </button>
 
+                {/* Aba 3: Especialidades do PN */}
                 <button
                   type="button"
                   onClick={() => setViewMode('especialidades')}
@@ -694,19 +698,19 @@ export default function ScoutExplorer() {
                     fontSize: '0.9rem',
                     fontWeight: 700,
                     borderRadius: '10px',
-                    boxShadow: viewMode === 'especialidades' ? '0 4px 12px rgba(0, 255, 136, 0.3)' : 'none',
+                    boxShadow: viewMode === 'especialidades' ? '0 4px 14px rgba(0, 255, 136, 0.35)' : 'none',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.4rem',
+                    gap: '0.45rem',
                     transition: 'all 0.2s ease',
                   }}
                 >
-                  <span>🎖️</span> Especialidades (Novo Programa)
+                  <span>🎖️</span> Especialidades do PN
                 </button>
               </div>
 
-              {/* Checkbox / Toggle: Matriz de Equivalência reposicionado adjacente às abas (FR-23) */}
+              {/* Checkbox / Toggle: Matriz de Equivalência */}
               <label
                 style={{
                   display: 'inline-flex',
@@ -740,7 +744,7 @@ export default function ScoutExplorer() {
               </label>
             </div>
 
-            {/* Renderização Condicional: Matriz vs Visão do Jovem (FR-24) */}
+            {/* Renderização Condicional: Matriz vs Visão do Jovem */}
             {exibirMatriz ? (
               viewMode === 'especialidades' ? (
                 ramoAtual === 'Sênior' || ramoAtual === 'Pioneiro' ? (
@@ -762,11 +766,7 @@ export default function ScoutExplorer() {
                     </p>
                   </div>
                 ) : (
-                  <MatrizEquivalenciasEspecialidadesModal
-                    isOpen={true}
-                    onClose={() => setExibirMatriz(false)}
-                    ramoInicial={ramoAtual}
-                  />
+                  <MatrizEquivalenciasEspecialidadesView ramoInicial={ramoAtual} />
                 )
               ) : (
                 <RegrasEquivalenciaView ramo={ramoAtual} />

@@ -1,10 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/app/lib/prisma';
+import { invalidateCatalogoCache } from '@/app/api/especialidades-pn/[id]/route';
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { pn_item_id, pa_item_id, fl_aprovado, score_similaridade } = body;
+    const { pn_item_id, pa_item_id, fl_aprovado, score_similaridade, tipo_equivalencia } = body;
+
+    // Invalida cache de especialidades PN para refletir mudanças imediatamente
+    invalidateCatalogoCache();
+
+    // Atualização exclusiva do tipo de equivalência do item PN (TODAS vs AO_MENOS_UMA)
+    if (tipo_equivalencia !== undefined && pn_item_id) {
+      const pnItemId = Number(pn_item_id);
+      const tipo = tipo_equivalencia === 'AO_MENOS_UMA' ? 'AO_MENOS_UMA' : 'TODAS';
+      await prisma.$executeRawUnsafe(
+        'UPDATE pn_especialidades_itens SET tipo_equivalencia = $1 WHERE id = $2',
+        tipo,
+        pnItemId
+      );
+      return NextResponse.json({ success: true, tipo_equivalencia: tipo });
+    }
 
     const pnItemId = Number(pn_item_id);
     const paItemId = Number(pa_item_id);

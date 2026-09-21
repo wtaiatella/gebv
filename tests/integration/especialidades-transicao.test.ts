@@ -9,6 +9,8 @@ import {
   transicionarEspecialidadesSecao,
 } from '../../app/lib/services/transicao-especialidades-service';
 import { Ramo } from '../../app/lib/ramo';
+import { POST as postRegra } from '../../app/api/especialidades-equivalencias/regra/route';
+import { NextRequest } from 'next/server';
 
 async function runEspecialidadesTransicaoTests() {
   console.log('🧪 [TEST SUITE] Iniciando Testes de Transição de Especialidades (AC-1 a AC-7)...\n');
@@ -416,6 +418,239 @@ async function runEspecialidadesTransicaoTests() {
         progEspDb?.qtd_itens_concluidos === concluidos,
         'AC-7.2: Contador de itens cumpridos sincronizado em tempo real'
       );
+    }
+
+    // =========================================================================
+    // BLOCO 8 (AC-8): Lógica de Equivalência AND ("TODAS") vs OR ("AO_MENOS_UMA")
+    // =========================================================================
+    console.log('\n🔹 Bloco 8: Lógica de Equivalência AND ("TODAS") vs OR ("AO_MENOS_UMA") (AC-8)');
+    if (pnEsp && pnEsp.itens.length >= 1 && umaEsp && umaEsp.itens.length >= 2) {
+      const testPnItem = pnEsp.itens[0];
+      const paItem1 = umaEsp.itens[0];
+      const paItem2 = umaEsp.itens[1];
+
+      // Limpa dados prévios do associado de teste para este item
+      await prisma.progressaoEspecialidadeItemPn.deleteMany({
+        where: {
+          cd_associado: TEST_ASSOC_ID,
+          especialidade_item_id: testPnItem.id,
+        },
+      });
+
+      // Cria 2 regras aprovadas para o testPnItem
+      await prisma.pnEspecialidadeEquivalenciaRegra.upsert({
+        where: {
+          pn_item_id_pa_item_id: {
+            pn_item_id: testPnItem.id,
+            pa_item_id: paItem1.id,
+          },
+        },
+        create: {
+          pn_item_id: testPnItem.id,
+          pa_item_id: paItem1.id,
+          fl_aprovado: true,
+          score_similaridade: 0.9,
+        },
+        update: {
+          fl_aprovado: true,
+        },
+      });
+
+      await prisma.pnEspecialidadeEquivalenciaRegra.upsert({
+        where: {
+          pn_item_id_pa_item_id: {
+            pn_item_id: testPnItem.id,
+            pa_item_id: paItem2.id,
+          },
+        },
+        create: {
+          pn_item_id: testPnItem.id,
+          pa_item_id: paItem2.id,
+          fl_aprovado: true,
+          score_similaridade: 0.85,
+        },
+        update: {
+          fl_aprovado: true,
+        },
+      });
+
+      // Caso 1: tipo_equivalencia = 'TODAS' (AND)
+      await prisma.pnEspecialidadeItem.update({
+        where: { id: testPnItem.id },
+        data: { tipo_equivalencia: 'TODAS' },
+      });
+
+      // Conclui apenas paItem1 (paItem2 permanece pendente)
+      await prisma.progressaoEspecialidadeItemPa.upsert({
+        where: {
+          cd_associado_especialidade_item_id: {
+            cd_associado: TEST_ASSOC_ID,
+            especialidade_item_id: paItem1.id,
+          },
+        },
+        create: {
+          cd_associado: TEST_ASSOC_ID,
+          especialidade_item_id: paItem1.id,
+          concluida: true,
+          data_conclusao: new Date('2026-03-01T12:00:00Z'),
+        },
+        update: {
+          concluida: true,
+          data_conclusao: new Date('2026-03-01T12:00:00Z'),
+        },
+      });
+
+      await prisma.progressaoEspecialidadeItemPa.upsert({
+        where: {
+          cd_associado_especialidade_item_id: {
+            cd_associado: TEST_ASSOC_ID,
+            especialidade_item_id: paItem2.id,
+          },
+        },
+        create: {
+          cd_associado: TEST_ASSOC_ID,
+          especialidade_item_id: paItem2.id,
+          concluida: false,
+          data_conclusao: null,
+        },
+        update: {
+          concluida: false,
+          data_conclusao: null,
+        },
+      });
+
+      // Recalcula: como requer 'TODAS' e apenas 1 está concluída, item PN NÃO deve ser concluído
+      await transicionarEspecialidadesAssociado(TEST_ASSOC_ID);
+
+      const progPnAndIncompleto = await prisma.progressaoEspecialidadeItemPn.findUnique({
+        where: {
+          cd_associado_especialidade_item_id: {
+            cd_associado: TEST_ASSOC_ID,
+            especialidade_item_id: testPnItem.id,
+          },
+        },
+      });
+
+      assert(
+        !progPnAndIncompleto || progPnAndIncompleto.concluida === false,
+        'AC-8.1: Com tipo_equivalencia = "TODAS", cumprimento parcial (1 de 2) mantém concluida = false'
+      );
+
+      // Agora conclui paItem2 com data posterior (2026-06-15)
+      await prisma.progressaoEspecialidadeItemPa.update({
+        where: {
+          cd_associado_especialidade_item_id: {
+            cd_associado: TEST_ASSOC_ID,
+            especialidade_item_id: paItem2.id,
+          },
+        },
+        data: {
+          concluida: true,
+          data_conclusao: new Date('2026-06-15T12:00:00Z'),
+        },
+      });
+
+      // Recalcula: agora ambos estão concluídos, item PN deve ser concluído com data max (2026-06-15)
+      await transicionarEspecialidadesAssociado(TEST_ASSOC_ID);
+
+      const progPnAndCompleto = await prisma.progressaoEspecialidadeItemPn.findUnique({
+        where: {
+          cd_associado_especialidade_item_id: {
+            cd_associado: TEST_ASSOC_ID,
+            especialidade_item_id: testPnItem.id,
+          },
+        },
+      });
+
+      assert(
+        progPnAndCompleto?.concluida === true,
+        'AC-8.2: Com tipo_equivalencia = "TODAS", cumprimento de todos os itens (2 de 2) gera concluida = true'
+      );
+      assert(
+        progPnAndCompleto?.data_conclusao !== null &&
+          new Date(progPnAndCompleto!.data_conclusao!).toISOString().startsWith('2026-06-15'),
+        'AC-8.3: Data de conclusão em regra "TODAS" herda a data mais recente (maxDate)'
+      );
+
+      // Caso 2: tipo_equivalencia = 'AO_MENOS_UMA' (OR)
+      await prisma.pnEspecialidadeItem.update({
+        where: { id: testPnItem.id },
+        data: { tipo_equivalencia: 'AO_MENOS_UMA' },
+      });
+
+      // Desmarca paItem2 (apenas paItem1 continua concluído)
+      await prisma.progressaoEspecialidadeItemPa.update({
+        where: {
+          cd_associado_especialidade_item_id: {
+            cd_associado: TEST_ASSOC_ID,
+            especialidade_item_id: paItem2.id,
+          },
+        },
+        data: {
+          concluida: false,
+          data_conclusao: null,
+        },
+      });
+
+      // Limpa para garantir novo cálculo a partir de transição automática
+      await prisma.progressaoEspecialidadeItemPn.deleteMany({
+        where: {
+          cd_associado: TEST_ASSOC_ID,
+          especialidade_item_id: testPnItem.id,
+        },
+      });
+
+      // Recalcula: com 'AO_MENOS_UMA', ter paItem1 concluído é suficiente
+      await transicionarEspecialidadesAssociado(TEST_ASSOC_ID);
+
+      const progPnOrCompleto = await prisma.progressaoEspecialidadeItemPn.findUnique({
+        where: {
+          cd_associado_especialidade_item_id: {
+            cd_associado: TEST_ASSOC_ID,
+            especialidade_item_id: testPnItem.id,
+          },
+        },
+      });
+
+      assert(
+        progPnOrCompleto?.concluida === true,
+        'AC-8.4: Com tipo_equivalencia = "AO_MENOS_UMA", cumprimento de ao menos 1 item (1 de 2) gera concluida = true'
+      );
+
+      // Caso 3: Teste do Endpoint POST /api/especialidades-equivalencias/regra com tipo_equivalencia
+      const fakeReq = new NextRequest('http://localhost:3010/api/especialidades-equivalencias/regra', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pn_item_id: testPnItem.id,
+          tipo_equivalencia: 'AO_MENOS_UMA',
+        }),
+      });
+
+      const res = await postRegra(fakeReq);
+      const resJson = await res.json();
+      const updatedItemDb = await prisma.pnEspecialidadeItem.findUnique({
+        where: { id: testPnItem.id },
+      });
+
+      assert(
+        resJson.success === true &&
+          resJson.tipo_equivalencia === 'AO_MENOS_UMA' &&
+          updatedItemDb?.tipo_equivalencia === 'AO_MENOS_UMA',
+        'AC-8.5: Endpoint POST /api/especialidades-equivalencias/regra atualiza tipo_equivalencia no banco com sucesso'
+      );
+
+      // Limpeza de regras criadas no teste
+      await prisma.pnEspecialidadeEquivalenciaRegra.deleteMany({
+        where: {
+          pn_item_id: testPnItem.id,
+        },
+      });
+      // Restaura default 'TODAS'
+      await prisma.pnEspecialidadeItem.update({
+        where: { id: testPnItem.id },
+        data: { tipo_equivalencia: 'TODAS' },
+      });
     }
 
     // Cleanup associado de teste

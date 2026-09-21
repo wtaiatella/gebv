@@ -117,11 +117,6 @@ export async function GET(req: NextRequest) {
             },
           },
         },
-        relacoes_pa: {
-          include: {
-            pa_especialidade: true,
-          },
-        },
       },
     });
 
@@ -129,24 +124,30 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Especialidade PN não encontrada' }, { status: 404 });
     }
 
-    const paCorrelatasVinculadas = pnEsp.relacoes_pa.map((rel) => ({
-      id: rel.pa_especialidade.id,
-      cd_especialidade: rel.pa_especialidade.cd_especialidade,
-      ds_especialidade: rel.pa_especialidade.ds_especialidade,
-    }));
+    // Identifica dinamicamente as especialidades PA que possuem itens homologados para esta PN
+    const pasHomologadasMap = new Map<number, { id: number; cd_especialidade: string; ds_especialidade: string }>();
 
     // Carrega todos os itens de todas as especialidades PA (em cache de memória no Node)
     const todosItensPa = await getTodosItensPa();
 
     const itensResultado = pnEsp.itens.map((pnItem) => {
-      const regrasAprovadas = pnItem.equivalencias_regras.map((r) => ({
-        id: r.id,
-        pa_item_id: r.pa_item_id,
-        cd_item_pa: r.pa_item?.cd_item || '',
-        ds_item_pa: r.pa_item?.ds_item || '',
-        ds_especialidade_pa: r.pa_item?.especialidade?.ds_especialidade || '',
-        score: r.score_similaridade,
-      }));
+      const regrasAprovadas = pnItem.equivalencias_regras.map((r) => {
+        if (r.pa_item?.especialidade) {
+          pasHomologadasMap.set(r.pa_item.especialidade.id, {
+            id: r.pa_item.especialidade.id,
+            cd_especialidade: r.pa_item.especialidade.cd_especialidade,
+            ds_especialidade: r.pa_item.especialidade.ds_especialidade,
+          });
+        }
+        return {
+          id: r.id,
+          pa_item_id: r.pa_item_id,
+          cd_item_pa: r.pa_item?.cd_item || '',
+          ds_item_pa: r.pa_item?.ds_item || '',
+          ds_especialidade_pa: r.pa_item?.especialidade?.ds_especialidade || '',
+          score: r.score_similaridade,
+        };
+      });
 
       // Calcula similaridade semântica contra todo o catálogo de itens PA
       const sugestoes = todosItensPa
@@ -168,19 +169,15 @@ export async function GET(req: NextRequest) {
         nr_item: pnItem.nr_item,
         cd_item: pnItem.cd_item,
         ds_item: pnItem.ds_item,
+        tipo_equivalencia: (pnItem as any).tipo_equivalencia || 'TODAS',
         regras_aprovadas: regrasAprovadas,
         sugestoes,
       };
     });
 
-    const todasPaCandidatas = await prisma.paEspecialidade.findMany({
-      select: {
-        id: true,
-        cd_especialidade: true,
-        ds_especialidade: true,
-      },
-      orderBy: { ds_especialidade: 'asc' },
-    });
+    const paCorrelatasHomologadas = Array.from(pasHomologadasMap.values()).sort((a, b) =>
+      a.ds_especialidade.localeCompare(b.ds_especialidade)
+    );
 
     return NextResponse.json({
       pn_especialidade: {
@@ -192,8 +189,7 @@ export async function GET(req: NextRequest) {
         meta_nivel_2: pnEsp.meta_nivel_2,
         itens: itensResultado,
       },
-      pa_correlatas_vinculadas: paCorrelatasVinculadas,
-      todas_pa_candidatas: todasPaCandidatas,
+      pa_correlatas_vinculadas: paCorrelatasHomologadas,
     });
   } catch (err: any) {
     console.error('Erro em GET /api/especialidades-equivalencias:', err);

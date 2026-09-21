@@ -231,6 +231,7 @@ model PnEspecialidadeItem {
   nr_item              Int?
   ds_etapa             String?                            @db.VarChar(50)
   ds_item              String                             @db.Text
+  tipo_equivalencia    String                             @default("TODAS") @db.VarChar(20)
   embedding            Float[]                            @default([])
   created_at           DateTime                           @default(now())
   updated_at           DateTime                           @default(now()) @updatedAt

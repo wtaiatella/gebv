@@ -2,6 +2,77 @@ import { NextResponse } from 'next/server';
 import prisma from '@/app/lib/prisma';
 import { normalizeRamo, Ramo as RamoEnum } from '@/app/lib/ramo';
 
+async function fetchCatalogoFromDb(pnRamoEnum: string) {
+  return prisma.pnEspecialidade.findMany({
+    where: {
+      OR: [{ ramo: pnRamoEnum as any }, { ramo: null }],
+    },
+    select: {
+      id: true,
+      cd_especialidade: true,
+      ds_especialidade: true,
+      slug: true,
+      ramo: true,
+      meta_nivel_1: true,
+      meta_nivel_2: true,
+      eixo: {
+        select: {
+          id: true,
+          nm_eixo: true,
+        },
+      },
+      itens: {
+        orderBy: [{ nr_item: 'asc' }, { id: 'asc' }],
+        select: {
+          id: true,
+          cd_item: true,
+          nr_item: true,
+          ds_item: true,
+          equivalencias_regras: {
+            where: { fl_aprovado: true },
+            select: {
+              pa_item_id: true,
+              pa_item: {
+                select: {
+                  cd_item: true,
+                  ds_item: true,
+                  especialidade: {
+                    select: {
+                      ds_especialidade: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    orderBy: { ds_especialidade: 'asc' },
+  });
+}
+
+type CatalogoData = Awaited<ReturnType<typeof fetchCatalogoFromDb>>;
+
+// Cache em memória do catálogo base de especialidades (não varia por jovem)
+let catalogoCache: Record<string, { data: CatalogoData; timestamp: number }> = {};
+const CACHE_TTL_MS = 60 * 1000; // 60 segundos
+
+export function invalidateCatalogoCache() {
+  catalogoCache = {};
+}
+
+async function getCatalogoEspecialidades(pnRamoEnum: string): Promise<CatalogoData> {
+  const cached = catalogoCache[pnRamoEnum];
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    return cached.data;
+  }
+
+  const data = await fetchCatalogoFromDb(pnRamoEnum);
+  catalogoCache[pnRamoEnum] = { data, timestamp: Date.now() };
+  return data;
+}
+
 type Params = {
   params: Promise<{ id: string }>;
 };
@@ -43,31 +114,8 @@ export async function GET(request: Request, { params }: Params) {
 
     const pnRamoEnum = isSeniorOuPioneiro ? 'SENIOR_PIONEIRO' : 'LOBINHO_ESCOTEIRO';
 
-    // 2. Busca catálogo de especialidades PN com eixos e itens
-    const especialidadesDb = await prisma.pnEspecialidade.findMany({
-      where: {
-        OR: [{ ramo: pnRamoEnum as any }, { ramo: null }],
-      },
-      include: {
-        eixo: true,
-        itens: {
-          orderBy: [{ nr_item: 'asc' }, { id: 'asc' }],
-          include: {
-            equivalencias_regras: {
-              where: { fl_aprovado: true },
-              include: {
-                pa_item: {
-                  include: {
-                    especialidade: true,
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-      orderBy: { ds_especialidade: 'asc' },
-    });
+    // 2. Busca catálogo de especialidades PN otimizado (sem vetores de embeddings)
+    const especialidadesDb = await getCatalogoEspecialidades(pnRamoEnum);
 
     // 3. Busca conquistas PN do jovem
     const conquistasEspecialidades = await prisma.progressaoEspecialidadePn.findMany({

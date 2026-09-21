@@ -8,13 +8,29 @@ export interface TransicaoEspecialidadeResultado {
   niveis_concedidos: number;
 }
 
+export interface EspecialidadeTransicaoItem {
+  id: number;
+  tipo_equivalencia?: string;
+  equivalencias_regras: {
+    pa_item_id: number;
+  }[];
+}
+
+export interface EspecialidadeTransicao {
+  id: number;
+  meta_nivel_1: number | null;
+  meta_nivel_2: number | null;
+  itens: EspecialidadeTransicaoItem[];
+}
+
 /**
  * Executa a transição pontual de especialidades de um associado.
  * Aplica estritamente a Regra de Ouro Simétrica (ADR-5):
  * Qualquer registro com origem = MANUAL_CHEFE (seja true ou false) é preservado integralmente.
  */
 export async function transicionarEspecialidadesAssociado(
-  cd_associado: string
+  cd_associado: string,
+  catalogoPreCarregado?: EspecialidadeTransicao[]
 ): Promise<TransicaoEspecialidadeResultado> {
   return await prisma.$transaction(async (tx) => {
     // 1. Busca associado e identifica o ramo
@@ -67,21 +83,31 @@ export async function transicionarEspecialidadesAssociado(
       pnExistentesMap.set(it.especialidade_item_id, it);
     }
 
-    // 4. Busca catálogo de especialidades PN aplicáveis ao ramo com regras homologadas
-    const pnEspecialidades = await tx.pnEspecialidade.findMany({
-      where: {
-        OR: [{ ramo: pnRamoEnum as any }, { ramo: null }],
-      },
-      include: {
-        itens: {
-          include: {
-            equivalencias_regras: {
-              where: { fl_aprovado: true },
+    // 4. Busca catálogo de especialidades PN (ou usa o pré-carregado pela seção)
+    const pnEspecialidades =
+      catalogoPreCarregado ||
+      (await tx.pnEspecialidade.findMany({
+        where: {
+          OR: [{ ramo: pnRamoEnum as any }, { ramo: null }],
+        },
+        select: {
+          id: true,
+          meta_nivel_1: true,
+          meta_nivel_2: true,
+          itens: {
+            select: {
+              id: true,
+              tipo_equivalencia: true,
+              equivalencias_regras: {
+                where: { fl_aprovado: true },
+                select: {
+                  pa_item_id: true,
+                },
+              },
             },
           },
         },
-      },
-    });
+      }));
 
     let totalItensConcedidos = 0;
     let totalNiveisConcedidos = 0;
@@ -105,57 +131,85 @@ export async function transicionarEspecialidadesAssociado(
           continue;
         }
 
-        // Avalia equivalência automática por semântica OR entre itens PA
+        // Avalia equivalência automática por semântica TODAS (AND) ou AO_MENOS_UMA (OR)
         let itemSatisfeito = false;
         let dataConclusaoPa: Date | null = null;
 
-        for (const regra of item.equivalencias_regras) {
-          if (paConquistadosMap.has(regra.pa_item_id)) {
-            itemSatisfeito = true;
-            dataConclusaoPa = paConquistadosMap.get(regra.pa_item_id) || null;
-            break; // Semântica OR: basta 1 item PA conquistado
+        if (item.equivalencias_regras.length > 0) {
+          if (item.tipo_equivalencia === 'AO_MENOS_UMA') {
+            for (const regra of item.equivalencias_regras) {
+              if (paConquistadosMap.has(regra.pa_item_id)) {
+                itemSatisfeito = true;
+                dataConclusaoPa = paConquistadosMap.get(regra.pa_item_id) || null;
+                break; // Semântica OR: basta 1 item PA conquistado
+              }
+            }
+          } else {
+            // Default: 'TODAS' (AND) - exige que todos os itens PA das regras homologadas estejam cumpridos
+            const todasCumpridas = item.equivalencias_regras.every((regra: { pa_item_id: number }) =>
+              paConquistadosMap.has(regra.pa_item_id)
+            );
+
+            if (todasCumpridas) {
+              itemSatisfeito = true;
+              // Herda a maior data de conclusão entre os itens PA cumpridos
+              let maxDate: Date | null = null;
+              for (const regra of item.equivalencias_regras) {
+                const dt = paConquistadosMap.get(regra.pa_item_id);
+                if (dt && (!maxDate || dt > maxDate)) {
+                  maxDate = dt;
+                }
+              }
+              dataConclusaoPa = maxDate;
+            }
           }
         }
 
         if (itemSatisfeito) {
-          await tx.progressaoEspecialidadeItemPn.upsert({
-            where: {
-              cd_associado_especialidade_item_id: {
-                cd_associado,
-                especialidade_item_id: item.id,
-              },
-            },
-            create: {
-              cd_associado,
-              especialidade_item_id: item.id,
-              concluida: true,
-              origem: 'EQUIVALENCIA_AUTOMATICA',
-              data_conclusao: dataConclusaoPa,
-            },
-            update: {
-              concluida: true,
-              origem: 'EQUIVALENCIA_AUTOMATICA',
-              data_conclusao: dataConclusaoPa,
-            },
-          });
           concluidosCount++;
-          totalItensConcedidos++;
           if (dataConclusaoPa) {
             ultimaDataConclusao = dataConclusaoPa;
           }
-        } else if (existente && existente.origem === 'EQUIVALENCIA_AUTOMATICA' && existente.concluida) {
-          // Se não cumpre mais e era automático, desmarca
-          await tx.progressaoEspecialidadeItemPn.update({
-            where: { id: existente.id },
-            data: {
-              concluida: false,
-              origem: 'EQUIVALENCIA_AUTOMATICA',
-            },
-          });
+
+          // Se não estava marcado como concluído automaticamente, grava/atualiza
+          if (!existente || !existente.concluida) {
+            await tx.progressaoEspecialidadeItemPn.upsert({
+              where: {
+                cd_associado_especialidade_item_id: {
+                  cd_associado,
+                  especialidade_item_id: item.id,
+                },
+              },
+              create: {
+                cd_associado,
+                especialidade_item_id: item.id,
+                concluida: true,
+                data_conclusao: dataConclusaoPa,
+                origem: 'EQUIVALENCIA_AUTOMATICA',
+              },
+              update: {
+                concluida: true,
+                data_conclusao: dataConclusaoPa,
+                origem: 'EQUIVALENCIA_AUTOMATICA',
+              },
+            });
+            totalItensConcedidos++;
+          }
+        } else {
+          // Se estava marcado como automático e não cumpre mais, reverte
+          if (existente && existente.origem === 'EQUIVALENCIA_AUTOMATICA' && existente.concluida) {
+            await tx.progressaoEspecialidadeItemPn.update({
+              where: { id: existente.id },
+              data: {
+                concluida: false,
+                data_conclusao: null,
+              },
+            });
+          }
         }
       }
 
-      // Totaliza nível da especialidade PN com base nas metas
+      // Calcula e concede Nível 1 ou Nível 2
       const meta1 = esp.meta_nivel_1 ?? 4;
       const meta2 = esp.meta_nivel_2 ?? 8;
 
@@ -221,6 +275,33 @@ export async function transicionarEspecialidadesSecao(
   niveis_concedidos: number;
 }> {
   const ramoEnum = normalizeRamo(ds_ramo);
+  const isSeniorOuPioneiro =
+    ramoEnum === RamoEnum.SENIOR || ramoEnum === RamoEnum.PIONEIRO;
+  const pnRamoEnum = isSeniorOuPioneiro ? 'SENIOR_PIONEIRO' : 'LOBINHO_ESCOTEIRO';
+
+  // Pré-carrega o catálogo de especialidades UMA ÚNICA VEZ para toda a seção sem colunas pesadas
+  const catalogoSecao = await prisma.pnEspecialidade.findMany({
+    where: {
+      OR: [{ ramo: pnRamoEnum as any }, { ramo: null }],
+    },
+    select: {
+      id: true,
+      meta_nivel_1: true,
+      meta_nivel_2: true,
+      itens: {
+        select: {
+          id: true,
+          tipo_equivalencia: true,
+          equivalencias_regras: {
+            where: { fl_aprovado: true },
+            select: {
+              pa_item_id: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
   const associados = await prisma.associado.findMany({
     where: {
@@ -235,7 +316,7 @@ export async function transicionarEspecialidadesSecao(
   let totalNiveis = 0;
 
   for (const a of associados) {
-    const res = await transicionarEspecialidadesAssociado(a.cd_associado);
+    const res = await transicionarEspecialidadesAssociado(a.cd_associado, catalogoSecao);
     totalItens += res.itens_concedidos;
     totalNiveis += res.niveis_concedidos;
   }

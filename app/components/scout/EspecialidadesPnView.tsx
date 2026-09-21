@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useTransition } from 'react';
+import { useState, useEffect, useMemo, useTransition, useCallback } from 'react';
 import {
   Search,
   CheckCircle2,
@@ -15,6 +15,7 @@ import {
   Filter,
   Sparkles,
   Info,
+  Zap,
 } from 'lucide-react';
 
 interface RegraPaAprovada {
@@ -68,12 +69,13 @@ export default function EspecialidadesPnView({ cdAssociado, ramoAtual }: Props) 
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filtroEixo, setFiltroEixo] = useState<string>('TODOS');
-  const [filtroStatus, setFiltroStatus] = useState<'TODOS' | 'CONQUISTADAS' | 'EM_ANDAMENTO'>('TODOS');
+  const [filtroStatus, setFiltroStatus] = useState<'COM_CONQUISTAS' | 'TODOS' | 'CONQUISTADAS' | 'EM_ANDAMENTO'>('COM_CONQUISTAS');
   const [cardExpandido, setCardExpandido] = useState<Record<number, boolean>>({});
 
   // Auto-save feedback { [itemId]: { status: 'saving' | 'saved' | 'error', time?: string } }
   const [savingStatus, setSavingStatus] = useState<Record<number, { status: 'saving' | 'saved' | 'error'; time?: string }>>({});
   const [lastGlobalSaveTime, setLastGlobalSaveTime] = useState<string | null>(null);
+  const [recalculandoIndividual, setRecalculandoIndividual] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const isSeniorOuPioneiro =
@@ -82,50 +84,60 @@ export default function EspecialidadesPnView({ cdAssociado, ramoAtual }: Props) 
     ramoAtual.toLowerCase().includes('pioneiro');
 
   // Carrega dados da API
-  useEffect(() => {
-    let isCancelled = false;
+  const loadData = useCallback(async () => {
+    if (!cdAssociado) return;
+    setLoading(true);
+    setError(null);
 
-    async function loadData() {
-      if (!cdAssociado) return;
-      setLoading(true);
-      setError(null);
+    try {
+      const res = await fetch(`/api/especialidades-pn/${cdAssociado}?ramo=${encodeURIComponent(ramoAtual)}`);
+      const json = await res.json();
 
-      try {
-        const res = await fetch(`/api/especialidades-pn/${cdAssociado}?ramo=${encodeURIComponent(ramoAtual)}`);
-        const json = await res.json();
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || 'Falha ao carregar especialidades do Novo Programa.');
+      }
 
-        if (!res.ok || !json.success) {
-          throw new Error(json.error || 'Falha ao carregar especialidades do Novo Programa.');
-        }
-
-        if (!isCancelled) {
-          setEspecialidades(json.data.especialidades || []);
-          // Auto-expandir especialidades que já possuem algum item ou conquista
-          const initialExpanded: Record<number, boolean> = {};
-          for (const esp of json.data.especialidades || []) {
-            if (esp.conquista.qtd_itens_concluidos > 0 || esp.conquista.nr_nivel > 0) {
-              initialExpanded[esp.id] = true;
-            }
-          }
-          setCardExpandido(initialExpanded);
-        }
-      } catch (err: any) {
-        if (!isCancelled) {
-          setError(err.message || 'Erro inesperado');
-        }
-      } finally {
-        if (!isCancelled) {
-          setLoading(false);
+      setEspecialidades(json.data.especialidades || []);
+      // Auto-expandir especialidades que já possuem algum item ou conquista
+      const initialExpanded: Record<number, boolean> = {};
+      for (const esp of json.data.especialidades || []) {
+        if (esp.conquista.qtd_itens_concluidos > 0 || esp.conquista.nr_nivel > 0) {
+          initialExpanded[esp.id] = true;
         }
       }
+      setCardExpandido(initialExpanded);
+    } catch (err: any) {
+      setError(err.message || 'Erro inesperado');
+    } finally {
+      setLoading(false);
     }
-
-    loadData();
-
-    return () => {
-      isCancelled = true;
-    };
   }, [cdAssociado, ramoAtual]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  // Recálculo individual das especialidades deste jovem (Item 1.1)
+  async function handleRecalcularIndividual() {
+    if (recalculandoIndividual || !cdAssociado) return;
+    setRecalculandoIndividual(true);
+    try {
+      const res = await fetch('/api/transicao/especialidades/recalcular', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tipo: 'INDIVIDUAL', cd_associado: cdAssociado }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Falha ao recalcular especialidades do jovem.');
+      }
+      await loadData();
+    } catch (err: any) {
+      alert(`Erro ao recalcular especialidades: ${err.message}`);
+    } finally {
+      setRecalculandoIndividual(false);
+    }
+  }
 
   // Lista de eixos únicos para o filtro
   const eixosDisponiveis = useMemo(() => {
@@ -138,7 +150,7 @@ export default function EspecialidadesPnView({ cdAssociado, ramoAtual }: Props) 
     return Array.from(set).sort();
   }, [especialidades]);
 
-  // Filtragem combinada
+  // Filtragem combinada (Item 1.2: padrão apenas com itens conquistados)
   const especialidadesFiltradas = useMemo(() => {
     return especialidades.filter((esp) => {
       // Busca texto
@@ -155,6 +167,9 @@ export default function EspecialidadesPnView({ cdAssociado, ramoAtual }: Props) 
       }
 
       // Filtro de Conquista
+      if (filtroStatus === 'COM_CONQUISTAS' && esp.conquista.qtd_itens_concluidos === 0 && esp.conquista.nr_nivel === 0) {
+        return false;
+      }
       if (filtroStatus === 'CONQUISTADAS' && esp.conquista.nr_nivel === 0) {
         return false;
       }
@@ -449,27 +464,43 @@ export default function EspecialidadesPnView({ cdAssociado, ramoAtual }: Props) 
           </div>
         </div>
 
-        <div
+        {/* Botão de Recálculo Individual deste Jovem (Item 1.1) */}
+        <button
+          type="button"
+          onClick={handleRecalcularIndividual}
+          disabled={recalculandoIndividual}
           style={{
-            background: 'rgba(255, 255, 255, 0.03)',
-            border: '1px solid var(--glass-border)',
+            background: 'rgba(234, 179, 8, 0.1)',
+            border: '1.5px solid #eab308',
             borderRadius: '16px',
             padding: '1rem 1.25rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.85rem',
+            justifyContent: 'center',
+            gap: '0.75rem',
+            color: '#eab308',
+            fontWeight: 800,
+            fontSize: '0.9rem',
+            cursor: recalculandoIndividual ? 'not-allowed' : 'pointer',
+            transition: 'all 0.2s ease',
+            boxShadow: '0 4px 14px rgba(234, 179, 8, 0.2)',
           }}
         >
-          <Clock size={28} style={{ color: '#a78bfa' }} />
-          <div>
-            <div style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase' }}>
-              Status do Auto-Save
-            </div>
-            <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#e2e8f0', marginTop: '0.25rem' }}>
-              {lastGlobalSaveTime || 'Pronto para edição'}
-            </div>
-          </div>
-        </div>
+          {recalculandoIndividual ? (
+            <Loader2 className="animate-spin" size={20} />
+          ) : (
+            <Zap size={20} />
+          )}
+          <span>
+            {recalculandoIndividual ? 'Recalculando Jovem...' : 'Recalcular Especialidades'}
+          </span>
+        </button>
+      </div>
+
+      {/* Indicador sutil e discreto de Auto-Save (Item 1.1) */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#94a3b8', paddingLeft: '4px', marginTop: '-0.75rem' }}>
+        <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--primary)', boxShadow: '0 0 8px var(--primary)' }} />
+        <span>Salvamento automático ativo • {lastGlobalSaveTime || 'Pronto para edição'}</span>
       </div>
 
       {/* Controles de Busca e Filtros */}
@@ -539,7 +570,7 @@ export default function EspecialidadesPnView({ cdAssociado, ramoAtual }: Props) 
             ))}
           </select>
 
-          {/* Filtro por Status */}
+          {/* Filtro por Status (Item 1.2) */}
           <select
             value={filtroStatus}
             onChange={(e) => setFiltroStatus(e.target.value as any)}
@@ -551,9 +582,11 @@ export default function EspecialidadesPnView({ cdAssociado, ramoAtual }: Props) 
               color: '#fff',
               fontSize: '0.88rem',
               cursor: 'pointer',
+              fontWeight: 600,
             }}
           >
-            <option value="TODOS">Todas as Situações</option>
+            <option value="COM_CONQUISTAS">Apenas com Itens Conquistados</option>
+            <option value="TODOS">Todas do Catálogo ({especialidades.length})</option>
             <option value="CONQUISTADAS">Conquistadas (Nível 1 ou 2)</option>
             <option value="EM_ANDAMENTO">Em Andamento (&gt; 0 itens)</option>
           </select>
@@ -570,14 +603,41 @@ export default function EspecialidadesPnView({ cdAssociado, ramoAtual }: Props) 
           <div
             style={{
               textAlign: 'center',
-              padding: '3rem',
-              color: '#64748b',
+              padding: '3.5rem 2rem',
+              color: '#94a3b8',
               background: 'rgba(255, 255, 255, 0.01)',
               borderRadius: '16px',
-              border: '1px dashed rgba(255, 255, 255, 0.08)',
+              border: '1px dashed rgba(255, 255, 255, 0.1)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '1rem',
             }}
           >
-            Nenhuma especialidade encontrada com os filtros selecionados.
+            <p style={{ margin: 0, fontSize: '0.98rem' }}>
+              {filtroStatus === 'COM_CONQUISTAS'
+                ? 'Nenhuma especialidade possui itens conquistados para este jovem no momento.'
+                : 'Nenhuma especialidade encontrada com os filtros selecionados.'}
+            </p>
+            {filtroStatus === 'COM_CONQUISTAS' && (
+              <button
+                type="button"
+                onClick={() => setFiltroStatus('TODOS')}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.06)',
+                  color: '#fff',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  padding: '0.5rem 1.25rem',
+                  borderRadius: '10px',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                Ver todas as especialidades do catálogo ({especialidades.length})
+              </button>
+            )}
           </div>
         ) : (
           especialidadesFiltradas.map((esp) => {
