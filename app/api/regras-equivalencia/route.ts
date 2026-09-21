@@ -102,8 +102,8 @@ export async function GET(request: Request) {
     });
     const pa_atividades = paAtividadesDb.map((a) => ({
       id: a.id,
-      cd_ueb: a.cd_ueb,
-      identificacao: a.identificacao,
+      cd_ueb: a.identificacao || '',
+      identificacao: a.identificacao || '',
       ds_atividade: a.ds_atividade,
       nr_ordenacao: a.nr_ordenacao,
       cd_caminho_paxtu: a.competencia?.caminho?.cd_caminho_paxtu || null,

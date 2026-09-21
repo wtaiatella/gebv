@@ -2,13 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { RefreshCw, Loader2, Zap } from 'lucide-react';
+import { RefreshCw, Loader2, Zap, Info } from 'lucide-react';
 import type { Ramo } from '@/app/lib/data';
 import { useScoutContext } from '@/app/context/ScoutContext';
 import { PaxtuConnectButton } from './scout/PaxtuLoginModal';
 import ProgressionView from './scout/ProgressionView';
 import NovoProgramaView from './scout/NovoProgramaView';
+import EspecialidadesPnView from './scout/EspecialidadesPnView';
 import RegrasEquivalenciaView from './equivalencias/RegrasEquivalenciaView';
+import MatrizEquivalenciasEspecialidadesView from './scout/MatrizEquivalenciasEspecialidadesView';
 
 const RAMOS: { label: string; value: Ramo }[] = [
   { label: '🐺 Ramo Lobinho', value: 'Lobinho' },
@@ -58,25 +60,43 @@ export default function ScoutExplorer() {
 
   async function handleRecalcularTodos() {
     if (syncProgress?.active) return;
+    const isEspecialidadesTab = viewMode === 'especialidades';
+
     setSyncProgress({
       active: true,
       type: 'recalc',
       percent: 30,
-      message: `Recalculando regras de transição para todos os jovens do Ramo ${ramoAtual}...`,
+      message: isEspecialidadesTab
+        ? `Recalculando transição de especialidades para a seção ${ramoAtual}...`
+        : `Recalculando regras de transição (18 Blocos) para o Ramo ${ramoAtual}...`,
     });
 
     try {
-      const res = await fetch(`/api/transicao/lote?ramo=${ramoAtual.toLowerCase()}`, { method: 'POST' });
+      let res;
+      if (isEspecialidadesTab) {
+        res = await fetch('/api/transicao/especialidades/recalcular', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tipo: 'SECAO', ds_ramo: ramoAtual }),
+        });
+      } else {
+        res = await fetch(`/api/transicao/lote?ramo=${ramoAtual.toLowerCase()}`, { method: 'POST' });
+      }
+
       const data = await res.json();
       if (!res.ok || !data.success) {
-        throw new Error(data.error || 'Falha ao recalcular transição em lote.');
+        throw new Error(data.error || 'Falha ao recalcular transição.');
       }
+
+      const msg = isEspecialidadesTab
+        ? `Especialidades recalculadas com sucesso! ${data.processados ?? data.total_processados} jovens processados, ${data.niveis_concedidos ?? 0} níveis concedidos.`
+        : `Transição recalculada com sucesso para ${data.total_processados} jovens!`;
 
       setSyncProgress({
         active: false,
         type: 'recalc',
         percent: 100,
-        message: `Transição recalculada com sucesso para ${data.total_processados} jovens!`,
+        message: msg,
         isError: false,
       });
 
@@ -124,15 +144,15 @@ export default function ScoutExplorer() {
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
+
         buffer += decoder.decode(value, { stream: true });
         const lines = buffer.split('\n');
-        buffer = lines.pop() ?? '';
+        buffer = lines.pop() || '';
 
         for (const line of lines) {
-          const trimmed = line.trim();
-          if (!trimmed) continue;
+          if (!line.trim()) continue;
           try {
-            const json = JSON.parse(trimmed);
+            const json = JSON.parse(line.trim());
             if (json.type === 'error') {
               throw new Error(json.message || 'Erro durante a sincronização.');
             }
@@ -325,9 +345,9 @@ export default function ScoutExplorer() {
             border: '1px solid var(--glass-border)',
           }}
         >
-          {/* Coluna Esquerda: Abas de Ramos (Pills) + Select do Jovem */}
+          {/* Coluna Esquerda: Abas de Ramos (Pills) + Recalcular Seção + Select do Jovem */}
           <div style={{ flex: 1, minWidth: '320px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {/* Pills dos Ramos + Checkbox Matriz de Equivalência */}
+            {/* Pills dos Ramos + Botão Recalcular Seção (conforme menu-novo.png) */}
             <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', alignItems: 'center' }}>
               {RAMOS.map(({ label, value }) => {
                 const isSelected = ramoAtual === value;
@@ -354,38 +374,42 @@ export default function ScoutExplorer() {
                 );
               })}
 
-              {/* Checkbox / Toggle: Matriz de Equivalência */}
-              <label
+              {/* Botão Recalcular Transição da Seção ao lado dos Ramos (menu-novo.png) */}
+              <button
+                type="button"
+                onClick={handleRecalcularTodos}
+                disabled={syncProgress?.active}
                 style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.55rem 1.15rem',
-                  borderRadius: '9999px',
-                  background: exibirMatriz ? 'rgba(0, 255, 136, 0.15)' : 'rgba(255, 255, 255, 0.06)',
-                  border: exibirMatriz ? '1px solid var(--primary)' : '1px solid rgba(255, 255, 255, 0.1)',
-                  color: exibirMatriz ? 'var(--primary)' : '#cbd5e1',
+                  background: 'rgba(234, 179, 8, 0.06)',
+                  color: '#eab308',
+                  border: '1.5px solid #ca8a04',
                   fontWeight: 700,
-                  fontSize: '0.88rem',
-                  cursor: 'pointer',
-                  userSelect: 'none',
+                  fontSize: '0.86rem',
+                  padding: '0.55rem 1.25rem',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.45rem',
+                  cursor: syncProgress?.active ? 'not-allowed' : 'pointer',
+                  opacity: syncProgress?.active ? 0.6 : 1,
                   transition: 'all 0.2s ease',
-                  boxShadow: exibirMatriz ? '0 0 16px rgba(0, 255, 136, 0.2)' : 'none',
+                  marginLeft: '0.25rem',
                 }}
               >
-                <input
-                  type="checkbox"
-                  checked={exibirMatriz}
-                  onChange={(e) => setExibirMatriz(e.target.checked)}
-                  style={{
-                    width: '16px',
-                    height: '16px',
-                    cursor: 'pointer',
-                    accentColor: 'var(--primary)',
-                  }}
-                />
-                <span>📐 Matriz de Equivalência</span>
-              </label>
+                {syncProgress?.active && syncProgress.type === 'recalc' ? (
+                  <Loader2 className="animate-spin" size={16} />
+                ) : (
+                  <Zap size={16} />
+                )}
+                <span>
+                  {syncProgress?.active && syncProgress.type === 'recalc'
+                    ? 'Recalculando...'
+                    : viewMode === 'especialidades'
+                      ? 'Recalcular Especialidades da Seção'
+                      : 'Recalcular Transição da Seção'}
+                </span>
+              </button>
             </div>
 
             {/* Dropdown de Jovens */}
@@ -421,7 +445,7 @@ export default function ScoutExplorer() {
             </div>
           </div>
 
-          {/* Coluna Direita: Dois Botões Empilhados de Sincronização */}
+          {/* Coluna Direita: Apenas Dois Botões Empilhados de Sincronização (menu-novo.png) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', minWidth: '260px' }}>
             {/* Botão 1: Sincronizar Seção */}
             <button
@@ -489,40 +513,6 @@ export default function ScoutExplorer() {
                 {syncProgress?.active && syncProgress.type === 'single'
                   ? 'Atualizando jovem...'
                   : 'Sincronizar dados deste jovem'}
-              </span>
-            </button>
-
-            {/* Botão 3: Recalcular Transição da Seção */}
-            <button
-              type="button"
-              onClick={handleRecalcularTodos}
-              disabled={syncProgress?.active}
-              style={{
-                background: 'rgba(234, 179, 8, 0.1)',
-                color: '#eab308',
-                border: '1.5px solid #eab308',
-                fontWeight: 700,
-                fontSize: '0.85rem',
-                padding: '0.65rem 1.25rem',
-                borderRadius: '12px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.5rem',
-                cursor: syncProgress?.active ? 'not-allowed' : 'pointer',
-                opacity: syncProgress?.active ? 0.6 : 1,
-                transition: 'all 0.2s ease',
-              }}
-            >
-              {syncProgress?.active && syncProgress.type === 'recalc' ? (
-                <Loader2 className="animate-spin" size={16} />
-              ) : (
-                <Zap size={16} />
-              )}
-              <span>
-                {syncProgress?.active && syncProgress.type === 'recalc'
-                  ? 'Recalculando todos...'
-                  : 'Recalcular Transição da Seção'}
               </span>
             </button>
           </div>
@@ -625,8 +615,8 @@ export default function ScoutExplorer() {
           </div>
         )}
 
-        {/* CARD 2: Visualização da Matriz de Equivalência ou da Progressão do Jovem */}
-        {exibirMatriz ? (
+        {/* CARD 2: Visualização da Progressão / Especialidades do Jovem ou da Matriz de Equivalência */}
+        {escoteiro ? (
           <section
             className="card"
             style={{
@@ -636,24 +626,12 @@ export default function ScoutExplorer() {
               border: '1px solid var(--glass-border)',
             }}
           >
-            <RegrasEquivalenciaView ramo={ramoAtual} />
-          </section>
-        ) : escoteiro ? (
-          <section
-            className="card"
-            style={{
-              padding: '2rem',
-              borderRadius: '24px',
-              background: 'rgba(255, 255, 255, 0.02)',
-              border: '1px solid var(--glass-border)',
-            }}
-          >
-            {/* Abas de Alternância Novo vs Antigo Alinhadas à Esquerda */}
+            {/* Abas Principais + Toggle Checkbox Matriz de Equivalência */}
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'flex-start',
                 alignItems: 'center',
+                justifyContent: 'space-between',
                 gap: '0.6rem',
                 marginBottom: '1.75rem',
                 borderBottom: '1px solid var(--glass-border)',
@@ -661,60 +639,148 @@ export default function ScoutExplorer() {
                 flexWrap: 'wrap',
               }}
             >
-              <button
-                type="button"
-                onClick={() => setViewMode('novo')}
-                style={{
-                  background: viewMode === 'novo' ? 'var(--primary)' : 'rgba(255, 255, 255, 0.06)',
-                  color: viewMode === 'novo' ? '#000' : '#cbd5e1',
-                  border: viewMode === 'novo' ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
-                  padding: '0.65rem 1.25rem',
-                  fontSize: '0.9rem',
-                  fontWeight: 700,
-                  borderRadius: '10px',
-                  boxShadow: viewMode === 'novo' ? '0 4px 12px rgba(0, 255, 136, 0.3)' : 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  transition: 'all 0.2s ease',
-                }}
-              >
-                <span>🧩</span> Programa Atualizado (18 Blocos)
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                {/* Aba 1: 18 Blocos */}
+                <button
+                  type="button"
+                  onClick={() => setViewMode('novo')}
+                  style={{
+                    background: viewMode === 'novo' ? 'var(--primary)' : 'rgba(255, 255, 255, 0.06)',
+                    color: viewMode === 'novo' ? '#000' : '#cbd5e1',
+                    border: viewMode === 'novo' ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
+                    padding: '0.65rem 1.25rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 700,
+                    borderRadius: '10px',
+                    boxShadow: viewMode === 'novo' ? '0 4px 14px rgba(0, 255, 136, 0.35)' : 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  <span>🧩</span> Programa Atualizado (18 Blocos)
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setViewMode('antigo')}
+                {/* Aba 2: Programa Antigo */}
+                <button
+                  type="button"
+                  onClick={() => setViewMode('antigo')}
+                  style={{
+                    background: viewMode === 'antigo' ? 'var(--primary)' : 'rgba(255, 255, 255, 0.06)',
+                    color: viewMode === 'antigo' ? '#000' : '#cbd5e1',
+                    border: viewMode === 'antigo' ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
+                    padding: '0.65rem 1.25rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 700,
+                    borderRadius: '10px',
+                    boxShadow: viewMode === 'antigo' ? '0 4px 14px rgba(0, 255, 136, 0.35)' : 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  <span>📜</span> Programa Antigo (Paxtu)
+                </button>
+
+                {/* Aba 3: Especialidades do PN */}
+                <button
+                  type="button"
+                  onClick={() => setViewMode('especialidades')}
+                  style={{
+                    background: viewMode === 'especialidades' ? 'var(--primary)' : 'rgba(255, 255, 255, 0.06)',
+                    color: viewMode === 'especialidades' ? '#000' : '#cbd5e1',
+                    border: viewMode === 'especialidades' ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
+                    padding: '0.65rem 1.25rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 700,
+                    borderRadius: '10px',
+                    boxShadow: viewMode === 'especialidades' ? '0 4px 14px rgba(0, 255, 136, 0.35)' : 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  <span>🎖️</span> Especialidades do PN
+                </button>
+              </div>
+
+              {/* Checkbox / Toggle: Matriz de Equivalência */}
+              <label
                 style={{
-                  background: viewMode === 'antigo' ? 'var(--primary)' : 'rgba(255, 255, 255, 0.06)',
-                  color: viewMode === 'antigo' ? '#000' : '#cbd5e1',
-                  border: viewMode === 'antigo' ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
-                  padding: '0.65rem 1.25rem',
-                  fontSize: '0.9rem',
-                  fontWeight: 700,
-                  borderRadius: '10px',
-                  boxShadow: viewMode === 'antigo' ? '0 4px 12px rgba(0, 255, 136, 0.3)' : 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
+                  display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.4rem',
+                  gap: '0.45rem',
+                  padding: '0.55rem 1.15rem',
+                  borderRadius: '9999px',
+                  background: exibirMatriz ? 'rgba(0, 255, 136, 0.15)' : 'rgba(255, 255, 255, 0.06)',
+                  border: exibirMatriz ? '1px solid var(--primary)' : '1px solid rgba(255, 255, 255, 0.1)',
+                  color: exibirMatriz ? 'var(--primary)' : '#cbd5e1',
+                  fontWeight: 700,
+                  fontSize: '0.88rem',
+                  cursor: 'pointer',
+                  userSelect: 'none',
                   transition: 'all 0.2s ease',
+                  boxShadow: exibirMatriz ? '0 0 16px rgba(0, 255, 136, 0.2)' : 'none',
                 }}
               >
-                <span>📜</span> Programa Antigo (Paxtu)
-              </button>
+                <input
+                  type="checkbox"
+                  checked={exibirMatriz}
+                  onChange={(e) => setExibirMatriz(e.target.checked)}
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    cursor: 'pointer',
+                    accentColor: 'var(--primary)',
+                  }}
+                />
+                <span>📐 Matriz de Equivalência</span>
+              </label>
             </div>
 
-            {/* Renderização condicional da visão selecionada */}
-            {viewMode === 'novo' ? (
+            {/* Renderização Condicional: Matriz vs Visão do Jovem */}
+            {exibirMatriz ? (
+              viewMode === 'especialidades' ? (
+                ramoAtual === 'Sênior' || ramoAtual === 'Pioneiro' ? (
+                  <div
+                    style={{
+                      padding: '3rem 2rem',
+                      textAlign: 'center',
+                      background: 'rgba(59, 130, 246, 0.08)',
+                      borderRadius: '18px',
+                      border: '1px solid rgba(59, 130, 246, 0.25)',
+                    }}
+                  >
+                    <Info size={40} style={{ color: '#60a5fa', margin: '0 auto 1rem' }} />
+                    <h3 style={{ color: '#fff', fontWeight: 800, fontSize: '1.25rem' }}>
+                      Sem Conversão de Especialidades para o Ramo {ramoAtual}
+                    </h3>
+                    <p style={{ color: '#cbd5e1', maxWidth: '640px', margin: '0.65rem auto 0', lineHeight: 1.55 }}>
+                      No Novo Programa (PN) da UEB, os ramos Sênior e Pioneiro não possuem matriz de conversão ou equivalência de especialidades a partir do Programa Antigo (PA). Suas conquistas formativas são conduzidas diretamente pelo plano pedagógico de cada etapa.
+                    </p>
+                  </div>
+                ) : (
+                  <MatrizEquivalenciasEspecialidadesView ramoInicial={ramoAtual} />
+                )
+              ) : (
+                <RegrasEquivalenciaView ramo={ramoAtual} />
+              )
+            ) : viewMode === 'novo' ? (
               <NovoProgramaView cdAssociado={activeId} ramoAtual={ramoAtual} />
-            ) : (
+            ) : viewMode === 'antigo' ? (
               <ProgressionView
                 caminhos={escoteiro.progressao}
                 especialidades={escoteiro.especialidades}
                 catalogoDisponivel={catalogoDisponivel}
               />
+            ) : (
+              <EspecialidadesPnView cdAssociado={activeId} ramoAtual={ramoAtual} />
             )}
           </section>
         ) : (

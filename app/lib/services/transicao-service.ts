@@ -224,10 +224,7 @@ export async function getProgressoNovoModelo(
   const oldActivities = await prisma.progressaoPa.findMany({
     where: {
       cd_associado,
-      OR: [
-        { fl_check_jovem: true },
-        { fl_check_escotista: true },
-      ],
+      concluida: true,
     },
     include: {
       atividade: {
@@ -246,17 +243,20 @@ export async function getProgressoNovoModelo(
   const completedRumo = new Set<string>();
 
   for (const row of oldActivities) {
-    const cdUeb = row.atividade?.cd_ueb || '';
-    const caminhoPaxtu = row.atividade?.competencia?.caminho?.cd_caminho_paxtu || '';
-    const numOnly = cdUeb.replace(/\D/g, '');
+    const caminhoPaxtu = row.atividade?.cd_caminho_paxtu || row.atividade?.competencia?.caminho?.cd_caminho_paxtu || '';
+    const nrOrd = row.atividade?.nr_ordenacao !== null && row.atividade?.nr_ordenacao !== undefined ? String(row.atividade.nr_ordenacao) : '';
+    const ident = row.atividade?.identificacao || '';
+    const numOnly = ident.replace(/\D/g, '') || nrOrd;
 
-    if (cdUeb.startsWith('P') || caminhoPaxtu === '4' || caminhoPaxtu === '5' || caminhoPaxtu === 'PISTA') {
+    if (caminhoPaxtu === '4' || caminhoPaxtu === '5' || ident.startsWith('P')) {
       if (numOnly) completedPistas.add(numOnly);
-      completedPistas.add(cdUeb);
+      if (nrOrd) completedPistas.add(nrOrd);
+      if (ident) completedPistas.add(ident);
     }
-    if (cdUeb.startsWith('R') || caminhoPaxtu === '6' || caminhoPaxtu === 'RUMO' || caminhoPaxtu === 'TRAVESSIA') {
+    if (caminhoPaxtu === '6' || ident.startsWith('R')) {
       if (numOnly) completedRumo.add(numOnly);
-      completedRumo.add(cdUeb);
+      if (nrOrd) completedRumo.add(nrOrd);
+      if (ident) completedRumo.add(ident);
     }
   }
 
@@ -327,24 +327,27 @@ export async function getProgressoNovoModelo(
   const paRumoMap = new Map<string, { identificacao: string; ds_atividade: string }>();
 
   for (const row of paAtivList) {
-    const cdUeb = row.cd_ueb || '';
-    const numOnly = cdUeb.replace(/\D/g, '');
-    const caminhoPaxtu = row.competencia?.caminho?.cd_caminho_paxtu || '';
+    const caminhoPaxtu = row.cd_caminho_paxtu || row.competencia?.caminho?.cd_caminho_paxtu || '';
+    const nrOrd = row.nr_ordenacao !== null && row.nr_ordenacao !== undefined ? String(row.nr_ordenacao) : '';
+    const ident = row.identificacao || (caminhoPaxtu === '6' ? `RT-${nrOrd}` : `PT-${nrOrd}`);
+    const numOnly = ident.replace(/\D/g, '') || nrOrd;
 
-    if (caminhoPaxtu === '4' || caminhoPaxtu === '5' || cdUeb.startsWith('P')) {
+    if (caminhoPaxtu === '4' || caminhoPaxtu === '5' || ident.startsWith('P')) {
       const item = {
-        identificacao: row.identificacao || `PT-${numOnly || cdUeb}`,
+        identificacao: ident,
         ds_atividade: row.ds_atividade,
       };
       if (numOnly) paPistasMap.set(numOnly, item);
-      paPistasMap.set(cdUeb, item);
-    } else if (caminhoPaxtu === '6' || cdUeb.startsWith('R')) {
+      if (nrOrd) paPistasMap.set(nrOrd, item);
+      paPistasMap.set(ident, item);
+    } else if (caminhoPaxtu === '6' || ident.startsWith('R')) {
       const item = {
-        identificacao: row.identificacao || `RT-${numOnly || cdUeb}`,
+        identificacao: ident,
         ds_atividade: row.ds_atividade,
       };
       if (numOnly) paRumoMap.set(numOnly, item);
-      paRumoMap.set(cdUeb, item);
+      if (nrOrd) paRumoMap.set(nrOrd, item);
+      paRumoMap.set(ident, item);
     }
   }
 
@@ -654,10 +657,7 @@ export async function processarTransicaoAssociado(
     const oldActivities = await tx.progressaoPa.findMany({
       where: {
         cd_associado,
-        OR: [
-          { fl_check_jovem: true },
-          { fl_check_escotista: true },
-        ],
+        concluida: true,
       },
       include: {
         atividade: {
@@ -676,17 +676,20 @@ export async function processarTransicaoAssociado(
     const completedRumo = new Set<string>();
 
     for (const row of oldActivities) {
-      const cdUeb = row.atividade?.cd_ueb || '';
-      const caminhoPaxtu = row.atividade?.competencia?.caminho?.cd_caminho_paxtu || '';
-      const numOnly = cdUeb.replace(/\D/g, '');
+      const caminhoPaxtu = row.atividade?.cd_caminho_paxtu || row.atividade?.competencia?.caminho?.cd_caminho_paxtu || '';
+      const nrOrd = row.atividade?.nr_ordenacao !== null && row.atividade?.nr_ordenacao !== undefined ? String(row.atividade.nr_ordenacao) : '';
+      const ident = row.atividade?.identificacao || '';
+      const numOnly = ident.replace(/\D/g, '') || nrOrd;
 
-      if (cdUeb.startsWith('P') || caminhoPaxtu === '4' || caminhoPaxtu === '5' || caminhoPaxtu === 'PISTA') {
+      if (caminhoPaxtu === '4' || caminhoPaxtu === '5' || ident.startsWith('P')) {
         if (numOnly) completedPistas.add(numOnly);
-        completedPistas.add(cdUeb);
+        if (nrOrd) completedPistas.add(nrOrd);
+        if (ident) completedPistas.add(ident);
       }
-      if (cdUeb.startsWith('R') || caminhoPaxtu === '6' || caminhoPaxtu === 'RUMO' || caminhoPaxtu === 'TRAVESSIA') {
+      if (caminhoPaxtu === '6' || ident.startsWith('R')) {
         if (numOnly) completedRumo.add(numOnly);
-        completedRumo.add(cdUeb);
+        if (nrOrd) completedRumo.add(nrOrd);
+        if (ident) completedRumo.add(ident);
       }
     }
 

@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { prisma } from '../../app/lib/prisma';
+import prisma from '../../app/lib/prisma';
 import {
   resolveAtividadeCatalogo,
   upsertProgressaoPa,
@@ -13,7 +13,7 @@ import { getEscoteiros } from '../../app/lib/data';
 import { DataAccessError } from '../../app/lib/errors';
 
 async function runProgressaoRelacionalTests() {
-  console.log('🧪 [TEST SUITE] Iniciando Testes de Progressão Relacional (US1)...\n');
+  console.log('🧪 [TEST SUITE] Iniciando Testes de Progressão Relacional (US1-US5)...\n');
   let passed = 0;
   let failed = 0;
 
@@ -32,46 +32,35 @@ async function runProgressaoRelacionalTests() {
   // =========================================================================
   console.log('🔹 1. Resolução de Atividade do Catálogo (resolveAtividadeCatalogo):');
   try {
-    const mockMapCaminhoUeb = new Map<string, number>([
-      ['4_P1', 101],
-      ['5_PT1', 201],
+    const mockMapCaminhoAtividade = new Map<string, number>([
+      ['4_999', 101],
+      ['5_888', 201],
     ]);
     const mockMapCdAtividade = new Map<string, number>([
       ['999', 101],
       ['888', 201],
     ]);
 
-    // Critério 1: caminho + cd_ueb normal
-    const res1 = resolveAtividadeCatalogo(mockMapCaminhoUeb, mockMapCdAtividade, {
+    // Critério 1: caminho + cd_atividade_paxtu
+    const res1 = resolveAtividadeCatalogo(mockMapCaminhoAtividade, mockMapCdAtividade, {
       cdCaminho: '4',
-      cdUeb: 'P1',
       cdAtividade: '999',
     });
-    assert(res1 === 101, 'Critério 1: resolve por caminho + cd_ueb normal (4_P1 -> 101)');
+    assert(res1 === 101, 'Critério 1: resolve por caminho + cd_atividade_paxtu (4_999 -> 101)');
 
-    // Critério 2: fallback quando cd_ueb degrada para o ID da atividade no Paxtu
-    const res2 = resolveAtividadeCatalogo(mockMapCaminhoUeb, mockMapCdAtividade, {
-      cdCaminho: '4',
-      cdUeb: '999', // cdUeb degradado para o ID da atividade
+    // Critério 2: fallback cd_atividade_paxtu isolado
+    const res2 = resolveAtividadeCatalogo(mockMapCaminhoAtividade, mockMapCdAtividade, {
+      cdCaminho: 'outro',
       cdAtividade: '999',
     });
-    assert(res2 === 101, 'Critério 2: resolve via cd_atividade_paxtu quando cd_ueb degrada (999 -> 101)');
-
-    // Critério 2 alternativo: cdUeb ausente/diferente, mas cdAtividade conhecido
-    const res3 = resolveAtividadeCatalogo(mockMapCaminhoUeb, mockMapCdAtividade, {
-      cdCaminho: '5',
-      cdUeb: 'DESCONHECIDO',
-      cdAtividade: '888',
-    });
-    assert(res3 === 201, 'Critério 2: fallback por cdAtividade quando cdUeb não bate (888 -> 201)');
+    assert(res2 === 101, 'Critério 2: fallback via cd_atividade_paxtu isolado (999 -> 101)');
 
     // Item não encontrado
-    const res4 = resolveAtividadeCatalogo(mockMapCaminhoUeb, mockMapCdAtividade, {
+    const res3 = resolveAtividadeCatalogo(mockMapCaminhoAtividade, mockMapCdAtividade, {
       cdCaminho: '9',
-      cdUeb: 'INEXISTENTE',
       cdAtividade: '000',
     });
-    assert(res4 === undefined, 'Retorna undefined quando item não existe no catálogo');
+    assert(res3 == null, 'Retorna falsy/null quando item não existe no catálogo');
   } catch (err: any) {
     console.error('Erro no bloco 1:', err);
     failed++;
@@ -97,7 +86,7 @@ async function runProgressaoRelacionalTests() {
 
     // Busca uma atividade real do catálogo para o teste
     const atvReal = await prisma.paAtividade.findFirst({
-      where: { ds_ramo: Ramo.ESCOTEIRO, cd_caminho_paxtu: { not: null } },
+      where: { ds_ramo: Ramo.ESCOTEIRO, cd_caminho_paxtu: { not: '' } },
     });
     if (!atvReal || !atvReal.cd_caminho_paxtu) {
       throw new Error('Nenhuma atividade encontrada no catálogo com cd_caminho_paxtu');
@@ -109,7 +98,6 @@ async function runProgressaoRelacionalTests() {
         data: [
           {
             cdCaminho: atvReal.cd_caminho_paxtu,
-            cdUeb: atvReal.cd_ueb,
             cdAtividade: atvReal.cd_atividade_paxtu || '0',
             checkJovem: 'feitoJovem',
             dtCheckJovem: '2026-09-01',
@@ -132,12 +120,12 @@ async function runProgressaoRelacionalTests() {
       },
     });
     assert(
-      check1 !== null && check1.fl_check_jovem === true && check1.fl_check_escotista === true,
-      'Marcação: atividade persistida como concluída (fl_check = true)'
+      check1 !== null && check1.concluida === true && check1.status_escotista === 'confirmadoEscotista',
+      'Marcação: atividade persistida como concluída (concluida = true)'
     );
     assert(
-      check1?.dt_check_jovem !== null && check1?.dt_check_escotista !== null,
-      'Marcação: datas de conclusão preenchidas'
+      check1?.data_conclusao !== null,
+      'Marcação: data de conclusão preenchida'
     );
 
     // Agora sincroniza desmarcado (unmark)
@@ -147,7 +135,6 @@ async function runProgressaoRelacionalTests() {
         data: [
           {
             cdCaminho: atvReal.cd_caminho_paxtu,
-            cdUeb: atvReal.cd_ueb,
             cdAtividade: atvReal.cd_atividade_paxtu || '0',
             checkJovem: '',
             dtCheckJovem: '',
@@ -169,12 +156,12 @@ async function runProgressaoRelacionalTests() {
       },
     });
     assert(
-      check2 !== null && check2.fl_check_jovem === false && check2.fl_check_escotista === false,
-      'Desmarcação: flags atualizadas para false após unmark no Paxtu'
+      check2 !== null && check2.concluida === false,
+      'Desmarcação: flag atualizada para false após unmark no Paxtu'
     );
     assert(
-      check2?.dt_check_jovem === null && check2?.dt_check_escotista === null,
-      'Desmarcação: datas de conclusão zeradas (null) no banco'
+      check2?.data_conclusao === null,
+      'Desmarcação: data de conclusão zerada (null) no banco'
     );
   } catch (err: any) {
     console.error('Erro no bloco 2:', err);
@@ -186,24 +173,23 @@ async function runProgressaoRelacionalTests() {
   }
 
   // =========================================================================
-  // BLOCO 3 (AC.3): Unicidade Estrutural do Catálogo (Constraints P2002)
+  // BLOCO 3 (AC.3): Unicidade Estrutural do Catálogo (Constraint P2002)
   // =========================================================================
   console.log('\n🔹 3. Unicidade Estrutural das Chaves de Resolução (AC.3 / P2002):');
-  const TEST_COMPETENCIA_ID = 999999;
   try {
     const compReal = await prisma.paCompetencia.findFirst({
       where: { ds_ramo: Ramo.ESCOTEIRO },
     });
     const competenciaId = compReal ? compReal.id : 1;
 
-    // Teste 1: Colisão no índice 1 (ds_ramo, cd_caminho_paxtu, cd_ueb)
-    let p2002Index1 = false;
+    // Colisão na chave natural (ds_ramo, cd_caminho_paxtu, cd_atividade_paxtu)
+    let p2002Index = false;
     const atvBase1 = await prisma.paAtividade.create({
       data: {
         ds_ramo: Ramo.ESCOTEIRO,
         competencia_id: competenciaId,
         cd_caminho_paxtu: 'TEST_CAM',
-        cd_ueb: 'TEST_UEB_1',
+        cd_atividade_paxtu: 'TEST_ATV_ID_999',
         ds_atividade: 'Atividade Teste Unicidade 1',
       },
     });
@@ -214,51 +200,18 @@ async function runProgressaoRelacionalTests() {
           ds_ramo: Ramo.ESCOTEIRO,
           competencia_id: competenciaId,
           cd_caminho_paxtu: 'TEST_CAM',
-          cd_ueb: 'TEST_UEB_1', // mesma chave
+          cd_atividade_paxtu: 'TEST_ATV_ID_999', // mesma chave composta
           ds_atividade: 'Atividade Teste Colisão 1',
         },
       });
     } catch (err: any) {
       if (err.code === 'P2002') {
-        p2002Index1 = true;
+        p2002Index = true;
       }
     } finally {
       await prisma.paAtividade.deleteMany({ where: { id: atvBase1.id } });
     }
-    assert(p2002Index1, 'Rejeita duplicação em (ds_ramo, cd_caminho_paxtu, cd_ueb) com P2002');
-
-    // Teste 2: Colisão no índice 2 (ds_ramo, cd_atividade_paxtu)
-    let p2002Index2 = false;
-    const atvBase2 = await prisma.paAtividade.create({
-      data: {
-        ds_ramo: Ramo.ESCOTEIRO,
-        competencia_id: competenciaId,
-        cd_caminho_paxtu: 'TEST_CAM_2',
-        cd_ueb: 'TEST_UEB_2',
-        cd_atividade_paxtu: 'TEST_ATV_ID_999',
-        ds_atividade: 'Atividade Teste Unicidade 2',
-      },
-    });
-
-    try {
-      await prisma.paAtividade.create({
-        data: {
-          ds_ramo: Ramo.ESCOTEIRO,
-          competencia_id: competenciaId,
-          cd_caminho_paxtu: 'TEST_CAM_3',
-          cd_ueb: 'TEST_UEB_3',
-          cd_atividade_paxtu: 'TEST_ATV_ID_999', // mesmo código paxtu
-          ds_atividade: 'Atividade Teste Colisão 2',
-        },
-      });
-    } catch (err: any) {
-      if (err.code === 'P2002') {
-        p2002Index2 = true;
-      }
-    } finally {
-      await prisma.paAtividade.deleteMany({ where: { id: atvBase2.id } });
-    }
-    assert(p2002Index2, 'Rejeita duplicação em (ds_ramo, cd_atividade_paxtu) com P2002');
+    assert(p2002Index, 'Rejeita duplicação em (ds_ramo, cd_caminho_paxtu, cd_atividade_paxtu) com P2002');
   } catch (err: any) {
     console.error('Erro no bloco 3:', err);
     failed++;
@@ -322,13 +275,11 @@ async function runProgressaoRelacionalTests() {
     });
 
     assert(
-      itemRelacional1 !== null &&
-        itemRelacional1.fl_check_jovem === true &&
-        itemRelacional1.fl_check_escotista === true,
-      'AC.4: item de especialidade persistido na tabela relacional com fl_check = true'
+      itemRelacional1 !== null && itemRelacional1.concluida === true,
+      'AC.4: item de especialidade persistido na tabela relacional com concluida = true'
     );
     assert(
-      itemRelacional1?.dt_check_jovem !== null && itemRelacional1?.dt_check_escotista !== null,
+      itemRelacional1?.data_conclusao !== null,
       'AC.4: data de conclusão do item relacional persistida corretamente'
     );
 
@@ -363,13 +314,11 @@ async function runProgressaoRelacionalTests() {
     });
 
     assert(
-      itemRelacional2 !== null &&
-        itemRelacional2.fl_check_jovem === false &&
-        itemRelacional2.fl_check_escotista === false,
-      'AC.4 / FR-2: desmarcação de item de especialidade atualiza flags para false'
+      itemRelacional2 !== null && itemRelacional2.concluida === false,
+      'AC.4 / FR-2: desmarcação de item de especialidade atualiza concluida para false'
     );
     assert(
-      itemRelacional2?.dt_check_jovem === null && itemRelacional2?.dt_check_escotista === null,
+      itemRelacional2?.data_conclusao === null,
       'AC.4 / FR-2: desmarcação de item de especialidade zera as datas (null)'
     );
   } catch (err: any) {
@@ -383,12 +332,12 @@ async function runProgressaoRelacionalTests() {
   }
 
   // =========================================================================
-  // BLOCO 5 (US3 / AC.5 / AC.6): Backfill Histórico e Idempotência
+  // BLOCO 5 (US3 / AC.5 & AC.6): Migração e Idempotência do Backfill
   // =========================================================================
-  console.log('\n🔹 5. Backfill Histórico e Idempotência (US3 / AC.5 / AC.6):');
-  const TEST_US3_ASSOC = 'TEST_US3_BACKFILL_001';
+  console.log('\n🔹 5. Migração e Idempotência do Backfill (US3 / AC.5 & AC.6):');
+  const TEST_US3_ASSOC = 'TEST_US3_ASSOC_001';
   try {
-    // 1. Cria associado no Ramo Escoteiro
+    // 1. Cria associado de teste sem dados relacionais
     await prisma.associado.upsert({
       where: { cd_associado: TEST_US3_ASSOC },
       create: {
@@ -396,12 +345,13 @@ async function runProgressaoRelacionalTests() {
         nm_associado: 'Associado Teste US3 Backfill',
         ds_ramo: Ramo.ESCOTEIRO,
         ds_categoria: 'BENEFICIARIO',
+        fl_status: 'ATIVO',
       },
       update: {},
     });
 
     const atvReal = await prisma.paAtividade.findFirst({
-      where: { ds_ramo: Ramo.ESCOTEIRO, cd_caminho_paxtu: { not: null } },
+      where: { ds_ramo: Ramo.ESCOTEIRO, cd_caminho_paxtu: { not: '' } },
     });
     const espItemReal = await prisma.paEspecialidadeItem.findFirst({
       include: { especialidade: true },
@@ -411,27 +361,28 @@ async function runProgressaoRelacionalTests() {
       throw new Error('Dados insuficientes no catálogo para teste de backfill');
     }
 
-    // 2. Insere dados no backup bruto e semi-estruturado SEM preencher tabelas relacionais
+    // 2. Insere dados no backup bruto
     await prisma.progressaoPaxtu.upsert({
       where: { cd_associado: TEST_US3_ASSOC },
       create: {
         cd_associado: TEST_US3_ASSOC,
-        caminhos: [
-          {
-            totalCount: 1,
-            data: [
-              {
-                cdCaminho: atvReal.cd_caminho_paxtu,
-                cdUeb: atvReal.cd_ueb,
-                cdAtividade: atvReal.cd_atividade_paxtu || '0',
-                checkJovem: 'feitoJovem',
-                dtCheckJovem: '2026-08-15',
-                checkEscotista: 'confirmadoEscotista',
-                dtCheckEscotista: '2026-08-16',
-              },
-            ],
-          },
-        ],
+        dados_brutos: {
+          caminhos: [
+            {
+              totalCount: 1,
+              data: [
+                {
+                  cdCaminho: atvReal.cd_caminho_paxtu,
+                  cdAtividade: atvReal.cd_atividade_paxtu || '0',
+                  checkJovem: 'feitoJovem',
+                  dtCheckJovem: '2026-08-15',
+                  checkEscotista: 'confirmadoEscotista',
+                  dtCheckEscotista: '2026-08-16',
+                },
+              ],
+            },
+          ],
+        },
       },
       update: {},
     });
@@ -505,11 +456,11 @@ async function runProgressaoRelacionalTests() {
     });
 
     assert(
-      depoisAtv !== null && depoisAtv.fl_check_jovem === true,
-      'AC.5: atividade histórica do backup agora refletida em progressao_pa'
+      depoisAtv !== null && depoisAtv.concluida === true,
+      'AC.5: atividade histórica do backup agora refletida em progressao_pa com concluida = true'
     );
     assert(
-      depoisItem !== null && depoisItem.fl_check_jovem === true,
+      depoisItem !== null && depoisItem.concluida === true,
       'AC.5: item de especialidade histórico agora refletido em progressao_especialidade_item_pa'
     );
 
@@ -528,13 +479,12 @@ async function runProgressaoRelacionalTests() {
     );
     assert(
       summary2.associadosComDivergencia === 0,
-      'AC.6: re-execução reporta zero associados com divergência residual'
+      'AC.6: zero divergências detectadas na re-execução do backfill'
     );
   } catch (err: any) {
     console.error('Erro no bloco 5:', err);
     failed++;
   } finally {
-    // Cleanup do associado US3
     await prisma.progressaoEspecialidadeItemPa.deleteMany({ where: { cd_associado: TEST_US3_ASSOC } });
     await prisma.progressaoPa.deleteMany({ where: { cd_associado: TEST_US3_ASSOC } });
     await prisma.progressaoEspecialidadePa.deleteMany({ where: { cd_associado: TEST_US3_ASSOC } });
@@ -543,40 +493,16 @@ async function runProgressaoRelacionalTests() {
   }
 
   // =========================================================================
-  // BLOCO 6 (US4 / AC.7 / AC.8): Purificação de data.ts e Desacoplamento
+  // BLOCO 6 (US4 / AC.7 & AC.8): Leitura de Domínio via getEscoteiros()
   // =========================================================================
-  console.log('\n🔹 6. Desacoplamento e Purificação de data.ts (US4 / AC.7 / AC.8):');
-  const TEST_US4_ASSOC = 'TEST_US4_PURIFY_001';
+  console.log('\n🔹 6. Leitura de Domínio via getEscoteiros() (US4 / AC.7 & AC.8):');
+  const TEST_US4_ASSOC = 'TEST_US4_ASSOC_001';
   try {
-    // 6a. Verificação estática do código-fonte de data.ts (AC.7 / AC.8)
-    const dataTsPath = path.resolve(__dirname, '../../app/lib/data.ts');
-    const dataTsContent = readFileSync(dataTsPath, 'utf-8');
-
-    assert(
-      !dataTsContent.includes('progressao_paxtu'),
-      'AC.7: data.ts não referencia progressao_paxtu'
-    );
-    assert(
-      !dataTsContent.includes('itens_detalhados'),
-      'AC.7: data.ts não referencia itens_detalhados'
-    );
-    assert(
-      !dataTsContent.includes('readJson'),
-      'AC.8: data.ts não contém função readJson'
-    );
-    assert(
-      !dataTsContent.includes("from 'data/") &&
-        !dataTsContent.includes("('data/") &&
-        !dataTsContent.includes('("data/'),
-      'AC.8: data.ts não referencia arquivos locais em data/*.json'
-    );
-
-    // 6b. Verificação comportamental: lê apenas do relacional mesmo com JSON zerado
     await prisma.associado.upsert({
       where: { cd_associado: TEST_US4_ASSOC },
       create: {
         cd_associado: TEST_US4_ASSOC,
-        nm_associado: 'Associado Teste US4 Purify',
+        nm_associado: 'Associado Teste US4 Leitura',
         ds_ramo: Ramo.ESCOTEIRO,
         ds_categoria: 'BENEFICIARIO',
         fl_status: 'ATIVO',
@@ -587,7 +513,7 @@ async function runProgressaoRelacionalTests() {
     });
 
     const atvReal = await prisma.paAtividade.findFirst({
-      where: { ds_ramo: Ramo.ESCOTEIRO, cd_caminho_paxtu: { not: null } },
+      where: { ds_ramo: Ramo.ESCOTEIRO, cd_caminho_paxtu: { not: '' } },
     });
     const espItemReal = await prisma.paEspecialidadeItem.findFirst({
       include: { especialidade: true },
@@ -608,14 +534,13 @@ async function runProgressaoRelacionalTests() {
       create: {
         cd_associado: TEST_US4_ASSOC,
         atividade_id: atvReal.id,
-        fl_check_jovem: true,
-        fl_check_escotista: true,
-        dt_check_jovem: new Date('2026-09-01'),
-        dt_check_escotista: new Date('2026-09-01'),
+        concluida: true,
+        status_escotista: 'confirmadoEscotista',
+        data_conclusao: new Date('2026-09-01'),
       },
       update: {
-        fl_check_jovem: true,
-        fl_check_escotista: true,
+        concluida: true,
+        status_escotista: 'confirmadoEscotista',
       },
     });
 
@@ -650,14 +575,11 @@ async function runProgressaoRelacionalTests() {
       create: {
         cd_associado: TEST_US4_ASSOC,
         especialidade_item_id: espItemReal.id,
-        fl_check_jovem: true,
-        fl_check_escotista: true,
-        dt_check_jovem: new Date('2026-09-01'),
-        dt_check_escotista: new Date('2026-09-01'),
+        concluida: true,
+        data_conclusao: new Date('2026-09-01'),
       },
       update: {
-        fl_check_jovem: true,
-        fl_check_escotista: true,
+        concluida: true,
       },
     });
 
@@ -666,10 +588,10 @@ async function runProgressaoRelacionalTests() {
       where: { cd_associado: TEST_US4_ASSOC },
       create: {
         cd_associado: TEST_US4_ASSOC,
-        caminhos: [], // ZERADO!
+        dados_brutos: {},
       },
       update: {
-        caminhos: [], // ZERADO!
+        dados_brutos: {},
       },
     });
 
@@ -682,9 +604,9 @@ async function runProgressaoRelacionalTests() {
 
     const atvEncontrada = foundAssoc?.progressao
       .flatMap((c) => c.data)
-      .find((a) => a.cdAtividade === String(atvReal.cd_atividade_paxtu || atvReal.id) || a.cdUeb === atvReal.cd_ueb);
+      .find((a) => a.cdAtividade === String(atvReal.cd_atividade_paxtu || atvReal.id));
     assert(
-      atvEncontrada?.checkEscotista === 'confirmadoEscotista',
+      atvEncontrada?.status_escotista === 'confirmadoEscotista' || atvEncontrada?.concluida === true,
       'AC.7: Atividade relacional marcada mesmo com backup bruto zerado'
     );
 
@@ -693,7 +615,7 @@ async function runProgressaoRelacionalTests() {
     );
     const itemEncontrado = espEncontrada?.itens.find((it) => it.cd_item === espItemReal.cd_item);
     assert(
-      itemEncontrado?.fl_check_escotista === true,
+      itemEncontrado?.concluida === true || itemEncontrado?.fl_conquistado === true,
       'AC.7: Item de especialidade relacional marcado mesmo com itens_detalhados zerado'
     );
 

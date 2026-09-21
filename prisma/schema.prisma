@@ -45,6 +45,11 @@ enum CategoriaAssociado {
   ESCOTISTA
 }
 
+enum PnRamoEspecialidades {
+  LOBINHO_ESCOTEIRO
+  SENIOR_PIONEIRO
+}
+
 enum OrigemConquista {
   EQUIVALENCIA_AUTOMATICA
   MANUAL_CHEFE
@@ -65,12 +70,14 @@ model Associado {
   dados_cadastrais_completos Json               @default("{}")
   updated_at                 DateTime           @default(now()) @updatedAt
 
-  progressao_paxtu                 ProgressaoPaxtu?
-  progressoes_pa                   ProgressaoPa[]
-  progressoes_especialidades       ProgressaoEspecialidadePa[]
-  progressoes_especialidades_itens ProgressaoEspecialidadeItemPa[]
-  progressoes_pn                   ProgressaoPn[]
-  progressoes_blocos               ProgressaoBlocos[]
+  progressao_paxtu                    ProgressaoPaxtu?
+  progressoes_pa                      ProgressaoPa[]
+  progressoes_especialidades          ProgressaoEspecialidadePa[]
+  progressoes_especialidades_itens    ProgressaoEspecialidadeItemPa[]
+  progressoes_especialidades_pn       ProgressaoEspecialidadePn[]
+  progressoes_especialidades_itens_pn ProgressaoEspecialidadeItemPn[]
+  progressoes_pn                      ProgressaoPn[]
+  progressoes_blocos                  ProgressaoBlocos[]
 
   @@index([ds_ramo, ds_categoria])
   @@map("associados")
@@ -80,7 +87,8 @@ model Associado {
 model ProgressaoPaxtu {
   id           Int       @id @default(autoincrement())
   cd_associado String    @unique @db.VarChar(32)
-  caminhos     Json      @default("[]")
+  caminhos     Json?     @default("[]")
+  dados_brutos Json      @default("{}")
   updated_at   DateTime  @default(now()) @updatedAt
 
   associado    Associado @relation(fields: [cd_associado], references: [cd_associado], onDelete: Cascade)
@@ -130,9 +138,8 @@ model PaAtividade {
   id                 Int            @id @default(autoincrement())
   ds_ramo            Ramo           @default(ESCOTEIRO)
   competencia_id     Int
-  cd_atividade_paxtu String?        @db.VarChar(32)
-  cd_caminho_paxtu   String?        @db.VarChar(16)
-  cd_ueb             String         @db.VarChar(16)
+  cd_atividade_paxtu String         @db.VarChar(32)
+  cd_caminho_paxtu   String         @db.VarChar(16)
   identificacao      String?        @db.VarChar(32)
   nr_ordenacao       Int?           @default(0)
   ds_atividade       String         @db.Text
@@ -140,66 +147,129 @@ model PaAtividade {
   competencia        PaCompetencia  @relation(fields: [competencia_id], references: [id], onDelete: Cascade)
   progressoes_pa     ProgressaoPa[]
 
-  @@index([ds_ramo, cd_ueb])
-  @@unique([ds_ramo, cd_caminho_paxtu, cd_ueb], name: "pa_atividades_chave_resolucao_key")
+  @@unique([ds_ramo, cd_caminho_paxtu, cd_atividade_paxtu], name: "pa_atividades_chave_resolucao_key")
   @@unique([ds_ramo, cd_atividade_paxtu], name: "pa_atividades_cd_atividade_paxtu_key")
   @@map("pa_atividades")
+}
+
+// -------------------------------------------------------------
+// 3. Catálogo de Especialidades do Programa Antigo (PA)
+// -------------------------------------------------------------
+model PaEspecialidadeGrupo {
+  id             Int               @id @default(autoincrement())
+  nm_grupo       String            @unique @db.VarChar(128)
+  nr_ordem       Int               @default(0)
+  especialidades PaEspecialidade[]
+
+  @@map("pa_especialidades_grupos")
 }
 
 model PaEspecialidade {
   id               Int                         @id @default(autoincrement())
   cd_especialidade String                      @unique @db.VarChar(50)
   ds_especialidade String                      @db.VarChar(255)
+  slug             String?                     @unique @db.VarChar(128)
+  grupo_id         Int?
+  image_url        String?                     @db.VarChar(500)
   total_itens      Int?                        @default(0)
+
+  grupo            PaEspecialidadeGrupo?       @relation(fields: [grupo_id], references: [id], onDelete: SetNull)
   itens            PaEspecialidadeItem[]
   progressoes      ProgressaoEspecialidadePa[]
+  relacoes_pn      PnPaEspecialidadeRelacao[]
 
   @@map("pa_especialidades")
 }
 
 model PaEspecialidadeItem {
-  id               Int                             @id @default(autoincrement())
-  especialidade_id Int
-  cd_especialidade String                          @db.VarChar(50)
-  cd_item          String                          @db.VarChar(50)
-  ds_item          String                          @db.Text
-  embedding        Float[]                         @default([])
+  id                   Int                             @id @default(autoincrement())
+  especialidade_id     Int
+  cd_especialidade     String                          @db.VarChar(50)
+  cd_item              String                          @db.VarChar(50)
+  ds_item              String                          @db.Text
+  embedding            Float[]                         @default([])
 
-  especialidade    PaEspecialidade                 @relation(fields: [especialidade_id], references: [id], onDelete: Cascade)
-  progressoes      ProgressaoEspecialidadeItemPa[]
+  especialidade        PaEspecialidade                 @relation(fields: [especialidade_id], references: [id], onDelete: Cascade)
+  progressoes          ProgressaoEspecialidadeItemPa[]
+  equivalencias_regras PnEspecialidadeEquivalenciaRegra[]
 
   @@unique([cd_especialidade, cd_item])
   @@map("pa_especialidades_itens")
 }
 
+// -------------------------------------------------------------
 // 3.1. Catálogo de Especialidades do Novo Programa (PN)
+// -------------------------------------------------------------
 model PnEspecialidade {
   id               Int                   @id @default(autoincrement())
   cd_especialidade String?               @db.VarChar(50)
-  ds_especialidade String                @unique @db.VarChar(255)
-  ds_area          String?               @db.VarChar(100)
+  ds_especialidade String                @db.VarChar(255)
+  slug             String                @unique @db.VarChar(128)
+  eixo_id          Int?
+  ramo             PnRamoEspecialidades?
+  imagem_url       String?               @db.VarChar(500)
   total_itens      Int?                  @default(0)
+  meta_nivel_1     Int?                  @default(4)
+  meta_nivel_2     Int?                  @default(8)
   created_at       DateTime              @default(now())
   updated_at       DateTime              @default(now()) @updatedAt
 
+  eixo             PnEixo?               @relation(fields: [eixo_id], references: [id], onDelete: SetNull)
   itens            PnEspecialidadeItem[]
+  relacoes_pa      PnPaEspecialidadeRelacao[]
+  progressoes_pn   ProgressaoEspecialidadePn[]
 
+  @@unique([ds_especialidade, ramo])
   @@map("pn_especialidades")
 }
 
 model PnEspecialidadeItem {
-  id               Int              @id @default(autoincrement())
-  especialidade_id Int?
-  cd_item          String?          @db.VarChar(50)
-  nr_item          Int?
-  ds_item          String           @db.Text
-  embedding        Float[]          @default([])
-  created_at       DateTime         @default(now())
-  updated_at       DateTime         @default(now()) @updatedAt
+  id                   Int                                @id @default(autoincrement())
+  especialidade_id     Int?
+  cd_especialidade     String?                            @db.VarChar(50)
+  cd_item              String                             @db.VarChar(50)
+  nr_item              Int?
+  ds_etapa             String?                            @db.VarChar(50)
+  ds_item              String                             @db.Text
+  tipo_equivalencia    String                             @default("TODAS") @db.VarChar(20)
+  embedding            Float[]                            @default([])
+  created_at           DateTime                           @default(now())
+  updated_at           DateTime                           @default(now()) @updatedAt
 
-  especialidade    PnEspecialidade? @relation(fields: [especialidade_id], references: [id], onDelete: Cascade)
+  especialidade        PnEspecialidade?                   @relation(fields: [especialidade_id], references: [id], onDelete: Cascade)
+  equivalencias_regras PnEspecialidadeEquivalenciaRegra[]
+  progressoes_itens    ProgressaoEspecialidadeItemPn[]
 
   @@map("pn_especialidades_itens")
+}
+
+model PnPaEspecialidadeRelacao {
+  id                  Int               @id @default(autoincrement())
+  pn_especialidade_id Int
+  pa_especialidade_id Int
+  created_at          DateTime          @default(now())
+
+  pn_especialidade    PnEspecialidade   @relation(fields: [pn_especialidade_id], references: [id], onDelete: Cascade)
+  pa_especialidade    PaEspecialidade   @relation(fields: [pa_especialidade_id], references: [id], onDelete: Cascade)
+
+  @@unique([pn_especialidade_id, pa_especialidade_id])
+  @@map("pn_pa_especialidades_relacoes")
+}
+
+model PnEspecialidadeEquivalenciaRegra {
+  id                 Int                 @id @default(autoincrement())
+  pn_item_id         Int
+  pa_item_id         Int
+  score_similaridade Float?
+  fl_aprovado        Boolean             @default(true)
+  created_at         DateTime            @default(now())
+  updated_at         DateTime            @default(now()) @updatedAt
+
+  pn_item            PnEspecialidadeItem @relation(fields: [pn_item_id], references: [id], onDelete: Cascade)
+  pa_item            PaEspecialidadeItem @relation(fields: [pa_item_id], references: [id], onDelete: Cascade)
+
+  @@unique([pn_item_id, pa_item_id])
+  @@map("pn_especialidades_equivalencia_regras")
 }
 
 model PnBlocoEspecialidade {
@@ -215,17 +285,17 @@ model PnBlocoEspecialidade {
 
 // 4. Conquistas PA do Jovem
 model ProgressaoPa {
-  id                 Int         @id @default(autoincrement())
-  cd_associado       String      @db.VarChar(32)
-  atividade_id       Int
-  fl_check_jovem     Boolean     @default(false)
-  fl_check_escotista Boolean     @default(false)
-  dt_check_jovem     DateTime?   @db.Date
-  dt_check_escotista DateTime?   @db.Date
-  created_at         DateTime    @default(now())
+  id               Int         @id @default(autoincrement())
+  cd_associado     String      @db.VarChar(32)
+  atividade_id     Int
+  concluida        Boolean     @default(false)
+  status_escotista String?     @db.VarChar(64)
+  data_conclusao   DateTime?   @db.Date
+  created_at       DateTime    @default(now())
+  updated_at       DateTime    @default(now()) @updatedAt
 
-  associado          Associado   @relation(fields: [cd_associado], references: [cd_associado], onDelete: Cascade)
-  atividade          PaAtividade @relation(fields: [atividade_id], references: [id], onDelete: Cascade)
+  associado        Associado   @relation(fields: [cd_associado], references: [cd_associado], onDelete: Cascade)
+  atividade        PaAtividade @relation(fields: [atividade_id], references: [id], onDelete: Cascade)
 
   @@unique([cd_associado, atividade_id])
   @@map("progressao_pa")
@@ -254,10 +324,8 @@ model ProgressaoEspecialidadeItemPa {
   id                    Int                  @id @default(autoincrement())
   cd_associado          String               @db.VarChar(32)
   especialidade_item_id Int
-  fl_check_jovem        Boolean              @default(false)
-  fl_check_escotista    Boolean              @default(false)
-  dt_check_jovem        DateTime?            @db.Date
-  dt_check_escotista    DateTime?            @db.Date
+  concluida             Boolean              @default(false)
+  data_conclusao        DateTime?            @db.Date
   updated_at            DateTime             @default(now()) @updatedAt
 
   associado             Associado            @relation(fields: [cd_associado], references: [cd_associado], onDelete: Cascade)
@@ -267,13 +335,49 @@ model ProgressaoEspecialidadeItemPa {
   @@map("progressao_especialidade_item_pa")
 }
 
+// 4.1. Conquistas PN de Especialidades do Jovem
+model ProgressaoEspecialidadePn {
+  id                   Int                  @id @default(autoincrement())
+  cd_associado         String               @db.VarChar(32)
+  especialidade_id     Int
+  nr_nivel             Int                  @default(0) // 1 ou 2
+  fl_concluido         Boolean              @default(false)
+  dt_conquista         DateTime?            @db.Date
+  qtd_itens_concluidos Int                  @default(0)
+  origem               OrigemConquista      @default(EQUIVALENCIA_AUTOMATICA)
+  updated_at           DateTime             @default(now()) @updatedAt
+
+  associado            Associado            @relation(fields: [cd_associado], references: [cd_associado], onDelete: Cascade)
+  especialidade        PnEspecialidade      @relation(fields: [especialidade_id], references: [id], onDelete: Cascade)
+
+  @@unique([cd_associado, especialidade_id])
+  @@map("progressao_especialidade_pn")
+}
+
+model ProgressaoEspecialidadeItemPn {
+  id                    Int                 @id @default(autoincrement())
+  cd_associado          String              @db.VarChar(32)
+  especialidade_item_id Int
+  concluida             Boolean             @default(true)
+  data_conclusao        DateTime?           @db.Date
+  origem                OrigemConquista     @default(EQUIVALENCIA_AUTOMATICA)
+  updated_at            DateTime            @default(now()) @updatedAt
+
+  associado             Associado           @relation(fields: [cd_associado], references: [cd_associado], onDelete: Cascade)
+  item                  PnEspecialidadeItem @relation(fields: [especialidade_item_id], references: [id], onDelete: Cascade)
+
+  @@unique([cd_associado, especialidade_item_id])
+  @@map("progressao_especialidade_item_pn")
+}
+
 // 5. Catálogo Programa Novo (PN)
 model PnEixo {
-  id       Int       @id @default(autoincrement())
-  ds_ramo  Ramo      @default(ESCOTEIRO)
-  nm_eixo  String    @db.VarChar(128)
-  nr_ordem Int       @default(0)
-  blocos   PnBloco[]
+  id             Int               @id @default(autoincrement())
+  ds_ramo        Ramo              @default(ESCOTEIRO)
+  nm_eixo        String            @db.VarChar(128)
+  nr_ordem       Int               @default(0)
+  blocos         PnBloco[]
+  especialidades PnEspecialidade[]
 
   @@unique([ds_ramo, nm_eixo])
   @@map("pn_eixos")

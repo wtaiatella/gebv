@@ -35,12 +35,21 @@ export type Atividade = {
   cdCaminho?: string;
   cdCompetencia?: string;
   dsDesenvolvimento?: string;
+  cdAtividade?: string;
+  cdUeb?: string;
+  identificacao?: string;
+  cdOrdenacao?: string;
+  concluida?: boolean;
+  status_escotista?: string | null;
+  statusEscotista?: string | null;
+  data_conclusao?: string;
+  dataConclusao?: string;
   checkJovem?: string;
   checkEscotista?: string;
   dtCheckJovem?: string;
   dtCheckEscotista?: string;
   dtAtividade?: string;
-  [key: string]: string | undefined;
+  [key: string]: any;
 };
 
 export type Caminho = {
@@ -59,10 +68,12 @@ export type ItemEspecialidade = {
   cd_item: string;
   ds_item: string;
   fl_conquistado: boolean;
+  concluida?: boolean;
   dt_item?: string;
+  data_conclusao?: string;
   nr_nivel?: number;
-  fl_check_escotista: boolean;
-  fl_check_jovem: boolean;
+  fl_check_escotista?: boolean;
+  fl_check_jovem?: boolean;
   check_escotista?: string;
   check_jovem?: string;
 };
@@ -202,25 +213,29 @@ export async function getEscoteiros(
             for (const ativDb of compDb.atividades) {
               const pDb = dbPaMap.get(ativDb.id);
 
-              const isEscotista = Boolean(pDb?.fl_check_escotista);
-              const isJovem = Boolean(isEscotista || pDb?.fl_check_jovem);
-              const dtDb = pDb?.dt_check_escotista || pDb?.dt_check_jovem;
+              const isConcluida = Boolean(pDb?.concluida);
+              const statusEscotista = pDb?.status_escotista || (isConcluida ? 'confirmadoEscotista' : undefined);
+              const dtDb = pDb?.data_conclusao;
               const dtStr = dtDb ? dtDb.toISOString().split('T')[0] : undefined;
 
               atividades.push({
                 cdCaminho: camDb.cd_caminho_paxtu || String(camDb.id),
                 cdCompetencia: String(compDb.id),
                 cdAtividade: String(ativDb.cd_atividade_paxtu || ativDb.id),
-                cdUeb: ativDb.cd_ueb,
-                cdOrdenacao: String(ativDb.nr_ordenacao),
+                cdOrdenacao: String(ativDb.nr_ordenacao ?? 0),
                 identificacao: ativDb.identificacao || undefined,
                 dsAtividade: ativDb.ds_atividade,
                 dsDesenvolvimento: compDb.area?.nm_area || compDb.ds_competencia || 'Geral',
-                checkEscotista: isEscotista ? 'confirmadoEscotista' : undefined,
-                checkJovem: isJovem ? 'feitoJovem' : undefined,
-                dtCheckEscotista: isEscotista ? dtStr : undefined,
-                dtCheckJovem: isJovem ? dtStr : undefined,
-                dtAtividade: dtStr,
+                concluida: isConcluida,
+                status_escotista: statusEscotista,
+                statusEscotista,
+                data_conclusao: isConcluida ? dtStr : undefined,
+                dataConclusao: isConcluida ? dtStr : undefined,
+                checkEscotista: isConcluida ? 'confirmadoEscotista' : (statusEscotista || undefined),
+                checkJovem: isConcluida ? 'feitoJovem' : undefined,
+                dtCheckEscotista: isConcluida ? dtStr : undefined,
+                dtCheckJovem: isConcluida ? dtStr : undefined,
+                dtAtividade: isConcluida ? dtStr : undefined,
               });
             }
           }
@@ -243,29 +258,29 @@ export async function getEscoteiros(
 
         const mergedItens: ItemEspecialidade[] = catItens.map((cat) => {
           const relItem = itensAssociadoMap.get(cat.id);
-          const flCheckEscotista = Boolean(relItem?.fl_check_escotista);
-          const flCheckJovem = Boolean(flCheckEscotista || relItem?.fl_check_jovem);
-          const flConquistado = flCheckEscotista;
-          const dtItem = relItem?.dt_check_escotista || relItem?.dt_check_jovem;
+          const isConcluido = Boolean(relItem?.concluida);
+          const dtItem = relItem?.data_conclusao;
           const dtNivelStr = esp.dt_nivel ? esp.dt_nivel.toISOString().split('T')[0] : undefined;
           const dtStr = dtItem
             ? dtItem.toISOString().split('T')[0]
-            : (flConquistado ? dtNivelStr : undefined);
+            : (isConcluido ? dtNivelStr : undefined);
 
           return {
             cd_item: cat.cd_item,
             ds_item: cat.ds_item || `Item ${cat.cd_item}`,
-            fl_conquistado: flConquistado,
-            fl_check_escotista: flCheckEscotista,
-            fl_check_jovem: flCheckJovem,
+            fl_conquistado: isConcluido,
+            concluida: isConcluido,
+            fl_check_escotista: isConcluido,
+            fl_check_jovem: isConcluido,
             dt_item: dtStr,
+            data_conclusao: dtStr,
             nr_nivel: esp.nr_nivel,
-            check_escotista: flCheckEscotista ? 'confirmadoEscotista' : undefined,
-            check_jovem: flCheckJovem ? 'feitoJovem' : undefined,
+            check_escotista: isConcluido ? 'confirmadoEscotista' : undefined,
+            check_jovem: isConcluido ? 'feitoJovem' : undefined,
           };
         });
 
-        const concluidosCount = mergedItens.filter((it) => it.fl_check_escotista).length;
+        const concluidosCount = mergedItens.filter((it) => it.fl_conquistado).length;
 
         return {
           cd_especialidade: esp.cd_especialidade,

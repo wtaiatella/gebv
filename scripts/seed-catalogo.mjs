@@ -98,9 +98,18 @@ async function seedCatalogo() {
     const dsRamo = 'ESCOTEIRO';
     console.log(`2. Populando tabelas do Programa Antigo (pa_*) para o ramo ${dsRamo}...`);
     
-    // Limpeza idempotente do catálogo do Programa Antigo para este ramo
-    await client.query(`DELETE FROM pa_atividades WHERE ds_ramo = $1`, [dsRamo]);
-    await client.query(`DELETE FROM pa_competencias WHERE ds_ramo = $1`, [dsRamo]);
+    // Carrega competências existentes em cache em vez de truncar tabelas (preserva progressao_pa)
+    const compCache = new Map();
+    const existingComps = await client.query(
+      `SELECT comp.id, comp.ds_ramo, c.cd_caminho_paxtu, comp.ds_competencia 
+       FROM pa_competencias comp
+       JOIN pa_caminhos c ON comp.caminho_id = c.id
+       WHERE comp.ds_ramo = $1`,
+      [dsRamo]
+    );
+    for (const r of existingComps.rows) {
+      compCache.set(`${r.ds_ramo}_${r.cd_caminho_paxtu}_${r.ds_competencia}`, r.id);
+    }
 
     // Áreas de desenvolvimento
     for (const area of paCatalogo.areas) {
@@ -130,7 +139,6 @@ async function seedCatalogo() {
       ...paCatalogo.pistas_items,
       ...paCatalogo.rumo_items,
     ];
-    const compCache = new Map();
 
     for (const item of allAntigoItems) {
       const camId = caminhoMap.get(item.cd_caminho_paxtu);
@@ -151,7 +159,8 @@ async function seedCatalogo() {
       // Procura dados complementares do Paxtu se houver
       const paxtuKey = `${item.cd_caminho_paxtu}_${item.cd_ueb}`;
       const paxtuInfo = paCatalogo.atividades_map[paxtuKey] || {};
-      const nrOrd = paxtuInfo.nr_ordenacao || parseInt(item.cd_ueb.replace(/\D/g, ''), 10) || 0;
+      const nrOrd = paxtuInfo.nr_ordenacao || parseInt((item.cd_ueb || '').replace(/\D/g, ''), 10) || 0;
+      const cdAtividadePaxtu = String(paxtuInfo.cd_atividade_paxtu || item.cd_atividade_paxtu || nrOrd);
 
       // Prefixo por caminho: P- (Período Introdutório), PT- (Pista e Trilha), RT- (Rumo e Travessia)
       let prefixo = '';
@@ -167,14 +176,18 @@ async function seedCatalogo() {
       const identificacao = `${prefixo}${nrOrd}`;
 
       await client.query(
-        `INSERT INTO pa_atividades (ds_ramo, competencia_id, cd_atividade_paxtu, cd_caminho_paxtu, cd_ueb, identificacao, nr_ordenacao, ds_atividade)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+        `INSERT INTO pa_atividades (ds_ramo, competencia_id, cd_atividade_paxtu, cd_caminho_paxtu, identificacao, nr_ordenacao, ds_atividade)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)
+         ON CONFLICT (ds_ramo, cd_caminho_paxtu, cd_atividade_paxtu) DO UPDATE SET
+           competencia_id = EXCLUDED.competencia_id,
+           identificacao = EXCLUDED.identificacao,
+           nr_ordenacao = EXCLUDED.nr_ordenacao,
+           ds_atividade = EXCLUDED.ds_atividade`,
         [
           dsRamo,
           compDbId,
-          paxtuInfo.cd_atividade_paxtu || null,
+          cdAtividadePaxtu,
           item.cd_caminho_paxtu || null,
-          item.cd_ueb,
           identificacao,
           nrOrd,
           item.ds_atividade,
@@ -192,6 +205,9 @@ async function seedCatalogo() {
         AND a.cd_caminho_paxtu IS NULL
     `);
 
+    // Limpeza de itens espúrios (ex: RT-0 / identificacao = 'RT-0')
+    await client.query(`DELETE FROM pa_atividades WHERE ds_ramo = $1 AND identificacao = 'RT-0'`, [dsRamo]);
+
     console.log('✓ Programa Antigo populado com sucesso.');
 
     // -------------------------------------------------------------
@@ -203,7 +219,7 @@ async function seedCatalogo() {
     await client.query(`DELETE FROM pn_equivalencia_regras WHERE acao_pn_id IN (SELECT id FROM pn_acoes_educativas WHERE ds_ramo = $1)`, [dsRamo]);
     await client.query(`DELETE FROM pn_acoes_educativas WHERE ds_ramo = $1`, [dsRamo]);
     await client.query(`DELETE FROM pn_blocos WHERE ds_ramo = $1`, [dsRamo]);
-    await client.query(`DELETE FROM pn_eixos WHERE ds_ramo = $1`, [dsRamo]);
+    // Eixos são mantidos e atualizados via ON CONFLICT para preservar chaves estrangeiras
 
     // Eixos
     for (let i = 0; i < pnCatalogo.eixos.length; i++) {
@@ -571,9 +587,17 @@ async function seedCatalogo() {
       const imageUrl = esp.imagem_caminho_public || (esp.imagem_arquivo ? `/images/especialidades/pn/${esp.imagem_arquivo}` : null);
       const totalItens = esp.total_itens || (esp.itens ? esp.itens.length : 0);
 
+      const ramoEnum = esp.ramo
+        ? (esp.ramo.toLowerCase().includes('senior') || esp.ramo.toLowerCase().includes('pioneiro')
+            ? 'SENIOR_PIONEIRO'
+            : 'LOBINHO_ESCOTEIRO')
+        : null;
+      const metaNivel1 = esp.niveis?.nivel_1_itens ?? 4;
+      const metaNivel2 = esp.niveis?.nivel_2_itens ?? 8;
+
       const espRes = await client.query(
-        `INSERT INTO pn_especialidades (slug, ds_especialidade, cd_especialidade, eixo_id, ramo, imagem_url, total_itens)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)
+        `INSERT INTO pn_especialidades (slug, ds_especialidade, cd_especialidade, eixo_id, ramo, imagem_url, total_itens, meta_nivel_1, meta_nivel_2)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
          ON CONFLICT (slug) DO UPDATE SET
            ds_especialidade = EXCLUDED.ds_especialidade,
            cd_especialidade = EXCLUDED.cd_especialidade,
@@ -581,9 +605,11 @@ async function seedCatalogo() {
            ramo = EXCLUDED.ramo,
            imagem_url = EXCLUDED.imagem_url,
            total_itens = EXCLUDED.total_itens,
+           meta_nivel_1 = EXCLUDED.meta_nivel_1,
+           meta_nivel_2 = EXCLUDED.meta_nivel_2,
            updated_at = CURRENT_TIMESTAMP
          RETURNING id`,
-        [esp.slug, esp.titulo || esp.ds_especialidade, esp.cd_especialidade || null, eixoId, esp.ramo || null, imageUrl, totalItens]
+        [esp.slug, esp.titulo || esp.ds_especialidade, esp.cd_especialidade || null, eixoId, ramoEnum, imageUrl, totalItens, metaNivel1, metaNivel2]
       );
       const espId = espRes.rows[0].id;
 
@@ -616,14 +642,14 @@ async function seedCatalogo() {
       const rawProg = await readFile(path.join(process.cwd(), 'data', 'progressoes.json'), 'utf-8');
       const progList = JSON.parse(rawProg);
 
-      // Mapeamento de atividade_id por (cd_caminho_paxtu, cd_ueb)
+      // Mapeamento de atividade_id por (cd_caminho_paxtu, identificacao)
       const atvRes = await client.query(`
-        SELECT a.id, c.cd_caminho_paxtu, a.cd_ueb
+        SELECT a.id, c.cd_caminho_paxtu, a.identificacao
         FROM pa_atividades a
         JOIN pa_competencias comp ON a.competencia_id = comp.id
         JOIN pa_caminhos c ON comp.caminho_id = c.id
       `);
-      const atvMap = new Map(atvRes.rows.map((r) => [`${r.cd_caminho_paxtu}_${r.cd_ueb}`, r.id]));
+      const atvMap = new Map(atvRes.rows.map((r) => [`${r.cd_caminho_paxtu}_${r.identificacao}`, r.id]));
 
       let checksCount = 0;
       for (const p of progList) {
@@ -682,7 +708,7 @@ async function seedCatalogo() {
     // -------------------------------------------------------------
     // 8. Migrar histórico de especialidades dos jovens (data/pa_especialidades_associados.json)
     // -------------------------------------------------------------
-    console.log('8. Migrando histórico de especialidades dos associados para escoteiro_pa_especialidades...');
+    console.log('8. Migrando histórico de especialidades dos associados para progressao_especialidade_pa...');
     try {
       const rawAssocEsps = await readFile(path.join(process.cwd(), 'data', 'pa_especialidades_associados.json'), 'utf-8');
       const assocEspsList = JSON.parse(rawAssocEsps);
@@ -709,7 +735,7 @@ async function seedCatalogo() {
           const cdEsp = String(rawCdEsp);
           const espId = espDbMap.get(cdEsp) || null;
           await client.query(
-            `INSERT INTO escoteiro_pa_especialidades (
+            `INSERT INTO progressao_especialidade_pa (
               cd_associado, especialidade_id, cd_especialidade, ds_especialidade,
               nr_nivel, dt_nivel, qtd_itens_concluidos, itens_detalhados, updated_at
             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, CURRENT_TIMESTAMP)

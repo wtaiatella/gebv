@@ -32,13 +32,18 @@ export async function runBackfill() {
       },
       select: {
         cd_associado: true,
-        caminhos: true,
+        dados_brutos: true,
       },
     });
 
     for (const b of backupsPaxtu) {
       associadosProcessados++;
-      const caminhos = Array.isArray(b.caminhos) ? b.caminhos : [];
+      const payloadBruto = b.dados_brutos || {};
+      const caminhos = Array.isArray(payloadBruto.caminhos)
+        ? payloadBruto.caminhos
+        : Array.isArray(payloadBruto)
+        ? payloadBruto
+        : [];
 
       const countAntes = await prisma.progressaoPa.count({
         where: { cd_associado: b.cd_associado },

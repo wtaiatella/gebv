@@ -12,11 +12,77 @@ const NOMES_CAMINHOS: Record<string, string> = {
 
 const SEM_GRUPO = '__sem_grupo__';
 
-function StatusIcon({ checked }: { checked: boolean }) {
-  return checked ? (
-    <CheckCircle2 size={16} color="var(--primary)" />
+function StatusBadge({ status }: { status?: string | null }) {
+  if (!status) {
+    return <span style={{ color: '#64748b', fontSize: '0.8rem' }}>-</span>;
+  }
+  const isConfirmado = status === 'confirmadoEscotista';
+  const isConversar = status.toLowerCase().includes('conversar');
+
+  if (isConfirmado) {
+    return (
+      <span
+        style={{
+          display: 'inline-block',
+          padding: '0.15rem 0.5rem',
+          borderRadius: '9999px',
+          fontSize: '0.72rem',
+          fontWeight: 600,
+          background: 'rgba(34, 197, 94, 0.15)',
+          color: '#4ade80',
+          border: '1px solid rgba(34, 197, 94, 0.3)',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        Confirmado
+      </span>
+    );
+  }
+
+  if (isConversar) {
+    return (
+      <span
+        style={{
+          display: 'inline-block',
+          padding: '0.15rem 0.5rem',
+          borderRadius: '9999px',
+          fontSize: '0.72rem',
+          fontWeight: 600,
+          background: 'rgba(245, 158, 11, 0.15)',
+          color: '#fbbf24',
+          border: '1px solid rgba(245, 158, 11, 0.3)',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        Conversar
+      </span>
+    );
+  }
+
+  return (
+    <span
+      style={{
+        display: 'inline-block',
+        padding: '0.15rem 0.5rem',
+        borderRadius: '9999px',
+        fontSize: '0.72rem',
+        fontWeight: 500,
+        background: 'rgba(148, 163, 184, 0.15)',
+        color: '#94a3b8',
+        border: '1px solid rgba(148, 163, 184, 0.3)',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {status}
+    </span>
+  );
+}
+
+function ConcluidaIcon({ concluida }: { concluida: boolean }) {
+  return concluida ? (
+    <CheckCircle2 size={16} color="var(--primary, #22c55e)" />
   ) : (
-    <Circle size={16} color="#555" />
+    <Circle size={16} color="#475569" style={{ opacity: 0.35 }} />
   );
 }
 
@@ -227,45 +293,32 @@ export default function ProgressionView({
                       <tr>
                         <th className="col-numero">#</th>
                         <th>Atividade</th>
-                        <th style={{ width: '70px', textAlign: 'center' }}>Jovem</th>
-                        <th style={{ width: '70px', textAlign: 'center' }}>Escotista</th>
+                        <th style={{ width: '105px', textAlign: 'center' }}>STATUS</th>
+                        <th style={{ width: '90px', textAlign: 'center' }}>CONCLUÍDA</th>
                         <th className="col-data">Data</th>
                       </tr>
                     </thead>
                     <tbody>
                       {atividades.map((atividade, idx) => {
-                        const isEscotista =
-                          atividade.checkEscotista === 'confirmadoEscotista' ||
-                          atividade.checkEscotista === 'S' ||
-                          atividade.checkEscotista === '1' ||
-                          atividade.checkEscotista === 'true';
-
-                        const isJovem =
-                          atividade.checkJovem === 'feitoJovem' ||
-                          atividade.checkJovem === 'S' ||
-                          atividade.checkJovem === '1' ||
-                          atividade.checkJovem === 'true' ||
-                          Boolean(atividade.dtCheckJovem);
-
-                        const dataFormatada =
-                          atividade.dtCheckEscotista ||
-                          atividade.dtCheckJovem ||
-                          atividade.dtAtividade ||
-                          null;
+                        const isConcluida = Boolean(atividade.concluida ?? (atividade.checkEscotista === 'confirmadoEscotista'));
+                        const statusEscotista = atividade.status_escotista || atividade.statusEscotista || (isConcluida ? 'confirmadoEscotista' : null);
+                        const dataFormatada = isConcluida
+                          ? (atividade.data_conclusao || atividade.dataConclusao || atividade.dtCheckEscotista || atividade.dtAtividade || null)
+                          : null;
 
                         return (
                           <tr key={`${atividade.cdAtividade ?? idx}`}>
                             <td className="col-numero">
                               {atividade.identificacao || `${prefixo}${atividade.cdOrdenacao ?? idx + 1}`}
                             </td>
-                            <td style={{ color: isEscotista ? '#f1f5f9' : isJovem ? '#e2e8f0' : '#64748b' }}>
+                            <td style={{ color: isConcluida ? '#f1f5f9' : '#94a3b8' }}>
                               {atividade.dsAtividade}
                             </td>
                             <td style={{ textAlign: 'center' }}>
-                              <StatusIcon checked={isJovem} />
+                              <StatusBadge status={statusEscotista} />
                             </td>
                             <td style={{ textAlign: 'center' }}>
-                              <StatusIcon checked={isEscotista} />
+                              <ConcluidaIcon concluida={isConcluida} />
                             </td>
                             <td className="col-data">
                               {dataFormatada ? (
@@ -416,38 +469,44 @@ export default function ProgressionView({
                                 <tr>
                                   <th className="col-numero" style={{ width: '45px' }}>#</th>
                                   <th>Requisito / Atividade</th>
-                                  <th style={{ width: '70px', textAlign: 'center' }}>Jovem</th>
-                                  <th style={{ width: '70px', textAlign: 'center' }}>Escotista</th>
+                                  <th style={{ width: '105px', textAlign: 'center' }}>STATUS</th>
+                                  <th style={{ width: '90px', textAlign: 'center' }}>CONCLUÍDA</th>
                                   <th className="col-data">Data</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                {itens.map((it, idx) => (
-                                  <tr key={it.cd_item || idx}>
-                                    <td className="col-numero">
-                                      #{it.cd_item || idx + 1}
-                                    </td>
-                                    <td style={{ color: it.fl_check_escotista ? '#f1f5f9' : it.fl_check_jovem ? '#e2e8f0' : '#64748b' }}>
-                                      {it.ds_item || `Requisito ${it.cd_item || idx + 1}`}
-                                    </td>
-                                    <td style={{ textAlign: 'center' }}>
-                                      <StatusIcon checked={it.fl_check_jovem} />
-                                    </td>
-                                    <td style={{ textAlign: 'center' }}>
-                                      <StatusIcon checked={it.fl_check_escotista} />
-                                    </td>
-                                    <td className="col-data">
-                                      {it.dt_item ? (
-                                        <span className="atividade-data">
-                                          <Clock size={12} style={{ flexShrink: 0 }} />
-                                          <span>{it.dt_item}</span>
-                                        </span>
-                                      ) : (
-                                        <span style={{ color: '#555' }}>-</span>
-                                      )}
-                                    </td>
-                                  </tr>
-                                ))}
+                                {itens.map((it, idx) => {
+                                  const isConcluido = Boolean(it.concluida ?? it.fl_conquistado ?? Boolean(it.dt_item));
+                                  const statusEscotista = isConcluido ? 'confirmadoEscotista' : null;
+                                  const dataConclusao = isConcluido ? (it.data_conclusao || it.dt_item || null) : null;
+
+                                  return (
+                                    <tr key={it.cd_item || idx}>
+                                      <td className="col-numero">
+                                        #{it.cd_item || idx + 1}
+                                      </td>
+                                      <td style={{ color: isConcluido ? '#f1f5f9' : '#94a3b8' }}>
+                                        {it.ds_item || `Requisito ${it.cd_item || idx + 1}`}
+                                      </td>
+                                      <td style={{ textAlign: 'center' }}>
+                                        <StatusBadge status={statusEscotista} />
+                                      </td>
+                                      <td style={{ textAlign: 'center' }}>
+                                        <ConcluidaIcon concluida={isConcluido} />
+                                      </td>
+                                      <td className="col-data">
+                                        {dataConclusao ? (
+                                          <span className="atividade-data">
+                                            <Clock size={12} style={{ flexShrink: 0 }} />
+                                            <span>{dataConclusao}</span>
+                                          </span>
+                                        ) : (
+                                          <span style={{ color: '#555' }}>-</span>
+                                        )}
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
                               </tbody>
                             </table>
                           )}
