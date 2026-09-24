@@ -8,6 +8,7 @@ import type {
   ResumoBlocoTransicionado,
 } from '@/app/lib/services/transicao-service';
 import EditarRegraModal, { RegraParaEditar } from '@/app/components/equivalencias/EditarRegraModal';
+import { useAutoSaveToggle, type ItemSaveFeedback } from '@/app/lib/hooks/useAutoSaveToggle';
 
 type Props = {
   cdAssociado: string;
@@ -20,9 +21,9 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
   const [error, setError] = useState<string | null>(null);
   const [transicionando, setTransicionando] = useState(false);
 
-  // Controle de blocos expandidos em modo "Tabela de Validação de Equivalências In-line"
+  // Controle de blocos expandidos em modo detalhado
   const [blocosExpandidos, setBlocosExpandidos] = useState<Record<number, boolean>>({});
-  const [modoTabelaGeral, setModoTabelaGeral] = useState<boolean>(false);
+  const [modoTabelaGeral, setModoTabelaGeral] = useState<boolean>(true);
 
   // Controle de acordeons independentes: Eixos e Blocos
   const [eixosAbertos, setEixosAbertos] = useState<Record<number, boolean>>({});
@@ -34,9 +35,83 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
 
   // Estado local dos checkboxes editáveis por ação { [acaoId]: boolean }
   const [localAcoesStatus, setLocalAcoesStatus] = useState<Record<number, boolean>>({});
-  const [savingAcaoId, setSavingAcaoId] = useState<number | null>(null);
-  const [savingBlocoId, setSavingBlocoId] = useState<number | null>(null);
   const [feedbackMsg, setFeedbackMsg] = useState<{ id: number | string; text: string } | null>(null);
+
+  // Hook genérico de Auto-Save com atualização otimista, tracking e rollback
+  const { toggle: autoSaveToggle, getStatus: getAcaoSaveStatus } = useAutoSaveToggle<{
+    acao: any;
+    bloco: any;
+  }>({
+    onSave: async (id, nextValue) => {
+      const res = await fetch(`/api/progressoes/novo-modelo/${cdAssociado}/acao`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          acao_id: Number(id),
+          fl_concluido: nextValue,
+          ramo: ramoAtual,
+        }),
+      });
+      const json = await res.json();
+      if (!json.success) throw new Error(json.error || 'Erro ao salvar ação');
+      return json.data;
+    },
+    onSuccess: (id, payload) => {
+      if (!payload?.acao || !payload?.bloco) return;
+      const { acao, bloco } = payload;
+      setData((prevData) => {
+        if (!prevData) return prevData;
+        const updatedAcoesPorBloco = { ...prevData.acoes_por_bloco };
+        const blocoAcoes = updatedAcoesPorBloco[bloco.bloco_id];
+        if (blocoAcoes) {
+          updatedAcoesPorBloco[bloco.bloco_id] = blocoAcoes.map((a) =>
+            a.id === acao.id
+              ? {
+                  ...a,
+                  fl_concluido: acao.fl_concluido,
+                  origem: acao.origem,
+                  dt_conclusao: acao.dt_conclusao,
+                }
+              : a
+          );
+        }
+        const updatedBlocos = prevData.blocos.map((b) =>
+          b.bloco_id === bloco.bloco_id
+            ? {
+                ...b,
+                fl_concluido: bloco.fl_concluido,
+                nr_fixas_concluidas: bloco.nr_fixas_concluidas,
+                nr_variaveis_concluidas: bloco.nr_variaveis_concluidas,
+                pct_conclusao: bloco.pct_conclusao,
+              }
+            : b
+        );
+        const totalConcluidas = Object.values(updatedAcoesPorBloco)
+          .flat()
+          .filter((a) => a.fl_concluido).length;
+        const blocosConcluidos = updatedBlocos.filter((b) => b.fl_concluido).length;
+        const pctGlobal =
+          prevData.estatisticas.total_acoes > 0
+            ? Math.round((totalConcluidas / prevData.estatisticas.total_acoes) * 10000) / 100
+            : 0;
+
+        return {
+          ...prevData,
+          acoes_por_bloco: updatedAcoesPorBloco,
+          blocos: updatedBlocos,
+          estatisticas: {
+            ...prevData.estatisticas,
+            total_concluidas: totalConcluidas,
+            blocos_concluidos: blocosConcluidos,
+            pct_global: pctGlobal,
+          },
+        };
+      });
+    },
+    onError: (id, err) => {
+      alert(`Erro ao salvar ação: ${err.message}. O status anterior foi restaurado.`);
+    },
+  });
 
   // Carrega progressão do jovem
   useEffect(() => {
@@ -96,25 +171,12 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
     }
   }
 
-  // Alterna expansão de um bloco individual
+  // Alterna expansão de detalhes de um bloco individual
   function toggleBlocoExpandido(blocoId: number) {
     setBlocosExpandidos((prev) => ({
       ...prev,
-      [blocoId]: !prev[blocoId],
+      [blocoId]: prev[blocoId] === undefined ? !modoTabelaGeral : !prev[blocoId],
     }));
-  }
-
-  // Alterna todos os blocos entre modo expandido e compacto
-  function toggleModoGeral() {
-    const novoModo = !modoTabelaGeral;
-    setModoTabelaGeral(novoModo);
-    if (data) {
-      const map: Record<number, boolean> = {};
-      for (const b of data.blocos) {
-        map[b.bloco_id] = novoModo;
-      }
-      setBlocosExpandidos(map);
-    }
   }
 
   // Alterna acordeon do Eixo
@@ -133,12 +195,95 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
     }));
   }
 
-  // Toggle do checkbox de uma ação específica
+  // Toggle otimista do checkbox de uma ação específica via useAutoSaveToggle
   function handleCheckboxToggle(acaoId: number) {
-    setLocalAcoesStatus((prev) => ({
-      ...prev,
-      [acaoId]: !prev[acaoId],
-    }));
+    const currentVal = Boolean(localAcoesStatus[acaoId]);
+    autoSaveToggle(
+      acaoId,
+      currentVal,
+      (next) => setLocalAcoesStatus((prev) => ({ ...prev, [acaoId]: next })),
+      (prev) => setLocalAcoesStatus((old) => ({ ...old, [acaoId]: prev }))
+    );
+  }
+
+  // Resetar status manual via menu de contexto (botão direito)
+  async function handleResetAcao(e: React.MouseEvent, acao: AcaoProgressoItem) {
+    e.preventDefault();
+    if (acao.origem !== 'MANUAL_CHEFE') {
+      return;
+    }
+
+    const confirmReset = window.confirm(
+      `Deseja realmente resetar o status manual da ação "${acao.ds_acao.slice(0, 60)}..." para a avaliação de equivalência do sistema?`
+    );
+    if (!confirmReset) return;
+
+    try {
+      const res = await fetch(
+        `/api/progressoes/novo-modelo/${cdAssociado}/acao?acao_id=${acao.id}&ramo=${ramoAtual}`,
+        { method: 'DELETE' }
+      );
+      const json = await res.json();
+      if (!json.success) throw new Error(json.error || 'Erro ao resetar status da ação');
+
+      if (json.data?.acao && json.data?.bloco) {
+        const { acao: updatedAcao, bloco: updatedBloco } = json.data;
+        setLocalAcoesStatus((prev) => ({ ...prev, [updatedAcao.id]: updatedAcao.fl_concluido }));
+        setData((prevData) => {
+          if (!prevData) return prevData;
+          const updatedAcoesPorBloco = { ...prevData.acoes_por_bloco };
+          const blocoAcoes = updatedAcoesPorBloco[updatedBloco.bloco_id];
+          if (blocoAcoes) {
+            updatedAcoesPorBloco[updatedBloco.bloco_id] = blocoAcoes.map((a) =>
+              a.id === updatedAcao.id
+                ? {
+                    ...a,
+                    fl_concluido: updatedAcao.fl_concluido,
+                    origem: updatedAcao.origem,
+                    dt_conclusao: updatedAcao.dt_conclusao,
+                  }
+                : a
+            );
+          }
+          const updatedBlocos = prevData.blocos.map((b) =>
+            b.bloco_id === updatedBloco.bloco_id
+              ? {
+                  ...b,
+                  fl_concluido: updatedBloco.fl_concluido,
+                  nr_fixas_concluidas: updatedBloco.nr_fixas_concluidas,
+                  nr_variaveis_concluidas: updatedBloco.nr_variaveis_concluidas,
+                  pct_conclusao: updatedBloco.pct_conclusao,
+                }
+              : b
+          );
+          const totalConcluidas = Object.values(updatedAcoesPorBloco)
+            .flat()
+            .filter((a) => a.fl_concluido).length;
+          const blocosConcluidos = updatedBlocos.filter((b) => b.fl_concluido).length;
+          const pctGlobal =
+            prevData.estatisticas.total_acoes > 0
+              ? Math.round((totalConcluidas / prevData.estatisticas.total_acoes) * 10000) / 100
+              : 0;
+
+          return {
+            ...prevData,
+            acoes_por_bloco: updatedAcoesPorBloco,
+            blocos: updatedBlocos,
+            estatisticas: {
+              ...prevData.estatisticas,
+              total_concluidas: totalConcluidas,
+              blocos_concluidos: blocosConcluidos,
+              pct_global: pctGlobal,
+            },
+          };
+        });
+      } else {
+        await fetchProgresso(true);
+      }
+      showFeedback(acao.id, 'Status manual resetado!');
+    } catch (err: any) {
+      alert(`Erro ao resetar ação: ${err.message}`);
+    }
   }
 
   // Feedback temporário
@@ -147,66 +292,6 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
     setTimeout(() => {
       setFeedbackMsg(null);
     }, 2800);
-  }
-
-  // Salvar uma ação individual (Botão "SAVE" da linha)
-  async function handleSaveAcao(acaoId: number, blocoId: number) {
-    setSavingAcaoId(acaoId);
-    try {
-      const isConcluido = Boolean(localAcoesStatus[acaoId]);
-      const res = await fetch(`/api/progressoes/novo-modelo/${cdAssociado}/acao`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          acao_id: acaoId,
-          fl_concluido: isConcluido,
-          ramo: ramoAtual,
-        }),
-      });
-      const json = await res.json();
-      if (!json.success) throw new Error(json.error || 'Erro ao salvar ação');
-
-      showFeedback(acaoId, '✓ Salvo!');
-      await fetchProgresso(true);
-    } catch (err: any) {
-      alert(`Erro ao salvar: ${err.message}`);
-    } finally {
-      setSavingAcaoId(null);
-    }
-  }
-
-  // Salvar todas as ações do bloco (Botão "SAVE All" do bloco)
-  async function handleSaveAllBloco(bloco: ResumoBlocoTransicionado) {
-    if (!data) return;
-
-    setSavingBlocoId(bloco.bloco_id);
-    try {
-      const acoesDoBloco = data.acoes_por_bloco[bloco.bloco_id] || [];
-      const acoesStatusList = acoesDoBloco.map((a) => ({
-        acao_id: a.id,
-        fl_concluido: Boolean(localAcoesStatus[a.id]),
-      }));
-
-      const res = await fetch(`/api/progressoes/novo-modelo/${cdAssociado}/bloco-save-all`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          bloco_id: bloco.bloco_id,
-          acoes_status: acoesStatusList,
-          ramo: ramoAtual,
-        }),
-      });
-
-      const json = await res.json();
-      if (!json.success) throw new Error(json.error || 'Erro ao salvar ações do bloco');
-
-      showFeedback(`bloco_${bloco.bloco_id}`, '✓ Bloco atualizado com sucesso!');
-      await fetchProgresso(true);
-    } catch (err: any) {
-      alert(`Erro: ${err.message}`);
-    } finally {
-      setSavingBlocoId(null);
-    }
   }
 
   // Abrir modal de edição de regra para uma ação
@@ -221,7 +306,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
       ds_acao: acao.ds_acao,
       nm_bloco: nmBloco,
       nr_ordem_acao: acao.nr_ordem,
-      operacao: acao.operacao || 'DIRETA',
+      operacao: acao.operacao || 'PROGRESSOES',
       descricao_origem: acao.descricao_origem || '',
       origem_pistas_ueb: acao.origem_pistas_ueb || [],
       origem_rumo_ueb: acao.origem_rumo_ueb || [],
@@ -416,10 +501,14 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                     const isExpandido = blocosExpandidos[bloco.bloco_id] ?? modoTabelaGeral;
                     const acoesDoBloco = data.acoes_por_bloco[bloco.bloco_id] || [];
                     const fixas = acoesDoBloco.filter((a) => a.tp_acao === 'Fixa');
+                    
+                    // US5: Filtro estrito de ações variadas e complementares PA
                     const variaveisPadrao = acoesDoBloco.filter(
                       (a) => (a.tp_acao === 'Variável' || a.tp_acao === 'Variavel') && a.modalidade !== 'PA'
                     );
-                    const variaveisPA = acoesDoBloco.filter((a) => a.modalidade === 'PA');
+                    const variaveisPA = acoesDoBloco.filter(
+                      (a) => a.tp_acao === 'PA' || a.modalidade === 'PA'
+                    );
                     const substitutivas = acoesDoBloco.filter(
                       (a) =>
                         a.tp_acao === 'Substitutiva' ||
@@ -431,8 +520,6 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                     const padraoDone = variaveisPadrao.filter((v) => localAcoesStatus[v.id]).length;
                     const paDone = variaveisPA.filter((p) => localAcoesStatus[p.id]).length;
                     const subDone = substitutivas.filter((s) => localAcoesStatus[s.id]).length;
-                    const isSavingThisBloco = savingBlocoId === bloco.bloco_id;
-                    const blocoFeedback = feedbackMsg?.id === `bloco_${bloco.bloco_id}` ? feedbackMsg.text : null;
 
                     return (
                       <div
@@ -510,7 +597,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                             )}
                           </div>
 
-                          {/* Botão de Alternância de Equivalência (Excalidraw) */}
+                          {/* Botão de Alternância de Detalhes da Equivalência */}
                           {isBlocoAberto && (
                             <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
                               <button
@@ -523,7 +610,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                   color: '#fff',
                                   fontWeight: 700,
                                   fontSize: '0.88rem',
-                                  padding: '0.6rem 1.25rem',
+                                  padding: '0.55rem 1.15rem',
                                   borderRadius: '10px',
                                   boxShadow: '0 4px 12px rgba(56, 189, 248, 0.3)',
                                   whiteSpace: 'nowrap',
@@ -531,10 +618,11 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                   display: 'flex',
                                   alignItems: 'center',
                                   gap: '0.4rem',
+                                  border: 'none',
                                 }}
                               >
                                 <span>📐</span>
-                                {isExpandido ? 'Ocultar Equivalências' : 'Ver Equivalências'}
+                                {isExpandido ? 'Ocultar Detalhes PA' : 'Ver Detalhes PA'}
                               </button>
                             </div>
                           )}
@@ -559,24 +647,27 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                         {/* Conteúdo Expansível do Bloco */}
                         {isBlocoAberto && (
                           <>
-                            {/* Feedback do Bloco */}
-                            {blocoFeedback && (
-                              <div
-                                style={{
-                                  background: 'rgba(0, 255, 136, 0.12)',
-                                  color: 'var(--primary)',
-                                  padding: '0.6rem 1rem',
-                                  borderRadius: '8px',
-                                  border: '1px solid rgba(0, 255, 136, 0.25)',
-                                  fontSize: '0.85rem',
-                                  fontWeight: 600,
-                                }}
-                              >
-                                {blocoFeedback}
-                              </div>
-                            )}
+                            {/* Cabeçalho da Grade de 3 Colunas (1.4fr / 140px / 1.4fr) */}
+                            <div
+                              style={{
+                                display: 'grid',
+                                gridTemplateColumns: '1.4fr 140px 1.4fr',
+                                gap: '1rem',
+                                padding: '0.5rem 0.5rem',
+                                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                                color: '#888',
+                                fontSize: '0.72rem',
+                                fontWeight: 800,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.06em',
+                              }}
+                            >
+                              <div>AÇÃO EDUCATIVA (PN)</div>
+                              <div style={{ textAlign: 'center' }}>STATUS & SALVAMENTO</div>
+                              <div>FÓRMULA DE EQUIVALÊNCIA & MATRIZ</div>
+                            </div>
 
-                            {/* SEÇÃO 1: AÇÕES EDUCATIVAS FIXAS (Design Limpo e Transparente) */}
+                            {/* SEÇÃO 1: AÇÕES EDUCATIVAS FIXAS */}
                             {fixas.length > 0 && (
                               <div
                                 style={{
@@ -599,7 +690,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                 >
                                   <div
                                     style={{
-                                      fontSize: '1.3rem',
+                                      fontSize: '1.2rem',
                                       fontWeight: 800,
                                       color: 'var(--primary)',
                                       textTransform: 'uppercase',
@@ -611,7 +702,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                   <span style={{ fontSize: '0.78rem', color: '#888' }}>Obrigatórias</span>
                                 </div>
 
-                                {/* Linhas Transparentes de Ações Fixas */}
+                                {/* Linhas de Ações Fixas em 3 Colunas */}
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                                   {fixas.map((acao, idx) => (
                                     <AcaoEquivalenciaRow
@@ -621,10 +712,9 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                       isLast={idx === fixas.length - 1}
                                       isExpandido={isExpandido}
                                       isChecked={Boolean(localAcoesStatus[acao.id])}
-                                      isSaving={savingAcaoId === acao.id}
-                                      feedback={feedbackMsg?.id === acao.id ? feedbackMsg.text : null}
+                                      saveStatus={getAcaoSaveStatus(acao.id)}
                                       onToggle={() => handleCheckboxToggle(acao.id)}
-                                      onSave={() => handleSaveAcao(acao.id, bloco.bloco_id)}
+                                      onContextMenu={(e) => handleResetAcao(e, acao)}
                                       onEditRegra={() => handleOpenEditRegra(acao, bloco.nm_bloco)}
                                     />
                                   ))}
@@ -632,7 +722,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                               </div>
                             )}
 
-                            {/* SEÇÃO 2: AÇÕES EDUCATIVAS VARIADAS (Design Limpo e Transparente) */}
+                            {/* SEÇÃO 2: AÇÕES EDUCATIVAS VARIADAS (Padrão + 216 PA + Substitutivas) */}
                             {(variaveis.length > 0 || substitutivas.length > 0) && (
                               <div
                                 style={{
@@ -642,7 +732,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                   padding: '1.25rem 1.5rem',
                                 }}
                               >
-                                {/* Header da Seção Variada */}
+                                {/* Header da Seção Variada com Contadores Restaurados (US5) */}
                                 <div
                                   style={{
                                     display: 'flex',
@@ -663,7 +753,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                   >
                                     <span
                                       style={{
-                                        fontSize: '1.3rem',
+                                        fontSize: '1.2rem',
                                         fontWeight: 800,
                                         color: '#eab308',
                                         textTransform: 'uppercase',
@@ -709,7 +799,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                   Realizar ao menos <strong style={{ color: '#fff' }}>{bloco.nr_acoes_variaveis_exigidas} ações</strong> dentre as listadas abaixo:
                                 </div>
 
-                                {/* Linhas Transparentes de Ações Variadas (Padrão + PA) */}
+                                {/* Linhas de Ações Variadas em 3 Colunas */}
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                                   {variaveis.map((acao, idx) => (
                                     <AcaoEquivalenciaRow
@@ -719,10 +809,9 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                       isLast={idx === variaveis.length - 1 && substitutivas.length === 0}
                                       isExpandido={isExpandido}
                                       isChecked={Boolean(localAcoesStatus[acao.id])}
-                                      isSaving={savingAcaoId === acao.id}
-                                      feedback={feedbackMsg?.id === acao.id ? feedbackMsg.text : null}
+                                      saveStatus={getAcaoSaveStatus(acao.id)}
                                       onToggle={() => handleCheckboxToggle(acao.id)}
-                                      onSave={() => handleSaveAcao(acao.id, bloco.bloco_id)}
+                                      onContextMenu={(e) => handleResetAcao(e, acao)}
                                       onEditRegra={() => handleOpenEditRegra(acao, bloco.nm_bloco)}
                                     />
                                   ))}
@@ -776,57 +865,15 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                           isLast={idx === substitutivas.length - 1}
                                           isExpandido={isExpandido}
                                           isChecked={Boolean(localAcoesStatus[acao.id])}
-                                          isSaving={savingAcaoId === acao.id}
-                                          feedback={feedbackMsg?.id === acao.id ? feedbackMsg.text : null}
+                                          saveStatus={getAcaoSaveStatus(acao.id)}
                                           onToggle={() => handleCheckboxToggle(acao.id)}
-                                          onSave={() => handleSaveAcao(acao.id, bloco.bloco_id)}
+                                          onContextMenu={(e) => handleResetAcao(e, acao)}
                                           onEditRegra={() => handleOpenEditRegra(acao, bloco.nm_bloco)}
                                         />
                                       ))}
                                     </div>
                                   </div>
                                 )}
-                              </div>
-                            )}
-
-                            {/* RODAPÉ DO BLOCO: BOTÃO ATUALIZAR BLOCO */}
-                            {isExpandido && (
-                              <div
-                                style={{
-                                  display: 'flex',
-                                  justifyContent: 'space-between',
-                                  alignItems: 'center',
-                                  gap: '1.25rem',
-                                  background: 'rgba(0, 0, 0, 0.3)',
-                                  border: '1px solid var(--glass-border)',
-                                  borderRadius: '12px',
-                                  padding: '0.85rem 1.25rem',
-                                  marginTop: '0.25rem',
-                                }}
-                              >
-                                <div style={{ fontSize: '0.85rem', color: '#aaa', flex: 1, minWidth: 0 }}>
-                                  💡 Ao finalizar as alterações deste bloco, clique em <strong style={{ color: 'var(--primary)' }}>Atualizar Bloco</strong> para gravar todas as ações juntas e atualizar a porcentagem de conclusão.
-                                </div>
-
-                                <button
-                                  type="button"
-                                  onClick={() => handleSaveAllBloco(bloco)}
-                                  disabled={isSavingThisBloco}
-                                  style={{
-                                    background: 'linear-gradient(135deg, #00ff88, #10b981)',
-                                    color: '#000',
-                                    fontWeight: 800,
-                                    fontSize: '0.92rem',
-                                    padding: '0.65rem 1.5rem',
-                                    borderRadius: '10px',
-                                    cursor: isSavingThisBloco ? 'not-allowed' : 'pointer',
-                                    boxShadow: '0 4px 14px rgba(0, 255, 136, 0.3)',
-                                    whiteSpace: 'nowrap',
-                                    flexShrink: 0,
-                                  }}
-                                >
-                                  {isSavingThisBloco ? 'Atualizando Bloco...' : 'Atualizar Bloco'}
-                                </button>
                               </div>
                             )}
                           </>
@@ -847,7 +894,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
         isOpen={isModalEditOpen}
         onClose={() => setIsModalEditOpen(false)}
         onSaveSuccess={() => {
-          fetchProgresso();
+          fetchProgresso(true);
           showFeedback('global', 'Regra de equivalência atualizada! Progresso recalculado.');
         }}
         ramoAtual={ramoAtual}
@@ -856,17 +903,16 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
   );
 }
 
-// Componente para a Linha da Ação Educativa (Design Limpo, Fundo Transparente, Losango Maior e Botão de Edição)
+// Componente para a Linha da Ação Educativa na Grade de 3 Colunas (1.4fr / 140px / 1.4fr)
 function AcaoEquivalenciaRow({
   acao,
   nmBloco,
   isLast,
   isExpandido,
   isChecked,
-  isSaving,
-  feedback,
+  saveStatus,
   onToggle,
-  onSave,
+  onContextMenu,
   onEditRegra,
 }: {
   acao: AcaoProgressoItem;
@@ -874,36 +920,34 @@ function AcaoEquivalenciaRow({
   isLast: boolean;
   isExpandido: boolean;
   isChecked: boolean;
-  isSaving: boolean;
-  feedback: string | null;
+  saveStatus?: ItemSaveFeedback;
   onToggle: () => void;
-  onSave: () => void;
+  onContextMenu: (e: React.MouseEvent) => void;
   onEditRegra: () => void;
 }) {
   const hasPaRefs = (acao.itens_origem_detalhados || []).length > 0;
   const hasEsp = (acao.origem_especialidades || []).length > 0;
+  const isManual = acao.origem === 'MANUAL_CHEFE';
 
   return (
     <div
       style={{
-        background: 'transparent',
+        background: isManual ? 'rgba(245, 158, 11, 0.02)' : 'transparent',
         borderBottom: isLast ? 'none' : '1px solid rgba(255, 255, 255, 0.06)',
-        padding: '0.85rem 0',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0.4rem',
+        padding: '0.85rem 0.5rem',
+        borderRadius: '8px',
+        transition: 'background 0.15s ease',
       }}
     >
-      {/* LINHA PRINCIPAL: Ação + Losango Maior + Validação + Ações de Salvar/Editar */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: isExpandido ? '1fr minmax(260px, 1.2fr) auto auto' : '1fr auto auto',
+          gridTemplateColumns: '1.4fr 140px 1.4fr',
           alignItems: 'center',
-          gap: '1.25rem',
+          gap: '1rem',
         }}
       >
-        {/* COLUNA 1: Ação Educativa com Losango Maior Interativo */}
+        {/* COLUNA 1: Ação Educativa (PN) + Losango Maior + Tags PN */}
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
           {/* Losango maior de checked / unchecked */}
           <span
@@ -911,7 +955,7 @@ function AcaoEquivalenciaRow({
             title={isChecked ? 'Concluído (Clique para alterar)' : 'Pendente (Clique para marcar)'}
             style={{
               color: isChecked ? 'var(--primary)' : 'rgba(255, 255, 255, 0.3)',
-              fontSize: '1.85rem', // Losango maior bem visível
+              fontSize: '1.75rem',
               lineHeight: 1,
               flexShrink: 0,
               cursor: 'pointer',
@@ -923,7 +967,7 @@ function AcaoEquivalenciaRow({
             {isChecked ? '◆' : '◇'}
           </span>
 
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ color: isChecked ? '#fff' : '#d4d4d8', fontSize: '0.95rem', lineHeight: 1.45 }}>
               {acao.modalidade && acao.modalidade !== 'Básico' && (
                 <span
@@ -934,19 +978,19 @@ function AcaoEquivalenciaRow({
                         ? '#38bdf8'
                         : acao.modalidade === 'Mar'
                         ? '#22d3ee'
-                        : acao.modalidade === 'PA'
+                        : acao.modalidade === 'PA' || acao.tp_acao === 'PA'
                         ? '#c084fc'
                         : acao.modalidade === 'Substitutiva' || acao.tp_acao === 'Substitutiva'
                         ? '#fbbf24'
                         : '#a1a1aa',
                     background:
-                      acao.modalidade === 'PA'
+                      acao.modalidade === 'PA' || acao.tp_acao === 'PA'
                         ? 'rgba(168, 85, 247, 0.18)'
                         : acao.modalidade === 'Substitutiva' || acao.tp_acao === 'Substitutiva'
                         ? 'rgba(251, 191, 36, 0.18)'
                         : 'rgba(255, 255, 255, 0.08)',
                     border:
-                      acao.modalidade === 'PA'
+                      acao.modalidade === 'PA' || acao.tp_acao === 'PA'
                         ? '1px solid rgba(168, 85, 247, 0.4)'
                         : acao.modalidade === 'Substitutiva' || acao.tp_acao === 'Substitutiva'
                         ? '1px solid rgba(251, 191, 36, 0.4)'
@@ -958,35 +1002,158 @@ function AcaoEquivalenciaRow({
                     display: 'inline-block',
                   }}
                 >
-                  {acao.modalidade}
+                  {acao.tp_acao === 'PA' ? 'PA' : acao.modalidade}
                 </span>
               )}
               {acao.ds_acao}
             </div>
+
+            {/* US4: Tags visuais destacadas para as 15 ações de Especialidades PN */}
+            {acao.especialidades_pn_tags && acao.especialidades_pn_tags.length > 0 && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.45rem' }}>
+                {acao.especialidades_pn_tags.map((esp) => {
+                  const isConq = esp.fl_conquistada;
+                  return (
+                    <span
+                      key={esp.nome}
+                      title={
+                        isConq
+                          ? `Especialidade ${esp.nome}: Conquistada no Nível ${esp.nivel_conquistado} (Exigido N${esp.nivel_exigido}+)`
+                          : `Especialidade ${esp.nome}: Não conquistada no Nível ${esp.nivel_exigido}+ (Nível atual: ${esp.nivel_conquistado || 0})`
+                      }
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.25rem',
+                        background: isConq ? 'rgba(0, 255, 136, 0.18)' : 'rgba(255, 255, 255, 0.05)',
+                        color: isConq ? '#00ff88' : '#888',
+                        border: isConq ? '1px solid rgba(0, 255, 136, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                        padding: '0.15rem 0.5rem',
+                        borderRadius: '5px',
+                        fontSize: '0.74rem',
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span>{isConq ? '✓' : '•'}</span>
+                      <span>{esp.nome} (N{esp.nivel_exigido}+)</span>
+                    </span>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* COLUNA 2 (Modo Expandido): Fórmula & Itens de Origem com Badges Vivos (Totalmente Transparente) */}
-        {isExpandido && (
-          <div
+        {/* COLUNA 2: Status & Interação (140px Centralizado) com onContextMenu para Reset Status */}
+        <div
+          onContextMenu={onContextMenu}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.25rem',
+            width: '140px',
+            margin: '0 auto',
+            padding: '0.4rem 0.5rem',
+            borderRadius: '8px',
+            background: isManual ? 'rgba(245, 158, 11, 0.08)' : 'transparent',
+            border: isManual ? '1px dashed rgba(245, 158, 11, 0.35)' : '1px solid transparent',
+            cursor: isManual ? 'context-menu' : 'default',
+            userSelect: 'none',
+          }}
+          title={
+            isManual
+              ? 'Clique com o botão direito para resetar status manual'
+              : undefined
+          }
+        >
+          <label
             style={{
-              background: 'transparent',
-              border: 'none',
-              padding: '0.25rem 0',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              cursor: 'pointer',
             }}
           >
-            <div style={{ fontSize: '0.68rem', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.2rem' }}>
-              Fórmula de Equivalência
-            </div>
-            <div style={{ fontSize: '0.85rem', color: '#bae6fd', lineHeight: 1.35, marginBottom: '0.35rem' }}>
-              {acao.descricao_origem || (
-                <span style={{ color: '#666', fontStyle: 'italic' }}>Sem equivalência mapeada</span>
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={onToggle}
+              style={{
+                width: '18px',
+                height: '18px',
+                cursor: 'pointer',
+                accentColor: 'var(--primary)',
+              }}
+            />
+            <span
+              style={{
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                color: isChecked ? 'var(--primary)' : '#888',
+              }}
+            >
+              {isChecked ? 'Concluído' : 'Pendente'}
+            </span>
+          </label>
+
+          {/* Rótulo de Origem e Indicador de Auto-Save */}
+          <div style={{ fontSize: '0.68rem', textAlign: 'center', minHeight: '16px' }}>
+            {saveStatus?.status === 'saving' ? (
+              <span style={{ color: '#38bdf8', fontWeight: 600 }}>Salvando...</span>
+            ) : saveStatus?.status === 'saved' ? (
+              <span style={{ color: '#00ff88', fontWeight: 600 }}>✓ Salvo</span>
+            ) : saveStatus?.status === 'error' ? (
+              <span style={{ color: '#ef4444', fontWeight: 600 }}>✗ Erro</span>
+            ) : isManual ? (
+              <span style={{ color: '#fbbf24', fontWeight: 700 }}>
+                Manual (Chefe)
+              </span>
+            ) : acao.origem === 'EQUIVALENCIA_AUTOMATICA' ? (
+              <span style={{ color: '#38bdf8', fontWeight: 600 }}>Auto (Paxtu)</span>
+            ) : acao.regra_id && acao.operacao !== 'SEM_EQUIVALENCIA' ? (
+              <span style={{ color: '#888' }}>Auto (Paxtu)</span>
+            ) : (
+              <span style={{ color: '#777' }}>Manual</span>
+            )}
+          </div>
+        </div>
+
+        {/* COLUNA 3: Fórmula & Validação (1.4fr) + Botão Editar Regra */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+            gap: '0.75rem',
+          }}
+        >
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: '0.83rem', color: '#bae6fd', lineHeight: 1.35, marginBottom: '0.35rem' }}>
+              {acao.operacao === 'SEM_EQUIVALENCIA' || !acao.descricao_origem ? (
+                <span
+                  style={{
+                    display: 'inline-block',
+                    background: 'rgba(255, 255, 255, 0.06)',
+                    color: '#a1a1aa',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    padding: '0.15rem 0.5rem',
+                    borderRadius: '5px',
+                    fontSize: '0.74rem',
+                    fontWeight: 600,
+                  }}
+                >
+                  Sem Equivalência
+                </span>
+              ) : (
+                <span>{acao.descricao_origem}</span>
               )}
             </div>
 
-            {/* Badges de Itens do PA (Verde = Concluído no Paxtu, Cinza = Não) */}
-            {hasPaRefs && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+            {/* Badges de Itens do PA */}
+            {hasPaRefs && isExpandido && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
                 {acao.itens_origem_detalhados.map((item) => {
                   const labelIdent =
                     item.identificacao ||
@@ -1006,7 +1173,7 @@ function AcaoEquivalenciaRow({
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.25rem',
+                        gap: '0.2rem',
                         background: item.fl_concluido_paxtu
                           ? 'rgba(0, 255, 136, 0.18)'
                           : 'rgba(255, 255, 255, 0.05)',
@@ -1014,9 +1181,9 @@ function AcaoEquivalenciaRow({
                         border: item.fl_concluido_paxtu
                           ? '1px solid rgba(0, 255, 136, 0.4)'
                           : '1px solid rgba(255, 255, 255, 0.1)',
-                        padding: '0.15rem 0.45rem',
-                        borderRadius: '5px',
-                        fontSize: '0.75rem',
+                        padding: '0.12rem 0.4rem',
+                        borderRadius: '4px',
+                        fontSize: '0.72rem',
                         fontFamily: 'monospace',
                         cursor: 'help',
                       }}
@@ -1029,18 +1196,10 @@ function AcaoEquivalenciaRow({
               </div>
             )}
 
-            {/* Tags de Especialidades Requeridas (Verde = Conquistada, Âmbar = Pendente) */}
-            {hasEsp && (
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '0.35rem',
-                  marginTop: hasPaRefs ? '0.35rem' : 0,
-                }}
-              >
-                {(acao.especialidades_origem_detalhadas &&
-                acao.especialidades_origem_detalhadas.length > 0
+            {/* Tags de Especialidades PA */}
+            {hasEsp && isExpandido && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginTop: hasPaRefs ? '0.3rem' : 0 }}>
+                {(acao.especialidades_origem_detalhadas && acao.especialidades_origem_detalhadas.length > 0
                   ? acao.especialidades_origem_detalhadas
                   : (acao.origem_especialidades || []).map((espNome) => ({
                       nm_especialidade: espNome,
@@ -1053,34 +1212,24 @@ function AcaoEquivalenciaRow({
                   const isConq = esp.fl_conquistada;
                   const nivelExigidoStr = `N${esp.nivel_exigido}+`;
                   const labelBadge = `${esp.nm_especialidade} (${nivelExigidoStr})`;
-                  const tooltipText = isConq
-                    ? `Especialidade ${esp.nm_especialidade}: Conquistada no Nível ${
-                        esp.nivel_conquistado
-                      } (Exigido ${nivelExigidoStr})${
-                        esp.dt_nivel ? ` em ${esp.dt_nivel}` : ''
-                      }`
-                    : `Especialidade ${esp.nm_especialidade}: Não conquistada no Nível ${
-                        esp.nivel_exigido
-                      }+ (Nível atual: ${esp.nivel_conquistado || 0})`;
-
                   return (
                     <span
                       key={esp.nm_especialidade}
-                      title={tooltipText}
+                      title={
+                        isConq
+                          ? `Especialidade ${esp.nm_especialidade}: Conquistada no Nível ${esp.nivel_conquistado} (Exigido ${nivelExigidoStr})`
+                          : `Especialidade ${esp.nm_especialidade}: Não conquistada no Nível ${esp.nivel_exigido}+`
+                      }
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.25rem',
-                        background: isConq
-                          ? 'rgba(0, 255, 136, 0.18)'
-                          : 'rgba(255, 255, 255, 0.05)',
+                        gap: '0.2rem',
+                        background: isConq ? 'rgba(0, 255, 136, 0.18)' : 'rgba(255, 255, 255, 0.05)',
                         color: isConq ? '#00ff88' : '#888',
-                        border: isConq
-                          ? '1px solid rgba(0, 255, 136, 0.4)'
-                          : '1px solid rgba(255, 255, 255, 0.1)',
-                        padding: '0.15rem 0.45rem',
-                        borderRadius: '5px',
-                        fontSize: '0.75rem',
+                        border: isConq ? '1px solid rgba(0, 255, 136, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                        padding: '0.12rem 0.4rem',
+                        borderRadius: '4px',
+                        fontSize: '0.72rem',
                         fontFamily: 'monospace',
                         cursor: 'help',
                       }}
@@ -1093,103 +1242,28 @@ function AcaoEquivalenciaRow({
               </div>
             )}
           </div>
-        )}
 
-        {/* COLUNA 3: Checkbox de Validação (Transparente) */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.15rem' }}>
-          <label
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              cursor: 'pointer',
-              padding: '0.25rem 0.5rem',
-              borderRadius: '6px',
-              background: 'transparent',
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={onToggle}
-              style={{
-                width: '18px',
-                height: '18px',
-                cursor: 'pointer',
-                accentColor: 'var(--primary)',
-              }}
-            />
-            <span
-              style={{
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                color: isChecked ? 'var(--primary)' : '#888',
-              }}
-            >
-              {isChecked ? 'Concluído' : 'Pendente'}
-            </span>
-          </label>
-
-          <span style={{ fontSize: '0.68rem', color: '#777' }}>
-            {acao.regra_id && acao.operacao !== 'SEM_EQUIVALENCIA' && !acao.fl_requer_validacao_manual
-              ? 'Auto Paxtu'
-              : 'Manual'}
-          </span>
-        </div>
-
-        {/* COLUNA 4: Botão Salvar Individual + Botão Editar Regra */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-          {isExpandido && (
-            <button
-              type="button"
-              onClick={onSave}
-              disabled={isSaving}
-              style={{
-                background: 'rgba(0, 255, 136, 0.15)',
-                color: 'var(--primary)',
-                border: '1px solid rgba(0, 255, 136, 0.3)',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                padding: '0.38rem 0.75rem',
-                borderRadius: '6px',
-                boxShadow: 'none',
-                cursor: isSaving ? 'not-allowed' : 'pointer',
-                whiteSpace: 'nowrap',
-                minWidth: '65px',
-                textAlign: 'center',
-              }}
-            >
-              {isSaving ? '...' : 'Salvar'}
-            </button>
-          )}
-
+          {/* Botão Editar Regra */}
           <button
             type="button"
             onClick={onEditRegra}
             title="Editar Regra de Equivalência (Matriz) desta ação"
             style={{
-              background: 'rgba(0, 255, 136, 0.15)',
+              background: 'rgba(0, 255, 136, 0.12)',
               color: 'var(--primary)',
-              border: '1px solid rgba(0, 255, 136, 0.3)',
-              fontSize: '0.78rem',
+              border: '1px solid rgba(0, 255, 136, 0.25)',
+              fontSize: '0.76rem',
               fontWeight: 700,
-              padding: '0.38rem 0.75rem',
+              padding: '0.35rem 0.7rem',
               borderRadius: '6px',
-              boxShadow: 'none',
               cursor: 'pointer',
               whiteSpace: 'nowrap',
-              minWidth: '65px',
-              textAlign: 'center',
+              flexShrink: 0,
+              transition: 'all 0.15s ease',
             }}
           >
             Editar
           </button>
-
-          {feedback && (
-            <span style={{ fontSize: '0.7rem', color: 'var(--primary)', fontWeight: 600 }}>
-              {feedback}
-            </span>
-          )}
         </div>
       </div>
     </div>

@@ -1,0 +1,3959 @@
+{
+  "caminhos": [
+    {
+      "cd_caminho_paxtu": "4",
+      "nm_caminho": "Período Introdutório"
+    },
+    {
+      "cd_caminho_paxtu": "5",
+      "nm_caminho": "Pistas e Trilha"
+    },
+    {
+      "cd_caminho_paxtu": "6",
+      "nm_caminho": "Rumo e Travessia"
+    }
+  ],
+  "areas": [
+    "Desenvolvimento físico",
+    "Desenvolvimento intelectual",
+    "Desenvolvimento do caráter",
+    "Desenvolvimento afetivo",
+    "Desenvolvimento social",
+    "Desenvolvimento espiritual"
+  ],
+  "intro_items": [
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P1",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer a estrutura da tropa escoteira."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P2",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer os membros da minha patrulha e os seus encargos."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P3",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Entender e usar o Lema do Escoteiro, o Sinal, a Saudação e o Aperto de Mão."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P4",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Reconhecer os sinais manuais e apitos de comandos."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P5",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Saber o grito de sua patrulha e conhecer o seu significado."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P6",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer o uniforme/traje escoteiro e o significado dos seus distintivos."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P7",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer o sistema de progressão escoteiro."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P8",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Saber como hastear e arriar a Bandeira Nacional."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P9",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer os aspectos mais importantes da história do Escotismo e do seu Fundador."
+    },
+    {
+      "excel_row": 0,
+      "cd_caminho_paxtu": "4",
+      "cd_ueb": "P10",
+      "ds_competencia": "Período Introdutório e Integração",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer a Lei e Promessa Escoteira."
+    }
+  ],
+  "pistas_items": [
+    {
+      "excel_row": 8,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "1",
+      "ds_competencia": "Percebo que meu corpo está mudando, e faço atividades que o ajudam a ser forte e sadio, evitando aquilo que pode me fazer mal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Participar de pelo menos 5 atividades ao ar livre  da patrulha (jornadas, excursões, acampamentos de patrulha ou tropa) utilizando normas de baixo impacto ambiental."
+    },
+    {
+      "excel_row": 9,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "2",
+      "ds_competencia": "Percebo que meu corpo está mudando, e faço atividades que o ajudam a ser forte e sadio, evitando aquilo que pode me fazer mal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Conhecer e aplicar normas de limpeza no tratamento e na conservação de alimentos nas atividades de patrulha."
+    },
+    {
+      "excel_row": 10,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "3",
+      "ds_competencia": "Percebo que meu corpo está mudando, e faço atividades que o ajudam a ser forte e sadio, evitando aquilo que pode me fazer mal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Aferir seu passo duplo, conhecer as medidas de seu corpo e aplicar-las em avaliações e medições."
+    },
+    {
+      "excel_row": 13,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "4",
+      "ds_competencia": "Participo das atividades organizadas por minha patrulha cuidando para não colocar em risco minha saúde e a de meus companheiros.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Conhecer os elementos que compõem a caixa de primeiros socorros da patrulha."
+    },
+    {
+      "excel_row": 14,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "5",
+      "ds_competencia": "Participo das atividades organizadas por minha patrulha cuidando para não colocar em risco minha saúde e a de meus companheiros.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Conhecer as ações iniciais que devem ser tomadas num acidente e saber como cuidar de ferimentos leves; bandagens e transporte de feridos, pequenos cortes e insetos"
+    },
+    {
+      "excel_row": 15,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "6",
+      "ds_competencia": "Participo das atividades organizadas por minha patrulha cuidando para não colocar em risco minha saúde e a de meus companheiros.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Aplicar medidas de segurança nas atividades de patrulha e tropa."
+    },
+    {
+      "excel_row": 16,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "7",
+      "ds_competencia": "Participo das atividades organizadas por minha patrulha cuidando para não colocar em risco minha saúde e a de meus companheiros.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Saber como prevenir os males da exposição ao sol: insolação, desidratação, queimaduras, câncer de pele."
+    },
+    {
+      "excel_row": 19,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "8",
+      "ds_competencia": "Mantenho limpo e arrumado o ambiente em que faço minhas coisas, e cuido da minha higiene e apresentação pessoal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Manter hábitos de higiene individual, demonstrar cuidado com o vestuário ou uniforme escoteiro e utilizar corretamente os distintivos e emblemas."
+    },
+    {
+      "excel_row": 20,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "9",
+      "ds_competencia": "Mantenho limpo e arrumado o ambiente em que faço minhas coisas, e cuido da minha higiene e apresentação pessoal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Classificar o lixo em diferentes categorias e saber como tratar os diferentes tipos de resíduos de acampamentos ou excursões utilizando “engenhocas” para melhorar a higiene e o conforto nos acampamentos."
+    },
+    {
+      "excel_row": 21,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "10",
+      "ds_competencia": "Mantenho limpo e arrumado o ambiente em que faço minhas coisas, e cuido da minha higiene e apresentação pessoal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Participar da manutenção do canto de patrulha, conhecer os materiais de sua patrulha e contribuir para a sua conservação, organização e limpeza."
+    },
+    {
+      "excel_row": 22,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "11",
+      "ds_competencia": "Mantenho limpo e arrumado o ambiente em que faço minhas coisas, e cuido da minha higiene e apresentação pessoal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Montar corretamente uma mochila para um acampamento de 3 dias e manter seu equipamento pessoal em bom estado."
+    },
+    {
+      "excel_row": 25,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "12",
+      "ds_competencia": "Como alimentos saudáveis, nas horas certas, e cuido da limpeza ao preparar refeições.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Montar o cardápio de uma jornada e durante as atividades de sua patrulha, fazer as refeições de maneira equilibrada."
+    },
+    {
+      "excel_row": 26,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "13",
+      "ds_competencia": "Como alimentos saudáveis, nas horas certas, e cuido da limpeza ao preparar refeições.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Colaborar na elaboração de alimentos (como cozinheiro ou copeiro) em pelo menos três atividades ao ar livre da patrulha; (jornadas, excursões ou acampamento de patrulha)."
+    },
+    {
+      "excel_row": 27,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "14",
+      "ds_competencia": "Como alimentos saudáveis, nas horas certas, e cuido da limpeza ao preparar refeições.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Montar uma solução para purificação de água em acampamentos"
+    },
+    {
+      "excel_row": 28,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "15",
+      "ds_competencia": "Como alimentos saudáveis, nas horas certas, e cuido da limpeza ao preparar refeições.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Utilizar diversos tipos de fogos de acampamento, de maneira adequada e segura."
+    },
+    {
+      "excel_row": 31,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "16",
+      "ds_competencia": "Dedico ao estudo tempo suficiente, e uso meu tempo livre para participar de atividades recreativas e variadas.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Organizar seu tempo utilizando uma agenda ou instrumento similar."
+    },
+    {
+      "excel_row": 32,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "17",
+      "ds_competencia": "Dedico ao estudo tempo suficiente, e uso meu tempo livre para participar de atividades recreativas e variadas.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Realizar, dentro do prazo, as suas tarefas escolares"
+    },
+    {
+      "excel_row": 33,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "18",
+      "ds_competencia": "Dedico ao estudo tempo suficiente, e uso meu tempo livre para participar de atividades recreativas e variadas.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Frequentar regularmente as atividades e reuniões da sua patrulha e da tropa."
+    },
+    {
+      "excel_row": 36,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "19",
+      "ds_competencia": "Pratico atividades físicas regularmente e participo de muitos jogos, respeitando as suas regras e os demais participantes.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Realizar regularmente uma atividade física ou o esporte que escolheu."
+    },
+    {
+      "excel_row": 37,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "20",
+      "ds_competencia": "Pratico atividades físicas regularmente e participo de muitos jogos, respeitando as suas regras e os demais participantes.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Participar de diversos jogos com sua patrulha e tropa respeitando as regras e aos demais participantes."
+    },
+    {
+      "excel_row": 41,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "21",
+      "ds_competencia": "Interesso-me pelo que se passa a minha volta e estou sempre disposto a aprender coisas novas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Traçar e seguir sinais de pista em um percurso de pelo menos 500 metros em área de campo, e pelo menos 1.000 metros em área urbana."
+    },
+    {
+      "excel_row": 42,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "22",
+      "ds_competencia": "Interesso-me pelo que se passa a minha volta e estou sempre disposto a aprender coisas novas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Utilizar um mapa e uma bússola para orientar-se."
+    },
+    {
+      "excel_row": 43,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "23",
+      "ds_competencia": "Interesso-me pelo que se passa a minha volta e estou sempre disposto a aprender coisas novas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Aplicar as técnicas de “tocaia” em um jogo com sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 46,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "24",
+      "ds_competencia": "Sei buscar informações que me ajudam a analisar problemas e encontrar soluções, procurando minhas próprias leituras e relacionando com as coisas que me acontecem.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Explorar com sua patrulha ou tropa a comunidade onde vive, identificando problemas e buscando soluções."
+    },
+    {
+      "excel_row": 47,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "25",
+      "ds_competencia": "Sei buscar informações que me ajudam a analisar problemas e encontrar soluções, procurando minhas próprias leituras e relacionando com as coisas que me acontecem.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Estimar altura e distâncias utilizando distintos métodos."
+    },
+    {
+      "excel_row": 48,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "26",
+      "ds_competencia": "Sei buscar informações que me ajudam a analisar problemas e encontrar soluções, procurando minhas próprias leituras e relacionando com as coisas que me acontecem.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Ler um livro e após a leitura apresentar um resumo a patrulha."
+    },
+    {
+      "excel_row": 49,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "27",
+      "ds_competencia": "Sei buscar informações que me ajudam a analisar problemas e encontrar soluções, procurando minhas próprias leituras e relacionando com as coisas que me acontecem.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Saber utilizar alguma técnica de previsão do tempo por indícios naturais."
+    },
+    {
+      "excel_row": 52,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "28",
+      "ds_competencia": "Participo das atividades decididas por meu grupo de amigos, contribuindo nas  discussões, manifestando minhas ideias e experiências.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Participar de, pelo menos, dois jogos democráticos de sua tropa."
+    },
+    {
+      "excel_row": 53,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "29",
+      "ds_competencia": "Participo das atividades decididas por meu grupo de amigos, contribuindo nas  discussões, manifestando minhas ideias e experiências.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Participar ativamente de seu conselho de patrulha contribuindo com ideias e pontos de vista."
+    },
+    {
+      "excel_row": 54,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "30",
+      "ds_competencia": "Participo das atividades decididas por meu grupo de amigos, contribuindo nas  discussões, manifestando minhas ideias e experiências.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Participar da organização e planejamento de uma excursão de patrulha; e contribuir com ideias para as atividades de patrulha ou tropa."
+    },
+    {
+      "excel_row": 55,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "31",
+      "ds_competencia": "Participo das atividades decididas por meu grupo de amigos, contribuindo nas  discussões, manifestando minhas ideias e experiências.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Avaliar as atividades juntamente com sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 58,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "32",
+      "ds_competencia": "Conheço as especialidades e as utilizo sempre que necessário.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Demonstrar que utiliza as especialidades que conquista para colaborar em sua patrulha, casa ou escola."
+    },
+    {
+      "excel_row": 59,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "33",
+      "ds_competencia": "Conheço as especialidades e as utilizo sempre que necessário.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Ajudar um escoteiro da patrulha a conquistar uma especialidade."
+    },
+    {
+      "excel_row": 62,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "34",
+      "ds_competencia": "Participo com entusiasmo das atividades artísticas de minha tropa.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Participar de um fogo de conselho e de uma apresentação com sua patrulha."
+    },
+    {
+      "excel_row": 63,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "35",
+      "ds_competencia": "Participo com entusiasmo das atividades artísticas de minha tropa.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Construir, com sucata, um instrumento musical."
+    },
+    {
+      "excel_row": 64,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "36",
+      "ds_competencia": "Participo com entusiasmo das atividades artísticas de minha tropa.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Conhecer e cantar algumas canções e danças tradicionais do Movimento Escoteiro e de sua tropa, em especial, o Hino Alerta."
+    },
+    {
+      "excel_row": 67,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "37",
+      "ds_competencia": "Conheço várias técnicas de comunicação e sei utilizar algumas delas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Ler e escrever mensagens usando um código secreto de sua patrulha."
+    },
+    {
+      "excel_row": 68,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "38",
+      "ds_competencia": "Conheço várias técnicas de comunicação e sei utilizar algumas delas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Utilizar corretamente um rádio comunicador numa atividade de sua patrulha."
+    },
+    {
+      "excel_row": 69,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "39",
+      "ds_competencia": "Conheço várias técnicas de comunicação e sei utilizar algumas delas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Montar um blog, lista de e-mails ou projeto similar que contribua para melhorar a comunicação em sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 72,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "40",
+      "ds_competencia": "Procuro desenvolver minhas habilidades manuais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Participar ativamente da construção de pioneiras num acampamento de tropa, aplicando pelo menos os seguintes nós e amarras: direito, volta do fiel ou volta da ribeira, nó de escota, amarra quadrada e diagonal."
+    },
+    {
+      "excel_row": 73,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "41",
+      "ds_competencia": "Procuro desenvolver minhas habilidades manuais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Saber utilizar e conservar as ferramentas típicas de uma patrulha (machadinha, facão, etc.) e demonstrar os cuidados básicos com os utensílios de campo (como lampiões e fogareiros)."
+    },
+    {
+      "excel_row": 74,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "42",
+      "ds_competencia": "Procuro desenvolver minhas habilidades manuais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Participar da construção de um fogão suspenso ou forno de acampamento."
+    },
+    {
+      "excel_row": 78,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "43",
+      "ds_competencia": "Procuro me conhecer cada vez mais, analisando as críticas que recebo e definindo ações para melhorar dia a dia.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Propor objetivos e ações para melhorar em alguns aspectos da sua vida."
+    },
+    {
+      "excel_row": 79,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "44",
+      "ds_competencia": "Procuro me conhecer cada vez mais, analisando as críticas que recebo e definindo ações para melhorar dia a dia.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Participar da avaliação de sua progressão pessoal e das de seus companheiros em conselho de patrulha."
+    },
+    {
+      "excel_row": 80,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "45",
+      "ds_competencia": "Procuro me conhecer cada vez mais, analisando as críticas que recebo e definindo ações para melhorar dia a dia.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Avaliar o seu desempenho e o de seus companheiros nos cargos de patrulha."
+    },
+    {
+      "excel_row": 83,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "46",
+      "ds_competencia": "Compreendo a Lei e a Promessa Escoteira, e estou sempre disposto a aplicá-las em minha vida.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Explicar o significado da Lei e da Promessa Escoteiras aos novos integrantes da sua patrulha."
+    },
+    {
+      "excel_row": 84,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "47",
+      "ds_competencia": "Compreendo a Lei e a Promessa Escoteira, e estou sempre disposto a aplicá-las em minha vida.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Participar corretamente das cerimônias com os símbolos nacionais e saber cantar o Hino Nacional."
+    },
+    {
+      "excel_row": 87,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "48",
+      "ds_competencia": "Sei o que significa lealdade e procuro agir desta forma com os outros e comigo mesmo.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Explicar, a partir do seu ponto de vista, o que significa ser leal."
+    },
+    {
+      "excel_row": 88,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "49",
+      "ds_competencia": "Sei o que significa lealdade e procuro agir desta forma com os outros e comigo mesmo.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Aplicar o conceito de lealdade em jogos e atividades de sua patrulha e tropa."
+    },
+    {
+      "excel_row": 91,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "50",
+      "ds_competencia": "Procuro ser alegre, mesmo nos momentos difíceis, compartilho minha alegria com os outros respeitando a todos.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Participar como animador em um acampamento de sua patrulha."
+    },
+    {
+      "excel_row": 92,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "51",
+      "ds_competencia": "Procuro ser alegre, mesmo nos momentos difíceis, compartilho minha alegria com os outros respeitando a todos.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer  historias de pessoas que se sobrepuseram em momentos difíceis e os relatar aos seus companheiros de patrulha."
+    },
+    {
+      "excel_row": 95,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "52",
+      "ds_competencia": "Escuto os conselhos que recebo do meu grupo de amigos e respeito as decisões que tomamos, mesmo quando penso de maneira diferente.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Respeitar e apoiar as decisões tomadas no conselho de patrulha, ainda que não esteja de acordo."
+    },
+    {
+      "excel_row": 96,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "53",
+      "ds_competencia": "Escuto os conselhos que recebo do meu grupo de amigos e respeito as decisões que tomamos, mesmo quando penso de maneira diferente.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Ajudar a melhorar a organização de seu conselho de patrulha."
+    },
+    {
+      "excel_row": 97,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "54",
+      "ds_competencia": "Escuto os conselhos que recebo do meu grupo de amigos e respeito as decisões que tomamos, mesmo quando penso de maneira diferente.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Participar da eleição do monitor da sua patrulha."
+    },
+    {
+      "excel_row": 101,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "55",
+      "ds_competencia": "Compreendo meus sentimentos e sei a quem procurar quando estou triste e confuso.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Pesquisar os malefícios de drogas e entorpecentes."
+    },
+    {
+      "excel_row": 102,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "56",
+      "ds_competencia": "Compreendo meus sentimentos e sei a quem procurar quando estou triste e confuso.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Contribuir na manutenção de livro de patrulha."
+    },
+    {
+      "excel_row": 103,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "57",
+      "ds_competencia": "Compreendo meus sentimentos e sei a quem procurar quando estou triste e confuso.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar de um turno de ronda em um acampamento de tropa."
+    },
+    {
+      "excel_row": 104,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "58",
+      "ds_competencia": "Compreendo meus sentimentos e sei a quem procurar quando estou triste e confuso.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Registrar, em algum tipo de diario ou arquivo, os principais momentos da sua historia pessoal."
+    },
+    {
+      "excel_row": 107,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "59",
+      "ds_competencia": "Escuto a opinião dos outros e, se não concordo digo isso com respeito, mantendo ou não minha posição conforme minhas convicções.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar de um debate sobre um filme ou um documentário com temática ambiental ou social."
+    },
+    {
+      "excel_row": 108,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "60",
+      "ds_competencia": "Escuto a opinião dos outros e, se não concordo digo isso com respeito, mantendo ou não minha posição conforme minhas convicções.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar ativamente nas assembleias expressando sua opinião de forma respeitosa."
+    },
+    {
+      "excel_row": 109,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "61",
+      "ds_competencia": "Escuto a opinião dos outros e, se não concordo digo isso com respeito, mantendo ou não minha posição conforme minhas convicções.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Propor temas para debater em seu conselho de patrulha"
+    },
+    {
+      "excel_row": 110,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "62",
+      "ds_competencia": "Escuto a opinião dos outros e, se não concordo digo isso com respeito, mantendo ou não minha posição conforme minhas convicções.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar da avaliação de um acampamento de tropa"
+    },
+    {
+      "excel_row": 113,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "63",
+      "ds_competencia": "Trato a todos com generosidade e gentileza.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Auxiliar  a um novo integrante da patrulha a se ambientar."
+    },
+    {
+      "excel_row": 114,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "64",
+      "ds_competencia": "Trato a todos com generosidade e gentileza.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Convidar sua patrulha para uma reunião em sua residência."
+    },
+    {
+      "excel_row": 117,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "65",
+      "ds_competencia": "Entendo que homens e mulheres são iguais em direitos e deveres.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar de atividades nas quais se promove a igualdade de direitos e deveres entre as pessoas."
+    },
+    {
+      "excel_row": 118,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "66",
+      "ds_competencia": "Entendo que homens e mulheres são iguais em direitos e deveres.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Compartilhar por igual com seus irmãos as tarefas domésticas."
+    },
+    {
+      "excel_row": 119,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "67",
+      "ds_competencia": "Entendo que homens e mulheres são iguais em direitos e deveres.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Investigar sobre mulheres que se destacaram na história de nosso país."
+    },
+    {
+      "excel_row": 122,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "68",
+      "ds_competencia": "Procuro participar com minha família de atividades dentro e fora do grupo escoteiro.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar de uma cerimônia com a presença dos pais, responsáveis ou irmãos."
+    },
+    {
+      "excel_row": 123,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "69",
+      "ds_competencia": "Procuro participar com minha família de atividades dentro e fora do grupo escoteiro.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar de uma atividade de sua patrulha junto aos seus pais, responsáveis, irmãos."
+    },
+    {
+      "excel_row": 124,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "70",
+      "ds_competencia": "Procuro participar com minha família de atividades dentro e fora do grupo escoteiro.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Solicitar ajuda dos seus pais ou familiares para capacitar a patrulha em algum tema de interesse (por exemplo: cozinha, mecânica, pintura, etc.)."
+    },
+    {
+      "excel_row": 128,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "71",
+      "ds_competencia": "Entendo o que são os Direitos Humanos e procuro respeitá-los.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Investigar sobre a vida de pessoas que lutaram pelos direitos humanos no Brasil e no mundo, e apresentar para a Tropa"
+    },
+    {
+      "excel_row": 129,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "72",
+      "ds_competencia": "Entendo o que são os Direitos Humanos e procuro respeitá-los.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de atividades nas quais se divulga a Declaração Universal dos Direitos Humanos."
+    },
+    {
+      "excel_row": 132,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "73",
+      "ds_competencia": "Participo da definição das metas e decisões nas diferentes equipes que participo, assumindo as responsabilidades que me cabem.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Assumir distintas responsabilidades nas atividades de sua patrulha e sua tropa."
+    },
+    {
+      "excel_row": 133,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "74",
+      "ds_competencia": "Participo da definição das metas e decisões nas diferentes equipes que participo, assumindo as responsabilidades que me cabem.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Colaborar para definição de metas da sua patrulha."
+    },
+    {
+      "excel_row": 134,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "75",
+      "ds_competencia": "Participo da definição das metas e decisões nas diferentes equipes que participo, assumindo as responsabilidades que me cabem.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Assumir e desempenhar satisfatoriamente um cargo na patrulha."
+    },
+    {
+      "excel_row": 135,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "76",
+      "ds_competencia": "Participo da definição das metas e decisões nas diferentes equipes que participo, assumindo as responsabilidades que me cabem.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar das decisões que toma seu conselho de patrulha, contribuindo com ideias, votando e assumindo responsabilidades em distintas tarefas, atividades e projetos"
+    },
+    {
+      "excel_row": 138,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "77",
+      "ds_competencia": "Colaboro na elaboração das normas dos diferentes grupos que participo, cumprindo aquilo com que me comprometo.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar ativamente de uma Assembleia de Tropa, analisando as normas de convivência e propondo melhorias."
+    },
+    {
+      "excel_row": 139,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "78",
+      "ds_competencia": "Colaboro na elaboração das normas dos diferentes grupos que participo, cumprindo aquilo com que me comprometo.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Estudar sobre a organização do Escotismo brasileiro e apresentar o resultado para sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 140,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "79",
+      "ds_competencia": "Colaboro na elaboração das normas dos diferentes grupos que participo, cumprindo aquilo com que me comprometo.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Conhecer a estrutura de um grupo escoteiro."
+    },
+    {
+      "excel_row": 143,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "80",
+      "ds_competencia": "Procuro fazer todos os dias uma boa ação e estou sempre disposto a participar de atividades de serviço ao próximo.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Realizar boas ações individuais e participar de boas ações coletivas com sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 144,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "81",
+      "ds_competencia": "Procuro fazer todos os dias uma boa ação e estou sempre disposto a participar de atividades de serviço ao próximo.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de um MutCom."
+    },
+    {
+      "excel_row": 147,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "82",
+      "ds_competencia": "Conheço o bairro onde moro e sei onde encontrar os principais serviços públicos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Fazer um croqui da área onde reside, identificando os serviços públicos de seu bairro."
+    },
+    {
+      "excel_row": 148,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "83",
+      "ds_competencia": "Conheço o bairro onde moro e sei onde encontrar os principais serviços públicos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Conhecer a localização e número de telefone dos distintos serviços públicos de seu bairro."
+    },
+    {
+      "excel_row": 151,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "84",
+      "ds_competencia": "Procuro conhecer a cultura do meu país.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar, junto com sua patrulha, de uma comemoração típica de sua região."
+    },
+    {
+      "excel_row": 152,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "85",
+      "ds_competencia": "Procuro conhecer a cultura do meu país.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de um jantar festivo na tropa, representando um estado diferente do seu."
+    },
+    {
+      "excel_row": 153,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "86",
+      "ds_competencia": "Procuro conhecer a cultura do meu país.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Pesquisar e colocar em prática alguns jogos e atividades típicas dos habitantes da região onde você vive."
+    },
+    {
+      "excel_row": 154,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "87",
+      "ds_competencia": "Procuro conhecer a cultura do meu país.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de um evento cívico, com sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 157,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "88",
+      "ds_competencia": "Conheço os principais símbolos da fraternidade escoteira mundial e procuro participar de atividades que reúnam escoteiros de diferentes lugares.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Explicar aos novos integrantes de sua patrulha os significados da flor de lis e saudação escoteira."
+    },
+    {
+      "excel_row": 158,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "89",
+      "ds_competencia": "Conheço os principais símbolos da fraternidade escoteira mundial e procuro participar de atividades que reúnam escoteiros de diferentes lugares.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Conhecer a história de seu grupo escoteiro e seus símbolos."
+    },
+    {
+      "excel_row": 159,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "90",
+      "ds_competencia": "Conheço os principais símbolos da fraternidade escoteira mundial e procuro participar de atividades que reúnam escoteiros de diferentes lugares.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de uma atividade, distrital, regional e ou Jamboree Nacional."
+    },
+    {
+      "excel_row": 160,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "91",
+      "ds_competencia": "Conheço os principais símbolos da fraternidade escoteira mundial e procuro participar de atividades que reúnam escoteiros de diferentes lugares.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de um JOTI ou JOTA."
+    },
+    {
+      "excel_row": 163,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "92",
+      "ds_competencia": "Participo de atividades voltadas para a paz e a compreensão entre os seres humanos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de uma atividade da sua patrulha e/ou tropa em que se promova a paz e compreensão entre as pessoas."
+    },
+    {
+      "excel_row": 164,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "93",
+      "ds_competencia": "Participo de atividades voltadas para a paz e a compreensão entre os seres humanos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Pesquisar sobre a vida de pessoas que trabalharam pela paz no Brasil e apresentar o resultado para sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 167,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "94",
+      "ds_competencia": "Conheço os diferentes ecossistemas de meu país e me preocupo em participar de projetos ambientais.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de um projeto ambiental com sua patrulha ou tropa e aplicar as normas de acampamento de baixo impacto em acampamentos e excursões."
+    },
+    {
+      "excel_row": 168,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "95",
+      "ds_competencia": "Conheço os diferentes ecossistemas de meu país e me preocupo em participar de projetos ambientais.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Realizar levantamento de pegadas de animais de sua região."
+    },
+    {
+      "excel_row": 169,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "96",
+      "ds_competencia": "Conheço os diferentes ecossistemas de meu país e me preocupo em participar de projetos ambientais.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de uma excursão urbana com motivo ecológico"
+    },
+    {
+      "excel_row": 173,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "97",
+      "ds_competencia": "Participo de atividades de reflexão e celebrações religiosas.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Fazer orações rotineiras na tropa ou patrulha, inclusive a “oração do escoteiro”."
+    },
+    {
+      "excel_row": 174,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "98",
+      "ds_competencia": "Participo de atividades de reflexão e celebrações religiosas.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar das celebrações de sua confissão religiosa"
+    },
+    {
+      "excel_row": 175,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "99",
+      "ds_competencia": "Participo de atividades de reflexão e celebrações religiosas.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Realizar reflexões junto a sua patrulha nas excursões e acampamentos."
+    },
+    {
+      "excel_row": 178,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "100",
+      "ds_competencia": "Conheço e procuro aplicar os ensinamentos de minha fé em tudo o que faço.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de uma atividade de serviço comunitário com os integrantes de sua comunidade religiosa."
+    },
+    {
+      "excel_row": 179,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "101",
+      "ds_competencia": "Conheço e procuro aplicar os ensinamentos de minha fé em tudo o que faço.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Aplicar os ensinamentos de sua confissão religiosa nas coisas que faz no seu dia-a-dia."
+    },
+    {
+      "excel_row": 180,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "102",
+      "ds_competencia": "Conheço e procuro aplicar os ensinamentos de minha fé em tudo o que faço.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Apresentar à tropa um pequeno relato de ensinamentos da sua confissão religiosa."
+    },
+    {
+      "excel_row": 183,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "103",
+      "ds_competencia": "Entendo a oração como forma de me relacionar com Deus  e procuro fazê-la todos os dias.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar da construção de um espaço de reflexão em um acampamento de tropa."
+    },
+    {
+      "excel_row": 184,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "104",
+      "ds_competencia": "Entendo a oração como forma de me relacionar com Deus  e procuro fazê-la todos os dias.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Orar utilizando uma oração própria da tropa ou de sua patrulha."
+    },
+    {
+      "excel_row": 185,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "105",
+      "ds_competencia": "Entendo a oração como forma de me relacionar com Deus  e procuro fazê-la todos os dias.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Praticar a oração como forma de relacionar-se com Deus."
+    },
+    {
+      "excel_row": 186,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "106",
+      "ds_competencia": "Entendo a oração como forma de me relacionar com Deus  e procuro fazê-la todos os dias.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Organizar ou contribuir com um livreto de orações para a sua patrulha."
+    },
+    {
+      "excel_row": 189,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "107",
+      "ds_competencia": "Entendo que existem diferentes religiões em meu país, e que devo conviver fraternalmente com todas as pessoas, independentemente da sua religião.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Conhecer as diferentes confissões religiosas as quais pertencem seus amigos de patrulha, tropa, escola de comunidade."
+    },
+    {
+      "excel_row": 190,
+      "cd_caminho_paxtu": "5",
+      "cd_ueb": "108",
+      "ds_competencia": "Entendo que existem diferentes religiões em meu país, e que devo conviver fraternalmente com todas as pessoas, independentemente da sua religião.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Pesquisar os principais pontos de uma confissão religiosa diferente da sua e apresentar para a tropa."
+    }
+  ],
+  "rumo_items": [
+    {
+      "excel_row": 6,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "1",
+      "ds_competencia": "Respeito meu corpo e o dos outros, entendo as mudanças que estão acontecendo, como me afetam e procuro superar as dificuldades físicas próprias de meu crescimento.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Participar de pelo menos 5 atividades ao ar livre da patrulha (acampamentos ou excursões) utilizando normas de baixo impacto ambiental."
+    },
+    {
+      "excel_row": 7,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "2",
+      "ds_competencia": "Respeito meu corpo e o dos outros, entendo as mudanças que estão acontecendo, como me afetam e procuro superar as dificuldades físicas próprias de meu crescimento.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Saber explicar as mudanças que estão acontecendo no seu corpo; conhecer os males da anorexia, bulimia, os perigos do álcool e cigarro e manter hábitos de higiene pessoal."
+    },
+    {
+      "excel_row": 8,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "3",
+      "ds_competencia": "Respeito meu corpo e o dos outros, entendo as mudanças que estão acontecendo, como me afetam e procuro superar as dificuldades físicas próprias de meu crescimento.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Participar de uma Jornada de Travessia."
+    },
+    {
+      "excel_row": 11,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "4",
+      "ds_competencia": "Sei o que fazer em caso de uma enfermidade ou acidente.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Reconhecer os tipos mais comuns de animais venenosos e peçonhentos de sua região."
+    },
+    {
+      "excel_row": 12,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "5",
+      "ds_competencia": "Sei o que fazer em caso de uma enfermidade ou acidente.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Manter em dia os elementos que compõem a caixa de primeiros socorros da patrulha."
+    },
+    {
+      "excel_row": 13,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "6",
+      "ds_competencia": "Sei o que fazer em caso de uma enfermidade ou acidente.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Aplicar medidas gerais de segurança em caso de acidentes, e saber determinar a ordem de prioridades quando assistir a um acidente e utilizar distintas técnicas para o transporte de feridos."
+    },
+    {
+      "excel_row": 14,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "7",
+      "ds_competencia": "Sei o que fazer em caso de uma enfermidade ou acidente.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Saber agir em casos de hemorragia"
+    },
+    {
+      "excel_row": 17,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "8",
+      "ds_competencia": "Mantenho minhas coisas limpas e organizadas, cuido dos lugares que visito e da minha apresentação pessoal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Participar de uma atividade de limpeza e organização do canto de patrulha (em sede)."
+    },
+    {
+      "excel_row": 18,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "9",
+      "ds_competencia": "Mantenho minhas coisas limpas e organizadas, cuido dos lugares que visito e da minha apresentação pessoal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Propor e executar uma atividade de melhoria em algum local visitado pela patrulha em acampamentos e manter em ordem seu quarto e objetos pessoais."
+    },
+    {
+      "excel_row": 19,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "10",
+      "ds_competencia": "Mantenho minhas coisas limpas e organizadas, cuido dos lugares que visito e da minha apresentação pessoal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Demonstrar cuidado com seu vestuário ou uniforme escoteiro e costurar os seus distintivos e insígnias"
+    },
+    {
+      "excel_row": 20,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "11",
+      "ds_competencia": "Mantenho minhas coisas limpas e organizadas, cuido dos lugares que visito e da minha apresentação pessoal.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Montar corretamente uma mochila para um acampamento de cinco dias e manter o equipamentos de sua patrulha em bom estado."
+    },
+    {
+      "excel_row": 23,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "12",
+      "ds_competencia": "Sei preparar uma refeição com ordem e limpeza, considerando os valores dos alimentos e suas contribuições para o saúde.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Preparar cinco refeições para sua patrulha, incluindo a preparação de um prato quente e de uma sobremesa sendo três refeições em fogueira ou fogão de campo."
+    },
+    {
+      "excel_row": 24,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "13",
+      "ds_competencia": "Sei preparar uma refeição com ordem e limpeza, considerando os valores dos alimentos e suas contribuições para o saúde.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Montar o cardápio de um acampamento de patrulha de fim de semana e fazer as refeições de maneira equilibrada, durante as atividades de patrulha."
+    },
+    {
+      "excel_row": 25,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "14",
+      "ds_competencia": "Sei preparar uma refeição com ordem e limpeza, considerando os valores dos alimentos e suas contribuições para o saúde.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Cozinhar ao ar livre sem utensílios (comida mateira), respeitando as normas de limpeza"
+    },
+    {
+      "excel_row": 28,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "15",
+      "ds_competencia": "Sei distribuir meu tempo para atividades de estudo, convivência familiar, com amigos e sei escolher o que fazer no meu tempo livre.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Organizar suas atividades em um calendário semanal."
+    },
+    {
+      "excel_row": 29,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "16",
+      "ds_competencia": "Sei distribuir meu tempo para atividades de estudo, convivência familiar, com amigos e sei escolher o que fazer no meu tempo livre.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Classificar suas atividades segundo um critério de prioridades."
+    },
+    {
+      "excel_row": 30,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "17",
+      "ds_competencia": "Sei distribuir meu tempo para atividades de estudo, convivência familiar, com amigos e sei escolher o que fazer no meu tempo livre.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Participar regularmente das atividades e reuniões de sua patrulha, contribuindo com ideias e sugestões para as atividades."
+    },
+    {
+      "excel_row": 31,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "18",
+      "ds_competencia": "Sei distribuir meu tempo para atividades de estudo, convivência familiar, com amigos e sei escolher o que fazer no meu tempo livre.",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Desenvolver um passatempo ou hobbie."
+    },
+    {
+      "excel_row": 34,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "19",
+      "ds_competencia": "Me esforço para melhorar meu desempenho nas atividades físicas que pratico",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Realizar regularmente uma atividade física ou esporte, demonstrando progresso em seu desempenho"
+    },
+    {
+      "excel_row": 35,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "20",
+      "ds_competencia": "Me esforço para melhorar meu desempenho nas atividades físicas que pratico",
+      "ds_area": "Desenvolvimento físico",
+      "ds_atividade": "Participar de diversos jogos com outros grupos escoteiros, respeitando as regras e os demais participantes."
+    },
+    {
+      "excel_row": 39,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "21",
+      "ds_competencia": "Procuro ampliar meus conhecimentos e sei refletir criticamente sobre os fatos que ocorrem em minha volta, e me interesso pela leitura de diversos temas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Realizar previsão do tempo por indícios naturais e por instrumentos."
+    },
+    {
+      "excel_row": 40,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "22",
+      "ds_competencia": "Procuro ampliar meus conhecimentos e sei refletir criticamente sobre os fatos que ocorrem em minha volta, e me interesso pela leitura de diversos temas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Traçar e seguir sinais de pista em um percurso de, pelo menos, 1 km no campo ou 2 km em área urbana"
+    },
+    {
+      "excel_row": 41,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "23",
+      "ds_competencia": "Procuro ampliar meus conhecimentos e sei refletir criticamente sobre os fatos que ocorrem em minha volta, e me interesso pela leitura de diversos temas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Orientar-se utilizando recursos naturais (estrelas, método do relógio), assim como usando uma bússola e um mapa"
+    },
+    {
+      "excel_row": 42,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "24",
+      "ds_competencia": "Procuro ampliar meus conhecimentos e sei refletir criticamente sobre os fatos que ocorrem em minha volta, e me interesso pela leitura de diversos temas.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Ler pelo menos um capítulo do livro “Escotismo para Rapazes”"
+    },
+    {
+      "excel_row": 45,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "25",
+      "ds_competencia": "Posso analisar uma situação a partir de diferentes pontos de vista estimulando meus amigos para que façam o mesmo.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Participar de, pelo menos, três jogos democráticos da tropa."
+    },
+    {
+      "excel_row": 46,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "26",
+      "ds_competencia": "Posso analisar uma situação a partir de diferentes pontos de vista estimulando meus amigos para que façam o mesmo.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Participar da avaliação de uma atividade regional."
+    },
+    {
+      "excel_row": 47,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "27",
+      "ds_competencia": "Posso analisar uma situação a partir de diferentes pontos de vista estimulando meus amigos para que façam o mesmo.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Explorar algum tema de seu interesse e compartilho com sua patrulha ou tropa"
+    },
+    {
+      "excel_row": 48,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "28",
+      "ds_competencia": "Posso analisar uma situação a partir de diferentes pontos de vista estimulando meus amigos para que façam o mesmo.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Aplicar técnicas de medição de distância ou altura em uma atividade de patrulha ou tropa."
+    },
+    {
+      "excel_row": 51,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "29",
+      "ds_competencia": "Organizo atividades criativas para serem realizadas com meu grupo de amigos.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Preparar materiais para as representações artísticas de sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 52,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "30",
+      "ds_competencia": "Organizo atividades criativas para serem realizadas com meu grupo de amigos.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Organizar um dia de jogos na casa de um companheiro de patrulha."
+    },
+    {
+      "excel_row": 53,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "31",
+      "ds_competencia": "Organizo atividades criativas para serem realizadas com meu grupo de amigos.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Propor e colaborar na organização de atividades de sua patrulha e tropa"
+    },
+    {
+      "excel_row": 54,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "32",
+      "ds_competencia": "Organizo atividades criativas para serem realizadas com meu grupo de amigos.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Organizar no seu colégio uma atividade de divulgação do grupo escoteiro."
+    },
+    {
+      "excel_row": 57,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "33",
+      "ds_competencia": "Amplio meus conhecimentos nas especialidades que escolhi, usando-as em ações a serviço da comunidade.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Aplicar as especialidades em ações de serviço da comunidade."
+    },
+    {
+      "excel_row": 58,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "34",
+      "ds_competencia": "Amplio meus conhecimentos nas especialidades que escolhi, usando-as em ações a serviço da comunidade.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Ajudar a outros jovens na conquista das especialidades"
+    },
+    {
+      "excel_row": 59,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "35",
+      "ds_competencia": "Amplio meus conhecimentos nas especialidades que escolhi, usando-as em ações a serviço da comunidade.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Propor a sua patrulha e tropa ideias de ações a serviço da comunidade"
+    },
+    {
+      "excel_row": 62,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "36",
+      "ds_competencia": "Manifesto meus interesses e aptidões artísticas, contribuindo com o bom ambiente nas atividades.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Ser responsável por apresentar as canções, durante o fogo de conselho de um acampamento de tropa."
+    },
+    {
+      "excel_row": 63,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "37",
+      "ds_competencia": "Manifesto meus interesses e aptidões artísticas, contribuindo com o bom ambiente nas atividades.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Organizar e participar um esquete de um fogo de conselho da tropa."
+    },
+    {
+      "excel_row": 64,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "38",
+      "ds_competencia": "Manifesto meus interesses e aptidões artísticas, contribuindo com o bom ambiente nas atividades.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Ensinar a outros escoteiros algumas canções tradicionais do movimento."
+    },
+    {
+      "excel_row": 67,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "39",
+      "ds_competencia": "Proponho e participo  de projetos que apresentam  soluções criativas para  problemas técnicos habituais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Construir um fogão solar e utilizar para uma refeição em um acampamento de patrulha ou tropa."
+    },
+    {
+      "excel_row": 68,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "40",
+      "ds_competencia": "Proponho e participo  de projetos que apresentam  soluções criativas para  problemas técnicos habituais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Construir um chuveiro de acampamento."
+    },
+    {
+      "excel_row": 69,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "41",
+      "ds_competencia": "Proponho e participo  de projetos que apresentam  soluções criativas para  problemas técnicos habituais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Saber como funcionam os serviços que uso (telefone, internet, rádio, TV...) e procuro usar estes conhecimentos para solucionar problemas técnicos habituais."
+    },
+    {
+      "excel_row": 70,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "42",
+      "ds_competencia": "Proponho e participo  de projetos que apresentam  soluções criativas para  problemas técnicos habituais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Conhecer e ser capaz de enviar e receber mensagens simples com uma das seguintes formas de comunicação: morse, semáfora, LIBRAS"
+    },
+    {
+      "excel_row": 73,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "43",
+      "ds_competencia": "Melhoro minhas habilidades manuais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Desenhar um croqui de um lugar de acampamento utilizando sinais topográficos, e participar do projeto e instalação das pioneirias de acampamento, aplicando pelo menos os seguintes nós e amarras: direito, volta do fiel ou volta da ribeira, nó de escota, nó em oito, volta redonda com dois cotes, amarra quadrada e diagonal."
+    },
+    {
+      "excel_row": 74,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "44",
+      "ds_competencia": "Melhoro minhas habilidades manuais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Aplicar os conceitos básicos de estruturas (cavaletes, encaixes, ancoragens) nos projetos e montagem de  construções como pontes, balsas, etc."
+    },
+    {
+      "excel_row": 75,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "45",
+      "ds_competencia": "Melhoro minhas habilidades manuais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Confeccionar “falcaças”, nó “catau”, laís de guia, cadeira de bombeiro e demonstrar os cuidados básicos com as cordas."
+    },
+    {
+      "excel_row": 76,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "46",
+      "ds_competencia": "Melhoro minhas habilidades manuais.",
+      "ds_area": "Desenvolvimento intelectual",
+      "ds_atividade": "Construir e pernoitar em um abrigo natural."
+    },
+    {
+      "excel_row": 80,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "47",
+      "ds_competencia": "Sei fazer uma auto-avaliação e procuro ser cada vez melhor, ajudando meus amigos a fazerem o mesmo",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Propor objetivos e ações para melhorar em alguns aspectos de sua vida na tropa."
+    },
+    {
+      "excel_row": 81,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "48",
+      "ds_competencia": "Sei fazer uma auto-avaliação e procuro ser cada vez melhor, ajudando meus amigos a fazerem o mesmo",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Participar ativamente na avaliação de sua progressão pessoal e de seus companheiros no conselho de patrulha"
+    },
+    {
+      "excel_row": 82,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "49",
+      "ds_competencia": "Sei fazer uma auto-avaliação e procuro ser cada vez melhor, ajudando meus amigos a fazerem o mesmo",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Participar de uma reunião onde são tratados os aspectos positivos e negativos de sua patrulha."
+    },
+    {
+      "excel_row": 83,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "50",
+      "ds_competencia": "Sei fazer uma auto-avaliação e procuro ser cada vez melhor, ajudando meus amigos a fazerem o mesmo",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Ajudar a um companheiro em sua progressão pessoal."
+    },
+    {
+      "excel_row": 86,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "51",
+      "ds_competencia": "Busco fazer as coisas bem feitas, superando minhas limitações para cumprir minhas responsabilidades.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Desempenhar um cargo de patrulha por pelo menos um ciclo de programa"
+    },
+    {
+      "excel_row": 87,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "52",
+      "ds_competencia": "Busco fazer as coisas bem feitas, superando minhas limitações para cumprir minhas responsabilidades.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Capacitar-se para desempenhar seu cargo na patrulha."
+    },
+    {
+      "excel_row": 88,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "53",
+      "ds_competencia": "Busco fazer as coisas bem feitas, superando minhas limitações para cumprir minhas responsabilidades.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Avaliar seu desempenho e de seus amigos nos cargos de patrulha."
+    },
+    {
+      "excel_row": 89,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "54",
+      "ds_competencia": "Busco fazer as coisas bem feitas, superando minhas limitações para cumprir minhas responsabilidades.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Participar de um festival de talentos na tropa."
+    },
+    {
+      "excel_row": 92,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "55",
+      "ds_competencia": "Compreendo o valor da Lei e da Promessa em minha vida e me esforço para vivê-las plenamente.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Auxiliar um companheiro de patrulha a realizar sua Promessa escoteira"
+    },
+    {
+      "excel_row": 93,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "56",
+      "ds_competencia": "Compreendo o valor da Lei e da Promessa em minha vida e me esforço para vivê-las plenamente.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Avaliar com seus companheiros a vivência da Promessa e Lei Escoteiras na patrulha."
+    },
+    {
+      "excel_row": 94,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "57",
+      "ds_competencia": "Compreendo o valor da Lei e da Promessa em minha vida e me esforço para vivê-las plenamente.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Cantar com sua patrulha a Canção da Promessa"
+    },
+    {
+      "excel_row": 97,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "58",
+      "ds_competencia": "Entendo que é importante ser verdadeiro, agindo de acordo com o que se pensa e se comprometendo com aquilo em que se acredita.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer a história de Caio Viana Martins"
+    },
+    {
+      "excel_row": 98,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "59",
+      "ds_competencia": "Entendo que é importante ser verdadeiro, agindo de acordo com o que se pensa e se comprometendo com aquilo em que se acredita.",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Realizar boas ações pessoais e junto com sua patrulha."
+    },
+    {
+      "excel_row": 101,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "60",
+      "ds_competencia": "Estou sempre alegre e divido minha alegria com os outros",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Organizar uma “oficina de brinquedos” com sua patrulha, doando os itens consertados para uma instituição de crianças carentes."
+    },
+    {
+      "excel_row": 102,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "61",
+      "ds_competencia": "Estou sempre alegre e divido minha alegria com os outros",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Conhecer e cantar canções apropriadas para distintos momentos."
+    },
+    {
+      "excel_row": 103,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "62",
+      "ds_competencia": "Estou sempre alegre e divido minha alegria com os outros",
+      "ds_area": "Desenvolvimento do caráter",
+      "ds_atividade": "Criar um vídeo e disponibilizar na internet com uma campanha publicitária divertida promovendo o grupo escoteiro."
+    },
+    {
+      "excel_row": 107,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "63",
+      "ds_competencia": "Procuro dominar meus medos, raivas ou inseguranças, e compartilho meus sentimentos e emoções com meus amigos.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Demonstrar as técnicas de resgate de pessoas em afogamento."
+    },
+    {
+      "excel_row": 108,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "64",
+      "ds_competencia": "Procuro dominar meus medos, raivas ou inseguranças, e compartilho meus sentimentos e emoções com meus amigos.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Ultrapassar algum obstáculo utilizando cordas (“falsa baiana”, “comando crawn”, etc.)."
+    },
+    {
+      "excel_row": 109,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "65",
+      "ds_competencia": "Procuro dominar meus medos, raivas ou inseguranças, e compartilho meus sentimentos e emoções com meus amigos.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Fazer um relato no livro de patrulha de uma atividade que lhe marcou."
+    },
+    {
+      "excel_row": 112,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "66",
+      "ds_competencia": "Consigo me manifestar de forma respeitosa quando converso com outros, mesmo que minha opinião seja diferente.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Conhecer os princípios para obter uma boa comunicação e os aplicar em minhas conversas com os outros."
+    },
+    {
+      "excel_row": 113,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "67",
+      "ds_competencia": "Consigo me manifestar de forma respeitosa quando converso com outros, mesmo que minha opinião seja diferente.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar de debates e discussões no conselho de patrulha e Assembleia de Tropa, se manifestado de forma respeitosa."
+    },
+    {
+      "excel_row": 114,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "68",
+      "ds_competencia": "Consigo me manifestar de forma respeitosa quando converso com outros, mesmo que minha opinião seja diferente.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Visitar outro grupo escoteiro"
+    },
+    {
+      "excel_row": 115,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "69",
+      "ds_competencia": "Consigo me manifestar de forma respeitosa quando converso com outros, mesmo que minha opinião seja diferente.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Contribuir para a manutenção do espírito escoteiro e de patrulha na tropa."
+    },
+    {
+      "excel_row": 118,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "70",
+      "ds_competencia": "Aprecio as pessoas pelo que elas são e estou sempre disposto a ajudar a todos.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Participar ativamente de uma mobilização para minimizar algum problema social."
+    },
+    {
+      "excel_row": 119,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "71",
+      "ds_competencia": "Aprecio as pessoas pelo que elas são e estou sempre disposto a ajudar a todos.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Saber a quem recorrer em caso de maus tratos a outras pessoas."
+    },
+    {
+      "excel_row": 120,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "72",
+      "ds_competencia": "Aprecio as pessoas pelo que elas são e estou sempre disposto a ajudar a todos.",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Ajudar algum companheiro de sua patrulha a conquistar algum objetivo ou melhorar em algum aspecto."
+    },
+    {
+      "excel_row": 123,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "73",
+      "ds_competencia": "Entendo que homem e mulher se complementam e devem conviver respeitosamente",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Auxiliar sua patrulha, tropa ou grupo a ter um número equilibrado de meninas e meninos"
+    },
+    {
+      "excel_row": 124,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "74",
+      "ds_competencia": "Entendo que homem e mulher se complementam e devem conviver respeitosamente",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Ir com minha patrulha ao teatro ou cinema com outros jovens de ambos os sexos."
+    },
+    {
+      "excel_row": 127,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "75",
+      "ds_competencia": "Mantenho diálogo e uma relação carinhosa e solidária com minha família",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Realizar uma boa ação com membros de sua família."
+    },
+    {
+      "excel_row": 128,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "76",
+      "ds_competencia": "Mantenho diálogo e uma relação carinhosa e solidária com minha família",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Realizar um projeto ou atividade de patrulha com a ajuda de seus pais ou familiares."
+    },
+    {
+      "excel_row": 129,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "77",
+      "ds_competencia": "Mantenho diálogo e uma relação carinhosa e solidária com minha família",
+      "ds_area": "Desenvolvimento afetivo",
+      "ds_atividade": "Assumir a responsabilidade de uma tarefa domestica na sua casa, por pelo menos três meses."
+    },
+    {
+      "excel_row": 133,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "78",
+      "ds_competencia": "Respeito todas as pessoas e participo ativamente de atividades relacionadas aos Direitos Humanos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Propor a sua patrulha e tropa atividades e projetos relacionados com os Direitos Humanos."
+    },
+    {
+      "excel_row": 134,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "79",
+      "ds_competencia": "Respeito todas as pessoas e participo ativamente de atividades relacionadas aos Direitos Humanos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Pesquisar sobre os principais problemas de violência escolar que afetam a sua comunidade e fazer apresentação para a patrulha ou tropa."
+    },
+    {
+      "excel_row": 135,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "80",
+      "ds_competencia": "Respeito todas as pessoas e participo ativamente de atividades relacionadas aos Direitos Humanos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de uma atividade em que se promovem os Direitos das Crianças e Adolescentes."
+    },
+    {
+      "excel_row": 138,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "81",
+      "ds_competencia": "Sei como funcionam os processos de tomada de decisão no meu país, e manifesto com respeito minha opinião sobre as pessoas que exercem autoridades",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Saber o que é a Constituição Brasileira, conhecer os símbolos nacionais e saber cantar o Hino Nacional."
+    },
+    {
+      "excel_row": 139,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "82",
+      "ds_competencia": "Sei como funcionam os processos de tomada de decisão no meu país, e manifesto com respeito minha opinião sobre as pessoas que exercem autoridades",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Visitar a câmara de vereadores de seu município."
+    },
+    {
+      "excel_row": 140,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "83",
+      "ds_competencia": "Sei como funcionam os processos de tomada de decisão no meu país, e manifesto com respeito minha opinião sobre as pessoas que exercem autoridades",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Saber as diferenças entre o poder legislativo, executivo e judiciário."
+    },
+    {
+      "excel_row": 143,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "84",
+      "ds_competencia": "Opino nas discussões sobre as normas que regem a vida nos diferentes ambientes, considerando o ponto de vista dos outros e respeitando o que for decidido.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Assistir a uma assembleia de seu grupo escoteiro."
+    },
+    {
+      "excel_row": 144,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "85",
+      "ds_competencia": "Opino nas discussões sobre as normas que regem a vida nos diferentes ambientes, considerando o ponto de vista dos outros e respeitando o que for decidido.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar ativamente de uma Assembleia de Tropa, analisando as normas de convivência e propondo melhorias."
+    },
+    {
+      "excel_row": 145,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "86",
+      "ds_competencia": "Opino nas discussões sobre as normas que regem a vida nos diferentes ambientes, considerando o ponto de vista dos outros e respeitando o que for decidido.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Pesquisar sobre a organização do Escotismo brasileiro e mundial, e apresentar o resultado para a tropa."
+    },
+    {
+      "excel_row": 146,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "87",
+      "ds_competencia": "Opino nas discussões sobre as normas que regem a vida nos diferentes ambientes, considerando o ponto de vista dos outros e respeitando o que for decidido.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Apresentar a estrutura de um grupo escoteiro para um novo membro da patrulha."
+    },
+    {
+      "excel_row": 149,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "88",
+      "ds_competencia": "Participo de atividades que ajudam a superar diferenças sociais.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Realizar uma das alternativas abaixo:\na. Convidar seus vizinhos e conhecidos para colaborar em algum mutirão de ajuda à vítimas de desastres naturais.\nb. Planejar e executar seu projeto para a Insígnia da Ação Comunitária.\nc. Participar ativamente de alguma campanha de auxílio à comunidade."
+    },
+    {
+      "excel_row": 152,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "89",
+      "ds_competencia": "Conheço minha cidade e sei onde encontrar os principais serviços públicos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Saber onde encontrar os principais serviços públicos na sua cidade."
+    },
+    {
+      "excel_row": 153,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "90",
+      "ds_competencia": "Conheço minha cidade e sei onde encontrar os principais serviços públicos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar, com sua patrulha, de um “safári fotográfico” em sua cidade."
+    },
+    {
+      "excel_row": 154,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "91",
+      "ds_competencia": "Conheço minha cidade e sei onde encontrar os principais serviços públicos.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Identificar problemas da sua cidade e propor soluções"
+    },
+    {
+      "excel_row": 157,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "92",
+      "ds_competencia": "Tomo iniciativa para realizar atividades que valorizam a nossa diversidade cultural.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Pesquisar sobre uma lenda brasileira e usar este conhecimento para montar uma apresentação para um fogo de conselho"
+    },
+    {
+      "excel_row": 158,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "93",
+      "ds_competencia": "Tomo iniciativa para realizar atividades que valorizam a nossa diversidade cultural.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Aprender canções e danças do Brasil e as ensinar em diferentes fogos de conselho."
+    },
+    {
+      "excel_row": 159,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "94",
+      "ds_competencia": "Tomo iniciativa para realizar atividades que valorizam a nossa diversidade cultural.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Confeccionar algum artesanato típico de alguma região de Brasil."
+    },
+    {
+      "excel_row": 162,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "95",
+      "ds_competencia": "Conheço o Escotismo no Brasil e mantenho e busco contato com escoteiros de diversos lugares",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de uma atividade escoteira distrital, regional, nacional ou internacional."
+    },
+    {
+      "excel_row": 163,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "96",
+      "ds_competencia": "Conheço o Escotismo no Brasil e mantenho e busco contato com escoteiros de diversos lugares",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Pesquisar sobre a história do Escotismo no Brasil e organizar uma apresentação para sua patrulha ou tropa."
+    },
+    {
+      "excel_row": 164,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "97",
+      "ds_competencia": "Conheço o Escotismo no Brasil e mantenho e busco contato com escoteiros de diversos lugares",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Realizar uma atividade com uma patrulha de um grupo escoteiro distinto do seu"
+    },
+    {
+      "excel_row": 165,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "98",
+      "ds_competencia": "Conheço o Escotismo no Brasil e mantenho e busco contato com escoteiros de diversos lugares",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de um JOTI ou JOTA"
+    },
+    {
+      "excel_row": 168,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "99",
+      "ds_competencia": "Procuro conhecer como vivem as pessoas em outros países.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Realizar pelo menos uma das alternativas abaixo"
+    },
+    {
+      "excel_row": 175,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "100",
+      "ds_competencia": "Sei quais os principais problemas ambientais do Brasil e procuro realizar as atividades para minimizá-los.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Visitar uma organização que trabalha e favor do meio ambiente e fazer uma pesquisa sobre os principais problemas ambientais do Brasil e os apresentar para sua tropa ou sua escola."
+    },
+    {
+      "excel_row": 176,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "101",
+      "ds_competencia": "Sei quais os principais problemas ambientais do Brasil e procuro realizar as atividades para minimizá-los.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Participar de um projeto de conservação ambiental"
+    },
+    {
+      "excel_row": 177,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "102",
+      "ds_competencia": "Sei quais os principais problemas ambientais do Brasil e procuro realizar as atividades para minimizá-los.",
+      "ds_area": "Desenvolvimento social",
+      "ds_atividade": "Saber identificar as pegadas de pelo menos cinco animais da fauna brasileira, e confeccionar pelo menos um molde em bom estado.\nOU (em substituição aos itens anteriores): Conquistar a Insígnia Mundial do Meio Ambiente, no Ramo Escoteiro."
+    },
+    {
+      "excel_row": 182,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "103",
+      "ds_competencia": "Pratico minha religião lendo e refletindo sobre ela, participando das suas comemorações e atividades.",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Participar regularmente dos cultos da sua religião."
+    },
+    {
+      "excel_row": 183,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "104",
+      "ds_competencia": "Pratico minha religião lendo e refletindo sobre ela, participando das suas comemorações e atividades.",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Auxiliar na realização de uma celebração de sua comunidade religiosa."
+    },
+    {
+      "excel_row": 184,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "105",
+      "ds_competencia": "Pratico minha religião lendo e refletindo sobre ela, participando das suas comemorações e atividades.",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Ler pelo menos um livro sagrado da sua fé."
+    },
+    {
+      "excel_row": 187,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "106",
+      "ds_competencia": "Encontro Deus na natureza, nas pessoas e nos acontecimentos, me relacionando com Ele por meio da oração.",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Realizar atividades de reflexão em acampamento ou excursão com sua patrulha ou tropa"
+    },
+    {
+      "excel_row": 188,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "107",
+      "ds_competencia": "Encontro Deus na natureza, nas pessoas e nos acontecimentos, me relacionando com Ele por meio da oração.",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Ajudar a projetar e construir, junto com sua patrulha ou tropa, um lugar para oração e reflexão no acampamento"
+    },
+    {
+      "excel_row": 189,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "108",
+      "ds_competencia": "Encontro Deus na natureza, nas pessoas e nos acontecimentos, me relacionando com Ele por meio da oração.",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Organizar com sua patrulha e sua família momentos de oração."
+    },
+    {
+      "excel_row": 192,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "109",
+      "ds_competencia": "Procuro viver de acordo com minha fé e busco apoio de meus amigos para as ações em favor do próximo",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Aplicar os ensinamentos de sua religião nas coisas que faz em sua vida."
+    },
+    {
+      "excel_row": 193,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "110",
+      "ds_competencia": "Procuro viver de acordo com minha fé e busco apoio de meus amigos para as ações em favor do próximo",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Avaliar suas ações de acordo com os ensinamentos de sua religião."
+    },
+    {
+      "excel_row": 194,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "111",
+      "ds_competencia": "Procuro viver de acordo com minha fé e busco apoio de meus amigos para as ações em favor do próximo",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Convidar sua patrulha para cooperar em ações, organizadas por sua comunidade religiosa, em favor de desassistidos."
+    },
+    {
+      "excel_row": 197,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "112",
+      "ds_competencia": "Respeito e procuro conhecer as outras religiões, e estimulo meus amigos a fazerem o mesmo.",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Discutir com sua patrulha um episódio histórico que expresse o efeito prejudicial do fanatismo religioso"
+    },
+    {
+      "excel_row": 198,
+      "cd_caminho_paxtu": "6",
+      "cd_ueb": "113",
+      "ds_competencia": "Respeito e procuro conhecer as outras religiões, e estimulo meus amigos a fazerem o mesmo.",
+      "ds_area": "Desenvolvimento espiritual",
+      "ds_atividade": "Confeccionar um calendário de celebrações e festividades religiosas das religiões dos escoteiros da sua patrulha"
+    }
+  ],
+  "atividades_map": {
+    "4_P1": {
+      "cd_atividade_paxtu": "137",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P1",
+      "nr_ordenacao": 1,
+      "ds_atividade": "Conhecer a estrutura da tropa escoteira.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P2": {
+      "cd_atividade_paxtu": "138",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P2",
+      "nr_ordenacao": 2,
+      "ds_atividade": "Conhecer os membros da minha patrulha e os seus encargos.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P3": {
+      "cd_atividade_paxtu": "139",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P3",
+      "nr_ordenacao": 3,
+      "ds_atividade": "Entender e usar o Lema do Escoteiro, o Sinal, a Saudação e o Aperto de Mão.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P4": {
+      "cd_atividade_paxtu": "140",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P4",
+      "nr_ordenacao": 4,
+      "ds_atividade": "Reconhecer os sinais manuais e apitos de comandos.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P5": {
+      "cd_atividade_paxtu": "141",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P5",
+      "nr_ordenacao": 5,
+      "ds_atividade": "Saber o grito de sua patrulha e conhecer o seu significado.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P6": {
+      "cd_atividade_paxtu": "142",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P6",
+      "nr_ordenacao": 6,
+      "ds_atividade": "Conhecer o uniforme/traje escoteiro e o significado dos seus distintivos.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P7": {
+      "cd_atividade_paxtu": "143",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P7",
+      "nr_ordenacao": 7,
+      "ds_atividade": "Conhecer o sistema de progressão escoteiro.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P8": {
+      "cd_atividade_paxtu": "144",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P8",
+      "nr_ordenacao": 8,
+      "ds_atividade": "Saber como hastear e arriar a Bandeira Nacional.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P9": {
+      "cd_atividade_paxtu": "145",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P9",
+      "nr_ordenacao": 9,
+      "ds_atividade": "Conhecer os aspectos mais importantes da história do Escotismo e do seu Fundador.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "4_P10": {
+      "cd_atividade_paxtu": "146",
+      "cd_caminho_paxtu": "4",
+      "cd_competencia_paxtu": "177",
+      "cd_ueb": "P10",
+      "nr_ordenacao": 10,
+      "ds_atividade": "Conhecer a Lei e Promessa Escoteira.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_1": {
+      "cd_atividade_paxtu": "147",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "73",
+      "cd_ueb": "1",
+      "nr_ordenacao": 1,
+      "ds_atividade": "Participar de pelo menos cinco atividades de patrulha ao ar livre (jornadas, excursões, acampamentos de patrulha ou tropa) utilizando normas de baixo impacto ambiental.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_2": {
+      "cd_atividade_paxtu": "148",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "73",
+      "cd_ueb": "2",
+      "nr_ordenacao": 2,
+      "ds_atividade": "Conhecer  e  aplicar  normas  de  limpeza  no  tratamento  e  na conservação de alimentos nas atividades de Patrulha.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_3": {
+      "cd_atividade_paxtu": "149",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "73",
+      "cd_ueb": "3",
+      "nr_ordenacao": 3,
+      "ds_atividade": "Aferir seu passo duplo, conhecer as medidas de seu corpo e aplicar- las em avaliações e medições.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_4": {
+      "cd_atividade_paxtu": "150",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "74",
+      "cd_ueb": "4",
+      "nr_ordenacao": 4,
+      "ds_atividade": "Conhecer  os  elementos  que  compõem  a  Caixa  de Primeiros Socorros da patrulha.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_5": {
+      "cd_atividade_paxtu": "151",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "74",
+      "cd_ueb": "5",
+      "nr_ordenacao": 5,
+      "ds_atividade": "Conhecer  as  ações  iniciais  que  devem  ser  tomadas  num acidente e saber como cuidar de ferimentos leves; bandagens e transporte de feridos, pequenos cortes e insetos.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_6": {
+      "cd_atividade_paxtu": "152",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "74",
+      "cd_ueb": "6",
+      "nr_ordenacao": 6,
+      "ds_atividade": "Aplicar  medidas  de  segurança  nas  atividades  de  patrulha  e Tropa.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_7": {
+      "cd_atividade_paxtu": "153",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "74",
+      "cd_ueb": "7",
+      "nr_ordenacao": 7,
+      "ds_atividade": "Saber como prevenir os males da exposição ao sol: insolação, desidratação, queimaduras, câncer de pele.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_8": {
+      "cd_atividade_paxtu": "154",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "75",
+      "cd_ueb": "8",
+      "nr_ordenacao": 8,
+      "ds_atividade": "Manter hábitos de higiene individual, demonstrar cuidado com o vestuário ou uniforme escoteiro e utilizar corretamente os distintivos e insígnias.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_9": {
+      "cd_atividade_paxtu": "155",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "75",
+      "cd_ueb": "9",
+      "nr_ordenacao": 9,
+      "ds_atividade": "Classificar o lixo em diferentes categorias e saber como tratar os diferentes tipos de resíduos de acampamentos ou excursões utilizando 'engenhocas' para melhorar a higiene e o conforto nos acampamentos.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_10": {
+      "cd_atividade_paxtu": "156",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "75",
+      "cd_ueb": "10",
+      "nr_ordenacao": 10,
+      "ds_atividade": "Participar da manutenção do canto de patrulha; conhecer os materiais de sua patrulha e contribuir para a sua conservação, organização e limpeza.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_11": {
+      "cd_atividade_paxtu": "157",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "75",
+      "cd_ueb": "11",
+      "nr_ordenacao": 11,
+      "ds_atividade": "Montar corretamente uma mochila para um acampamento de 3 dias e manter seu equipamento pessoal em bom estado.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_12": {
+      "cd_atividade_paxtu": "158",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "76",
+      "cd_ueb": "12",
+      "nr_ordenacao": 12,
+      "ds_atividade": "Montar o cardápio de uma jornada e durante as atividades de sua patrulha, fazer as refeições de maneira equilibrada.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_13": {
+      "cd_atividade_paxtu": "159",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "76",
+      "cd_ueb": "13",
+      "nr_ordenacao": 13,
+      "ds_atividade": "Colaborar na elaboração de alimentos (como cozinheiro ou copeiro) em pelo menos três atividades ao ar livre da patrulha; (jornadas, excursões ou acampamento de patrulha).",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_14": {
+      "cd_atividade_paxtu": "160",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "76",
+      "cd_ueb": "14",
+      "nr_ordenacao": 14,
+      "ds_atividade": "Montar uma solução para purificação de água em acampamentos.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_15": {
+      "cd_atividade_paxtu": "161",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "76",
+      "cd_ueb": "15",
+      "nr_ordenacao": 15,
+      "ds_atividade": "Utilizar diversos tipos de fogos de acampamento, de maneira adequada e segura.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_16": {
+      "cd_atividade_paxtu": "162",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "77",
+      "cd_ueb": "16",
+      "nr_ordenacao": 16,
+      "ds_atividade": "Organizar seu tempo utilizando uma agenda ou instrumento similar.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_17": {
+      "cd_atividade_paxtu": "163",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "77",
+      "cd_ueb": "17",
+      "nr_ordenacao": 17,
+      "ds_atividade": "Realizar, dentro do prazo, as suas tarefas escolares.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_18": {
+      "cd_atividade_paxtu": "164",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "77",
+      "cd_ueb": "18",
+      "nr_ordenacao": 18,
+      "ds_atividade": "Frequentar regularmente as atividades e reuniões da sua patrulha e da tropa.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_19": {
+      "cd_atividade_paxtu": "165",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "78",
+      "cd_ueb": "19",
+      "nr_ordenacao": 19,
+      "ds_atividade": "Realizar regularmente uma atividade física ou o esporte que escolheu.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_20": {
+      "cd_atividade_paxtu": "166",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "78",
+      "cd_ueb": "20",
+      "nr_ordenacao": 20,
+      "ds_atividade": "Participar de diversos jogos com sua patrulha e Tropa respeitando as regras e aos demais participantes.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "5_21": {
+      "cd_atividade_paxtu": "167",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "79",
+      "cd_ueb": "21",
+      "nr_ordenacao": 21,
+      "ds_atividade": "Traçar e seguir sinais de pista em um percurso de pelo menos 500 metros em área de campo, e pelo menos 1.000 metros em área urbana.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_22": {
+      "cd_atividade_paxtu": "168",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "79",
+      "cd_ueb": "22",
+      "nr_ordenacao": 22,
+      "ds_atividade": "Utilizar um mapa e uma bússola para orientar-se.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_23": {
+      "cd_atividade_paxtu": "169",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "79",
+      "cd_ueb": "23",
+      "nr_ordenacao": 23,
+      "ds_atividade": "Aplicar  as  técnicas de 'tocaia' em um jogo com sua Patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_24": {
+      "cd_atividade_paxtu": "170",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "80",
+      "cd_ueb": "24",
+      "nr_ordenacao": 24,
+      "ds_atividade": "Explorar com sua patrulha ou Tropa a comunidade onde vive, identificando problemas e buscando soluções.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_25": {
+      "cd_atividade_paxtu": "171",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "80",
+      "cd_ueb": "25",
+      "nr_ordenacao": 25,
+      "ds_atividade": "Estimar altura e distâncias utilizando distintos métodos.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_26": {
+      "cd_atividade_paxtu": "172",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "80",
+      "cd_ueb": "26",
+      "nr_ordenacao": 26,
+      "ds_atividade": "Ler um livro e após a leitura apresentar um resumo a patrulha.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_27": {
+      "cd_atividade_paxtu": "173",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "80",
+      "cd_ueb": "27",
+      "nr_ordenacao": 27,
+      "ds_atividade": "Saber utilizar alguma técnica de previsão do tempo por indícios naturais.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_28": {
+      "cd_atividade_paxtu": "174",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "81",
+      "cd_ueb": "28",
+      "nr_ordenacao": 28,
+      "ds_atividade": "Participar de, pelo menos, dois Jogos Democráticos de sua Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_29": {
+      "cd_atividade_paxtu": "175",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "81",
+      "cd_ueb": "29",
+      "nr_ordenacao": 29,
+      "ds_atividade": "Participar ativamente de seu Conselho de Patrulha contribuindo com ideias e pontos de vista.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_30": {
+      "cd_atividade_paxtu": "176",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "81",
+      "cd_ueb": "30",
+      "nr_ordenacao": 30,
+      "ds_atividade": "Participar da organização e planejamento de uma excursão de patrulha; e contribuir com ideias para as atividades de Patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_31": {
+      "cd_atividade_paxtu": "177",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "81",
+      "cd_ueb": "31",
+      "nr_ordenacao": 31,
+      "ds_atividade": "Avaliar as atividades juntamente com sua patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_32": {
+      "cd_atividade_paxtu": "178",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "82",
+      "cd_ueb": "32",
+      "nr_ordenacao": 32,
+      "ds_atividade": "Demonstrar que utiliza as especialidades que conquista para colaborar em sua patrulha, casa ou escola.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_33": {
+      "cd_atividade_paxtu": "179",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "82",
+      "cd_ueb": "33",
+      "nr_ordenacao": 33,
+      "ds_atividade": "Ajudar um escoteiro da patrulha a conquistar uma especialidade.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_34": {
+      "cd_atividade_paxtu": "180",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "83",
+      "cd_ueb": "34",
+      "nr_ordenacao": 34,
+      "ds_atividade": "Participar de um fogo de conselho e de uma apresentação com sua patrulha.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_35": {
+      "cd_atividade_paxtu": "181",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "83",
+      "cd_ueb": "35",
+      "nr_ordenacao": 35,
+      "ds_atividade": "Construir, com sucata, um instrumento musical.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_36": {
+      "cd_atividade_paxtu": "182",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "83",
+      "cd_ueb": "36",
+      "nr_ordenacao": 36,
+      "ds_atividade": "Conhecer e cantar algumas canções e danças tradicionais do Movimento Escoteiro e de sua Tropa, em especial, o Hino Alerta.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_37": {
+      "cd_atividade_paxtu": "183",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "84",
+      "cd_ueb": "37",
+      "nr_ordenacao": 37,
+      "ds_atividade": "Ler e escrever mensagens usando um código secreto de sua patrulha.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_38": {
+      "cd_atividade_paxtu": "184",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "84",
+      "cd_ueb": "38",
+      "nr_ordenacao": 38,
+      "ds_atividade": "Utilizar corretamente um rádio comunicador numa atividade de sua patrulha.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_39": {
+      "cd_atividade_paxtu": "185",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "84",
+      "cd_ueb": "39",
+      "nr_ordenacao": 39,
+      "ds_atividade": "Montar um blog, lista de e-mails ou projeto similar que contribua para melhorar a comunicação em sua patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_40": {
+      "cd_atividade_paxtu": "186",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "85",
+      "cd_ueb": "40",
+      "nr_ordenacao": 40,
+      "ds_atividade": "Participar ativamente da construção de pioneirias num acampamento de tropa, aplicando pelo menos os seguintes nós e amarras: direito, volta do fiel ou volta da ribeira, nó de escota, amarra quadrada e diagonal.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_41": {
+      "cd_atividade_paxtu": "187",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "85",
+      "cd_ueb": "41",
+      "nr_ordenacao": 41,
+      "ds_atividade": "Saber utilizar e conservar as ferramentas típicas de uma patrulha (machadinha, facão, etc.) e demonstrar os cuidados básicos com os utensílios de campo (como lampiões e fogareiros).",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_42": {
+      "cd_atividade_paxtu": "188",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "85",
+      "cd_ueb": "42",
+      "nr_ordenacao": 42,
+      "ds_atividade": "Participar da construção de um Fogão Suspenso ou Forno de Acampamento.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "5_43": {
+      "cd_atividade_paxtu": "189",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "86",
+      "cd_ueb": "43",
+      "nr_ordenacao": 43,
+      "ds_atividade": "Propor objetivos e ações para melhorar alguns aspectos da sua vida.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_44": {
+      "cd_atividade_paxtu": "190",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "86",
+      "cd_ueb": "44",
+      "nr_ordenacao": 44,
+      "ds_atividade": "Participar da avaliação de sua progressão pessoal e das de seus companheiros em Conselho de Patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_45": {
+      "cd_atividade_paxtu": "191",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "86",
+      "cd_ueb": "45",
+      "nr_ordenacao": 45,
+      "ds_atividade": "Avaliar o seu desempenho e o de seus companheiros nos cargos de patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_46": {
+      "cd_atividade_paxtu": "192",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "87",
+      "cd_ueb": "46",
+      "nr_ordenacao": 46,
+      "ds_atividade": "Explicar o significado da Lei e da Promessa Escoteira aos novos integrantes da sua patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_47": {
+      "cd_atividade_paxtu": "193",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "87",
+      "cd_ueb": "47",
+      "nr_ordenacao": 47,
+      "ds_atividade": "Participar corretamente das cerimônias com os Símbolos Nacionais e saber cantar o Hino Nacional.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_48": {
+      "cd_atividade_paxtu": "194",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "88",
+      "cd_ueb": "48",
+      "nr_ordenacao": 48,
+      "ds_atividade": "Explicar, a partir do seu ponto de vista, o que significa ser leal.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_49": {
+      "cd_atividade_paxtu": "195",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "88",
+      "cd_ueb": "49",
+      "nr_ordenacao": 49,
+      "ds_atividade": "Aplicar o conceito de lealdade em jogos e atividades de sua Patrulha e Tropa.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_50": {
+      "cd_atividade_paxtu": "196",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "89",
+      "cd_ueb": "50",
+      "nr_ordenacao": 50,
+      "ds_atividade": "Participar como animador em um acampamento de sua patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_51": {
+      "cd_atividade_paxtu": "197",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "89",
+      "cd_ueb": "51",
+      "nr_ordenacao": 51,
+      "ds_atividade": "Conhecer histórias de pessoas que se sobrepuseram em momentos difíceis e os relatar aos seus companheiros de patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_52": {
+      "cd_atividade_paxtu": "198",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "90",
+      "cd_ueb": "52",
+      "nr_ordenacao": 52,
+      "ds_atividade": "Respeitar e apoiar as decisões tomadas no Conselho de Patrulha, ainda que não esteja de acordo.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_53": {
+      "cd_atividade_paxtu": "199",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "90",
+      "cd_ueb": "53",
+      "nr_ordenacao": 53,
+      "ds_atividade": "Ajudar a melhorar a organização de seu Conselho de Patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_54": {
+      "cd_atividade_paxtu": "200",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "90",
+      "cd_ueb": "54",
+      "nr_ordenacao": 54,
+      "ds_atividade": "Participar da eleição do Monitor da sua patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "5_55": {
+      "cd_atividade_paxtu": "201",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "91",
+      "cd_ueb": "55",
+      "nr_ordenacao": 55,
+      "ds_atividade": "Pesquisar os malefícios de drogas e entorpecentes.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_56": {
+      "cd_atividade_paxtu": "202",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "91",
+      "cd_ueb": "56",
+      "nr_ordenacao": 56,
+      "ds_atividade": "Contribuir na manutenção de Livro de Patrulha.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_57": {
+      "cd_atividade_paxtu": "203",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "91",
+      "cd_ueb": "57",
+      "nr_ordenacao": 57,
+      "ds_atividade": "Participar de um turno de ronda em um acampamento de Tropa.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_58": {
+      "cd_atividade_paxtu": "204",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "91",
+      "cd_ueb": "58",
+      "nr_ordenacao": 58,
+      "ds_atividade": "Registrar, em algum tipo de diario ou arquivo, os principais momentos da sua historia pessoal.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_59": {
+      "cd_atividade_paxtu": "205",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "92",
+      "cd_ueb": "59",
+      "nr_ordenacao": 59,
+      "ds_atividade": "Participar de um debate sobre um filme ou um documentário com temática ambiental ou social.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_60": {
+      "cd_atividade_paxtu": "206",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "92",
+      "cd_ueb": "60",
+      "nr_ordenacao": 60,
+      "ds_atividade": "Participar ativamente nas Assembléias expressando  sua opinião de forma respeitosa.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_61": {
+      "cd_atividade_paxtu": "207",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "92",
+      "cd_ueb": "61",
+      "nr_ordenacao": 61,
+      "ds_atividade": "Propor temas para debater em seu Conselho de Patrulha.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_62": {
+      "cd_atividade_paxtu": "208",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "92",
+      "cd_ueb": "62",
+      "nr_ordenacao": 62,
+      "ds_atividade": "Participar da avaliação de um acampamento de tropa.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_63": {
+      "cd_atividade_paxtu": "209",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "93",
+      "cd_ueb": "63",
+      "nr_ordenacao": 63,
+      "ds_atividade": "Auxiliar a um novo integrante da patrulha a se ambientar.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_64": {
+      "cd_atividade_paxtu": "210",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "93",
+      "cd_ueb": "64",
+      "nr_ordenacao": 64,
+      "ds_atividade": "Convidar sua patrulha para uma reunião em sua residência.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_65": {
+      "cd_atividade_paxtu": "211",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "94",
+      "cd_ueb": "65",
+      "nr_ordenacao": 65,
+      "ds_atividade": "Participar de atividades nas quais se promove a igualdade de direitos e deveres entre as pessoas.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_66": {
+      "cd_atividade_paxtu": "212",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "94",
+      "cd_ueb": "66",
+      "nr_ordenacao": 66,
+      "ds_atividade": "Compartilhar por igual com seus irmãos as tarefas domésticas.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_67": {
+      "cd_atividade_paxtu": "213",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "94",
+      "cd_ueb": "67",
+      "nr_ordenacao": 67,
+      "ds_atividade": "Investigar sobre mulheres que se destacaram na história de nosso país.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_68": {
+      "cd_atividade_paxtu": "214",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "95",
+      "cd_ueb": "68",
+      "nr_ordenacao": 68,
+      "ds_atividade": "Participar de uma cerimônia com a presença dos pais, responsáveis ou irmãos.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_69": {
+      "cd_atividade_paxtu": "215",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "95",
+      "cd_ueb": "69",
+      "nr_ordenacao": 69,
+      "ds_atividade": "Participar de uma atividade de sua patrulha junto aos seus pais, responsáveis, irmãos.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_70": {
+      "cd_atividade_paxtu": "216",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "95",
+      "cd_ueb": "70",
+      "nr_ordenacao": 70,
+      "ds_atividade": "Solicitar ajuda dos seus pais ou familiares para capacitar a patrulha em algum tema de interesse (por exemplo: cozinha, mecânica, pintura, etc.).",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "5_71": {
+      "cd_atividade_paxtu": "217",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "96",
+      "cd_ueb": "71",
+      "nr_ordenacao": 71,
+      "ds_atividade": "Investigar sobre a vida de pessoas que lutaram pelos direitos humanos no Brasil e no Mundo, e apresentar para a Tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_72": {
+      "cd_atividade_paxtu": "218",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "96",
+      "cd_ueb": "72",
+      "nr_ordenacao": 72,
+      "ds_atividade": "Participar de atividades nas quais se divulga a Declaração Universal dos Direitos Humanos.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_73": {
+      "cd_atividade_paxtu": "219",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "97",
+      "cd_ueb": "73",
+      "nr_ordenacao": 73,
+      "ds_atividade": "Assumir distintas responsabilidades nas atividades de sua patrulha e sua Tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_74": {
+      "cd_atividade_paxtu": "220",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "97",
+      "cd_ueb": "74",
+      "nr_ordenacao": 74,
+      "ds_atividade": "Colaborar para definição de metas da sua patrulha.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_75": {
+      "cd_atividade_paxtu": "221",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "97",
+      "cd_ueb": "75",
+      "nr_ordenacao": 75,
+      "ds_atividade": "Assumir e desempenhar satisfatoriamente um cargo na patrulha.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_76": {
+      "cd_atividade_paxtu": "222",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "97",
+      "cd_ueb": "76",
+      "nr_ordenacao": 76,
+      "ds_atividade": "Participar  das  decisões  que  toma  seu  Conselho  de Patrulha, contribuindo com ideias, votando e assumindo responsabilidades em distintas tarefas, atividades e projetos.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_77": {
+      "cd_atividade_paxtu": "223",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "98",
+      "cd_ueb": "77",
+      "nr_ordenacao": 77,
+      "ds_atividade": "Participar ativamente de uma Assembleia de Tropa, analisando as normas de convivência e propondo melhorias.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_78": {
+      "cd_atividade_paxtu": "224",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "98",
+      "cd_ueb": "78",
+      "nr_ordenacao": 78,
+      "ds_atividade": "Estudar  sobre  a  organização  do  Escotismo  Brasileiro  e apresentar o resultado para sua patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_79": {
+      "cd_atividade_paxtu": "225",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "98",
+      "cd_ueb": "79",
+      "nr_ordenacao": 79,
+      "ds_atividade": "Conhecer a Estrutura de um Grupo Escoteiro.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_80": {
+      "cd_atividade_paxtu": "226",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "99",
+      "cd_ueb": "80",
+      "nr_ordenacao": 80,
+      "ds_atividade": "Realizar boas ações individuais e participar de boas ações coletivas com sua patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_81": {
+      "cd_atividade_paxtu": "227",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "99",
+      "cd_ueb": "81",
+      "nr_ordenacao": 81,
+      "ds_atividade": "Participar de um MUTCOM.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_82": {
+      "cd_atividade_paxtu": "228",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "100",
+      "cd_ueb": "82",
+      "nr_ordenacao": 82,
+      "ds_atividade": "Fazer um croqui da área onde reside, identificando os serviços públicos de seu bairro.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_83": {
+      "cd_atividade_paxtu": "229",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "100",
+      "cd_ueb": "83",
+      "nr_ordenacao": 83,
+      "ds_atividade": "Conhecer a localização e número de telefone dos distintos serviços públicos de seu bairro.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_84": {
+      "cd_atividade_paxtu": "230",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "101",
+      "cd_ueb": "84",
+      "nr_ordenacao": 84,
+      "ds_atividade": "Participar, junto com sua patrulha, de uma comemoração típica de sua região.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_85": {
+      "cd_atividade_paxtu": "231",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "101",
+      "cd_ueb": "85",
+      "nr_ordenacao": 85,
+      "ds_atividade": "Participar de um Jantar Festivo na Tropa, representando um Estado diferente do seu.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_86": {
+      "cd_atividade_paxtu": "232",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "101",
+      "cd_ueb": "86",
+      "nr_ordenacao": 86,
+      "ds_atividade": "Pesquisar e colocar em prática alguns jogos e atividades típicas dos habitantes da região onde você vive.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_87": {
+      "cd_atividade_paxtu": "233",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "101",
+      "cd_ueb": "87",
+      "nr_ordenacao": 87,
+      "ds_atividade": "Participar de um evento cívico, com sua patrulha ou tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_88": {
+      "cd_atividade_paxtu": "234",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "102",
+      "cd_ueb": "88",
+      "nr_ordenacao": 88,
+      "ds_atividade": "Explicar aos novos integrantes de sua patrulha os significados da Flor de Lis e saudação escoteira.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_89": {
+      "cd_atividade_paxtu": "235",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "102",
+      "cd_ueb": "89",
+      "nr_ordenacao": 89,
+      "ds_atividade": "Conhecer a história de seu Grupo Escoteiro e seus símbolos.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_90": {
+      "cd_atividade_paxtu": "236",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "102",
+      "cd_ueb": "90",
+      "nr_ordenacao": 90,
+      "ds_atividade": "Participar de uma atividade, distrital, Regional e ou Jamboree Nacional.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_91": {
+      "cd_atividade_paxtu": "237",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "102",
+      "cd_ueb": "91",
+      "nr_ordenacao": 91,
+      "ds_atividade": "Participar de um JOTI ou JOTA.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_92": {
+      "cd_atividade_paxtu": "238",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "103",
+      "cd_ueb": "92",
+      "nr_ordenacao": 92,
+      "ds_atividade": "Participar de uma atividade da sua patrulha e/ou Tropa em que se promova a paz e compreensão entre as pessoas.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_93": {
+      "cd_atividade_paxtu": "239",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "103",
+      "cd_ueb": "93",
+      "nr_ordenacao": 93,
+      "ds_atividade": "Pesquisar sobre a vida de pessoas que trabalharam pela paz no Brasil e apresentar o resultado para sua patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_94": {
+      "cd_atividade_paxtu": "240",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "104",
+      "cd_ueb": "94",
+      "nr_ordenacao": 94,
+      "ds_atividade": "Participar de um projeto ambiental com sua patrulha ou Tropa e aplicar as normas de acampamento de baixo impacto em acampamentos e excursões.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_95": {
+      "cd_atividade_paxtu": "241",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "104",
+      "cd_ueb": "95",
+      "nr_ordenacao": 95,
+      "ds_atividade": "Realizar um levantamento de pegadas de animais de sua região.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_96": {
+      "cd_atividade_paxtu": "242",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "104",
+      "cd_ueb": "96",
+      "nr_ordenacao": 96,
+      "ds_atividade": "Participar de uma excursão urbana com motivo ecológico.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "5_97": {
+      "cd_atividade_paxtu": "243",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "105",
+      "cd_ueb": "97",
+      "nr_ordenacao": 97,
+      "ds_atividade": "Fazer orações rotineiras na tropa ou patrulha, inclusive a Oração do Escoteiro.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_98": {
+      "cd_atividade_paxtu": "244",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "105",
+      "cd_ueb": "98",
+      "nr_ordenacao": 98,
+      "ds_atividade": "Participar das celebrações de sua confissão religiosa.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_99": {
+      "cd_atividade_paxtu": "245",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "105",
+      "cd_ueb": "99",
+      "nr_ordenacao": 99,
+      "ds_atividade": "Realizar reflexões junto a sua patrulha nas excursões e acampamentos.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_100": {
+      "cd_atividade_paxtu": "246",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "106",
+      "cd_ueb": "100",
+      "nr_ordenacao": 100,
+      "ds_atividade": "Participar de uma atividade de serviço comunitário com os integrantes de sua comunidade religiosa.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_101": {
+      "cd_atividade_paxtu": "247",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "106",
+      "cd_ueb": "101",
+      "nr_ordenacao": 101,
+      "ds_atividade": "Aplicar os ensinamentos de sua confissão religiosa nas coisas que faz no seu dia-a-dia.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_102": {
+      "cd_atividade_paxtu": "248",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "106",
+      "cd_ueb": "102",
+      "nr_ordenacao": 102,
+      "ds_atividade": "Apresentar à Tropa um pequeno relato de ensinamentos da sua confissão religiosa.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_103": {
+      "cd_atividade_paxtu": "249",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "107",
+      "cd_ueb": "103",
+      "nr_ordenacao": 103,
+      "ds_atividade": "Participar da construção de um espaço de reflexão em um acampamento de Tropa.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_104": {
+      "cd_atividade_paxtu": "250",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "107",
+      "cd_ueb": "104",
+      "nr_ordenacao": 104,
+      "ds_atividade": "Orar utilizando uma oração própria da Tropa ou de sua patrulha.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_105": {
+      "cd_atividade_paxtu": "251",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "107",
+      "cd_ueb": "105",
+      "nr_ordenacao": 105,
+      "ds_atividade": "Praticar a oração como forma de relacionar-se com Deus.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_106": {
+      "cd_atividade_paxtu": "252",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "107",
+      "cd_ueb": "106",
+      "nr_ordenacao": 106,
+      "ds_atividade": "Organizar ou contribuir com um livreto de orações para a sua patrulha.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_107": {
+      "cd_atividade_paxtu": "253",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "108",
+      "cd_ueb": "107",
+      "nr_ordenacao": 107,
+      "ds_atividade": "Conhecer as diferentes confissões religiosas as quais pertencem seus amigos de Patrulha, Tropa, Escola de Comunidade.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "5_108": {
+      "cd_atividade_paxtu": "254",
+      "cd_caminho_paxtu": "5",
+      "cd_competencia_paxtu": "108",
+      "cd_ueb": "108",
+      "nr_ordenacao": 108,
+      "ds_atividade": "Pesquisar os principais pontos de uma confissão religiosa diferente da sua e apresentar para a Tropa.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_1": {
+      "cd_atividade_paxtu": "276",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "109",
+      "cd_ueb": "1",
+      "nr_ordenacao": 1,
+      "ds_atividade": "Participar de pelo menos 5 atividades ao Ar Livre da patrulha (acampamentos ou excursões) utilizando normas de baixo impacto ambiental.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_2": {
+      "cd_atividade_paxtu": "277",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "109",
+      "cd_ueb": "2",
+      "nr_ordenacao": 2,
+      "ds_atividade": "Saber explicar as mudanças que estão acontecendo no seu corpo; conhecer os males da Anorexia , Bulimia , os perigos do Álcool e Cigarro e manter hábitos de higiene pessoal.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_3": {
+      "cd_atividade_paxtu": "278",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "109",
+      "cd_ueb": "3",
+      "nr_ordenacao": 3,
+      "ds_atividade": "Participar de uma Jornada de Travessia.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_4": {
+      "cd_atividade_paxtu": "279",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "110",
+      "cd_ueb": "4",
+      "nr_ordenacao": 4,
+      "ds_atividade": "Reconhecer os tipos mais comuns de animais venenosos e peçonhentos de sua região.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_5": {
+      "cd_atividade_paxtu": "280",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "110",
+      "cd_ueb": "5",
+      "nr_ordenacao": 5,
+      "ds_atividade": "Manter em dia os elementos que compõem a Caixa de Primeiros Socorros da patrulha.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_6": {
+      "cd_atividade_paxtu": "281",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "110",
+      "cd_ueb": "6",
+      "nr_ordenacao": 6,
+      "ds_atividade": "Aplicar medidas Gerais de segurança em caso de acidentes, e saber determinar a ordem de prioridades quando assistir a um acidente e utilizar distintas técnicas para o transporte de feridos.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_7": {
+      "cd_atividade_paxtu": "282",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "110",
+      "cd_ueb": "7",
+      "nr_ordenacao": 7,
+      "ds_atividade": "Saber agir em casos de hemorragia.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_8": {
+      "cd_atividade_paxtu": "283",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "111",
+      "cd_ueb": "8",
+      "nr_ordenacao": 8,
+      "ds_atividade": "Participar de uma atividade de limpeza e organização do Canto de Patrulha (em sede).",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_9": {
+      "cd_atividade_paxtu": "284",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "111",
+      "cd_ueb": "9",
+      "nr_ordenacao": 9,
+      "ds_atividade": "Propor e executar uma atividade de melhoria em algum local visitado pela patrulha em acampamentos e manter em ordem seu quarto e objetos pessoais.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_10": {
+      "cd_atividade_paxtu": "285",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "111",
+      "cd_ueb": "10",
+      "nr_ordenacao": 10,
+      "ds_atividade": "Demonstrar cuidado com seu vestuário ou uniforme escoteiro e costurar os seus distintivos e insígnias.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_11": {
+      "cd_atividade_paxtu": "286",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "111",
+      "cd_ueb": "11",
+      "nr_ordenacao": 11,
+      "ds_atividade": "Montar corretamente uma mochila para um acampamento de 5 dias e manter o equipamentos de sua patrulha em bom estado.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_12": {
+      "cd_atividade_paxtu": "287",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "112",
+      "cd_ueb": "12",
+      "nr_ordenacao": 12,
+      "ds_atividade": "Preparar 5 refeições para sua patrulha, incluindo a preparação de um prato quente e de uma sobremesa sendo 3 refeições em fogueira ou fogão de campo.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_13": {
+      "cd_atividade_paxtu": "288",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "112",
+      "cd_ueb": "13",
+      "nr_ordenacao": 13,
+      "ds_atividade": "Montar o cardápio de um acampamento de patrulha de fim de semana e fazer as refeições de maneira equilibrada, durante as atividades de patrulha.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_14": {
+      "cd_atividade_paxtu": "289",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "112",
+      "cd_ueb": "14",
+      "nr_ordenacao": 14,
+      "ds_atividade": "Cozinhar ao ar livre sem utensílios (comida mateira), respeitando as normas de limpeza.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_15": {
+      "cd_atividade_paxtu": "290",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "113",
+      "cd_ueb": "15",
+      "nr_ordenacao": 15,
+      "ds_atividade": "Organizar suas atividades em um calendário semanal.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_16": {
+      "cd_atividade_paxtu": "291",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "113",
+      "cd_ueb": "16",
+      "nr_ordenacao": 16,
+      "ds_atividade": "Classificar suas atividades segundo um critério de prioridades.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_17": {
+      "cd_atividade_paxtu": "292",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "113",
+      "cd_ueb": "17",
+      "nr_ordenacao": 17,
+      "ds_atividade": "Participar regularmente das atividades e reuniões de sua patrulha, contribuindo com ideias e sugestões para as atividades.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_18": {
+      "cd_atividade_paxtu": "293",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "113",
+      "cd_ueb": "18",
+      "nr_ordenacao": 18,
+      "ds_atividade": "Desenvolver um passatempo ou hobbie.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_19": {
+      "cd_atividade_paxtu": "294",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "114",
+      "cd_ueb": "19",
+      "nr_ordenacao": 19,
+      "ds_atividade": "Realizar regularmente uma atividade física ou esporte, demonstrando progresso em seu desempenho.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_20": {
+      "cd_atividade_paxtu": "295",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "114",
+      "cd_ueb": "20",
+      "nr_ordenacao": 20,
+      "ds_atividade": "Participar de diversos jogos com outros Grupos Escoteiros, respeitando as regras e os demais participantes.",
+      "ds_area": "Desenvolvimento físico"
+    },
+    "6_21": {
+      "cd_atividade_paxtu": "296",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "115",
+      "cd_ueb": "21",
+      "nr_ordenacao": 21,
+      "ds_atividade": "Realizar previsão do tempo por indícios naturais e por instrumentos.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_22": {
+      "cd_atividade_paxtu": "297",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "115",
+      "cd_ueb": "22",
+      "nr_ordenacao": 22,
+      "ds_atividade": "Traçar e seguir sinais de pista em um percurso de, pelo menos, 1 km no campo ou 2 km em área urbana.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_23": {
+      "cd_atividade_paxtu": "298",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "115",
+      "cd_ueb": "23",
+      "nr_ordenacao": 23,
+      "ds_atividade": "Orientar-se utilizando recursos naturais (estrelas, método do relógio), assim como usando uma bússola e um mapa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_24": {
+      "cd_atividade_paxtu": "299",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "115",
+      "cd_ueb": "24",
+      "nr_ordenacao": 24,
+      "ds_atividade": "Ler pelo menos um capítulo do livro Escotismo para Rapazes.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_25": {
+      "cd_atividade_paxtu": "300",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "116",
+      "cd_ueb": "25",
+      "nr_ordenacao": 25,
+      "ds_atividade": "Participar de, pelo menos, três Jogos Democráticos da Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_26": {
+      "cd_atividade_paxtu": "301",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "116",
+      "cd_ueb": "26",
+      "nr_ordenacao": 26,
+      "ds_atividade": "Participar da avaliação de uma atividade Regional.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_27": {
+      "cd_atividade_paxtu": "302",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "116",
+      "cd_ueb": "27",
+      "nr_ordenacao": 27,
+      "ds_atividade": "Explorar algum tema de seu interesse e compartilhar com sua Patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_28": {
+      "cd_atividade_paxtu": "303",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "116",
+      "cd_ueb": "28",
+      "nr_ordenacao": 28,
+      "ds_atividade": "Aplicar técnicas de medição de distância ou altura em uma atividade de patrulha ou tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_29": {
+      "cd_atividade_paxtu": "304",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "117",
+      "cd_ueb": "29",
+      "nr_ordenacao": 29,
+      "ds_atividade": "Preparar materiais para as representações artísticas de sua patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_30": {
+      "cd_atividade_paxtu": "305",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "117",
+      "cd_ueb": "30",
+      "nr_ordenacao": 30,
+      "ds_atividade": "Organizar um dia de jogos na casa de um companheiro de patrulha.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_31": {
+      "cd_atividade_paxtu": "306",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "117",
+      "cd_ueb": "31",
+      "nr_ordenacao": 31,
+      "ds_atividade": "Propor e colaborar na organização de atividades de sua patrulha e Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_32": {
+      "cd_atividade_paxtu": "307",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "117",
+      "cd_ueb": "32",
+      "nr_ordenacao": 32,
+      "ds_atividade": "Organizar no seu colégio uma atividade de divulgação do Grupo Escoteiro.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_33": {
+      "cd_atividade_paxtu": "308",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "118",
+      "cd_ueb": "33",
+      "nr_ordenacao": 33,
+      "ds_atividade": "Aplicar as especialidades em ações de serviço da comunidade.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_34": {
+      "cd_atividade_paxtu": "309",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "118",
+      "cd_ueb": "34",
+      "nr_ordenacao": 34,
+      "ds_atividade": "Ajudar a outros jovens na conquista das especialidades.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_35": {
+      "cd_atividade_paxtu": "310",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "118",
+      "cd_ueb": "35",
+      "nr_ordenacao": 35,
+      "ds_atividade": "Propor a sua Patrulha e Tropa ideias de ações a serviço da comunidade.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_36": {
+      "cd_atividade_paxtu": "311",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "119",
+      "cd_ueb": "36",
+      "nr_ordenacao": 36,
+      "ds_atividade": "Ser responsável por apresentar as canções, durante o Fogo de Conselho de um acampamento de Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_37": {
+      "cd_atividade_paxtu": "312",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "119",
+      "cd_ueb": "37",
+      "nr_ordenacao": 37,
+      "ds_atividade": "Organizar e participar do esquete de um Fogo de Conselho da Tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_38": {
+      "cd_atividade_paxtu": "313",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "119",
+      "cd_ueb": "38",
+      "nr_ordenacao": 38,
+      "ds_atividade": "Ensinar a outros escoteiros algumas canções tradicionais do Movimento.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_39": {
+      "cd_atividade_paxtu": "314",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "120",
+      "cd_ueb": "39",
+      "nr_ordenacao": 39,
+      "ds_atividade": "Construir um Fogão Solar e utilizar para uma refeição em um acampamento de patrulha ou tropa.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_40": {
+      "cd_atividade_paxtu": "315",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "120",
+      "cd_ueb": "40",
+      "nr_ordenacao": 40,
+      "ds_atividade": "Construir um chuveiro de acampamento.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_41": {
+      "cd_atividade_paxtu": "316",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "120",
+      "cd_ueb": "41",
+      "nr_ordenacao": 41,
+      "ds_atividade": "Saber como funcionam os serviços que uso (telefone, internet, rádio, TV...) e procuro usar estes conhecimentos para solucionar problemas técnicos habituais.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_42": {
+      "cd_atividade_paxtu": "317",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "120",
+      "cd_ueb": "42",
+      "nr_ordenacao": 42,
+      "ds_atividade": "Conhecer e ser capaz de enviar e receber mensagens simples com uma das seguintes formas de comunicação: comunicação: morse, semáfora e libras.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_43": {
+      "cd_atividade_paxtu": "318",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "121",
+      "cd_ueb": "43",
+      "nr_ordenacao": 43,
+      "ds_atividade": "Desenhar um croqui de um lugar de acampamento utilizando sinais topográficos, e participar do projeto e instalação das pioneirias de acampamento, aplicando pelo menos os seguintes nós e amarras: direito, volta do fiel ou volta da ribeira, nó de escota, nó em oito, volta redonda com dois cotes, amarra quadrada e diagonal.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_44": {
+      "cd_atividade_paxtu": "319",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "121",
+      "cd_ueb": "44",
+      "nr_ordenacao": 44,
+      "ds_atividade": "Aplicar os conceitos básicos de estruturas (cavaletes, encaixes, ancoragens) nos projetos e montagem de construções como pontes, balsas, etc.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_45": {
+      "cd_atividade_paxtu": "320",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "121",
+      "cd_ueb": "45",
+      "nr_ordenacao": 45,
+      "ds_atividade": "Confeccionar 'Falcaças', Nó 'catau', Laís de guia, Cadeira de Bombeiro e demonstrar os cuidados básicos com as cordas.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_46": {
+      "cd_atividade_paxtu": "321",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "121",
+      "cd_ueb": "46",
+      "nr_ordenacao": 46,
+      "ds_atividade": "Construir e pernoitar em um abrigo natural.",
+      "ds_area": "Desenvolvimento intelectual"
+    },
+    "6_47": {
+      "cd_atividade_paxtu": "322",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "122",
+      "cd_ueb": "47",
+      "nr_ordenacao": 47,
+      "ds_atividade": "Propor objetivos e ações para melhorar alguns aspectos de sua vida na Tropa.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_48": {
+      "cd_atividade_paxtu": "323",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "122",
+      "cd_ueb": "48",
+      "nr_ordenacao": 48,
+      "ds_atividade": "Participar ativamente na avaliação de sua progressão pessoal e de seus companheiros no Conselho de Patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_49": {
+      "cd_atividade_paxtu": "324",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "122",
+      "cd_ueb": "49",
+      "nr_ordenacao": 49,
+      "ds_atividade": "Participar de uma reunião onde são tratados os aspectos positivos e negativos de sua patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_50": {
+      "cd_atividade_paxtu": "325",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "122",
+      "cd_ueb": "50",
+      "nr_ordenacao": 50,
+      "ds_atividade": "Ajudar a um companheiro em sua progressão pessoal.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_51": {
+      "cd_atividade_paxtu": "326",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "123",
+      "cd_ueb": "51",
+      "nr_ordenacao": 51,
+      "ds_atividade": "Desempenhar um cargo de patrulha por pelo menos um ciclo de programa.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_52": {
+      "cd_atividade_paxtu": "327",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "123",
+      "cd_ueb": "52",
+      "nr_ordenacao": 52,
+      "ds_atividade": "Capacitar-se para desempenhar seu cargo na patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_53": {
+      "cd_atividade_paxtu": "328",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "123",
+      "cd_ueb": "53",
+      "nr_ordenacao": 53,
+      "ds_atividade": "Avaliar seu desempenho e de seus amigos nos cargos de patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_54": {
+      "cd_atividade_paxtu": "329",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "123",
+      "cd_ueb": "54",
+      "nr_ordenacao": 54,
+      "ds_atividade": "Participar de um festival de talentos na tropa.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_55": {
+      "cd_atividade_paxtu": "330",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "124",
+      "cd_ueb": "55",
+      "nr_ordenacao": 55,
+      "ds_atividade": "Auxiliar um companheiro de patrulha a realizar sua Promessa Escoteira.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_56": {
+      "cd_atividade_paxtu": "331",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "124",
+      "cd_ueb": "56",
+      "nr_ordenacao": 56,
+      "ds_atividade": "Avaliar com seus companheiros a vivência da Promessa e Lei Escoteiras na Patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_57": {
+      "cd_atividade_paxtu": "332",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "124",
+      "cd_ueb": "57",
+      "nr_ordenacao": 57,
+      "ds_atividade": "Cantar com sua patrulha a Canção da Promessa.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_58": {
+      "cd_atividade_paxtu": "333",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "125",
+      "cd_ueb": "58",
+      "nr_ordenacao": 58,
+      "ds_atividade": "Conhecer a história de Caio Viana Martins.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_59": {
+      "cd_atividade_paxtu": "334",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "125",
+      "cd_ueb": "59",
+      "nr_ordenacao": 59,
+      "ds_atividade": "Realizar boas ações pessoais e junto com sua patrulha.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_60": {
+      "cd_atividade_paxtu": "335",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "126",
+      "cd_ueb": "60",
+      "nr_ordenacao": 60,
+      "ds_atividade": "Organizar uma 'Oficina de Brinquedos' com sua patrulha, doando os itens consertados para uma instituição de crianças carentes.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_61": {
+      "cd_atividade_paxtu": "336",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "126",
+      "cd_ueb": "61",
+      "nr_ordenacao": 61,
+      "ds_atividade": "Conhecer e cantar canções apropriadas para  distintos momentos.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_62": {
+      "cd_atividade_paxtu": "337",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "126",
+      "cd_ueb": "62",
+      "nr_ordenacao": 62,
+      "ds_atividade": "Criar um vídeo e disponibilizar na internet com uma campanha publicitária divertida promovendo o Grupo Escoteiro.",
+      "ds_area": "Desenvolvimento do caráter"
+    },
+    "6_63": {
+      "cd_atividade_paxtu": "338",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "127",
+      "cd_ueb": "63",
+      "nr_ordenacao": 63,
+      "ds_atividade": "Demonstrar as técnicas de resgate de pessoas em afogamento.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_64": {
+      "cd_atividade_paxtu": "339",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "127",
+      "cd_ueb": "64",
+      "nr_ordenacao": 64,
+      "ds_atividade": "Ultrapassar algum obstáculo utilizando cordas ('falsa baiana', 'comando crawn', etc).",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_65": {
+      "cd_atividade_paxtu": "340",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "127",
+      "cd_ueb": "65",
+      "nr_ordenacao": 65,
+      "ds_atividade": "Fazer um relato no Livro de Patrulha de uma atividade que lhe marcou.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_66": {
+      "cd_atividade_paxtu": "341",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "128",
+      "cd_ueb": "66",
+      "nr_ordenacao": 66,
+      "ds_atividade": "Conhecer os princípios para obter uma boa comunicação e os aplicar em minhas conversas com os outros.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_67": {
+      "cd_atividade_paxtu": "342",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "128",
+      "cd_ueb": "67",
+      "nr_ordenacao": 67,
+      "ds_atividade": "Participar de debates e discussões no Conselho de Patrulha e Assembleia de Tropa, se manifestado de forma respeitosa.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_68": {
+      "cd_atividade_paxtu": "343",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "128",
+      "cd_ueb": "68",
+      "nr_ordenacao": 68,
+      "ds_atividade": "Visitar outro Grupo Escoteiro.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_69": {
+      "cd_atividade_paxtu": "344",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "128",
+      "cd_ueb": "69",
+      "nr_ordenacao": 69,
+      "ds_atividade": "Contribuir para a manutenção do Espírito Escoteiro e de Patrulha na Tropa.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_70": {
+      "cd_atividade_paxtu": "345",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "129",
+      "cd_ueb": "70",
+      "nr_ordenacao": 70,
+      "ds_atividade": "Participar ativamente de uma mobilização para minimizar algum problema social.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_71": {
+      "cd_atividade_paxtu": "346",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "129",
+      "cd_ueb": "71",
+      "nr_ordenacao": 71,
+      "ds_atividade": "Saber a quem recorrer em caso de maus tratos a outras pessoas.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_72": {
+      "cd_atividade_paxtu": "347",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "129",
+      "cd_ueb": "72",
+      "nr_ordenacao": 72,
+      "ds_atividade": "Ajudar algum companheiro de sua patrulha a conquistar algum objetivo ou melhorar em algum aspecto.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_73": {
+      "cd_atividade_paxtu": "348",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "130",
+      "cd_ueb": "73",
+      "nr_ordenacao": 73,
+      "ds_atividade": "Auxiliar sua patrulha, Tropa ou Grupo a ter um número equilibrado de meninas e meninos.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_74": {
+      "cd_atividade_paxtu": "349",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "130",
+      "cd_ueb": "74",
+      "nr_ordenacao": 74,
+      "ds_atividade": "Ir com minha patrulha ao teatro ou cinema com outros jovens de ambos os sexos.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_75": {
+      "cd_atividade_paxtu": "350",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "131",
+      "cd_ueb": "75",
+      "nr_ordenacao": 75,
+      "ds_atividade": "Realizar uma Boa Ação com membros de sua família.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_76": {
+      "cd_atividade_paxtu": "351",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "131",
+      "cd_ueb": "76",
+      "nr_ordenacao": 76,
+      "ds_atividade": "Realizar um projeto ou atividade de patrulha com a ajuda de seus pais ou familiares.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_77": {
+      "cd_atividade_paxtu": "352",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "131",
+      "cd_ueb": "77",
+      "nr_ordenacao": 77,
+      "ds_atividade": "Assumir a responsabilidade de uma tarefa domestica na sua casa, por pelo menos três meses.",
+      "ds_area": "Desenvolvimento afetivo"
+    },
+    "6_78": {
+      "cd_atividade_paxtu": "353",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "132",
+      "cd_ueb": "78",
+      "nr_ordenacao": 78,
+      "ds_atividade": "Propor a sua patrulha e Tropa atividades e projetos relacionados com os Direitos Humanos.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_79": {
+      "cd_atividade_paxtu": "354",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "132",
+      "cd_ueb": "79",
+      "nr_ordenacao": 79,
+      "ds_atividade": "Pesquisar sobre os principais problemas de Violência Escolar que afetam a sua comunidade e fazer apresentação para a patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_80": {
+      "cd_atividade_paxtu": "355",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "132",
+      "cd_ueb": "80",
+      "nr_ordenacao": 80,
+      "ds_atividade": "Participar de uma atividade em que se promovem os Direitos das Crianças e Adolescentes.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_81": {
+      "cd_atividade_paxtu": "356",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "133",
+      "cd_ueb": "81",
+      "nr_ordenacao": 81,
+      "ds_atividade": "Saber o que é a Constituição Brasileira, conhecer os Símbolos Nacionais e saber cantar o Hino Nacional.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_82": {
+      "cd_atividade_paxtu": "357",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "133",
+      "cd_ueb": "82",
+      "nr_ordenacao": 82,
+      "ds_atividade": "Visitar a Câmara de Vereadores de seu município.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_83": {
+      "cd_atividade_paxtu": "358",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "133",
+      "cd_ueb": "83",
+      "nr_ordenacao": 83,
+      "ds_atividade": "Saber as diferenças entre o poder Legislativo, Executivo e Judiciário.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_84": {
+      "cd_atividade_paxtu": "359",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "134",
+      "cd_ueb": "84",
+      "nr_ordenacao": 84,
+      "ds_atividade": "Assistir a uma Assembleia de seu Grupo Escoteiro.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_85": {
+      "cd_atividade_paxtu": "360",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "134",
+      "cd_ueb": "85",
+      "nr_ordenacao": 85,
+      "ds_atividade": "Participar ativamente de uma Assembleia de Tropa, analisando as normas de convivência e propondo melhorias.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_86": {
+      "cd_atividade_paxtu": "361",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "134",
+      "cd_ueb": "86",
+      "nr_ordenacao": 86,
+      "ds_atividade": "Pesquisar sobre a organização do Escotismo Brasileiro e Mundial, e apresentar o resultado para a Tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_87": {
+      "cd_atividade_paxtu": "362",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "134",
+      "cd_ueb": "87",
+      "nr_ordenacao": 87,
+      "ds_atividade": "Apresentar a estrutura de um Grupo Escoteiro para um novo membro da patrulha.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_88": {
+      "cd_atividade_paxtu": "3732",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "135",
+      "cd_ueb": "88",
+      "nr_ordenacao": 88,
+      "ds_atividade": "Realizar uma das três alternativas abaixo:!@#BARRA_N#@!a) Convidar seus vizinhos e conhecidos para colaborar em algum mutirão de ajuda à vítimas de desastres naturais;!@#BARRA_N#@!b) Planejar e executar seu projeto para a Insígnia da Ação Comunitária;!@#BARRA_N#@!c) Participar ativamente em alguma campanha de auxílio a comunidade.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_89": {
+      "cd_atividade_paxtu": "365",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "136",
+      "cd_ueb": "89",
+      "nr_ordenacao": 89,
+      "ds_atividade": "Saber onde encontrar os principais serviços públicos na sua cidade.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_90": {
+      "cd_atividade_paxtu": "366",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "136",
+      "cd_ueb": "90",
+      "nr_ordenacao": 90,
+      "ds_atividade": "Participar, com sua patrulha, de um 'Safári Fotográfico' em sua cidade.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_91": {
+      "cd_atividade_paxtu": "367",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "136",
+      "cd_ueb": "91",
+      "nr_ordenacao": 91,
+      "ds_atividade": "Identificar problemas da sua cidade e propor soluções.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_92": {
+      "cd_atividade_paxtu": "368",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "137",
+      "cd_ueb": "92",
+      "nr_ordenacao": 92,
+      "ds_atividade": "Pesquisar sobre uma lenda brasileira e usar este conhecimento para montar uma apresentação para um Fogo de Conselho.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_93": {
+      "cd_atividade_paxtu": "369",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "137",
+      "cd_ueb": "93",
+      "nr_ordenacao": 93,
+      "ds_atividade": "Aprender canções e danças do Brasil e as ensinar em diferentes Fogos de Conselho.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_94": {
+      "cd_atividade_paxtu": "370",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "137",
+      "cd_ueb": "94",
+      "nr_ordenacao": 94,
+      "ds_atividade": "Confeccionar algum artesanato típico de alguma região do Brasil.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_95": {
+      "cd_atividade_paxtu": "371",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "138",
+      "cd_ueb": "95",
+      "nr_ordenacao": 95,
+      "ds_atividade": "Participar de uma atividade escoteira distrital, regional, nacional ou internacional.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_96": {
+      "cd_atividade_paxtu": "372",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "138",
+      "cd_ueb": "96",
+      "nr_ordenacao": 96,
+      "ds_atividade": "Pesquisar sobre a história do Escotismo no Brasil e organizar uma apresentação para sua patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_97": {
+      "cd_atividade_paxtu": "373",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "138",
+      "cd_ueb": "97",
+      "nr_ordenacao": 97,
+      "ds_atividade": "Realizar uma atividade com uma patrulha de um Grupo Escoteiro distinto do seu.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_98": {
+      "cd_atividade_paxtu": "374",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "138",
+      "cd_ueb": "98",
+      "nr_ordenacao": 98,
+      "ds_atividade": "Participar de um JOTI ou JOTA.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_99": {
+      "cd_atividade_paxtu": "3733",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "139",
+      "cd_ueb": "99",
+      "nr_ordenacao": 99,
+      "ds_atividade": "Realizar pelo menos uma das alternativas abaixo:!@#BARRA_N#@!a) Manter contato com um escoteiro de outro país, por pelo menos um mês;!@#BARRA_N#@!b) Ajudar a organizar e participar de um jantar festivo na sua tropa, representando tipicamente outro país;!@#BARRA_N#@!c) Conquistar a Insígnia do Cone Sul, do Ramo Escoteiro;!@#BARRA_N#@!d) Conquistar a Insígnia da Lusofonia, do Ramo Escoteiro.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_100": {
+      "cd_atividade_paxtu": "377",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "140",
+      "cd_ueb": "100",
+      "nr_ordenacao": 100,
+      "ds_atividade": "Visitar uma organização que trabalha em favor do meio ambiente e fazer uma pesquisa sobre os principais problemas ambientais do Brasil e os apresentar para sua tropa ou sua escola.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_101": {
+      "cd_atividade_paxtu": "378",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "140",
+      "cd_ueb": "101",
+      "nr_ordenacao": 101,
+      "ds_atividade": "Participar de um projeto de conservação ambiental.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_102": {
+      "cd_atividade_paxtu": "3734",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "140",
+      "cd_ueb": "102",
+      "nr_ordenacao": 102,
+      "ds_atividade": "Saber identificar as pegadas de pelo menos cinco animais da fauna brasileira, e confeccionar pelo menos um molde em bom estado;!@#BARRA_N#@!OU (em substituição aos itens anteriores):!@#BARRA_R#@!!@#BARRA_N#@!Fazer parte da Tribo da Terra, conquistando ao menos uma das três insígnias dentro do Ramo Escoteiro: Insígnia Campeões da Natureza; Insígnia Reduzir, Reciclar, Reutilizar; Insígnia Escoteiros pela Energia Solar.",
+      "ds_area": "Desenvolvimento social"
+    },
+    "6_103": {
+      "cd_atividade_paxtu": "380",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "141",
+      "cd_ueb": "103",
+      "nr_ordenacao": 103,
+      "ds_atividade": "Participar regularmente dos cultos da sua religião.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_104": {
+      "cd_atividade_paxtu": "381",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "141",
+      "cd_ueb": "104",
+      "nr_ordenacao": 104,
+      "ds_atividade": "Auxiliar na realização de uma celebração de sua comunidade religiosa.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_105": {
+      "cd_atividade_paxtu": "382",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "141",
+      "cd_ueb": "105",
+      "nr_ordenacao": 105,
+      "ds_atividade": "Ler pelo menos um livro sagrado da sua Fé.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_106": {
+      "cd_atividade_paxtu": "383",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "142",
+      "cd_ueb": "106",
+      "nr_ordenacao": 106,
+      "ds_atividade": "Realizar atividades de reflexão em acampamento ou excursão com sua Patrulha ou Tropa.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_107": {
+      "cd_atividade_paxtu": "384",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "142",
+      "cd_ueb": "107",
+      "nr_ordenacao": 107,
+      "ds_atividade": "Ajudar a projetar e construir, junto com sua patrulha ou Tropa, um lugar para oração e reflexão no acampamento.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_108": {
+      "cd_atividade_paxtu": "385",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "142",
+      "cd_ueb": "108",
+      "nr_ordenacao": 108,
+      "ds_atividade": "Organizar com sua patrulha e sua família momentos de oração.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_109": {
+      "cd_atividade_paxtu": "386",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "143",
+      "cd_ueb": "109",
+      "nr_ordenacao": 109,
+      "ds_atividade": "Aplicar os ensinamentos de sua religião nas coisas que faz e sua vida.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_110": {
+      "cd_atividade_paxtu": "387",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "143",
+      "cd_ueb": "110",
+      "nr_ordenacao": 110,
+      "ds_atividade": "Avaliar suas ações de acordo com os ensinamentos de sua religião.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_111": {
+      "cd_atividade_paxtu": "388",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "143",
+      "cd_ueb": "111",
+      "nr_ordenacao": 111,
+      "ds_atividade": "Convidar sua patrulha para cooperar em ações, organizadas por sua comunidade religiosa, em favor de desassistidos.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_112": {
+      "cd_atividade_paxtu": "389",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "144",
+      "cd_ueb": "112",
+      "nr_ordenacao": 112,
+      "ds_atividade": "Discutir com sua patrulha um episódio histórico que expresse o efeito prejudicial do fanatismo religioso.",
+      "ds_area": "Desenvolvimento espiritual"
+    },
+    "6_113": {
+      "cd_atividade_paxtu": "390",
+      "cd_caminho_paxtu": "6",
+      "cd_competencia_paxtu": "144",
+      "cd_ueb": "113",
+      "nr_ordenacao": 113,
+      "ds_atividade": "Confeccionar um calendário de celebrações e festividades religiosas das religiões dos escoteiros da sua patrulha.",
+      "ds_area": "Desenvolvimento espiritual"
+    }
+  }
+}

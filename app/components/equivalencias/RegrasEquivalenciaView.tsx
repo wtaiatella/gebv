@@ -142,9 +142,9 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
   // Estatísticas
   const stats = useMemo(() => {
     const total = regras.length;
-    const diretas = regras.filter((r) => r.operacao === 'DIRETA').length;
-    const alternativas = regras.filter((r) => r.operacao === 'OR' || r.operacao === 'MIN_COUNT').length;
-    const especialidades = regras.filter((r) => r.operacao === 'ESPECIALIDADES').length;
+    const diretas = regras.filter((r) => r.operacao === 'PROGRESSOES' || r.operacao === 'DIRETA').length;
+    const alternativas = regras.filter((r) => r.operacao === 'TODAS' || r.operacao === 'QNT_MINIMA' || r.operacao === 'OR' || r.operacao === 'MIN_COUNT').length;
+    const especialidades = regras.filter((r) => r.operacao === 'ESPECIALIDADE' || r.operacao === 'ESPECIALIDADES').length;
     const semEquiv = regras.filter((r) => r.operacao === 'SEM_EQUIVALENCIA').length;
     return { total, diretas, alternativas, especialidades, semEquiv, filtradas: regrasFiltradas.length };
   }, [regras, regrasFiltradas]);
@@ -320,10 +320,11 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
               onChange={(e) => setFiltroOperacao(e.target.value)}
             >
               <option value="todos">Todas as Operações</option>
-              <option value="DIRETA">DIRETA (1:1)</option>
-              <option value="OR">OR (Alternativa)</option>
-              <option value="MIN_COUNT">MIN_COUNT (Contagem Mínima)</option>
-              <option value="ESPECIALIDADES">ESPECIALIDADES</option>
+              <option value="PROGRESSOES">PROGRESSOES (Direta)</option>
+              <option value="ESPECIALIDADE">ESPECIALIDADE</option>
+              <option value="SEMANTICO">SEMANTICO</option>
+              <option value="TODAS">TODAS</option>
+              <option value="QNT_MINIMA">QNT_MINIMA</option>
               <option value="SEM_EQUIVALENCIA">SEM EQUIVALÊNCIA</option>
             </select>
           </div>
@@ -517,11 +518,6 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
                             <div style={{ color: 'var(--foreground)', fontSize: '0.92rem', lineHeight: 1.4 }}>
                               {regra.ds_acao}
                             </div>
-                            {regra.regra_qtd_texto && (
-                              <div style={{ fontSize: '0.75rem', color: '#eab308', marginTop: '0.25rem' }}>
-                                ℹ️ {regra.regra_qtd_texto}
-                              </div>
-                            )}
                           </td>
                           <td>
                             <span
@@ -539,7 +535,7 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
                                 whiteSpace: 'nowrap',
                               }}
                             >
-                              {regra.operacao}
+                              {operacaoConfig.label || regra.operacao}
                             </span>
                             {regra.fl_requer_validacao_manual && (
                               <div style={{ fontSize: '0.7rem', color: '#eab308', marginTop: '0.25rem' }}>
@@ -703,31 +699,52 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
 
 function getOperacaoBadge(operacao: string) {
   switch (operacao) {
+    case 'PROGRESSOES':
     case 'DIRETA':
       return {
+        label: 'PROGRESSOES',
         bg: 'rgba(0, 255, 136, 0.12)',
         color: '#00ff88',
         border: 'rgba(0, 255, 136, 0.3)',
       };
-    case 'OR':
-    case 'MIN_COUNT':
-      return {
-        bg: 'rgba(56, 189, 248, 0.12)',
-        color: '#38bdf8',
-        border: 'rgba(56, 189, 248, 0.3)',
-      };
+    case 'ESPECIALIDADE':
     case 'ESPECIALIDADES':
       return {
+        label: 'ESPECIALIDADE',
         bg: 'rgba(234, 179, 8, 0.12)',
         color: '#eab308',
         border: 'rgba(234, 179, 8, 0.3)',
       };
+    case 'SEMANTICO':
+      return {
+        label: 'SEMANTICO',
+        bg: 'rgba(56, 189, 248, 0.12)',
+        color: '#38bdf8',
+        border: 'rgba(56, 189, 248, 0.3)',
+      };
+    case 'TODAS':
+      return {
+        label: 'TODAS',
+        bg: 'rgba(168, 85, 247, 0.15)',
+        color: '#c084fc',
+        border: 'rgba(168, 85, 247, 0.35)',
+      };
+    case 'QNT_MINIMA':
+    case 'OR':
+    case 'MIN_COUNT':
+      return {
+        label: 'QNT_MINIMA',
+        bg: 'rgba(56, 189, 248, 0.12)',
+        color: '#38bdf8',
+        border: 'rgba(56, 189, 248, 0.3)',
+      };
     case 'SEM_EQUIVALENCIA':
     default:
       return {
-        bg: 'rgba(239, 68, 68, 0.12)',
-        color: '#ef4444',
-        border: 'rgba(239, 68, 68, 0.3)',
+        label: 'Sem Equivalência',
+        bg: 'rgba(255, 255, 255, 0.06)',
+        color: '#a1a1aa',
+        border: 'rgba(255, 255, 255, 0.15)',
       };
   }
 }

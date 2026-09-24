@@ -33,31 +33,35 @@ export async function GET(request: Request) {
       ],
     });
 
-    const regras = regrasDb.map((r) => ({
-      id: r.id,
-      acao_pn_id: r.acao_pn_id,
-      operacao: r.operacao,
-      descricao_origem: r.descricao_origem,
-      origem_pistas_ueb: r.origem_pistas_ueb,
-      origem_rumo_ueb: r.origem_rumo_ueb,
-      origem_especialidades: r.origem_especialidades,
-      nivel_min_especialidade: r.nivel_min_especialidade,
-      min_count: r.min_count,
-      fl_requer_validacao_manual: r.fl_requer_validacao_manual,
-      updated_at: r.updated_at,
-      ds_acao: r.acao.ds_acao,
-      tp_acao: r.acao.tp_acao,
-      modalidade: r.acao.modalidade,
-      regra_qtd_texto: r.acao.regra_qtd_texto,
-      nr_ordem_acao: r.acao.nr_ordem,
-      bloco_id: r.acao.bloco_id,
-      nm_bloco: r.acao.bloco.nm_bloco,
-      ds_intencionalidade: r.acao.bloco.ds_intencionalidade,
-      nr_ordem_bloco: r.acao.bloco.nr_ordem,
-      eixo_id: r.acao.bloco.eixo_id,
-      nm_eixo: r.acao.bloco.eixo.nm_eixo,
-      ds_ramo: r.acao.ds_ramo,
-    }));
+    const regras = regrasDb.map((r) => {
+      const detalhes: any = r.detalhes_regra && typeof r.detalhes_regra === 'object' ? r.detalhes_regra : {};
+      return {
+        id: r.id,
+        acao_pn_id: r.acao_pn_id,
+        operacao: r.operacao,
+        descricao_origem: r.descricao_origem,
+        detalhes_regra: r.detalhes_regra,
+        origem_pistas_ueb: Array.isArray(detalhes.origem_pistas_ueb) ? detalhes.origem_pistas_ueb : [],
+        origem_rumo_ueb: Array.isArray(detalhes.origem_rumo_ueb) ? detalhes.origem_rumo_ueb : [],
+        origem_especialidades: Array.isArray(detalhes.origem_especialidades) ? detalhes.origem_especialidades : [],
+        nivel_min_especialidade: typeof detalhes.nivel_min_especialidade === 'number' ? detalhes.nivel_min_especialidade : 1,
+        min_count: typeof detalhes.min_count === 'number' ? detalhes.min_count : 1,
+        fl_requer_validacao_manual: r.fl_requer_validacao_manual,
+        updated_at: r.updated_at,
+        ds_acao: r.acao.ds_acao,
+        tp_acao: r.acao.tp_acao,
+        modalidade: r.acao.modalidade,
+        regra_qtd_texto: r.acao.regra_qtd_texto,
+        nr_ordem_acao: r.acao.nr_ordem,
+        bloco_id: r.acao.bloco_id,
+        nm_bloco: r.acao.bloco.nm_bloco,
+        ds_intencionalidade: r.acao.bloco.ds_intencionalidade,
+        nr_ordem_bloco: r.acao.bloco.nr_ordem,
+        eixo_id: r.acao.bloco.eixo_id,
+        nm_eixo: r.acao.bloco.eixo.nm_eixo,
+        ds_ramo: r.acao.ds_ramo,
+      };
+    });
 
     // 2. Busca lista de Eixos
     const eixosDb = await prisma.pnEixo.findMany({

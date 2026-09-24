@@ -18,7 +18,8 @@
     "paxtu:fetch-raw": "node --env-file=.env scripts/fetch-antonia-raw.mjs",
     "test:integration": "npx -y tsx --env-file=.env tests/integration/transicao.test.ts",
     "test:progressao-relacional": "npx -y tsx --env-file=.env tests/integration/progressao-relacional.test.ts",
-    "test:especialidades": "npx -y tsx --env-file=.env tests/integration/especialidades-transicao.test.ts"
+    "test:especialidades": "npx -y tsx --env-file=.env tests/integration/especialidades-transicao.test.ts",
+    "test:progressao-atualizada": "npx -y tsx --env-file=.env tests/integration/progressao-transicao-atualizada.test.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

@@ -25,6 +25,417 @@ export interface ResumoBlocoTransicionado {
   fl_concluido: boolean;
 }
 
+export type DetalhesRegra =
+  | RegraProgressoes
+  | RegraEspecialidade
+  | RegraSemantico
+  | RegraTodas
+  | RegraQntMinima
+  | { tipo: 'SEM_EQUIVALENCIA' }
+  | null; // null ou { tipo: 'SEM_EQUIVALENCIA' } representa SEM_EQUIVALENCIA
+
+export interface RegraProgressoes {
+  tipo: 'PROGRESSOES';
+  item: {
+    pa_atividade_id: number;
+    identificacao?: string;
+    ds_atividade?: string;
+  };
+}
+
+export interface RegraEspecialidade {
+  tipo: 'ESPECIALIDADE';
+  pa_especialidade_id?: number;
+  nm_especialidade?: string;
+  nivel_minimo: number; // 1, 2 ou 3
+}
+
+export interface RegraSemantico {
+  tipo: 'SEMANTICO';
+  logica: 'OR' | 'AND'; // OR = "Ao menos uma"; AND = "Todas"
+  itens: Array<{
+    pa_atividade_id: number;
+    identificacao?: string;
+    score_capturado: number;
+  }>;
+}
+
+// Operações-contêiner: proibido auto-aninhamento
+export type SubBlocoValidoParaTodas =
+  | RegraProgressoes
+  | RegraEspecialidade
+  | RegraSemantico
+  | RegraQntMinima; // TODAS NUNCA contém TODAS
+
+export interface RegraTodas {
+  tipo: 'TODAS';
+  blocos: SubBlocoValidoParaTodas[];
+}
+
+export type SubBlocoValidoParaQntMinima =
+  | RegraProgressoes
+  | RegraEspecialidade
+  | RegraSemantico
+  | RegraTodas; // QNT_MINIMA NUNCA contém QNT_MINIMA
+
+export interface RegraQntMinima {
+  tipo: 'QNT_MINIMA';
+  quantidade_minima: number; // Inteiro >= 1
+  blocos: SubBlocoValidoParaQntMinima[];
+}
+
+export interface ValidacaoRegraResult {
+  valido: boolean;
+  erro?: string;
+}
+
+export function validarDetalhesRegra(regra: unknown, parentType?: string): ValidacaoRegraResult {
+  if (regra === null || regra === undefined) {
+    return { valido: true };
+  }
+
+  if (typeof regra !== 'object') {
+    return { valido: false, erro: 'Regra deve ser um objeto JSON' };
+  }
+
+  const r = regra as any;
+
+  // Formato legado com colunas planas
+  if (!r.tipo && (r.origem_pistas_ueb || r.origem_rumo_ueb || r.origem_especialidades)) {
+    return { valido: true };
+  }
+
+  switch (r.tipo) {
+    case 'PROGRESSOES': {
+      if (!r.item || typeof r.item.pa_atividade_id !== 'number') {
+        return { valido: false, erro: 'Regra PROGRESSOES requer item com pa_atividade_id numérico' };
+      }
+      return { valido: true };
+    }
+    case 'ESPECIALIDADE': {
+      if (typeof r.pa_especialidade_id !== 'number') {
+        return { valido: false, erro: 'Regra ESPECIALIDADE requer pa_especialidade_id numérico' };
+      }
+      const nivel = Number(r.nivel_minimo);
+      if (isNaN(nivel) || nivel < 1 || nivel > 3) {
+        return { valido: false, erro: 'Nível mínimo de especialidade deve ser entre 1 e 3' };
+      }
+      return { valido: true };
+    }
+    case 'SEMANTICO': {
+      if (r.logica !== 'OR' && r.logica !== 'AND') {
+        return { valido: false, erro: 'Regra SEMANTICO requer lógica OR ou AND' };
+      }
+      if (!Array.isArray(r.itens) || r.itens.length === 0) {
+        return { valido: false, erro: 'Regra SEMANTICO requer lista de itens não vazia' };
+      }
+      for (const it of r.itens) {
+        if (!it || typeof it.pa_atividade_id !== 'number') {
+          return { valido: false, erro: 'Item semântico inválido: pa_atividade_id ausente' };
+        }
+      }
+      return { valido: true };
+    }
+    case 'TODAS': {
+      if (parentType === 'TODAS') {
+        return { valido: false, erro: 'Auto-aninhamento proibido: TODAS não pode conter TODAS' };
+      }
+      if (!Array.isArray(r.blocos) || r.blocos.length === 0) {
+        return { valido: false, erro: 'Regra TODAS requer ao menos um sub-bloco' };
+      }
+      for (const sub of r.blocos) {
+        if (sub?.tipo === 'TODAS') {
+          return { valido: false, erro: 'Auto-aninhamento proibido: TODAS não pode conter TODAS' };
+        }
+        const subVal = validarDetalhesRegra(sub, 'TODAS');
+        if (!subVal.valido) return subVal;
+      }
+      return { valido: true };
+    }
+    case 'QNT_MINIMA': {
+      if (parentType === 'QNT_MINIMA') {
+        return { valido: false, erro: 'Auto-aninhamento proibido: QNT_MINIMA não pode conter QNT_MINIMA' };
+      }
+      const q = Number(r.quantidade_minima);
+      if (isNaN(q) || q < 1) {
+        return { valido: false, erro: 'quantidade_minima deve ser um número inteiro >= 1' };
+      }
+      if (!Array.isArray(r.blocos) || r.blocos.length === 0) {
+        return { valido: false, erro: 'Regra QNT_MINIMA requer lista de blocos' };
+      }
+      if (r.blocos.length < q) {
+        return { valido: false, erro: `quantidade_minima (${q}) não pode ser maior que o total de blocos (${r.blocos.length})` };
+      }
+      for (const sub of r.blocos) {
+        if (sub?.tipo === 'QNT_MINIMA') {
+          return { valido: false, erro: 'Auto-aninhamento proibido: QNT_MINIMA não pode conter QNT_MINIMA' };
+        }
+        const subVal = validarDetalhesRegra(sub, 'QNT_MINIMA');
+        if (!subVal.valido) return subVal;
+      }
+      return { valido: true };
+    }
+    default:
+      return { valido: false, erro: `Tipo de regra desconhecido: ${r.tipo}` };
+  }
+}
+
+export function gerarDescricaoOrigem(regra: DetalhesRegra | any, operacao?: OperacaoEquivalencia | string): string {
+  if (!regra || operacao === 'SEM_EQUIVALENCIA' || operacao === OperacaoEquivalencia.SEM_EQUIVALENCIA) {
+    return 'Sem equivalência direta mapeada';
+  }
+
+  // Compatibilidade com payload legado em detalhes_regra
+  if (!regra.tipo && (regra.origem_pistas_ueb || regra.origem_rumo_ueb || regra.origem_especialidades)) {
+    const parts: string[] = [];
+    for (const p of regra.origem_pistas_ueb || []) parts.push(`Pista ${p}`);
+    for (const r of regra.origem_rumo_ueb || []) parts.push(`Rumo ${r}`);
+    for (const e of regra.origem_especialidades || []) parts.push(`Esp. ${e} (N${regra.nivel_min_especialidade || 1})`);
+    const sep = (regra.min_count && regra.min_count > 1) ? ' OU ' : ' | ';
+    return parts.join(sep) || 'Sem equivalência direta mapeada';
+  }
+
+  switch (regra.tipo) {
+    case 'PROGRESSOES': {
+      const ident = regra.item?.identificacao || `Atividade ${regra.item?.pa_atividade_id}`;
+      return regra.item?.ds_atividade ? `${ident} - ${regra.item.ds_atividade}` : ident;
+    }
+    case 'ESPECIALIDADE': {
+      const nome = regra.nm_especialidade || `Especialidade ID ${regra.pa_especialidade_id}`;
+      return `${nome} (Nível ${regra.nivel_minimo})`;
+    }
+    case 'SEMANTICO': {
+      const itensStr = (regra.itens || [])
+        .map((i: any) => i.identificacao || `Atividade ${i.pa_atividade_id}`)
+        .join(regra.logica === 'AND' ? ' E ' : ' OU ');
+      return `Semântico [${regra.logica}]: ${itensStr}`;
+    }
+    case 'TODAS': {
+      const sub = (regra.blocos || []).map((b: any) => gerarDescricaoOrigem(b)).join(' E ');
+      return `Todas: (${sub})`;
+    }
+    case 'QNT_MINIMA': {
+      const sub = (regra.blocos || []).map((b: any) => gerarDescricaoOrigem(b)).join(' OU ');
+      return `Mínimo de ${regra.quantidade_minima}: (${sub})`;
+    }
+    default:
+      return 'Sem equivalência direta mapeada';
+  }
+}
+
+export interface ContextoAvaliacaoTransicao {
+  atividadesPaConcluidasIds: Set<number>;
+  atividadesPaIdentificacoes: Set<string>;
+  especialidadesPa: Map<string, number>;
+  especialidadesPaIds?: Map<number, number>;
+  especialidadesPn?: Map<number, number>;
+  especialidadesPnNomes?: Map<string, number>;
+}
+
+export interface ResultadoAvaliacaoRegra {
+  atingido: boolean;
+  itensConquistados: string[];
+}
+
+export function avaliarRegraRecursiva(
+  regra: DetalhesRegra | any,
+  contexto: ContextoAvaliacaoTransicao
+): ResultadoAvaliacaoRegra {
+  if (!regra) {
+    return { atingido: false, itensConquistados: [] };
+  }
+
+  // Compatibilidade com formato legado armazenado no JSON
+  if (!regra.tipo && (regra.origem_pistas_ueb || regra.origem_rumo_ueb || regra.origem_especialidades)) {
+    const refsPistas: string[] = regra.origem_pistas_ueb || [];
+    const refsRumo: string[] = regra.origem_rumo_ueb || [];
+    const refsEsp: string[] = regra.origem_especialidades || [];
+    const minCount: number = regra.min_count || 1;
+    const nivelMinEsp: number = regra.nivel_min_especialidade || 1;
+
+    let matchCount = 0;
+    const matched: string[] = [];
+
+    for (const p of refsPistas) {
+      if (contexto.atividadesPaIdentificacoes.has(p)) {
+        matchCount++;
+        matched.push(`Pista ${p}`);
+      }
+    }
+    for (const r of refsRumo) {
+      if (contexto.atividadesPaIdentificacoes.has(r)) {
+        matchCount++;
+        matched.push(`Rumo ${r}`);
+      }
+    }
+    for (const e of refsEsp) {
+      const normE = normalizeEspName(e);
+      let lvl = contexto.especialidadesPa.get(normE) || 0;
+      if (!lvl) {
+        for (const [key, val] of contexto.especialidadesPa.entries()) {
+          if (key.includes(normE) || normE.includes(key)) {
+            lvl = val;
+            break;
+          }
+        }
+      }
+      if (lvl >= nivelMinEsp) {
+        matchCount++;
+        matched.push(`Esp. ${e} (N${lvl})`);
+      }
+    }
+
+    const totalRefs = refsPistas.length + refsRumo.length + refsEsp.length;
+    const atingido = totalRefs > 0 && matchCount >= minCount;
+    return { atingido, itensConquistados: matched };
+  }
+
+  switch (regra.tipo) {
+    case 'PROGRESSOES': {
+      const ativId = regra.item?.pa_atividade_id;
+      const ident = regra.item?.identificacao;
+      const concluidoPorId = typeof ativId === 'number' && contexto.atividadesPaConcluidasIds.has(ativId);
+      const concluidoPorIdent = ident ? contexto.atividadesPaIdentificacoes.has(ident) : false;
+
+      if (concluidoPorId || concluidoPorIdent) {
+        return {
+          atingido: true,
+          itensConquistados: [ident || `Atividade ${ativId}`],
+        };
+      }
+      return { atingido: false, itensConquistados: [] };
+    }
+
+    case 'ESPECIALIDADE': {
+      const espId = regra.pa_especialidade_id;
+      const nivelMin = regra.nivel_minimo || 1;
+      let nivelObtido = 0;
+
+      if (typeof espId === 'number' && contexto.especialidadesPaIds?.has(espId)) {
+        nivelObtido = contexto.especialidadesPaIds.get(espId) || 0;
+      } else if (regra.nm_especialidade) {
+        const norm = normalizeEspName(regra.nm_especialidade);
+        nivelObtido = contexto.especialidadesPa.get(norm) || 0;
+        if (!nivelObtido) {
+          for (const [key, val] of contexto.especialidadesPa.entries()) {
+            if (key.includes(norm) || norm.includes(key)) {
+              nivelObtido = val;
+              break;
+            }
+          }
+        }
+      }
+
+      if (nivelObtido >= nivelMin) {
+        return {
+          atingido: true,
+          itensConquistados: [`Esp. ${regra.nm_especialidade || espId} (N${nivelObtido})`],
+        };
+      }
+      return { atingido: false, itensConquistados: [] };
+    }
+
+    case 'SEMANTICO': {
+      const itens = regra.itens || [];
+      const concluidos: string[] = [];
+
+      for (const item of itens) {
+        const ativId = item.pa_atividade_id;
+        const ident = item.identificacao;
+        const porId = typeof ativId === 'number' && contexto.atividadesPaConcluidasIds.has(ativId);
+        const porIdent = ident ? contexto.atividadesPaIdentificacoes.has(ident) : false;
+        if (porId || porIdent) {
+          concluidos.push(ident || `Atividade ${ativId}`);
+        }
+      }
+
+      if (regra.logica === 'AND') {
+        const atingido = itens.length > 0 && concluidos.length === itens.length;
+        return { atingido, itensConquistados: concluidos };
+      } else {
+        const atingido = concluidos.length > 0;
+        return { atingido, itensConquistados: concluidos };
+      }
+    }
+
+    case 'TODAS': {
+      const blocos = regra.blocos || [];
+      if (blocos.length === 0) return { atingido: false, itensConquistados: [] };
+
+      const subResultados: ResultadoAvaliacaoRegra[] = blocos.map((b: any) => avaliarRegraRecursiva(b, contexto));
+      const todosAtingidos = subResultados.every((r: ResultadoAvaliacaoRegra) => r.atingido);
+      const todosItens = subResultados.flatMap((r: ResultadoAvaliacaoRegra) => r.itensConquistados);
+
+      return {
+        atingido: todosAtingidos,
+        itensConquistados: todosItens,
+      };
+    }
+
+    case 'QNT_MINIMA': {
+      const blocos = regra.blocos || [];
+      const qMin = regra.quantidade_minima || 1;
+      if (blocos.length === 0) return { atingido: false, itensConquistados: [] };
+
+      const subResultados: ResultadoAvaliacaoRegra[] = blocos.map((b: any) => avaliarRegraRecursiva(b, contexto));
+      const subAtingidos = subResultados.filter((r: ResultadoAvaliacaoRegra) => r.atingido);
+      const atingido = subAtingidos.length >= qMin;
+      const itens = subAtingidos.flatMap((r: ResultadoAvaliacaoRegra) => r.itensConquistados);
+
+      return {
+        atingido,
+        itensConquistados: itens,
+      };
+    }
+
+    default:
+      return { atingido: false, itensConquistados: [] };
+  }
+}
+
+export function extrairCamposLegados(detalhes: any) {
+  if (!detalhes || typeof detalhes !== 'object') {
+    return {
+      origem_pistas_ueb: [],
+      origem_rumo_ueb: [],
+      origem_especialidades: [],
+      nivel_min_especialidade: 1,
+      min_count: 1,
+    };
+  }
+  return {
+    origem_pistas_ueb: Array.isArray(detalhes.origem_pistas_ueb) ? detalhes.origem_pistas_ueb : [],
+    origem_rumo_ueb: Array.isArray(detalhes.origem_rumo_ueb) ? detalhes.origem_rumo_ueb : [],
+    origem_especialidades: Array.isArray(detalhes.origem_especialidades) ? detalhes.origem_especialidades : [],
+    nivel_min_especialidade: typeof detalhes.nivel_min_especialidade === 'number' ? detalhes.nivel_min_especialidade : 1,
+    min_count: typeof detalhes.min_count === 'number' ? detalhes.min_count : 1,
+  };
+}
+
+/**
+ * Extrai tags de especialidades PN para as 15 ações variáveis dos 18 blocos
+ */
+export function extrairEspecialidadesPnDaAcao(ds_acao: string): {
+  nivel_exigido: number;
+  especialidades: string[];
+} | null {
+  if (!ds_acao) return null;
+  const match = ds_acao.match(/Conquistar ao menos uma das seguintes especialidades no nível\s*(\d)\+:\s*(.+)$/i);
+  if (!match) return null;
+
+  const nivel_exigido = parseInt(match[1], 10) || 1;
+  const rawList = match[2];
+  const especialidades = rawList
+    .split(',')
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
+
+  return {
+    nivel_exigido,
+    especialidades,
+  };
+}
+
 export interface RefAtividadePaItem {
   cd_ueb: string;
   identificacao?: string;
@@ -58,6 +469,13 @@ export interface AcaoProgressoItem {
   regra_id: number | null;
   operacao: string | null;
   descricao_origem: string | null;
+  detalhes_regra?: DetalhesRegra | any;
+  especialidades_pn_tags?: Array<{
+    nome: string;
+    nivel_exigido: number;
+    fl_conquistada: boolean;
+    nivel_conquistado: number;
+  }>;
   origem_pistas_ueb: string[];
   origem_rumo_ueb: string[];
   origem_especialidades: string[];
@@ -260,7 +678,7 @@ export async function getProgressoNovoModelo(
     }
   }
 
-  // Carrega histórico de especialidades conquistadas pelo jovem
+  // Carrega histórico de especialidades conquistadas pelo jovem (PA)
   const espList = await prisma.progressaoEspecialidadePa.findMany({
     where: { cd_associado },
   });
@@ -278,6 +696,34 @@ export async function getProgressoNovoModelo(
       dt_nivel: r.dt_nivel ? r.dt_nivel.toISOString() : null,
     });
   }
+
+  // Carrega histórico de especialidades conquistadas pelo jovem (PN)
+  const espPnList = await prisma.progressaoEspecialidadePn.findMany({
+    where: { cd_associado },
+    include: { especialidade: true },
+  });
+  const scoutEspPnMap = new Map<number, number>();
+  const scoutEspPnNameMap = new Map<string, number>();
+  for (const ep of espPnList) {
+    scoutEspPnMap.set(ep.especialidade_id, ep.nr_nivel);
+    if (ep.especialidade?.ds_especialidade) {
+      scoutEspPnNameMap.set(normalizeEspName(ep.especialidade.ds_especialidade), ep.nr_nivel);
+    }
+  }
+
+  const atividadesPaConcluidasIds = new Set<number>();
+  for (const row of oldActivities) {
+    if (row.atividade_id) atividadesPaConcluidasIds.add(row.atividade_id);
+  }
+
+  const contextoAvaliacao: ContextoAvaliacaoTransicao = {
+    atividadesPaConcluidasIds,
+    atividadesPaIdentificacoes: new Set([...completedPistas, ...completedRumo]),
+    especialidadesPa: new Map(Array.from(scoutEspMap.entries()).map(([k, v]) => [k, v.nr_nivel])),
+    especialidadesPaIds: new Map(Array.from(scoutEspMap.values()).map((v) => [parseInt(v.cd_especialidade, 10), v.nr_nivel])),
+    especialidadesPn: scoutEspPnMap,
+    especialidadesPnNomes: scoutEspPnNameMap,
+  };
 
   // 3. Eixos e Blocos com Status
   const eixos = await prisma.pnEixo.findMany({
@@ -383,25 +829,63 @@ export async function getProgressoNovoModelo(
     if (flConcluido) totalConcluidas++;
 
     const regra = a.regra;
-    const refsPistas = regra?.origem_pistas_ueb || [];
-    const refsRumo = regra?.origem_rumo_ueb || [];
-    const refsEsp = regra?.origem_especialidades || [];
-    const minCount = regra?.min_count || 1;
-    const nivelMinEsp = regra?.nivel_min_especialidade || 1;
+    const legado = extrairCamposLegados(regra?.detalhes_regra);
 
-    let matchCount = 0;
-    const matchedItems: string[] = [];
+    // Extrai tags de especialidades PN (US4)
+    const parsedEspPn = extrairEspecialidadesPnDaAcao(a.ds_acao);
+    let especialidadesPnTags: Array<{
+      nome: string;
+      nivel_exigido: number;
+      fl_conquistada: boolean;
+      nivel_conquistado: number;
+    }> | undefined = undefined;
+
+    let flEspPnConquistada = false;
+
+    if (parsedEspPn) {
+      especialidadesPnTags = parsedEspPn.especialidades.map((nomeEsp) => {
+        const norm = normalizeEspName(nomeEsp);
+        let nivelObtido = scoutEspPnNameMap.get(norm) || 0;
+        if (!nivelObtido) {
+          for (const [key, val] of scoutEspPnNameMap.entries()) {
+            if (key.includes(norm) || norm.includes(key)) {
+              nivelObtido = val;
+              break;
+            }
+          }
+        }
+        const conquistada = nivelObtido >= parsedEspPn.nivel_exigido;
+        if (conquistada) flEspPnConquistada = true;
+        return {
+          nome: nomeEsp,
+          nivel_exigido: parsedEspPn.nivel_exigido,
+          fl_conquistada: conquistada,
+          nivel_conquistado: nivelObtido,
+        };
+      });
+    }
+
+    // Avaliação recursiva de regras
+    const avaliacao = regra
+      ? avaliarRegraRecursiva(regra.detalhes_regra, contextoAvaliacao)
+      : { atingido: false, itensConquistados: [] };
+
+    const flCalculadoMatch = avaliacao.atingido || flEspPnConquistada;
+    const matchedItems: string[] = [...avaliacao.itensConquistados];
+    if (flEspPnConquistada && especialidadesPnTags) {
+      const espGanhos = especialidadesPnTags
+        .filter((t) => t.fl_conquistada)
+        .map((t) => `${t.nome} (N${t.nivel_conquistado})`);
+      matchedItems.push(...espGanhos);
+    }
+
     const itensDetalhados: RefAtividadePaItem[] = [];
     const especialidadesDetalhadas: RefEspecialidadePaItem[] = [];
 
-    for (const p of refsPistas) {
+    for (const p of legado.origem_pistas_ueb) {
       const isDone = completedPistas.has(p);
       const info = paPistasMap.get(p);
       const ident = info?.identificacao || `PT-${p}`;
-      if (isDone) {
-        matchCount++;
-        matchedItems.push(ident);
-      }
       itensDetalhados.push({
         cd_ueb: p,
         identificacao: ident,
@@ -411,14 +895,10 @@ export async function getProgressoNovoModelo(
       });
     }
 
-    for (const r of refsRumo) {
+    for (const r of legado.origem_rumo_ueb) {
       const isDone = completedRumo.has(r);
       const info = paRumoMap.get(r);
       const ident = info?.identificacao || `RT-${r}`;
-      if (isDone) {
-        matchCount++;
-        matchedItems.push(ident);
-      }
       itensDetalhados.push({
         cd_ueb: r,
         identificacao: ident,
@@ -428,7 +908,7 @@ export async function getProgressoNovoModelo(
       });
     }
 
-    for (const e of refsEsp) {
+    for (const e of legado.origem_especialidades) {
       const normE = normalizeEspName(e);
       let scoutEsp = scoutEspMap.get(normE);
       if (!scoutEsp) {
@@ -441,24 +921,16 @@ export async function getProgressoNovoModelo(
       }
 
       const nivelObtido = scoutEsp ? scoutEsp.nr_nivel : 0;
-      const isConquistada = nivelObtido >= nivelMinEsp;
-
-      if (isConquistada) {
-        matchCount++;
-        matchedItems.push(`Esp. ${e} (N${nivelObtido})`);
-      }
+      const isConquistada = nivelObtido >= legado.nivel_min_especialidade;
 
       especialidadesDetalhadas.push({
         nm_especialidade: e,
-        nivel_exigido: nivelMinEsp,
+        nivel_exigido: legado.nivel_min_especialidade,
         fl_conquistada: isConquistada,
         nivel_conquistado: nivelObtido,
         dt_nivel: scoutEsp?.dt_nivel || null,
       });
     }
-
-    const totalRefs = refsPistas.length + refsRumo.length + refsEsp.length;
-    const flCalculadoMatch = totalRefs > 0 && matchCount >= minCount;
 
     let tpAcaoStr: string = a.tp_acao;
     if (a.tp_acao === TipoAcaoPn.FIXA) tpAcaoStr = 'Fixa';
@@ -486,11 +958,13 @@ export async function getProgressoNovoModelo(
       regra_id: regra?.id || null,
       operacao: regra?.operacao || null,
       descricao_origem: regra?.descricao_origem || null,
-      origem_pistas_ueb: refsPistas,
-      origem_rumo_ueb: refsRumo,
-      origem_especialidades: refsEsp,
-      nivel_min_especialidade: nivelMinEsp,
-      min_count: minCount,
+      detalhes_regra: regra?.detalhes_regra || null,
+      especialidades_pn_tags: especialidadesPnTags,
+      origem_pistas_ueb: legado.origem_pistas_ueb,
+      origem_rumo_ueb: legado.origem_rumo_ueb,
+      origem_especialidades: legado.origem_especialidades,
+      nivel_min_especialidade: legado.nivel_min_especialidade,
+      min_count: legado.min_count,
       fl_requer_validacao_manual: Boolean(regra?.fl_requer_validacao_manual),
       fl_calculado_match: flCalculadoMatch,
       itens_conquistados_match: matchedItems,
@@ -530,6 +1004,7 @@ export async function getProgressoNovoModelo(
 
 /**
  * Salva ou atualiza a conclusão de uma ação específica do jovem
+ * Retorna { success: true, data: { acao, bloco } } e garante MANUAL_CHEFE na desmarcação
  */
 export async function toggleAcaoNovoModelo(
   cd_associado: string,
@@ -542,8 +1017,9 @@ export async function toggleAcaoNovoModelo(
   const ramo = normalizeRamo(ds_ramo);
 
   return await prisma.$transaction(async (tx) => {
+    let prog: any;
     if (fl_concluido) {
-      await tx.progressaoPn.upsert({
+      prog = await tx.progressaoPn.upsert({
         where: { cd_associado_acao_id: { cd_associado, acao_id } },
         create: {
           cd_associado,
@@ -562,7 +1038,7 @@ export async function toggleAcaoNovoModelo(
         },
       });
     } else {
-      await tx.progressaoPn.upsert({
+      prog = await tx.progressaoPn.upsert({
         where: { cd_associado_acao_id: { cd_associado, acao_id } },
         create: {
           cd_associado,
@@ -573,6 +1049,7 @@ export async function toggleAcaoNovoModelo(
         },
         update: {
           fl_concluido: false,
+          origem: OrigemConquista.MANUAL_CHEFE, // ADR-5: Regra de Ouro Simétrica
           ds_observacao: ds_observacao || undefined,
         },
       });
@@ -581,7 +1058,130 @@ export async function toggleAcaoNovoModelo(
     // Recalcula status dos blocos
     await recalcularStatusBlocos(tx, cd_associado, ramo);
 
-    return { success: true };
+    // Obtém dados do bloco recalculado
+    const acaoInfo = await tx.pnAcaoEducativa.findUnique({
+      where: { id: acao_id },
+      select: { bloco_id: true },
+    });
+
+    let blocoData: any = null;
+    if (acaoInfo?.bloco_id) {
+      const blocoDb = await tx.pnBloco.findUnique({
+        where: { id: acaoInfo.bloco_id },
+        include: {
+          status_jovens: {
+            where: { cd_associado },
+          },
+        },
+      });
+      if (blocoDb) {
+        const st = blocoDb.status_jovens[0];
+        blocoData = {
+          bloco_id: blocoDb.id,
+          nm_bloco: blocoDb.nm_bloco,
+          nr_fixas_concluidas: st?.nr_fixas_concluidas || 0,
+          nr_variaveis_concluidas: st?.nr_variaveis_concluidas || 0,
+          nr_acoes_fixas_obrigatorias: blocoDb.nr_acoes_fixas_obrigatorias,
+          nr_acoes_variaveis_exigidas: blocoDb.nr_acoes_variaveis_exigidas,
+          fl_concluido: Boolean(st?.fl_concluido),
+          pct_conclusao: st ? Number(st.pct_conclusao) : 0,
+        };
+      }
+    }
+
+    return {
+      success: true,
+      data: {
+        acao: {
+          id: acao_id,
+          fl_concluido: prog.fl_concluido,
+          origem: prog.origem,
+          dt_conclusao: prog.dt_conclusao ? prog.dt_conclusao.toISOString() : null,
+          cd_escotista_avaliador: prog.cd_escotista_avaliador,
+          ds_observacao: prog.ds_observacao,
+        },
+        bloco: blocoData,
+      },
+    };
+  });
+}
+
+/**
+ * Reseta o status de uma ação marcada manualmente pelo chefe
+ * Rejeita com erro 400 se o item não for MANUAL_CHEFE
+ */
+export async function resetAcaoNovoModelo(
+  cd_associado: string,
+  acao_id: number,
+  ds_ramo: string | Ramo = Ramo.ESCOTEIRO
+) {
+  const ramo = normalizeRamo(ds_ramo);
+
+  return await prisma.$transaction(async (tx) => {
+    const existing = await tx.progressaoPn.findUnique({
+      where: { cd_associado_acao_id: { cd_associado, acao_id } },
+    });
+
+    if (!existing) {
+      throw new Error('Ação educativa não possui registro para este associado');
+    }
+
+    if (existing.origem !== OrigemConquista.MANUAL_CHEFE) {
+      throw new Error('Este item foi concluído automaticamente por equivalência; não há marcação manual para desfazer.');
+    }
+
+    // Deleta o registro manual
+    await tx.progressaoPn.delete({
+      where: { cd_associado_acao_id: { cd_associado, acao_id } },
+    });
+
+    // Recalcula status dos blocos
+    await recalcularStatusBlocos(tx, cd_associado, ramo);
+
+    const acaoInfo = await tx.pnAcaoEducativa.findUnique({
+      where: { id: acao_id },
+      select: { bloco_id: true },
+    });
+
+    let blocoData: any = null;
+    if (acaoInfo?.bloco_id) {
+      const blocoDb = await tx.pnBloco.findUnique({
+        where: { id: acaoInfo.bloco_id },
+        include: {
+          status_jovens: {
+            where: { cd_associado },
+          },
+        },
+      });
+      if (blocoDb) {
+        const st = blocoDb.status_jovens[0];
+        blocoData = {
+          bloco_id: blocoDb.id,
+          nm_bloco: blocoDb.nm_bloco,
+          nr_fixas_concluidas: st?.nr_fixas_concluidas || 0,
+          nr_variaveis_concluidas: st?.nr_variaveis_concluidas || 0,
+          nr_acoes_fixas_obrigatorias: blocoDb.nr_acoes_fixas_obrigatorias,
+          nr_acoes_variaveis_exigidas: blocoDb.nr_acoes_variaveis_exigidas,
+          fl_concluido: Boolean(st?.fl_concluido),
+          pct_conclusao: st ? Number(st.pct_conclusao) : 0,
+        };
+      }
+    }
+
+    return {
+      success: true,
+      data: {
+        acao: {
+          id: acao_id,
+          fl_concluido: false,
+          origem: null,
+          dt_conclusao: null,
+          cd_escotista_avaliador: null,
+          ds_observacao: null,
+        },
+        bloco: blocoData,
+      },
+    };
   });
 }
 
@@ -624,6 +1224,7 @@ export async function saveBlocoAcoesNovoModelo(
           },
           update: {
             fl_concluido: false,
+            origem: OrigemConquista.MANUAL_CHEFE,
           },
         });
       }
@@ -674,8 +1275,10 @@ export async function processarTransicaoAssociado(
 
     const completedPistas = new Set<string>();
     const completedRumo = new Set<string>();
+    const atividadesPaConcluidasIds = new Set<number>();
 
     for (const row of oldActivities) {
+      if (row.atividade_id) atividadesPaConcluidasIds.add(row.atividade_id);
       const caminhoPaxtu = row.atividade?.cd_caminho_paxtu || row.atividade?.competencia?.caminho?.cd_caminho_paxtu || '';
       const nrOrd = row.atividade?.nr_ordenacao !== null && row.atividade?.nr_ordenacao !== undefined ? String(row.atividade.nr_ordenacao) : '';
       const ident = row.atividade?.identificacao || '';
@@ -693,15 +1296,43 @@ export async function processarTransicaoAssociado(
       }
     }
 
-    // 2. Carrega especialidades conquistadas pelo jovem
+    // 2. Carrega especialidades conquistadas pelo jovem (PA)
     const espList = await tx.progressaoEspecialidadePa.findMany({
       where: { cd_associado },
     });
 
     const scoutEspMap = new Map<string, number>();
+    const scoutEspIdMap = new Map<number, number>();
     for (const r of espList) {
       scoutEspMap.set(normalizeEspName(r.ds_especialidade), Number(r.nr_nivel) || 0);
+      const idNum = parseInt(r.cd_especialidade, 10);
+      if (!isNaN(idNum)) {
+        scoutEspIdMap.set(idNum, Number(r.nr_nivel) || 0);
+      }
     }
+
+    // 2b. Carrega especialidades conquistadas no PN
+    const espPnList = await tx.progressaoEspecialidadePn.findMany({
+      where: { cd_associado },
+      include: { especialidade: true },
+    });
+    const scoutEspPnMap = new Map<number, number>();
+    const scoutEspPnNameMap = new Map<string, number>();
+    for (const ep of espPnList) {
+      scoutEspPnMap.set(ep.especialidade_id, ep.nr_nivel);
+      if (ep.especialidade?.ds_especialidade) {
+        scoutEspPnNameMap.set(normalizeEspName(ep.especialidade.ds_especialidade), ep.nr_nivel);
+      }
+    }
+
+    const contextoAvaliacao: ContextoAvaliacaoTransicao = {
+      atividadesPaConcluidasIds,
+      atividadesPaIdentificacoes: new Set([...completedPistas, ...completedRumo]),
+      especialidadesPa: scoutEspMap,
+      especialidadesPaIds: scoutEspIdMap,
+      especialidadesPn: scoutEspPnMap,
+      especialidadesPnNomes: scoutEspPnNameMap,
+    };
 
     // 3. Carrega todas as regras de equivalência mapeadas para o ramo
     const regras = await tx.pnEquivalenciaRegra.findMany({
@@ -719,57 +1350,67 @@ export async function processarTransicaoAssociado(
     const acoesConquistadasMap = new Map<number, string>();
 
     for (const regra of regras) {
-      if (regra.operacao === OperacaoEquivalencia.SEM_EQUIVALENCIA) continue;
-
-      const refsPistas = regra.origem_pistas_ueb || [];
-      const refsRumo = regra.origem_rumo_ueb || [];
-      const refsEsp = regra.origem_especialidades || [];
-      const minCount = regra.min_count || 1;
-      const nivelMinEsp = regra.nivel_min_especialidade || 1;
-
-      let matchCount = 0;
-      const matchedItems: string[] = [];
-
-      for (const p of refsPistas) {
-        if (completedPistas.has(p)) {
-          matchCount++;
-          matchedItems.push(`Pista ${p}`);
-        }
-      }
-      for (const r of refsRumo) {
-        if (completedRumo.has(r)) {
-          matchCount++;
-          matchedItems.push(`Rumo ${r}`);
-        }
-      }
-      for (const e of refsEsp) {
-        const normE = normalizeEspName(e);
-        let lvl = scoutEspMap.get(normE) || 0;
-        if (!lvl) {
-          for (const [key, val] of scoutEspMap.entries()) {
-            if (key.includes(normE) || normE.includes(key)) {
-              lvl = val;
-              break;
+      // Caso 1: As 15 ações de especialidades do PN (US4)
+      const parsedEspPn = extrairEspecialidadesPnDaAcao(regra.acao.ds_acao);
+      if (parsedEspPn) {
+        let atingido = false;
+        const conquistadas: string[] = [];
+        for (const nomeEsp of parsedEspPn.especialidades) {
+          const norm = normalizeEspName(nomeEsp);
+          let nivelObtido = scoutEspPnNameMap.get(norm) || 0;
+          if (!nivelObtido) {
+            for (const [key, val] of scoutEspPnNameMap.entries()) {
+              if (key.includes(norm) || norm.includes(key)) {
+                nivelObtido = val;
+                break;
+              }
             }
           }
+          if (nivelObtido >= parsedEspPn.nivel_exigido) {
+            atingido = true;
+            conquistadas.push(`${nomeEsp} (N${nivelObtido})`);
+          }
         }
-        if (lvl >= nivelMinEsp) {
-          matchCount++;
-          matchedItems.push(`Esp. ${e} (N${lvl})`);
+        if (atingido) {
+          acoesConquistadasMap.set(
+            regra.acao_pn_id,
+            `Concedido automaticamente por Especialidade PN: ${conquistadas.join(', ')}`
+          );
+          continue;
         }
       }
 
-      const totalRefs = refsPistas.length + refsRumo.length + refsEsp.length;
-      if (matchCount >= minCount && totalRefs > 0) {
+      if (regra.operacao === OperacaoEquivalencia.SEM_EQUIVALENCIA) continue;
+
+      // Caso 2: Avaliação recursiva padrão
+      const resultado = avaliarRegraRecursiva(regra.detalhes_regra, contextoAvaliacao);
+      if (resultado.atingido) {
+        const itensDesc = resultado.itensConquistados.length > 0
+          ? resultado.itensConquistados.join(', ')
+          : (regra.descricao_origem || 'Itens equivalentes');
         acoesConquistadasMap.set(
           regra.acao_pn_id,
-          `Equivalência com ${matchedItems.join(', ')} (${regra.descricao_origem})`
+          `Equivalência com ${itensDesc} (${regra.descricao_origem || ''})`
         );
       }
     }
 
-    // 5. Salva as conquistas em progressao_pn
+    // 5. Salva as conquistas em progressao_pn respeitando MANUAL_CHEFE
+    const progExistentes = await tx.progressaoPn.findMany({
+      where: {
+        cd_associado,
+        acao_id: { in: Array.from(acoesConquistadasMap.keys()) },
+      },
+    });
+    const progExistenteMap = new Map(progExistentes.map((p) => [p.acao_id, p]));
+
     for (const [acaoId, motivo] of acoesConquistadasMap.entries()) {
+      const existente = progExistenteMap.get(acaoId);
+      // Se já foi marcada/desmarcada manualmente por chefe, NÃO sobrescrever!
+      if (existente && existente.origem === OrigemConquista.MANUAL_CHEFE) {
+        continue;
+      }
+
       await tx.progressaoPn.upsert({
         where: {
           cd_associado_acao_id: {

@@ -43,8 +43,9 @@ yarn-error.log*
 /data/especialidades/**/images
 !/data/catalogo/
 /data/catalogo/*
+!/data/catalogo/pa_catalogo.json
 !/data/catalogo/pn_catalogo.json
-!/data/catalogo/equivalencias.json
+!/data/catalogo/pn_equivalencia_regras.json
 
 # typescript
 *.tsbuildinfo

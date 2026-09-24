@@ -28,10 +28,11 @@ enum ModalidadePn {
 }
 
 enum OperacaoEquivalencia {
-  DIRETA
-  OR
-  MIN_COUNT
-  ESPECIALIDADES
+  PROGRESSOES
+  ESPECIALIDADE
+  SEMANTICO
+  TODAS
+  QNT_MINIMA
   SEM_EQUIVALENCIA
 }
 
@@ -143,6 +144,7 @@ model PaAtividade {
   identificacao      String?        @db.VarChar(32)
   nr_ordenacao       Int?           @default(0)
   ds_atividade       String         @db.Text
+  embedding          Float[]        @default([])
 
   competencia        PaCompetencia  @relation(fields: [competencia_id], references: [id], onDelete: Cascade)
   progressoes_pa     ProgressaoPa[]
@@ -411,6 +413,7 @@ model PnAcaoEducativa {
   ds_acao         String               @db.Text
   regra_qtd_texto String?              @db.VarChar(64)
   nr_ordem        Int                  @default(0)
+  embedding       Float[]              @default([])
 
   bloco           PnBloco              @relation(fields: [bloco_id], references: [id], onDelete: Cascade)
   regra           PnEquivalenciaRegra?
@@ -422,13 +425,8 @@ model PnAcaoEducativa {
 model PnEquivalenciaRegra {
   id                         Int                  @id @default(autoincrement())
   acao_pn_id                 Int                  @unique
-  operacao                   OperacaoEquivalencia @default(DIRETA)
+  operacao                   OperacaoEquivalencia @default(PROGRESSOES)
   descricao_origem           String               @db.Text
-  origem_pistas_ueb          String[]             @default([])
-  origem_rumo_ueb            String[]             @default([])
-  origem_especialidades      String[]             @default([])
-  nivel_min_especialidade    Int?                 @default(1)
-  min_count                  Int?                 @default(1)
   fl_requer_validacao_manual Boolean              @default(false)
   detalhes_regra             Json                 @default("{}")
   updated_at                 DateTime             @default(now()) @updatedAt
