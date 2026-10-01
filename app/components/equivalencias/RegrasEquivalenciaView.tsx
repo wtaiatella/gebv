@@ -9,6 +9,7 @@ export type RegraEquivalencia = {
   acao_pn_id: number;
   operacao: 'DIRETA' | 'OR' | 'MIN_COUNT' | 'ESPECIALIDADES' | 'SEM_EQUIVALENCIA' | string;
   descricao_origem: string;
+  detalhes_regra?: any;
   origem_pistas_ueb: string[];
   origem_rumo_ueb: string[];
   origem_especialidades: string[];
@@ -158,6 +159,7 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
       nr_ordem_acao: regra.nr_ordem_acao,
       operacao: regra.operacao,
       descricao_origem: regra.descricao_origem,
+      detalhes_regra: regra.detalhes_regra || null,
       origem_pistas_ueb: regra.origem_pistas_ueb || [],
       origem_rumo_ueb: regra.origem_rumo_ueb || [],
       origem_especialidades: regra.origem_especialidades || [],
@@ -477,9 +479,7 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
                   <tbody>
                     {blocoRegras.map((regra) => {
                       const operacaoConfig = getOperacaoBadge(regra.operacao);
-                      const hasPistas = (regra.origem_pistas_ueb || []).length > 0;
-                      const hasRumo = (regra.origem_rumo_ueb || []).length > 0;
-                      const hasEsp = (regra.origem_especialidades || []).length > 0;
+                      const itensFlat = flattenDetalhesRegraItens(regra.detalhes_regra);
 
                       return (
                         <tr key={regra.id}>
@@ -552,95 +552,38 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
                           </td>
                           <td>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
-                              {/* Chips de Pistas */}
-                              {hasPistas &&
-                                regra.origem_pistas_ueb.map((p) => {
-                                  const paInfo = paAtividades.find(
-                                    (a) =>
-                                      (a.cd_caminho_paxtu === '5' || a.cd_caminho_paxtu === 'PISTA') &&
-                                      a.cd_ueb === p
-                                  );
-                                  const label = paInfo?.identificacao || `PT-${p}`;
-                                  return (
-                                    <span
-                                      key={p}
-                                      title={paInfo ? `${label}: ${paInfo.ds_atividade}` : label}
-                                      style={{
-                                        background: 'rgba(56, 189, 248, 0.15)',
-                                        color: '#38bdf8',
-                                        fontSize: '0.75rem',
-                                        padding: '0.2rem 0.45rem',
-                                        borderRadius: '4px',
-                                        fontFamily: 'monospace',
-                                        cursor: 'help',
-                                      }}
-                                    >
-                                      {label}
-                                    </span>
-                                  );
-                                })}
+                              {itensFlat.map((it) => {
+                                const style =
+                                  it.kind === 'pista'
+                                    ? { background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8' }
+                                    : it.kind === 'rumo'
+                                    ? { background: 'rgba(168, 85, 247, 0.15)', color: '#a855f7' }
+                                    : it.kind === 'esp'
+                                    ? { background: 'rgba(234, 179, 8, 0.15)', color: '#eab308', border: '1px solid rgba(234, 179, 8, 0.3)' }
+                                    : { background: 'rgba(255, 255, 255, 0.08)', color: '#ccc' };
+                                return (
+                                  <span
+                                    key={it.key}
+                                    title={it.title}
+                                    style={{
+                                      ...style,
+                                      fontSize: '0.75rem',
+                                      padding: '0.2rem 0.45rem',
+                                      borderRadius: '4px',
+                                      fontFamily: 'monospace',
+                                      cursor: 'help',
+                                      display: 'inline-flex',
+                                      alignItems: 'center',
+                                      gap: '0.25rem',
+                                    }}
+                                  >
+                                    {it.kind === 'esp' && <span>★</span>}
+                                    <span>{it.label}</span>
+                                  </span>
+                                );
+                              })}
 
-                              {/* Chips de Rumo */}
-                              {hasRumo &&
-                                regra.origem_rumo_ueb.map((r) => {
-                                  const paInfo = paAtividades.find(
-                                    (a) =>
-                                      (a.cd_caminho_paxtu === '6' ||
-                                        a.cd_caminho_paxtu === 'RUMO' ||
-                                        a.cd_caminho_paxtu === 'TRAVESSIA') &&
-                                      a.cd_ueb === r
-                                  );
-                                  const label = paInfo?.identificacao || `RT-${r}`;
-                                  return (
-                                    <span
-                                      key={r}
-                                      title={paInfo ? `${label}: ${paInfo.ds_atividade}` : label}
-                                      style={{
-                                        background: 'rgba(168, 85, 247, 0.15)',
-                                        color: '#a855f7',
-                                        fontSize: '0.75rem',
-                                        padding: '0.2rem 0.45rem',
-                                        borderRadius: '4px',
-                                        fontFamily: 'monospace',
-                                        cursor: 'help',
-                                      }}
-                                    >
-                                      {label}
-                                    </span>
-                                  );
-                                })}
-
-                              {/* Chips de Especialidades */}
-                              {hasEsp &&
-                                regra.origem_especialidades.map((esp) => {
-                                  const nivelStr = `N${regra.nivel_min_especialidade || 1}+`;
-                                  return (
-                                    <span
-                                      key={esp}
-                                      title={`Especialidade: ${esp} (Exigido Nível ${regra.nivel_min_especialidade || 1}+)`}
-                                      style={{
-                                        background: 'rgba(234, 179, 8, 0.15)',
-                                        color: '#eab308',
-                                        fontSize: '0.75rem',
-                                        padding: '0.2rem 0.45rem',
-                                        borderRadius: '4px',
-                                        fontFamily: 'monospace',
-                                        border: '1px solid rgba(234, 179, 8, 0.3)',
-                                        cursor: 'help',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        gap: '0.25rem',
-                                      }}
-                                    >
-                                      <span>★</span>
-                                      <span>
-                                        {esp} ({nivelStr})
-                                      </span>
-                                    </span>
-                                  );
-                                })}
-
-                              {!hasPistas && !hasRumo && !hasEsp && (
+                              {itensFlat.length === 0 && (
                                 <span style={{ color: '#666', fontSize: '0.8rem', fontStyle: 'italic' }}>
                                   Nenhum item vinculado
                                 </span>
@@ -746,5 +689,59 @@ function getOperacaoBadge(operacao: string) {
         color: '#a1a1aa',
         border: 'rgba(255, 255, 255, 0.15)',
       };
+  }
+}
+
+type ItemFlatRegra = { key: string; kind: 'pista' | 'rumo' | 'esp' | 'outro'; label: string; title: string };
+
+const MAX_PROFUNDIDADE_FLATTEN_REGRA = 8;
+
+// Achata a árvore de `detalhes_regra` (schema recursivo novo) em uma lista plana de chips
+// para a coluna "Itens Origem". Os campos legados (origem_pistas_ueb/origem_rumo_ueb/
+// origem_especialidades) não existem mais nesse schema — ver qa-report.md.
+function flattenDetalhesRegraItens(detalhes: any, depth: number = 0): ItemFlatRegra[] {
+  if (!detalhes || depth > MAX_PROFUNDIDADE_FLATTEN_REGRA) return [];
+
+  // Compatibilidade com formato legado achatado (janela de transição entre a migração da
+  // enum/colunas e o reseed a partir do catálogo canônico — ver qa-report.md #3).
+  if (!detalhes.tipo && (detalhes.origem_pistas_ueb || detalhes.origem_rumo_ueb || detalhes.origem_especialidades)) {
+    const nivelMin = detalhes.nivel_min_especialidade || 1;
+    return [
+      ...(detalhes.origem_pistas_ueb || []).map((p: string) => ({ key: `pt_${p}`, kind: 'pista' as const, label: `PT-${p}`, title: `PT-${p}` })),
+      ...(detalhes.origem_rumo_ueb || []).map((r: string) => ({ key: `rt_${r}`, kind: 'rumo' as const, label: `RT-${r}`, title: `RT-${r}` })),
+      ...(detalhes.origem_especialidades || []).map((e: string) => ({ key: `esp_${e}`, kind: 'esp' as const, label: `${e} (N${nivelMin}+)`, title: `Especialidade: ${e} (Exigido Nível ${nivelMin}+)` })),
+    ];
+  }
+
+  if (!detalhes.tipo) return [];
+
+  switch (detalhes.tipo) {
+    case 'PROGRESSOES': {
+      const item = detalhes.item;
+      if (!item) return [];
+      const ident: string = item.identificacao || `Atividade ${item.pa_atividade_id}`;
+      const kind: ItemFlatRegra['kind'] = ident.startsWith('RT-') ? 'rumo' : ident.startsWith('PT-') ? 'pista' : 'outro';
+      return [{ key: `prog_${item.pa_atividade_id}_${ident}`, kind, label: ident, title: item.ds_atividade ? `${ident}: ${item.ds_atividade}` : ident }];
+    }
+    case 'ESPECIALIDADE': {
+      const nome = detalhes.nm_especialidade || `Especialidade ID ${detalhes.pa_especialidade_id}`;
+      return [{ key: `esp_${nome}`, kind: 'esp', label: `${nome} (N${detalhes.nivel_minimo}+)`, title: `Especialidade: ${nome} (Exigido Nível ${detalhes.nivel_minimo}+)` }];
+    }
+    case 'SEMANTICO': {
+      return (detalhes.itens || []).map((it: any, i: number) => {
+        const ident: string = it.identificacao || `Atividade ${it.pa_atividade_id}`;
+        const kind: ItemFlatRegra['kind'] = ident.startsWith('RT-') ? 'rumo' : ident.startsWith('PT-') ? 'pista' : 'outro';
+        return { key: `sem_${i}_${ident}`, kind, label: ident, title: `${ident} (busca semântica)` };
+      });
+    }
+    case 'TODAS':
+    case 'QNT_MINIMA': {
+      const blocos = Array.isArray(detalhes.blocos) ? detalhes.blocos : [];
+      return blocos.flatMap((sub: any, i: number) =>
+        flattenDetalhesRegraItens(sub, depth + 1).map((it) => ({ ...it, key: `${i}_${it.key}` }))
+      );
+    }
+    default:
+      return [];
   }
 }

@@ -308,6 +308,7 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
       nr_ordem_acao: acao.nr_ordem,
       operacao: acao.operacao || 'PROGRESSOES',
       descricao_origem: acao.descricao_origem || '',
+      detalhes_regra: acao.detalhes_regra || null,
       origem_pistas_ueb: acao.origem_pistas_ueb || [],
       origem_rumo_ueb: acao.origem_rumo_ueb || [],
       origem_especialidades: acao.origem_especialidades || [],
@@ -903,6 +904,175 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
   );
 }
 
+// Item folha da árvore de detalhes_regra: badge de identificação/status + descrição ao lado,
+// para o chefe não precisar procurar o texto da atividade em outro lugar.
+function BadgeItemRegra({
+  label,
+  conquistado,
+  title,
+  descricao,
+}: {
+  label: string;
+  conquistado: boolean;
+  title?: string;
+  descricao?: string;
+}) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', maxWidth: '100%' }}>
+      <span
+        title={title}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.2rem',
+          flexShrink: 0,
+          background: conquistado ? 'rgba(0, 255, 136, 0.18)' : 'rgba(255, 255, 255, 0.05)',
+          color: conquistado ? '#00ff88' : '#888',
+          border: conquistado ? '1px solid rgba(0, 255, 136, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+          padding: '0.12rem 0.4rem',
+          borderRadius: '4px',
+          fontSize: '0.72rem',
+          fontFamily: 'monospace',
+          cursor: title ? 'help' : 'default',
+        }}
+      >
+        <span>{conquistado ? '✓' : '✗'}</span>
+        <span>{label}</span>
+      </span>
+      {descricao && (
+        <span
+          style={{
+            fontSize: '0.78rem',
+            lineHeight: 1.35,
+            color: conquistado ? '#d4d4d8' : '#a1a1aa',
+            minWidth: 0,
+          }}
+        >
+          {descricao}
+        </span>
+      )}
+    </div>
+  );
+}
+
+const MAX_PROFUNDIDADE_RENDER_REGRA = 8;
+
+// Renderiza recursivamente a árvore de `detalhes_regra` na Coluna 3: cabeçalhos de operação
+// contêiner ("Exige X de:" / "Exige TODAS abaixo:") com cartão interno para cada sub-bloco
+// aninhado, e badges por item folha com status de conquista (plan.md §1.1 / prd.md FR-1).
+function RenderDetalhesRegra({
+  detalhes,
+  conquistados,
+  depth = 0,
+}: {
+  detalhes: any;
+  conquistados: string[];
+  depth?: number;
+}): React.ReactElement | null {
+  if (!detalhes || depth > MAX_PROFUNDIDADE_RENDER_REGRA) return null;
+
+  // Compatibilidade com formato legado achatado (janela de transição entre a migração da
+  // enum/colunas e o reseed a partir do catálogo canônico — ver qa-report.md #3).
+  if (!detalhes.tipo && (detalhes.origem_pistas_ueb || detalhes.origem_rumo_ueb || detalhes.origem_especialidades)) {
+    const pistas: string[] = detalhes.origem_pistas_ueb || [];
+    const rumos: string[] = detalhes.origem_rumo_ueb || [];
+    const esps: string[] = detalhes.origem_especialidades || [];
+    const nivelMin = detalhes.nivel_min_especialidade || 1;
+    if (pistas.length === 0 && rumos.length === 0 && esps.length === 0) return null;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'flex-start' }}>
+        {pistas.map((p) => (
+          <BadgeItemRegra key={`pt_${p}`} label={`PT-${p}`} conquistado={conquistados.includes(`PT-${p}`) || conquistados.includes(`Pista ${p}`)} />
+        ))}
+        {rumos.map((r) => (
+          <BadgeItemRegra key={`rt_${r}`} label={`RT-${r}`} conquistado={conquistados.includes(`RT-${r}`) || conquistados.includes(`Rumo ${r}`)} />
+        ))}
+        {esps.map((e) => (
+          <BadgeItemRegra key={`esp_${e}`} label={`${e} (N${nivelMin}+)`} conquistado={conquistados.some((c) => c.startsWith(`Esp. ${e}`))} />
+        ))}
+      </div>
+    );
+  }
+
+  if (!detalhes.tipo) return null;
+
+  switch (detalhes.tipo) {
+    case 'PROGRESSOES': {
+      const item = detalhes.item;
+      if (!item) return null;
+      const ident = item.identificacao || `Atividade ${item.pa_atividade_id}`;
+      const isConq = conquistados.includes(ident);
+      return (
+        <BadgeItemRegra
+          label={ident}
+          conquistado={isConq}
+          title={`${ident}: ${isConq ? 'Concluído pelo jovem no PA' : 'Não realizado no PA'}`}
+          descricao={item.ds_atividade || undefined}
+        />
+      );
+    }
+    case 'ESPECIALIDADE': {
+      const nome = detalhes.nm_especialidade || `Especialidade ID ${detalhes.pa_especialidade_id}`;
+      const isConq = conquistados.some((c) => c.startsWith(`Esp. ${nome}`));
+      return (
+        <BadgeItemRegra
+          label={`${nome} (N${detalhes.nivel_minimo}+)`}
+          conquistado={isConq}
+          title={`Especialidade PA ${nome}, nível mínimo N${detalhes.nivel_minimo}+`}
+        />
+      );
+    }
+    case 'SEMANTICO': {
+      const itens = detalhes.itens || [];
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'flex-start' }}>
+          <span style={{ fontSize: '0.7rem', color: '#a78bfa', fontWeight: 700 }}>
+            Semântico ({detalhes.logica === 'AND' ? 'Todas' : 'Ao menos uma'}):
+          </span>
+          {itens.map((it: any, i: number) => {
+            const ident = it.identificacao || `Atividade ${it.pa_atividade_id}`;
+            return (
+              <BadgeItemRegra
+                key={`${ident}_${i}`}
+                label={ident}
+                conquistado={conquistados.includes(ident)}
+                descricao={it.ds_atividade || undefined}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+    case 'TODAS':
+    case 'QNT_MINIMA': {
+      const blocos = Array.isArray(detalhes.blocos) ? detalhes.blocos : [];
+      const header =
+        detalhes.tipo === 'TODAS' ? 'Exige TODAS abaixo:' : `Exige ${detalhes.quantidade_minima ?? 1} de:`;
+      return (
+        <div
+          style={{
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '6px',
+            padding: '0.4rem 0.5rem',
+            background: 'rgba(255, 255, 255, 0.02)',
+          }}
+        >
+          <div style={{ fontSize: '0.72rem', color: '#93c5fd', fontWeight: 700, marginBottom: '0.3rem' }}>
+            {header}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'flex-start' }}>
+            {blocos.map((sub: any, i: number) => (
+              <RenderDetalhesRegra key={i} detalhes={sub} conquistados={conquistados} depth={depth + 1} />
+            ))}
+          </div>
+        </div>
+      );
+    }
+    default:
+      return null;
+  }
+}
+
 // Componente para a Linha da Ação Educativa na Grade de 3 Colunas (1.4fr / 140px / 1.4fr)
 function AcaoEquivalenciaRow({
   acao,
@@ -925,8 +1095,6 @@ function AcaoEquivalenciaRow({
   onContextMenu: (e: React.MouseEvent) => void;
   onEditRegra: () => void;
 }) {
-  const hasPaRefs = (acao.itens_origem_detalhados || []).length > 0;
-  const hasEsp = (acao.origem_especialidades || []).length > 0;
   const isManual = acao.origem === 'MANUAL_CHEFE';
 
   return (
@@ -969,7 +1137,10 @@ function AcaoEquivalenciaRow({
 
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ color: isChecked ? '#fff' : '#d4d4d8', fontSize: '0.95rem', lineHeight: 1.45 }}>
-              {acao.modalidade && acao.modalidade !== 'Básico' && (
+              {/* Itens PA restaurados como complementares às Ações Variáveis ficam com
+                  modalidade = 'Básico' no banco (não é um valor válido do enum ModalidadePn —
+                  ver plan.md §1.5), então precisam do próprio tp_acao para acionar o badge. */}
+              {((acao.modalidade && acao.modalidade !== 'Básico') || acao.tp_acao === 'PA' || acao.tp_acao === 'Substitutiva') && (
                 <span
                   style={{
                     fontSize: '0.72rem',
@@ -1002,10 +1173,14 @@ function AcaoEquivalenciaRow({
                     display: 'inline-block',
                   }}
                 >
-                  {acao.tp_acao === 'PA' ? 'PA' : acao.modalidade}
+                  {acao.tp_acao === 'PA' ? 'PA' : acao.tp_acao === 'Substitutiva' ? 'Substitutiva' : acao.modalidade}
                 </span>
               )}
-              {acao.ds_acao}
+              {/* Para as 15 ações de Especialidades PN, a lista de nomes já aparece nas tags
+                  abaixo — mostra só a frase introdutória para não repetir os nomes duas vezes. */}
+              {acao.especialidades_pn_tags && acao.especialidades_pn_tags.length > 0
+                ? acao.ds_acao.replace(/(no nível\s*\d\+:)\s*.+$/i, '$1')
+                : acao.ds_acao}
             </div>
 
             {/* US4: Tags visuais destacadas para as 15 ações de Especialidades PN */}
@@ -1013,13 +1188,16 @@ function AcaoEquivalenciaRow({
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.45rem' }}>
                 {acao.especialidades_pn_tags.map((esp) => {
                   const isConq = esp.fl_conquistada;
+                  // Especialidades do Novo Programa só têm níveis 1 e 2 (sem N3) — o nível
+                  // máximo (2) é exato, não "no mínimo", então não leva o "+".
+                  const nivelStr = esp.nivel_exigido >= 2 ? 'N2' : `N${esp.nivel_exigido}+`;
                   return (
                     <span
                       key={esp.nome}
                       title={
                         isConq
-                          ? `Especialidade ${esp.nome}: Conquistada no Nível ${esp.nivel_conquistado} (Exigido N${esp.nivel_exigido}+)`
-                          : `Especialidade ${esp.nome}: Não conquistada no Nível ${esp.nivel_exigido}+ (Nível atual: ${esp.nivel_conquistado || 0})`
+                          ? `Especialidade ${esp.nome}: Conquistada no Nível ${esp.nivel_conquistado} (Exigido ${nivelStr})`
+                          : `Especialidade ${esp.nome}: Não conquistada no Nível ${nivelStr} (Nível atual: ${esp.nivel_conquistado || 0})`
                       }
                       style={{
                         display: 'inline-flex',
@@ -1035,7 +1213,7 @@ function AcaoEquivalenciaRow({
                       }}
                     >
                       <span>{isConq ? '✓' : '•'}</span>
-                      <span>{esp.nome} (N{esp.nivel_exigido}+)</span>
+                      <span>{esp.nome} ({nivelStr})</span>
                     </span>
                   );
                 })}
@@ -1130,8 +1308,8 @@ function AcaoEquivalenciaRow({
           }}
         >
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '0.83rem', color: '#bae6fd', lineHeight: 1.35, marginBottom: '0.35rem' }}>
-              {acao.operacao === 'SEM_EQUIVALENCIA' || !acao.descricao_origem ? (
+            <div style={{ fontSize: '0.83rem', color: '#bae6fd', lineHeight: 1.35 }}>
+              {acao.operacao === 'SEM_EQUIVALENCIA' || !acao.detalhes_regra ? (
                 <span
                   style={{
                     display: 'inline-block',
@@ -1146,101 +1324,16 @@ function AcaoEquivalenciaRow({
                 >
                   Sem Equivalência
                 </span>
+              ) : isExpandido ? (
+                <RenderDetalhesRegra
+                  detalhes={acao.detalhes_regra}
+                  conquistados={acao.itens_conquistados_match || []}
+                />
               ) : (
+                // Modo colapsado (tabela geral): resumo textual gerado no backend, sem os cartões internos
                 <span>{acao.descricao_origem}</span>
               )}
             </div>
-
-            {/* Badges de Itens do PA */}
-            {hasPaRefs && isExpandido && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
-                {acao.itens_origem_detalhados.map((item) => {
-                  const labelIdent =
-                    item.identificacao ||
-                    (item.tipo === 'Pista'
-                      ? `PT-${item.cd_ueb}`
-                      : item.tipo === 'Rumo'
-                      ? `RT-${item.cd_ueb}`
-                      : item.cd_ueb);
-                  return (
-                    <span
-                      key={`${item.tipo}_${item.cd_ueb}`}
-                      title={`${labelIdent}: ${item.ds_atividade} (${
-                        item.fl_concluido_paxtu
-                          ? 'Concluído pelo jovem no Paxtu'
-                          : 'Não realizado no Paxtu'
-                      })`}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.2rem',
-                        background: item.fl_concluido_paxtu
-                          ? 'rgba(0, 255, 136, 0.18)'
-                          : 'rgba(255, 255, 255, 0.05)',
-                        color: item.fl_concluido_paxtu ? '#00ff88' : '#888',
-                        border: item.fl_concluido_paxtu
-                          ? '1px solid rgba(0, 255, 136, 0.4)'
-                          : '1px solid rgba(255, 255, 255, 0.1)',
-                        padding: '0.12rem 0.4rem',
-                        borderRadius: '4px',
-                        fontSize: '0.72rem',
-                        fontFamily: 'monospace',
-                        cursor: 'help',
-                      }}
-                    >
-                      <span>{item.fl_concluido_paxtu ? '✓' : '✗'}</span>
-                      <span>{labelIdent}</span>
-                    </span>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* Tags de Especialidades PA */}
-            {hasEsp && isExpandido && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginTop: hasPaRefs ? '0.3rem' : 0 }}>
-                {(acao.especialidades_origem_detalhadas && acao.especialidades_origem_detalhadas.length > 0
-                  ? acao.especialidades_origem_detalhadas
-                  : (acao.origem_especialidades || []).map((espNome) => ({
-                      nm_especialidade: espNome,
-                      nivel_exigido: acao.nivel_min_especialidade || 1,
-                      fl_conquistada: false,
-                      nivel_conquistado: 0,
-                      dt_nivel: null,
-                    }))
-                ).map((esp) => {
-                  const isConq = esp.fl_conquistada;
-                  const nivelExigidoStr = `N${esp.nivel_exigido}+`;
-                  const labelBadge = `${esp.nm_especialidade} (${nivelExigidoStr})`;
-                  return (
-                    <span
-                      key={esp.nm_especialidade}
-                      title={
-                        isConq
-                          ? `Especialidade ${esp.nm_especialidade}: Conquistada no Nível ${esp.nivel_conquistado} (Exigido ${nivelExigidoStr})`
-                          : `Especialidade ${esp.nm_especialidade}: Não conquistada no Nível ${esp.nivel_exigido}+`
-                      }
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.2rem',
-                        background: isConq ? 'rgba(0, 255, 136, 0.18)' : 'rgba(255, 255, 255, 0.05)',
-                        color: isConq ? '#00ff88' : '#888',
-                        border: isConq ? '1px solid rgba(0, 255, 136, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
-                        padding: '0.12rem 0.4rem',
-                        borderRadius: '4px',
-                        fontSize: '0.72rem',
-                        fontFamily: 'monospace',
-                        cursor: 'help',
-                      }}
-                    >
-                      <span>{isConq ? '✓' : '✗'}</span>
-                      <span>{labelBadge}</span>
-                    </span>
-                  );
-                })}
-              </div>
-            )}
           </div>
 
           {/* Botão Editar Regra */}
