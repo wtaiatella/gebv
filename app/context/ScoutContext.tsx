@@ -44,12 +44,25 @@ export function ScoutProvider({
   const [escoteiros, setEscoteiros] = useState<Escoteiro[]>(initialEscoteiros);
   const [catalogoDisponivel, setCatalogoDisponivel] = useState<boolean>(initialCatalogoDisponivel);
   const [selectedId, setSelectedIdState] = useState<string>(() => {
-    if (initialSelectedId) return initialSelectedId;
+    if (initialSelectedId && initialEscoteiros.some((e) => e.associado.cd_associado === initialSelectedId)) {
+      return initialSelectedId;
+    }
     return initialEscoteiros[0]?.associado.cd_associado || '';
   });
   const [viewMode, setViewModeState] = useState<ViewMode>(initialView);
   const [exibirMatriz, setExibirMatriz] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Sincroniza estado caso as props do servidor mudem (ex: navegação via URL)
+  useEffect(() => {
+    setRamoState(initialRamo);
+    setEscoteiros(initialEscoteiros);
+    setCatalogoDisponivel(initialCatalogoDisponivel);
+    const validId = initialEscoteiros.some((e) => e.associado.cd_associado === initialSelectedId)
+      ? initialSelectedId
+      : (initialEscoteiros[0]?.associado.cd_associado || '');
+    setSelectedIdState(validId);
+  }, [initialRamo, initialEscoteiros, initialCatalogoDisponivel, initialSelectedId]);
 
   // Sincroniza a URL suavemente e com segurança no ciclo de efeito do React
   useEffect(() => {
@@ -93,7 +106,7 @@ export function ScoutProvider({
           // Se o jovem selecionado anteriormente ainda estiver na lista nova, mantém ele; caso contrário, seleciona o primeiro
           setSelectedIdState((currentId) => {
             const exists = newList.some((e) => e.associado.cd_associado === currentId);
-            return exists ? currentId : newList[0]?.associado.cd_associado || '';
+            return exists ? currentId : (newList[0]?.associado.cd_associado || '');
           });
 
           return newList;
@@ -113,7 +126,13 @@ export function ScoutProvider({
   const setRamoAtual = useCallback(
     async (novoRamo: Ramo) => {
       setRamoState(novoRamo);
-      await refreshEscoteiros(novoRamo);
+      const newList = await refreshEscoteiros(novoRamo);
+      if (newList && newList.length > 0) {
+        setSelectedIdState((currentId) => {
+          const exists = newList.some((e) => e.associado.cd_associado === currentId);
+          return exists ? currentId : (newList[0]?.associado.cd_associado || '');
+        });
+      }
     },
     [refreshEscoteiros]
   );

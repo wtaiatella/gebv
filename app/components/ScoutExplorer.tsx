@@ -48,9 +48,10 @@ export default function ScoutExplorer() {
   } | null>(null);
 
   const escoteiro = selectedScout;
-  const activeId = selectedId || escoteiro?.associado.cd_associado || '';
+  const activeId = selectedScout?.associado.cd_associado || selectedId || '';
 
   async function handleRamoChange(novoRamo: Ramo) {
+    if (novoRamo === ramoAtual) return;
     await setRamoAtual(novoRamo);
   }
 

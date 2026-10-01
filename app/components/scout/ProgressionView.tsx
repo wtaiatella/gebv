@@ -5,9 +5,41 @@ import { ChevronDown, CheckCircle2, Circle, Clock, Award, Sparkles } from 'lucid
 import type { Escoteiro, EscoteiroEspecialidade } from '@/app/lib/data';
 
 const NOMES_CAMINHOS: Record<string, string> = {
+  // LOBINHO
+  '1': 'Caminho do integrar',
+  '2': 'Caminho do descobrir/rastrear',
+  '3': 'Caminho do caçar/das estrelas',
+  // ESCOTEIRO
   '4': 'Período Introdutório',
   '5': 'Pista e Trilha',
   '6': 'Rumo e Travessia',
+  '7': 'Insígnia Modalidade do Mar - Grumete',
+  '10': 'Insígnia Modalidade do Ar - Aviador',
+  // SENIOR
+  '11': 'Período introdutório',
+  '12': 'Escalada, Conquista e Azimute',
+  '8': 'Insígnia Modalidade do Ar - Aeronauta',
+  '9': 'Insígnia Modalidade do Mar - Naval',
+  // PIONEIRO
+  '15': 'Período introdutório',
+  '16': 'Comprometimento e Cidadania',
+};
+
+const PREFIXOS_CAMINHOS: Record<string, string> = {
+  '1': 'CI-',
+  '2': 'CDR-',
+  '3': 'CCE-',
+  '4': 'P-',
+  '5': 'PT-',
+  '6': 'RT-',
+  '7': 'IGR-',
+  '8': 'IAE-',
+  '9': 'INV-',
+  '10': 'IAV-',
+  '11': 'PIS-',
+  '12': 'ECA-',
+  '15': 'PIP-',
+  '16': 'CC-',
 };
 
 const SEM_GRUPO = '__sem_grupo__';
@@ -194,7 +226,9 @@ export default function ProgressionView({
   especialidades = [],
   catalogoDisponivel = true,
 }: ProgressionViewProps) {
-  const [abertos, setAbertos] = useState<Set<string>>(() => new Set(['4', '5', 'especialidades']));
+  const [abertos, setAbertos] = useState<Set<string>>(
+    () => new Set(['1', '2', '4', '5', '11', '12', '15', '16', 'especialidades'])
+  );
   const [espsAbertas, setEspsAbertas] = useState<Set<string>>(() => new Set());
 
   // Filtra registros inválidos caso existam
@@ -251,14 +285,14 @@ export default function ProgressionView({
 
   return (
     <div className="caminhos">
-      {/* Blocos 1, 2, 3: Caminhos do Programa Antigo */}
+      {/* Blocos de Caminhos do Programa Antigo */}
       {caminhos.map((caminho, i) => {
-        const codigo = caminho.data[0]?.cdCaminho ?? String(i + 1);
-        const nome = NOMES_CAMINHOS[codigo] ?? `Caminho ${codigo}`;
+        const codigo = caminho.cdCaminho ?? caminho.data[0]?.cdCaminho ?? String(i + 1);
+        const nome = caminho.nmCaminho || NOMES_CAMINHOS[codigo] || `Caminho ${codigo}`;
         const feitos = caminho.data.filter((a) => a.checkEscotista === 'confirmadoEscotista').length;
         const pct = caminho.totalCount ? Math.round((feitos / caminho.totalCount) * 100) : 0;
         const aberto = abertos.has(codigo);
-        const prefixo = codigo === '4' ? 'P-' : codigo === '5' ? 'PT-' : codigo === '6' ? 'RT-' : '';
+        const prefixo = PREFIXOS_CAMINHOS[codigo] || '';
         const grupos = agruparAtividades(caminho.data);
 
         return (

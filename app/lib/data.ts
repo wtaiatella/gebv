@@ -53,6 +53,8 @@ export type Atividade = {
 };
 
 export type Caminho = {
+  cdCaminho?: string;
+  nmCaminho?: string;
   totalCount: number;
   data: Atividade[];
 };
@@ -144,7 +146,10 @@ export async function getEscoteiros(
           include: {
             area: true,
             atividades: {
-              orderBy: { id: 'asc' },
+              orderBy: [
+                { nr_ordenacao: 'asc' },
+                { id: 'asc' },
+              ],
             },
           },
           orderBy: { id: 'asc' },
@@ -241,6 +246,8 @@ export async function getEscoteiros(
           }
 
           return {
+            cdCaminho: camDb.cd_caminho_paxtu || String(camDb.id),
+            nmCaminho: camDb.nm_caminho || undefined,
             totalCount: atividades.length,
             data: atividades,
           };

@@ -657,12 +657,12 @@ async function runProgressaoRelacionalTests() {
 
     const resLobinho = await getEscoteiros('Lobinho');
     assert(
-      resLobinho.catalogoDisponivel === false,
-      'AC.10: getEscoteiros(Lobinho) retorna catalogoDisponivel = false (sem catálogo estruturado)'
+      resLobinho.catalogoDisponivel === true,
+      'AC.10: getEscoteiros(Lobinho) retorna catalogoDisponivel = true com catálogo multiramo estruturado'
     );
     assert(
-      resLobinho.escoteiros.every((e) => e.progressao.length === 0),
-      'AC.10: getEscoteiros(Lobinho) retorna caminhos vazios com segurança'
+      resLobinho.escoteiros.length > 0,
+      'AC.10: getEscoteiros(Lobinho) retorna beneficiários com segurança'
     );
   } catch (err: any) {
     console.error('Erro no bloco 7:', err);
