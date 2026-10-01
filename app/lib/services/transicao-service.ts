@@ -56,6 +56,7 @@ export interface RegraSemantico {
   itens: Array<{
     pa_atividade_id: number;
     identificacao?: string;
+    ds_atividade?: string;
     score_capturado: number;
   }>;
 }
@@ -89,9 +90,18 @@ export interface ValidacaoRegraResult {
   erro?: string;
 }
 
-export function validarDetalhesRegra(regra: unknown, parentType?: string): ValidacaoRegraResult {
+// Limite de profundidade de aninhamento de contêineres (TODAS/QNT_MINIMA).
+// Protege contra alternância TODAS→QNT_MINIMA→TODAS→... não coberta pelo
+// bloqueio de auto-aninhamento imediato (mesmo tipo dentro de si mesmo).
+export const MAX_PROFUNDIDADE_REGRA = 8;
+
+export function validarDetalhesRegra(regra: unknown, parentType?: string, depth: number = 0): ValidacaoRegraResult {
   if (regra === null || regra === undefined) {
     return { valido: true };
+  }
+
+  if (depth > MAX_PROFUNDIDADE_REGRA) {
+    return { valido: false, erro: `Profundidade máxima de aninhamento excedida (limite: ${MAX_PROFUNDIDADE_REGRA} níveis)` };
   }
 
   if (typeof regra !== 'object') {
@@ -113,8 +123,9 @@ export function validarDetalhesRegra(regra: unknown, parentType?: string): Valid
       return { valido: true };
     }
     case 'ESPECIALIDADE': {
-      if (typeof r.pa_especialidade_id !== 'number') {
-        return { valido: false, erro: 'Regra ESPECIALIDADE requer pa_especialidade_id numérico' };
+      const temNome = typeof r.nm_especialidade === 'string' && r.nm_especialidade.trim().length > 0;
+      if (typeof r.pa_especialidade_id !== 'number' && !temNome) {
+        return { valido: false, erro: 'Regra ESPECIALIDADE requer pa_especialidade_id numérico ou nm_especialidade' };
       }
       const nivel = Number(r.nivel_minimo);
       if (isNaN(nivel) || nivel < 1 || nivel > 3) {
@@ -147,7 +158,7 @@ export function validarDetalhesRegra(regra: unknown, parentType?: string): Valid
         if (sub?.tipo === 'TODAS') {
           return { valido: false, erro: 'Auto-aninhamento proibido: TODAS não pode conter TODAS' };
         }
-        const subVal = validarDetalhesRegra(sub, 'TODAS');
+        const subVal = validarDetalhesRegra(sub, 'TODAS', depth + 1);
         if (!subVal.valido) return subVal;
       }
       return { valido: true };
@@ -170,7 +181,7 @@ export function validarDetalhesRegra(regra: unknown, parentType?: string): Valid
         if (sub?.tipo === 'QNT_MINIMA') {
           return { valido: false, erro: 'Auto-aninhamento proibido: QNT_MINIMA não pode conter QNT_MINIMA' };
         }
-        const subVal = validarDetalhesRegra(sub, 'QNT_MINIMA');
+        const subVal = validarDetalhesRegra(sub, 'QNT_MINIMA', depth + 1);
         if (!subVal.valido) return subVal;
       }
       return { valido: true };
@@ -180,9 +191,13 @@ export function validarDetalhesRegra(regra: unknown, parentType?: string): Valid
   }
 }
 
-export function gerarDescricaoOrigem(regra: DetalhesRegra | any, operacao?: OperacaoEquivalencia | string): string {
+export function gerarDescricaoOrigem(regra: DetalhesRegra | any, operacao?: OperacaoEquivalencia | string, depth: number = 0): string {
   if (!regra || operacao === 'SEM_EQUIVALENCIA' || operacao === OperacaoEquivalencia.SEM_EQUIVALENCIA) {
     return 'Sem equivalência direta mapeada';
+  }
+
+  if (depth > MAX_PROFUNDIDADE_REGRA) {
+    return 'Regra inválida (profundidade excedida)';
   }
 
   // Compatibilidade com payload legado em detalhes_regra
@@ -197,8 +212,7 @@ export function gerarDescricaoOrigem(regra: DetalhesRegra | any, operacao?: Oper
 
   switch (regra.tipo) {
     case 'PROGRESSOES': {
-      const ident = regra.item?.identificacao || `Atividade ${regra.item?.pa_atividade_id}`;
-      return regra.item?.ds_atividade ? `${ident} - ${regra.item.ds_atividade}` : ident;
+      return regra.item?.identificacao || `Atividade ${regra.item?.pa_atividade_id}`;
     }
     case 'ESPECIALIDADE': {
       const nome = regra.nm_especialidade || `Especialidade ID ${regra.pa_especialidade_id}`;
@@ -211,11 +225,11 @@ export function gerarDescricaoOrigem(regra: DetalhesRegra | any, operacao?: Oper
       return `Semântico [${regra.logica}]: ${itensStr}`;
     }
     case 'TODAS': {
-      const sub = (regra.blocos || []).map((b: any) => gerarDescricaoOrigem(b)).join(' E ');
+      const sub = (regra.blocos || []).map((b: any) => gerarDescricaoOrigem(b, undefined, depth + 1)).join(' E ');
       return `Todas: (${sub})`;
     }
     case 'QNT_MINIMA': {
-      const sub = (regra.blocos || []).map((b: any) => gerarDescricaoOrigem(b)).join(' OU ');
+      const sub = (regra.blocos || []).map((b: any) => gerarDescricaoOrigem(b, undefined, depth + 1)).join(' OU ');
       return `Mínimo de ${regra.quantidade_minima}: (${sub})`;
     }
     default:
@@ -239,9 +253,15 @@ export interface ResultadoAvaliacaoRegra {
 
 export function avaliarRegraRecursiva(
   regra: DetalhesRegra | any,
-  contexto: ContextoAvaliacaoTransicao
+  contexto: ContextoAvaliacaoTransicao,
+  depth: number = 0
 ): ResultadoAvaliacaoRegra {
   if (!regra) {
+    return { atingido: false, itensConquistados: [] };
+  }
+
+  if (depth > MAX_PROFUNDIDADE_REGRA) {
+    console.error(`[avaliarRegraRecursiva] Profundidade máxima excedida (${MAX_PROFUNDIDADE_REGRA}); regra malformada tratada como não atingida.`);
     return { atingido: false, itensConquistados: [] };
   }
 
@@ -362,7 +382,7 @@ export function avaliarRegraRecursiva(
       const blocos = regra.blocos || [];
       if (blocos.length === 0) return { atingido: false, itensConquistados: [] };
 
-      const subResultados: ResultadoAvaliacaoRegra[] = blocos.map((b: any) => avaliarRegraRecursiva(b, contexto));
+      const subResultados: ResultadoAvaliacaoRegra[] = blocos.map((b: any) => avaliarRegraRecursiva(b, contexto, depth + 1));
       const todosAtingidos = subResultados.every((r: ResultadoAvaliacaoRegra) => r.atingido);
       const todosItens = subResultados.flatMap((r: ResultadoAvaliacaoRegra) => r.itensConquistados);
 
@@ -377,7 +397,7 @@ export function avaliarRegraRecursiva(
       const qMin = regra.quantidade_minima || 1;
       if (blocos.length === 0) return { atingido: false, itensConquistados: [] };
 
-      const subResultados: ResultadoAvaliacaoRegra[] = blocos.map((b: any) => avaliarRegraRecursiva(b, contexto));
+      const subResultados: ResultadoAvaliacaoRegra[] = blocos.map((b: any) => avaliarRegraRecursiva(b, contexto, depth + 1));
       const subAtingidos = subResultados.filter((r: ResultadoAvaliacaoRegra) => r.atingido);
       const atingido = subAtingidos.length >= qMin;
       const itens = subAtingidos.flatMap((r: ResultadoAvaliacaoRegra) => r.itensConquistados);

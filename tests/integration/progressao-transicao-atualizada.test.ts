@@ -172,6 +172,45 @@ export async function runProgressaoTransicaoAtualizadaTests() {
     const resValQnt = validarDetalhesRegra(regraAutoAninhadaQntMinima);
     assert(resValQnt.valido === false, 'validarDetalhesRegra bloqueia auto-aninhamento de QNT_MINIMA dentro de QNT_MINIMA');
 
+    // 2.1.1 Limite de profundidade (qa-report.md #1): alternância TODAS→QNT_MINIMA→TODAS→...
+    // não é bloqueada pelo teste de auto-aninhamento imediato (tipos diferentes a cada nível),
+    // então precisa ser bloqueada por um limite explícito de profundidade.
+    function construirRegraAlternadaProfunda(niveis: number): any {
+      let regra: any = { tipo: 'PROGRESSOES', item: { pa_atividade_id: 999 } };
+      for (let i = 0; i < niveis; i++) {
+        regra =
+          i % 2 === 0
+            ? { tipo: 'TODAS', blocos: [regra] }
+            : { tipo: 'QNT_MINIMA', quantidade_minima: 1, blocos: [regra] };
+      }
+      return regra;
+    }
+    const regraAlternadaRasa = construirRegraAlternadaProfunda(4);
+    const resValRasa = validarDetalhesRegra(regraAlternadaRasa);
+    assert(resValRasa.valido === true, 'validarDetalhesRegra aceita alternância TODAS/QNT_MINIMA dentro do limite de profundidade');
+
+    const regraAlternadaProfunda = construirRegraAlternadaProfunda(30);
+    const resValProfunda = validarDetalhesRegra(regraAlternadaProfunda);
+    assert(resValProfunda.valido === false, 'validarDetalhesRegra rejeita alternância TODAS/QNT_MINIMA além do limite de profundidade (proteção contra stack overflow)');
+
+    const avaliacaoProfunda = avaliarRegraRecursiva(regraAlternadaProfunda, {
+      atividadesPaConcluidasIds: new Set([999]),
+      atividadesPaIdentificacoes: new Set<string>(),
+      especialidadesPa: new Map<string, number>(),
+    });
+    assert(avaliacaoProfunda.atingido === false, 'avaliarRegraRecursiva não estoura a pilha em regra malformada além do limite de profundidade (retorna não atingido)');
+
+    // 2.1.2 ESPECIALIDADE identificada só por nome (formato do catálogo canônico) é válida;
+    // sem id nem nome é inválida.
+    assert(
+      validarDetalhesRegra({ tipo: 'ESPECIALIDADE', nm_especialidade: 'Acampamento', nivel_minimo: 1 }).valido === true,
+      'validarDetalhesRegra aceita ESPECIALIDADE identificada por nm_especialidade (sem pa_especialidade_id)'
+    );
+    assert(
+      validarDetalhesRegra({ tipo: 'ESPECIALIDADE', nivel_minimo: 1 }).valido === false,
+      'validarDetalhesRegra rejeita ESPECIALIDADE sem id nem nome'
+    );
+
     // 2.2 Validação de Regra Composta Válida (QNT_MINIMA dentro de TODAS)
     const regraCompostaValida = {
       tipo: 'TODAS',
@@ -477,6 +516,34 @@ export async function runProgressaoTransicaoAtualizadaTests() {
       where: { operacao: 'PROGRESSOES' },
     });
     assert(regrasProgressoes === 285, `Exatamente 285 regras possuem operacao = PROGRESSOES (obtido: ${regrasProgressoes})`);
+
+    // =========================================================================
+    // BLOCO 7 (regressão qa-report.md #0): Contrato de dados da Coluna 3 (NovoProgramaView)
+    // A Coluna 3 e o EditarRegraModal consomem `detalhes_regra`/`itens_conquistados_match`
+    // diretamente do payload de getProgressoNovoModelo — este bloco garante que o backend
+    // realmente entrega esses campos populados e resolvidos (pa_atividade_id != 0) para uma
+    // regra composta real do catálogo, evitando reincidência do bug de Coluna 3 em branco.
+    // =========================================================================
+    console.log('\n🔹 Bloco 7: Contrato de Dados da Coluna 3 — detalhes_regra e itens_conquistados_match');
+    const { getProgressoNovoModelo } = await import('../../app/lib/services/transicao-service');
+    const progressoTeste = await getProgressoNovoModelo(TEST_ASSOC_ID, Ramo.ESCOTEIRO);
+    const todasAsAcoes = Object.values(progressoTeste.acoes_por_bloco).flat();
+
+    const acaoGilwell = todasAsAcoes.find((a) => a.ds_acao.includes('Percurso de Gilwell'));
+    assert(!!acaoGilwell, 'Ação "Percurso de Gilwell" (regra QNT_MINIMA composta) encontrada no payload de progresso');
+
+    if (acaoGilwell) {
+      const dr: any = acaoGilwell.detalhes_regra;
+      assert(dr !== null && dr !== undefined, 'Ação com regra composta retorna detalhes_regra não nulo (consumido pela Coluna 3)');
+      assert(dr?.tipo === 'QNT_MINIMA' && Array.isArray(dr?.blocos) && dr.blocos.length === 2, 'detalhes_regra preserva a estrutura QNT_MINIMA com 2 sub-blocos PROGRESSOES');
+      const idsResolvidos = (dr?.blocos || []).every((b: any) => typeof b?.item?.pa_atividade_id === 'number' && b.item.pa_atividade_id > 0);
+      assert(idsResolvidos, 'Todos os sub-blocos PROGRESSOES possuem pa_atividade_id resolvido (!= 0) — enriquecimento do seed funcionou');
+      assert(Array.isArray(acaoGilwell.itens_conquistados_match), 'itens_conquistados_match é um array (usado pela Coluna 3 para status ✓/✗ por item)');
+    }
+
+    // Ações com operação SEM_EQUIVALENCIA continuam sem detalhes_regra utilizável (badge neutro)
+    const acaoSemEquiv = todasAsAcoes.find((a) => a.operacao === 'SEM_EQUIVALENCIA');
+    assert(!!acaoSemEquiv, 'Existe ao menos uma ação SEM_EQUIVALENCIA no payload para validar o badge neutro');
 
     console.log(`\n🏁 Suíte executada: ${passed} passaram, ${failed} falharam.\n`);
   } catch (err: any) {

@@ -25,14 +25,20 @@ interface CachedPaAtividade {
   embedding: number[];
 }
 
-let cachedAtividadesPa: CachedPaAtividade[] | null = null;
-let loadingPromise: Promise<CachedPaAtividade[]> | null = null;
+// Cache isolado por ramo (Lobinho/Escoteiro/Sênior/Pioneiro) — um Map único compartilhado
+// misturaria o catálogo de PA de um ramo nas sugestões de outro (ver qa-report.md #4).
+// TTL curto para que embeddings regerados pelo script offline sejam vistos sem reiniciar o servidor.
+const CACHE_TTL_MS = 5 * 60 * 1000;
+const cachedAtividadesPaPorRamo = new Map<Ramo, { at: number; data: CachedPaAtividade[] }>();
+const loadingPromisePorRamo = new Map<Ramo, Promise<CachedPaAtividade[]>>();
 
 async function getAtividadesPaCached(ds_ramo: Ramo): Promise<CachedPaAtividade[]> {
-  if (cachedAtividadesPa && cachedAtividadesPa.length > 0) {
-    return cachedAtividadesPa;
+  const cached = cachedAtividadesPaPorRamo.get(ds_ramo);
+  if (cached && cached.data.length > 0 && Date.now() - cached.at < CACHE_TTL_MS) {
+    return cached.data;
   }
 
+  let loadingPromise = loadingPromisePorRamo.get(ds_ramo);
   if (!loadingPromise) {
     loadingPromise = (async () => {
       const rows = await prisma.paAtividade.findMany({
@@ -56,7 +62,7 @@ async function getAtividadesPaCached(ds_ramo: Ramo): Promise<CachedPaAtividade[]
         },
       });
 
-      cachedAtividadesPa = rows.map((r) => ({
+      const atividades = rows.map((r) => ({
         id: r.id,
         identificacao: r.identificacao || '',
         ds_atividade: r.ds_atividade,
@@ -65,8 +71,12 @@ async function getAtividadesPaCached(ds_ramo: Ramo): Promise<CachedPaAtividade[]
         embedding: r.embedding,
       }));
 
-      return cachedAtividadesPa;
-    })();
+      cachedAtividadesPaPorRamo.set(ds_ramo, { at: Date.now(), data: atividades });
+      return atividades;
+    })().finally(() => {
+      loadingPromisePorRamo.delete(ds_ramo);
+    });
+    loadingPromisePorRamo.set(ds_ramo, loadingPromise);
   }
 
   return loadingPromise;
