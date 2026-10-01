@@ -15,6 +15,17 @@ function getCsrfToken(cookie) {
   return '';
 }
 
+function slugify(text) {
+  return (text || '')
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 /**
  * Resolve o cd_associado e número de registro a partir do banco de dados ou fallback
  */
@@ -70,9 +81,10 @@ export async function fetchAssociadoRaw(registroInput, customCookie) {
     throw new Error('Nenhum cookie de sessão do Paxtu fornecido (defina PAXTU_COOKIE no .env ou passe como 2º parâmetro).');
   }
 
-  // Diretório de destino: gebv/data/raw/[num. registro]
+  // Diretório de destino: gebv/data/raw/[num. registro]-[nome]
   const baseDir = process.cwd().endsWith('gebv') ? process.cwd() : path.join(process.cwd(), 'gebv');
-  const outDir = path.join(baseDir, 'data', 'raw', nrRegistro);
+  const slugNome = nmAssociado ? `-${slugify(nmAssociado)}` : '';
+  const outDir = path.join(baseDir, 'data', 'raw', `${nrRegistro}${slugNome}`);
   await mkdir(outDir, { recursive: true });
   console.log(`Destino:   ${outDir}\n`);
 
@@ -184,6 +196,126 @@ export async function fetchAssociadoRaw(registroInput, customCookie) {
     }
   }
 
+  // Extração de Especialidades
+  try {
+    console.log(`\n-> Buscando perfil para extração de especialidades...`);
+    const espDir = path.join(outDir, 'especialidades');
+    await mkdir(espDir, { recursive: true });
+
+    const perfilRes = await fetch(`${BASE_URL}/associado/perfil`, {
+      method: 'POST',
+      headers: {
+        ...defaultHeaders,
+        'content-type': 'application/x-www-form-urlencoded',
+        ...(csrfToken ? { 'x-csrf-token': csrfToken } : {}),
+        accept: 'text/html',
+      },
+      body: new URLSearchParams({
+        associate_code: cdAssociado,
+        ...(csrfToken ? { _token: csrfToken } : {}),
+      }),
+    });
+
+    if (perfilRes.ok) {
+      const perfilHtml = await perfilRes.text();
+      const perfilPath = path.join(outDir, '08-perfil.html');
+      await writeFile(perfilPath, perfilHtml, 'utf-8');
+      metadata.arquivos_extraidos.push({
+        arquivo: '08-perfil.html',
+        url: `${BASE_URL}/associado/perfil`,
+        status: perfilRes.status,
+        tamanho_bytes: perfilHtml.length,
+        is_json: false,
+      });
+
+      const cards = [...perfilHtml.matchAll(/class="[^"]*specialty-card[^"]*"[^>]*data-specialty-id="(\d+)"/g)];
+      const espIds = [...new Set(cards.map((m) => Number(m[1])))].filter((id) => !isNaN(id) && id > 0).sort((a, b) => a - b);
+      console.log(`   ✓ Encontradas ${espIds.length} especialidades no perfil.`);
+
+      const todasEsps = [];
+      for (const espId of espIds) {
+        const espUrl = `${BASE_URL}/associado/associado/progressoes/especialidades/${espId}/${cdAssociado}`;
+        try {
+          const espRes = await fetch(espUrl, { headers: defaultHeaders });
+          if (espRes.ok) {
+            const espJson = await espRes.json();
+            todasEsps.push(espJson);
+            const slug = slugify(espJson.ds_especialidade);
+            const espFileName = `esp-${espId}-${slug}.json`;
+            const espFile = path.join(espDir, espFileName);
+            const espContent = JSON.stringify(espJson, null, 2);
+            await writeFile(espFile, espContent, 'utf-8');
+            metadata.arquivos_extraidos.push({
+              arquivo: `especialidades/${espFileName}`,
+              url: espUrl,
+              status: espRes.status,
+              tamanho_bytes: Buffer.byteLength(espContent, 'utf-8'),
+              is_json: true,
+              cd_especialidade: espId,
+              ds_especialidade: espJson.ds_especialidade,
+              nr_nivel: espJson.nr_nivel,
+            });
+          }
+        } catch (espErr) {
+          console.error(`   ✗ Falha ao obter especialidade ${espId}:`, espErr.message);
+        }
+      }
+
+      const consolidadoPath = path.join(outDir, '08-especialidades.json');
+      const consolidadoContent = JSON.stringify(todasEsps, null, 2);
+      await writeFile(consolidadoPath, consolidadoContent, 'utf-8');
+      metadata.arquivos_extraidos.push({
+        arquivo: '08-especialidades.json',
+        descricao: 'Consolidado com todas as especialidades extraídas do Paxtu100',
+        total_especialidades: todasEsps.length,
+        tamanho_bytes: Buffer.byteLength(consolidadoContent, 'utf-8'),
+        is_json: true,
+      });
+      metadata.total_especialidades = todasEsps.length;
+
+      // Extração de Conquistas e Insígnias
+      const branchMap = {
+        '1': 'Escoteiro',
+        '2': 'Lobinho',
+        '3': 'Sênior',
+        '4': 'Pioneiro',
+        '5': 'Filhote',
+        '9': 'Escotista',
+      };
+      const achRegex = /<div[^>]*class="[^"]*achievement-card[^"]*"[^>]*data-branch="([^"]*)"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/g;
+      const achMatches = [...perfilHtml.matchAll(achRegex)];
+      const conquistas = [];
+      for (const m of achMatches) {
+        const branchId = m[1];
+        const block = m[2];
+        const imgMatch = block.match(/<img[^>]*src="([^"]+)"/);
+        const titleMatch = block.match(/<p class="h6 mb-2 fw-bold">\s*([^<]+)<\/p>/);
+        const dateMatch = block.match(/<p class="h6">\s*([^<]+)<\/p>/);
+        conquistas.push({
+          titulo: titleMatch ? titleMatch[1].trim() : '',
+          data_conquista: dateMatch ? dateMatch[1].trim() : '',
+          branch_id: branchId,
+          ramo: branchMap[branchId] || `Ramo ${branchId}`,
+          imagem_url: imgMatch ? imgMatch[1] : '',
+        });
+      }
+      const conquistasPath = path.join(outDir, '09-conquistas.json');
+      const conquistasContent = JSON.stringify(conquistas, null, 2);
+      await writeFile(conquistasPath, conquistasContent, 'utf-8');
+      metadata.arquivos_extraidos.push({
+        arquivo: '09-conquistas.json',
+        descricao: 'Conquistas e insígnias extraídas do perfil HTML do Paxtu100',
+        total_conquistas: conquistas.length,
+        tamanho_bytes: Buffer.byteLength(conquistasContent, 'utf-8'),
+        is_json: true,
+      });
+      metadata.total_conquistas = conquistas.length;
+    }
+  } catch (err) {
+    console.error('   ✗ Falha ao processar especialidades/conquistas:', err.message);
+  }
+
+  metadata.total_arquivos = metadata.arquivos_extraidos.length;
   // Salva metadata de resumo da extração
   await writeFile(path.join(outDir, '00-extracao-info.json'), JSON.stringify(metadata, null, 2), 'utf-8');
   console.log(`\n★ Concluído! Todos os dados brutos foram salvos em: ${outDir}\n`);
