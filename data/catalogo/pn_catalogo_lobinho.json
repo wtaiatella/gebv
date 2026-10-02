@@ -1,0 +1,3567 @@
+{
+  "ramo": "LOBINHO",
+  "eixos": [
+    "Habilidades para a Vida",
+    "Meio Ambiente",
+    "Paz e Desenvolvimento",
+    "Saúde e Bem-Estar"
+  ],
+  "blocos": [
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 1,
+      "ds_intencionalidade": "Gosto de conhecer muitos assuntos, aprender com diferentes pessoas e buscar informações em vários lugares para descobrir novas ideias e usar tudo isso nas atividades."
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 2,
+      "ds_intencionalidade": "Participo das atividades com responsabilidade, cumpro minhas tarefas e ajudo sempre que posso. Penso sobre o que vivo, faço escolhas com cuidado e aprendo a usar o dinheiro de maneira correta no meu dia a dia."
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 3,
+      "ds_intencionalidade": "Uso minha criatividade para encontrar diferentes soluções para os desafios do dia a dia e gosto de testar novas formas de resolver problemas."
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 4,
+      "ds_intencionalidade": "Reconheço minhas emoções e aprendo a lidar com diferentes situações, sempre tentando tirar algo bom de cada experiência."
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 5,
+      "ds_intencionalidade": "Procuro usar apenas o que preciso, sem desperdiçar, e consumo com cuidado para ajudar a preservar a natureza e seus recursos."
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 6,
+      "ds_intencionalidade": "Cuido do planeta com atitudes que ajudam a diminuir os efeitos das mudanças climáticas no meu dia a dia."
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 7,
+      "ds_intencionalidade": "Observo e respeito todos os seres vivos, entendendo que cada um tem um papel importante na natureza."
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "nr_acoes_fixas_obrigatorias": 6,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 8,
+      "ds_intencionalidade": "Aproveito as atividades ao ar livre com cuidado e responsabilidade, sempre protegendo a natureza e deixando cada lugar melhor do que encontrei."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 9,
+      "ds_intencionalidade": "Procuro fazer boas ações todos os dias, em casa, na escola e na comunidade, ajudando a tornar o mundo um lugar melhor."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "nr_acoes_fixas_obrigatorias": 3,
+      "nr_acoes_variaveis_exigidas": 2,
+      "nr_ordem": 10,
+      "ds_intencionalidade": "Participo das decisões em grupo com respeito, ouvindo os outros e ajudando para que todos possam falar e escolher juntos."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 11,
+      "ds_intencionalidade": "Gosto de conhecer e valorizar a cultura da minha comunidade e do meu país, explorando histórias, tradições e costumes em diferentes atividades."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 12,
+      "ds_intencionalidade": "Participo de atividades que incentivam a paz e o respeito entre as pessoas, aprendendo a conviver bem com diferentes crenças e jeitos de pensar."
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 13,
+      "ds_intencionalidade": "Procuro agir sempre de acordo com os valores da minha Promessa de Lobinho, sendo amigo, leal e prestativo com todos ao meu redor."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "nr_acoes_fixas_obrigatorias": 4,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 14,
+      "ds_intencionalidade": "Conheço meu corpo, respeito as diferenças entre as pessoas e pratico atividades que me ajudam a ficar mais ágil, forte e flexível. Também aprendo técnicas simples de primeiros socorros para ajudar quando alguém precisa."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 15,
+      "ds_intencionalidade": "Descubro e respeito as diferentes crenças espirituais da minha comunidade, demonstrando a minha fé com respeito e bondade em casa e entre meus amigos."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "nr_acoes_fixas_obrigatorias": 3,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 16,
+      "ds_intencionalidade": "Cuido de mim praticando atividades físicas, tendo uma alimentação saudável e mantendo minha higiene e a do lugar onde estou sempre em dia."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 17,
+      "ds_intencionalidade": "Adoto hábitos que me ajudam a ficar bem, tirando momentos para relaxar, me divertir e cuidar do meu bem-estar e do bem-estar das pessoas ao meu redor."
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 18,
+      "ds_intencionalidade": "Faço novas amizades, fortaleço meus laços com os amigos e procuro me relacionar de um jeito saudável e positivo com todos."
+    }
+  ],
+  "acoes": [
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::3",
+      "excel_row": 3,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar uma especialidade sobre um tema de seu interesse e que seja um conhecimento novo.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::4",
+      "excel_row": 4,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Fixa",
+      "modalidade": "Ar",
+      "ds_acao": "Visitar, com a alcateia, um aeródromo, conhecendo seu funcionamento.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::5",
+      "excel_row": 5,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Visitar, com a alcateia, um porto, marina ou iate clube, conhecendo seu funcionamento.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::6",
+      "excel_row": 6,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Escolher um novo idioma e aprender cinco frases úteis.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::7",
+      "excel_row": 7,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Contar para a alcateia a história de um livro que tenha lido.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::8",
+      "excel_row": 8,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer uma biblioteca e pedir a recomendação de um livro ao bibliotecário, sobre temas de seu interesse.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::9",
+      "excel_row": 9,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Demonstrar para a alcateia um conhecimento ou habilidade que possui.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::10",
+      "excel_row": 10,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ouvir a história \"O aguilhão do rei\" e contar suas conclusões.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::11",
+      "excel_row": 11,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Com a ajuda dos responsáveis, escrever uma carta para um Velho Lobo e enviá-la pelo correio ou por e-mail.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::12",
+      "excel_row": 12,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar à alcateia uma profissão de seu interesse, explicando os requisitos necessários para exercê-la.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::13",
+      "excel_row": 13,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Demonstrar para a alcateia uma habilidade que aprendeu com outra pessoa (familiares, amigos ou convidados).",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::14",
+      "excel_row": 14,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Montar um \"diário de curiosidades\" com cinco coisas novas aprendidas e contar para a alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::15",
+      "excel_row": 15,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Participar de um evento aeronáutico, como uma demonstração de acrobacias aéreas, portões abertos em bases aéreas ou aeroportos, torneios aeromodelismo ou eventos similares.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::16",
+      "excel_row": 16,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Identificar as partes básicas de uma aeronave, em maquete, desenho ou visita.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::17",
+      "excel_row": 17,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Mar",
+      "ds_acao": "Identificar partes básicas de uma embarcação em maquete, desenho ou visita.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::18",
+      "excel_row": 18,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Mar",
+      "ds_acao": "Reconhecer tipos de água (doce/salgada) e listar 3 diferenças percebidas.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::19",
+      "excel_row": 19,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Arquitetura e Urbanismo, Astronáutica, Astronomia, Aeromodelismo, Biblioteconomia, Cartografia, Comunicações, Confeitaria, Construção Civil, Criptografia, Culinária, Design de Interiores, E-Sports, Etiqueta, Ferramentas de Corte, Fiscalização de Pátio de Aeródromo, Informática, Investimentos, Jornalismo, Manicure, Manutenção Elétrica, Marcenaria, Marinharia, Matemática, Mecânica Aérea, Mecânica de Automóveis, Navegação Aérea, Observação Aérea, Planador, Prevenção de Incêndio, Produção Gráfica, Programação, Química, Radioamadorismo, Radioescuta, Redes de Computadores, Segurança e Emergência Náutica, Segurança no Trânsito, Simulação Aérea, Sinalização, Técnica Aeronáutica, Vendas, Web Design",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-12",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer o material individual para um acampamento / acantonamento, arrumar a sua mochila e enrolar um saco de dormir.",
+      "regra_qtd_texto": "PA Complementar (PTS-12)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-13",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aprender cinco frases úteis em outro idioma.",
+      "regra_qtd_texto": "PA Complementar (PTS-13)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-14",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Acertar a maioria dos objetos num jogo do Kim (de visão, audição, tato, olfato ou paladar).",
+      "regra_qtd_texto": "PA Complementar (PTS-14)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-15",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ler no Guia do Lobinho a história das Caçadas de Kaa.",
+      "regra_qtd_texto": "PA Complementar (PTS-15)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-16",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Contar resumidamente para a Alcateia  um  livro  que  tenha  lido por recomendação de seus pais ou professores.",
+      "regra_qtd_texto": "PA Complementar (PTS-16)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-18",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Encapar um livro.",
+      "regra_qtd_texto": "PA Complementar (PTS-18)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-19",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Embrulhar um presente.",
+      "regra_qtd_texto": "PA Complementar (PTS-19)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-20",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Costurar um botão ou um distintivo em seu uniforme ou manta de Conselho.",
+      "regra_qtd_texto": "PA Complementar (PTS-20)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-28",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Mostrar a um Velho Lobo os melhores trabalhos ou tarefas que realizou nos últimos seis meses.",
+      "regra_qtd_texto": "PA Complementar (PTS-28)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::PTS-29",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Planejar, organizar e executar um pequeno projeto científico, artístico ou utilitário.",
+      "regra_qtd_texto": "PA Complementar (PTS-29)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::RC-23",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ler ou ouvir um dos episódios do Livro da Selva: \"Os Cães Vermelhos\", \"O aguilhão do rei\" ou \"Como apareceu o medo\" e expressar suas conclusões.",
+      "regra_qtd_texto": "PA Complementar (RC-23)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::RC-24",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os personagens da Jângal e suas características, relacionando suas qualidades com as das pessoas com as quais convive.",
+      "regra_qtd_texto": "PA Complementar (RC-24)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::RC-25",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma roda de conversa da Alcatéia sobre um fato ocorrido ou sobre um filme / livro e emitir a sua opinião.",
+      "regra_qtd_texto": "PA Complementar (RC-25)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::RC-26",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Possuir uma pequena biblioteca de livros infantis tendo lido a maioria deles.",
+      "regra_qtd_texto": "PA Complementar (RC-26)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::RC-27",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer  e  usar  uma  bússola  e outras três novas ferramentas.",
+      "regra_qtd_texto": "PA Complementar (RC-27)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::RC-28",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber como usar os recursos da farmácia da Alcatéia e os cuidados que deve ter com eles.",
+      "regra_qtd_texto": "PA Complementar (RC-28)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::RC-29",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Descobrir o que as pessoas fazem em cinco profissões diferentes.",
+      "regra_qtd_texto": "PA Complementar (RC-29)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::RC-30",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Entrevistar alguém que tenha uma profissão de seu interesse, saber o que é preciso para bem desempenhá- la e contar para a Alcatéia.",
+      "regra_qtd_texto": "PA Complementar (RC-30)"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::62",
+      "excel_row": 62,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte insígnia no nível 1+: Insígnia do Aprender",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Autonomia e Liderança::63",
+      "excel_row": 63,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar os materiais individuais e arrumar sua mochila para um acampamento de alcateia.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Autonomia e Liderança::64",
+      "excel_row": 64,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Navegar em uma embarcação e usar corretamente o colete salva-vidas, seguindo as regras de segurança.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Autonomia e Liderança::65",
+      "excel_row": 65,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Avaliar as atividades das quais participou, identificando pontos positivos e negativos e sugerindo melhorias.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Autonomia e Liderança::66",
+      "excel_row": 66,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Fazer uma compra e prestar contas do pagamento.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Autonomia e Liderança::67",
+      "excel_row": 67,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer os meios de transporte, farmácias, correios, hospitais, supermercados, pontos de ônibus/estações de trem/metrô, igrejas e parques próximos à sua casa.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Autonomia e Liderança::68",
+      "excel_row": 68,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade sobre o uso do dinheiro de forma responsável.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Autonomia e Liderança::69",
+      "excel_row": 69,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar riscos domésticos (facas, fogo, eletricidade, gás, janelas etc.) e realizar uma ação para prevenir acidentes (cartaz, panfleto, entre outros).",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Autonomia e Liderança::70",
+      "excel_row": 70,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Registrar em um quadro ou tabela simples como usou o dinheiro da mesada.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Autonomia e Liderança::RC-16",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma compra e prestar contas do pagamento.",
+      "regra_qtd_texto": "PA Complementar (RC-16)"
+    },
+    {
+      "chave": "Autonomia e Liderança::RC-17",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer os nós de escota, escota alceado, volta do fiel, saber para que servem e aplicá-los numa atividade.",
+      "regra_qtd_texto": "PA Complementar (RC-17)"
+    },
+    {
+      "chave": "Autonomia e Liderança::71",
+      "excel_row": 71,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Empreendedorismo, Educação Financeira, Administração, Reparos Domésticos, Oratória",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Criatividade e Inovação::72",
+      "excel_row": 72,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Construir uma engenhoca simples (varal, suporte de panela).",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Criatividade e Inovação::73",
+      "excel_row": 73,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Fixa",
+      "modalidade": "Ar",
+      "ds_acao": "Construir três diferentes modelos de avião de papel, testando os princípios da aerodinâmica.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Criatividade e Inovação::74",
+      "excel_row": 74,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em uma atividade de trabalhos manuais, utilizar a técnica de embrulho de presente e encapar um livro para sua melhor conservação.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::75",
+      "excel_row": 75,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Costurar um distintivo em seu uniforme ou vestuário escoteiro.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::76",
+      "excel_row": 76,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar e apresentar com sua matilha uma esquete em uma Flor Vermelha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::77",
+      "excel_row": 77,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Divulgar sua UEL na escola por meio de cartazes, depoimentos, vídeos e folders.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::78",
+      "excel_row": 78,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar um trabalho artístico para sua alcateia, como: pintura, modelagem, colagem etc.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::79",
+      "excel_row": 79,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar, organizar e executar um pequeno projeto científico, artístico ou utilitário.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::80",
+      "excel_row": 80,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ensinar um jogo para outros lobinhos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::81",
+      "excel_row": 81,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Durante uma Flor Vermelha, utilizando diversos materiais para criar uma caracterização.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::82",
+      "excel_row": 82,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar um código simples (cores, símbolos ou sons) para enviar uma mensagem para outro lobinho decifrar.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::83",
+      "excel_row": 83,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Montar uma biruta simples e registrar a direção do vento em três dias diferentes.\nFazer e empinar uma pipa seguindo as regras de segurança.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::84",
+      "excel_row": 84,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Mar",
+      "ds_acao": "Fazer um trabalho artesanal marinheiro com cabos, usando nós característicos da marinharia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Criatividade e Inovação::PTS-21",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da criação e apresentação de um esquete em uma Flor Vermelha.",
+      "regra_qtd_texto": "PA Complementar (PTS-21)"
+    },
+    {
+      "chave": "Criatividade e Inovação::PTS-22",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma pintura, modelagem, colagem ou outro trabalho em arte visual e expor na gruta da Alcateia.",
+      "regra_qtd_texto": "PA Complementar (PTS-22)"
+    },
+    {
+      "chave": "Criatividade e Inovação::PTS-23",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber cantar três canções típicas da Alcateia e participar de uma dança da Jângal.",
+      "regra_qtd_texto": "PA Complementar (PTS-23)"
+    },
+    {
+      "chave": "Criatividade e Inovação::85",
+      "excel_row": 85,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Arte Digital, Artes Visuais, Artesanato, Comédia, Costura e Estilismo, Encadernação, Grafite, HQ, Maquete, Pintura, Propaganda e Marketing, Robótica, Videomaker",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Inteligência Emocional::86",
+      "excel_row": 86,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conversar com a família, responsáveis ou Velhos Lobos sobre pontos que gosta e não gosta em si mesmo e como melhorá-los.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Inteligência Emocional::87",
+      "excel_row": 87,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Contar a um Velho Lobo sobre um momento difícil recente e descrever o que ajudou a melhorar a situação.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Inteligência Emocional::88",
+      "excel_row": 88,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Cantar canções com a alcateia e participar de uma dança da Jângal.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Inteligência Emocional::89",
+      "excel_row": 89,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar situações perigosas, sabendo como agir e a quem recorrer.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Inteligência Emocional::90",
+      "excel_row": 90,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Escolher um pequeno desafio que dá insegurança (ex.: falar em público) e tentar superá-lo: depois contar a um Velho Lobo o que mudou.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Inteligência Emocional::91",
+      "excel_row": 91,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Aprender e ensinar para a alcateia uma atividade de relaxamento.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Inteligência Emocional::PTS-31",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Cumprimentar     outros     membros do Grupo Escoteiro por meio da saudação do lobinho e do aperto de mão.",
+      "regra_qtd_texto": "PA Complementar (PTS-31)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-18",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Dar corretamente um recado da Alcatéia para seus pais ou vice- versa.",
+      "regra_qtd_texto": "PA Complementar (RC-18)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-19",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ensinar um jogo para os (as) lobinhos (as).",
+      "regra_qtd_texto": "PA Complementar (RC-19)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-20",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escrever uma carta para um Velho Lobo e colocá-la no correio ou passar  um  telegrama  ou  mandar uma mensagem por e-mail.",
+      "regra_qtd_texto": "PA Complementar (RC-20)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-21",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Demonstrar para a Alcatéia um conhecimento ou uma habilidade que possui.",
+      "regra_qtd_texto": "PA Complementar (RC-21)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-22",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Avaliar  uma  atividade  de  que tenha participado, identificando os pontos positivos e negativos e fazer sugestões de melhoria.",
+      "regra_qtd_texto": "PA Complementar (RC-22)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-31",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Analisar o comportamento das personagens em Caçadas de Kaa, percebendo as ações certas e as erradas e suas conseqüências.",
+      "regra_qtd_texto": "PA Complementar (RC-31)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-32",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma lista com coisas que pode fazer e coisas que não pode fazer e discutir sobre elas em roda de conversa da Alcatéia.",
+      "regra_qtd_texto": "PA Complementar (RC-32)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-37",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Empenhar-se para fazer alguma coisa que tenha encontrado dificuldade ou que não tenha conseguido fazer.",
+      "regra_qtd_texto": "PA Complementar (RC-37)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-38",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Listar os seus pontos fortes e seus pontos fracos, identificar o que mais precisa melhorar em você e esforçar- se para isso.",
+      "regra_qtd_texto": "PA Complementar (RC-38)"
+    },
+    {
+      "chave": "Inteligência Emocional::RC-46",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pedir para a sua Matilha e para os Velhos Lobos escreverem algumas qualidades e defeitos seus e refletir sobre isso.",
+      "regra_qtd_texto": "PA Complementar (RC-46)"
+    },
+    {
+      "chave": "Consumo Responsável::92",
+      "excel_row": 92,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um piquenique, excursão ou acampamento com a alcateia, sem a utilização de plásticos descartáveis.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Consumo Responsável::93",
+      "excel_row": 93,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Separar e classificar materiais para coleta seletiva do lixo em casa.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::94",
+      "excel_row": 94,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Observar os rótulos e as embalagens dos produtos usados no dia a dia, entender sua origem e destino, e conversar com os Velhos Lobos sobre o tema.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::95",
+      "excel_row": 95,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Consertar roupas ou brinquedos com a ajuda de adultos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::96",
+      "excel_row": 96,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Adotar diariamente práticas sustentáveis, como apagar luzes, separar o lixo e reduzir o uso de plástico, motivando o seu entorno a fazer o mesmo.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::97",
+      "excel_row": 97,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Escolher frutas e vegetais da estação e produzidos localmente e utilizá-los em um lanche coletivo da alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::98",
+      "excel_row": 98,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Nas refeições, colocar apenas a quantidade de comida que vai consumir e aproveitar as sobras quando possível.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::99",
+      "excel_row": 99,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Selecionar brinquedos e roupas em bom estado e doar para uma campanha, ação comunitária ou instituição de caridade.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::100",
+      "excel_row": 100,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Reutilizar cadernos com folhas sobrando e outros materiais escolares, como mochilas ou estojos em bom estado.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::101",
+      "excel_row": 101,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Cuidar dos materiais da sua alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::102",
+      "excel_row": 102,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Evitar desperdício de água, fechando a torneira ao escovar os dentes ou lavar a louça e reduzindo o tempo de banho, sem ficar com a água ligada sem necessidade.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::103",
+      "excel_row": 103,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Agricultura, Aquicultura, Energia",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::106",
+      "excel_row": 106,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Fazer um modelo de aeronave à sua escolha (avião, helicóptero, foguete, drone, balão etc.), reutilizando materiais e embalagens que seriam descartados.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Consumo Responsável::PTS-49",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar a cuidar de uma planta ou de um animal de estimação em casa.",
+      "regra_qtd_texto": "PA Complementar (PTS-49)"
+    },
+    {
+      "chave": "Consumo Responsável::PTS-50",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Selecionar e classificar materiais para coleta seletiva do lixo em sua casa.",
+      "regra_qtd_texto": "PA Complementar (PTS-50)"
+    },
+    {
+      "chave": "Consumo Responsável::PTS-51",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer economia de água e de energia elétrica, relatando a um Velho Lobo os resultados.",
+      "regra_qtd_texto": "PA Complementar (PTS-51)"
+    },
+    {
+      "chave": "Consumo Responsável::107",
+      "excel_row": 107,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades ou insígnias no nível 1+: Horticultura, Reduzir, Reciclar, Reutilizar",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Mudanças Climáticas::108",
+      "excel_row": 108,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Reconhecer na natureza os sinais de mudança do tempo.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::109",
+      "excel_row": 109,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Cultivar uma horta sozinho ou com a alcateia, promovendo o cuidado com a natureza.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::110",
+      "excel_row": 110,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar uma experiência de condensação do vapor da água, relacionando-a com as nuvens e as chuvas.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::111",
+      "excel_row": 111,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma caçada urbana para identificar práticas prejudiciais e sustentáveis para a natureza, e sugerir soluções.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::112",
+      "excel_row": 112,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um plantio de árvores em áreas urbanas e discutir com os Velhos Lobos sobre a importância da arborização.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::113",
+      "excel_row": 113,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conversar com os Velhos Lobos sobre como as ações cotidianas afetam as mudanças climáticas.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::114",
+      "excel_row": 114,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar um local que use energia renovável para entender seu impacto.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::115",
+      "excel_row": 115,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ser bem avaliado pelos pais e responsáveis sobre o consumo consciente de água e energia elétrica em casa.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::116",
+      "excel_row": 116,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em uma atividade ao ar livre, observar as nuvens no céu, reconhecendo diferentes aparências e altitudes.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::117",
+      "excel_row": 117,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Energia, Agricultura, Jardinagem, Paisagismo",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::121",
+      "excel_row": 121,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Ar",
+      "ds_acao": "Em uma atividade ao ar livre, observar as nuvens no céu, reconhecendo diferentes aparências e altitudes.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Mudanças Climáticas::RC-55",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar na manutenção de um jardim ou de uma horta.",
+      "regra_qtd_texto": "PA Complementar (RC-55)"
+    },
+    {
+      "chave": "Mudanças Climáticas::122",
+      "excel_row": 122,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades ou insígnias no nível 1+: Meteorologia, Escoteiros pela Energia Solar",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::123",
+      "excel_row": 123,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Explorar a fauna e a flora local em uma atividade com a alcateia, compreendendo a importância da preservação.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Preservação da Biodiversidade::124",
+      "excel_row": 124,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Fixa",
+      "modalidade": "Ar",
+      "ds_acao": "Identificar as aves da região e seus hábitos.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Preservação da Biodiversidade::125",
+      "excel_row": 125,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Conhecer as características do bioma aquático local.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Preservação da Biodiversidade::126",
+      "excel_row": 126,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Cuidar de uma planta ou de um animal de estimação em casa, demonstrando estes cuidados para a alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::127",
+      "excel_row": 127,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em uma atividade ao ar livre com a alcateia, identificar as características da região onde mora, como relevo, clima, hidrografia, bioma, fauna e flora.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::128",
+      "excel_row": 128,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar um \"diário da biodiversidade\", registrando plantas, animais e insetos encontrados na vizinhança.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::129",
+      "excel_row": 129,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar, com a alcateia, da limpeza de praias, rios ou parques.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::130",
+      "excel_row": 130,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar um zoológico, jardim botânico, abrigo de animais, horto florestal, viveiro de plantas ou propriedade rural de produção agrícola.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::131",
+      "excel_row": 131,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Plantar flores que atraem abelhas e borboletas, discutindo com os Velhos Lobos sobre o papel desses insetos na reprodução das plantas.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::132",
+      "excel_row": 132,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ler ou ouvir histórias sobre animais em ameaça de extinção, florestas e a importância dos ecossistemas e explicar a um Velho Lobo.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::133",
+      "excel_row": 133,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Montar comedouros simples para atrair aves para o quintal/varanda ou para a sua unidade escoteira local (UEL).",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::134",
+      "excel_row": 134,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar ecossistemas em miniatura, como terrários ou aquários, e observar a convivência entre os seres.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::135",
+      "excel_row": 135,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Pesquisar um animal nativo ameaçado da região, fazer um cartaz para a alcateia e sugerir como ajudar sua preservação.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::136",
+      "excel_row": 136,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Animais Venenosos e Peçonhentos, Aquarismo, Biologia, Cuidados com Animais de Estimação, Entomologia, Geologia, Meliponicultura, Microbiologia",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::RC-52",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma pesquisa sobre as características da região onde mora (relevo, clima, hidrografia, fauna, flora) e sobre a história de sua cidade ou bairro.",
+      "regra_qtd_texto": "PA Complementar (RC-52)"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::RC-56",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Visitar um Zoológico e/ou um Jardim Botânico (ou Horto Florestal, Viveiro de plantas, propriedade rural de produção agrícola, etc.).",
+      "regra_qtd_texto": "PA Complementar (RC-56)"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::144",
+      "excel_row": 144,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades ou insígnias no nível 1+: Ciências da Terra, Zoologia, Oceanologia, Botânica, Campeões da Natureza",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Vida ao Ar Livre::145",
+      "excel_row": 145,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar os seguintes nós: direito, escota alceado, aselha, de correr e volta do fiel, sabendo suas funções, durante um acampamento com a alcateia.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Vida ao Ar Livre::146",
+      "excel_row": 146,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Montar, pernoitar, desmontar e acondicionar corretamente a barraca durante um acampamento.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Vida ao Ar Livre::147",
+      "excel_row": 147,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Acender uma pequena fogueira para fazer uma bebida quente ou lanche, demonstrando as técnicas de segurança no uso de fósforos e acendedores em um acampamento com a alcateia.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Vida ao Ar Livre::148",
+      "excel_row": 148,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer a Rosa dos Ventos e a constelação do Cruzeiro do Sul, usando-os para sua orientação.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Vida ao Ar Livre::149",
+      "excel_row": 149,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de pelo menos dois acampamentos ou acantonamentos com a alcateia.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Vida ao Ar Livre::150",
+      "excel_row": 150,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Cozinhar um prato de comida mateira com a alcateia.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Vida ao Ar Livre::151",
+      "excel_row": 151,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Percorrer uma pista de obstáculos em uma atividade da alcateia.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Vida ao Ar Livre::152",
+      "excel_row": 152,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de caçadas ao ar livre com a alcateia, seguindo as regras de etiqueta e de segurança para trilhas.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Vida ao Ar Livre::153",
+      "excel_row": 153,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de jogos ao ar livre com a alcateia.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Vida ao Ar Livre::154",
+      "excel_row": 154,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em uma caminhada com a alcateia, observar a natureza, identificar diferentes sons e agradecer por sua existência.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Vida ao Ar Livre::155",
+      "excel_row": 155,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Corrida de Orientação, Culinária Mateira, Escalada, Espeleoturismo, Ferramentas de Corte, Mountain Bike, Pesca, Rastreamento",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Vida ao Ar Livre::PTS-10",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de duas excursões ao ar livre com a Alcatéia.",
+      "regra_qtd_texto": "PA Complementar (PTS-10)"
+    },
+    {
+      "chave": "Vida ao Ar Livre::PTS-17",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer os nós direito, direito alceado, aselha, de correr, saber para que servem e aplicá-los numa atividade.",
+      "regra_qtd_texto": "PA Complementar (PTS-17)"
+    },
+    {
+      "chave": "Vida ao Ar Livre::RC-9",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de dois acampamentos ou acantonamentos, de duas excursões e de uma caminhada de 1 km a 3 km com a Alcatéia.",
+      "regra_qtd_texto": "PA Complementar (RC-9)"
+    },
+    {
+      "chave": "Vida ao Ar Livre::RC-14",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Acender  uma  fogueira  simples  e saber apagá-la.",
+      "regra_qtd_texto": "PA Complementar (RC-14)"
+    },
+    {
+      "chave": "Vida ao Ar Livre::RC-15",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a Rosa dos Ventos e o Cruzeiro  do  Sul,  reconhecê-lo  no céu e saber se orientar por ele.",
+      "regra_qtd_texto": "PA Complementar (RC-15)"
+    },
+    {
+      "chave": "Vida ao Ar Livre::163",
+      "excel_row": 163,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Acampamento, Excursões, Montanhismo, Pioneiria, Sobrevivência",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Comunidade::164",
+      "excel_row": 164,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar, com sua alcateia, uma necessidade da unidade escoteira local e participar de uma ação coletiva de melhoria.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Comunidade::165",
+      "excel_row": 165,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer os hospitais próximos à sua casa e os contatos de emergência (Bombeiros, SAMU, Polícia).",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Comunidade::166",
+      "excel_row": 166,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente com sua alcateia ou grupo escoteiro, de uma campanha de ajuda ao próximo.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Comunidade::167",
+      "excel_row": 167,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar um lar de idosos, creche ou entidade assistencial, prestando apoio conforme necessidade.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Comunidade::168",
+      "excel_row": 168,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar uma forma de praticar uma Boa Ação e realizá-la.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Comunidade::169",
+      "excel_row": 169,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer ações solidárias realizadas por instituições de sua comunidade.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Comunidade::170",
+      "excel_row": 170,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Preparar e entregar cartinhas, desenhos ou mensagens de carinho para pessoas em hospitais ou instituições.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Comunidade::171",
+      "excel_row": 171,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma ação de apoio a animais, como arrecadação de ração para abrigos.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Comunidade::172",
+      "excel_row": 172,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Com a ajuda de sua família, separar brinquedos ou roupas em bom estado para doação e relatar para onde foram.",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Comunidade::173",
+      "excel_row": 173,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Inclusão, Libras",
+      "regra_qtd_texto": "Realizar 3 ações"
+    },
+    {
+      "chave": "Comunidade::PTS-42",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ter uma lista com telefones  úteis e dos serviços de atendimento a emergências.",
+      "regra_qtd_texto": "PA Complementar (PTS-42)"
+    },
+    {
+      "chave": "Comunidade::RC-57",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Localizar  em  um  guia  de  ruas  a sua casa, a sua escola, a sede do Grupo  Escoteiro  e  outros  pontos de interesse: farmácia, padaria, papelaria, correio, hospital, supermercado, ponto de ônibus e/ou estação do metrô, igrejas, parques, etc. e saber quais são e onde estão os principais serviços públicos. Conhecer os meios de transporte que pode utilizar para ir de sua casa para esses lugares.",
+      "regra_qtd_texto": "PA Complementar (RC-57)"
+    },
+    {
+      "chave": "Comunidade::RC-58",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Visitar um lugar público como: grupamento de bombeiros, redação de um jornal, emissora de rádio ou TV, museu, biblioteca pública, etc.",
+      "regra_qtd_texto": "PA Complementar (RC-58)"
+    },
+    {
+      "chave": "Comunidade::RC-63",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma roda da Alcateia em que todos agradecem pelo que têm e pela ajuda recebida uns dos outros ou de terceiros.",
+      "regra_qtd_texto": "PA Complementar (RC-63)"
+    },
+    {
+      "chave": "Comunidade::RC-64",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Procurar uma forma de praticar uma boa ação em seu Grupo Escoteiro ou em sua escola e realizá-la.",
+      "regra_qtd_texto": "PA Complementar (RC-64)"
+    },
+    {
+      "chave": "Comunidade::175",
+      "excel_row": 175,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades ou insígnias no nível 1+: Defesa Civil, Mensageiros da Paz, Insígnia da Boa Ação",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Democracia::176",
+      "excel_row": 176,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente de uma Roca de Conselho, expressando opiniões de forma respeitosa.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Democracia::177",
+      "excel_row": 177,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer a história \"Caçadas de Kaa\" e discutir com os companheiros a conduta dos personagens.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Democracia::178",
+      "excel_row": 178,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar da eleição de primo e segundo da matilha e combinar suas responsabilidades.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Democracia::179",
+      "excel_row": 179,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar a câmara dos vereadores ou prefeitura, discutindo com os Velhos Lobos o que aprendeu.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "Democracia::180",
+      "excel_row": 180,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um fórum de grupo escoteiro.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "Democracia::181",
+      "excel_row": 181,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um debate com a alcateia, sobre um tema de interesse dos lobinhos.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "Democracia::182",
+      "excel_row": 182,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um jogo democrático com a alcateia.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "Democracia::183",
+      "excel_row": 183,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar da criação de um \"acordo de convivência\" da alcateia (ou conhecê-lo) e assiná-lo.",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "Democracia::184",
+      "excel_row": 184,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Prevenção de Fake News, Geografia, Paz e Justiça",
+      "regra_qtd_texto": "Realizar 2 ações"
+    },
+    {
+      "chave": "Democracia::PTS-41",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente de um Jogo Democrático e de uma Roca do Conselho, expressando as suas opiniões com franqueza e respeito.",
+      "regra_qtd_texto": "PA Complementar (PTS-41)"
+    },
+    {
+      "chave": "Democracia::RC-51",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer com sua Matilha um cartaz ilustrado com os Direitos Universais da Criança (ONU – 1959).",
+      "regra_qtd_texto": "PA Complementar (RC-51)"
+    },
+    {
+      "chave": "Herança Cultural::187",
+      "excel_row": 187,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar o hasteamento ou arriamento da Bandeira Nacional em cerimônia de abertura ou de encerramento de atividade.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Herança Cultural::188",
+      "excel_row": 188,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar um álbum com fotos (ou desenhos), histórias e tradições familiares ou de onde vive.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::189",
+      "excel_row": 189,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Aprender e cantar o Hino Nacional Brasileiro com a alcateia e conhecer os elementos e o simbolismo da Bandeira Nacional, demonstrando respeito por estes símbolos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::190",
+      "excel_row": 190,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Contar ou encenar, em uma Flor Vermelha, a história de uma pessoa que teve destaque na história do Brasil ou da sua cidade.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::191",
+      "excel_row": 191,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de atividades sobre a cultura popular brasileira.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::192",
+      "excel_row": 192,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar um museu histórico com a alcateia e contar o que mais chamou a atenção.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::193",
+      "excel_row": 193,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Preparar e degustar, com a sua alcateia, uma receita típica de sua cidade ou região.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::194",
+      "excel_row": 194,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Reproduzir jogos e brincadeiras típicas de diferentes épocas ou culturas, como amarelinha ou pião.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::195",
+      "excel_row": 195,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conversar com avós ou membros mais velhos da comunidade sobre histórias do passado.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::196",
+      "excel_row": 196,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de feiras, festas ou eventos que celebrem tradições locais.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::197",
+      "excel_row": 197,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Aprender alguma técnica de artesanato local e produzir um presente.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::198",
+      "excel_row": 198,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar uma canção, dança ou brincadeira folclórica do Brasil em uma Flor Vermelha.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::199",
+      "excel_row": 199,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Anime, Arqueologia, Arte da Marinharia, Artes Cênicas, Capoeira, Civilizações da Antiguidade, Cosplay, Culinária Típica, Danças Folclóricas, História Aeroespacial, História da Aviação, História Brasileira, História da Arte, História do Escotismo, História Local, História Marítima, Literatura, Mitologias, Museologia, Origami, Paleontologia, Poesia, Tradições dos Povos Indígenas",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Herança Cultural::PTS-43",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os elementos que constituem a Bandeira Nacional, o seu simbolismo e respeitá-la.",
+      "regra_qtd_texto": "PA Complementar (PTS-43)"
+    },
+    {
+      "chave": "Herança Cultural::PTS-44",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer o Hino Nacional Brasileiro e cantá-lo com seus companheiros, adotando uma postura de respeito.",
+      "regra_qtd_texto": "PA Complementar (PTS-44)"
+    },
+    {
+      "chave": "Herança Cultural::PTS-45",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um desfile cívico.",
+      "regra_qtd_texto": "PA Complementar (PTS-45)"
+    },
+    {
+      "chave": "Herança Cultural::RC-53",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de atividade sobre a cultura popular brasileira com sua Alcatéia ou escola e demonstrar que conhece uma canção, uma dança e uma brincadeira folclórica do Brasil.",
+      "regra_qtd_texto": "PA Complementar (RC-53)"
+    },
+    {
+      "chave": "Herança Cultural::222",
+      "excel_row": 222,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Brasilidades, Genealogia, Informações Turísticas, Tradições dos Povos Indígenas",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Promoção da Paz::223",
+      "excel_row": 223,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Ouvir as histórias \"Flor Vermelha\" e \"Os Irmãos de Mowgli\", do Livro da Jângal.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Promoção da Paz::224",
+      "excel_row": 224,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de jogos e atividades relacionados ao diálogo e a cultura de paz.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::225",
+      "excel_row": 225,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar um templo de uma religião diferente da sua e, após a visita, expressar suas impressões por meio de um desenho ou depoimento.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::226",
+      "excel_row": 226,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar e apresentar um jogo tradicional de outro país, promovendo troca cultural e cooperação.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::227",
+      "excel_row": 227,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar outra UEL e refletir sobre o que é a Fraternidade Escoteira.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::228",
+      "excel_row": 228,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma \"feira cultural\" com comidas, músicas, danças e vestimentas típicas de diferentes países, envolvendo a matilha e as famílias ou responsáveis.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::229",
+      "excel_row": 229,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar com sua alcateia um mural sobre as religiões do mundo, expressando artisticamente as principais características (símbolos, datas comemorativas etc).",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::230",
+      "excel_row": 230,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer uma festa ou celebração de uma religião diferente da sua e apresentar para sua alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::231",
+      "excel_row": 231,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar com a alcateia, em uma Flor Vermelha, um esquete sobre a cultura de outro país.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::232",
+      "excel_row": 232,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Registrar no calendário as celebrações religiosas e as festividades das crenças ou religiões dos membros da alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::233",
+      "excel_row": 233,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Geografia, História Mundial, Inclusão, Libras, Línguas, Paz e Justiça",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Promoção da Paz::PTS-58",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma lista com as religiões de todos os lobinhos, colocando os nomes que elas dão àquele que entendem como o Ser Superior.",
+      "regra_qtd_texto": "PA Complementar (PTS-58)"
+    },
+    {
+      "chave": "Promoção da Paz::PTS-59",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Visitar um templo de outra religião e manter uma atitude de respeito.",
+      "regra_qtd_texto": "PA Complementar (PTS-59)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-39",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a família de um (a) lobinho (a) da Alcatéia e convidar um (a) lobinho (a) para um momento de convivência com sua família.",
+      "regra_qtd_texto": "PA Complementar (RC-39)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-40",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Anotar  durante  duas  semanas todas as boas ações que praticou diariamente e apresentar para um Velho Lobo.",
+      "regra_qtd_texto": "PA Complementar (RC-40)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-41",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma economia para comprar algo útil para a Alcatéia ou para alguém à sua escolha.",
+      "regra_qtd_texto": "PA Complementar (RC-41)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-42",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Visitar  com  sua  Matilha  um  asilo / creche ou outra entidade de assistência e ajudar a fazer algo de que necessitam.",
+      "regra_qtd_texto": "PA Complementar (RC-42)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-59",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a história de Kotick, a foca branca.",
+      "regra_qtd_texto": "PA Complementar (RC-59)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-60",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ler ou ouvir a história resumida da vida de Robert Baden-Powell e da criação do Movimento Escoteiro.",
+      "regra_qtd_texto": "PA Complementar (RC-60)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-61",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade distrital ou regional do Ramo Lobinho ou JOTA / JOTI.",
+      "regra_qtd_texto": "PA Complementar (RC-61)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-69",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a história de Francisco de Assis e sua visão da natureza e das pessoas, inclusive o episódio com o Lobo de Gubbio.",
+      "regra_qtd_texto": "PA Complementar (RC-69)"
+    },
+    {
+      "chave": "Promoção da Paz::RC-70",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma lista com 5 atitudes positivas que percebeu em outras pessoas.",
+      "regra_qtd_texto": "PA Complementar (RC-70)"
+    },
+    {
+      "chave": "Promoção da Paz::239",
+      "excel_row": 239,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes insígnias no nível 1+: Insígnia da Lusofonia, Insígnia do Cone-Sul, Diálogos pela Paz",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Valores::240",
+      "excel_row": 240,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Ouvir a história \"Tigre Tigre\" e comparar a conduta de Mowgli com a sua Promessa de Lobinho.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Valores::241",
+      "excel_row": 241,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Contar a um Velho Lobo sobre três boas ações que praticou.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Valores::242",
+      "excel_row": 242,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Explicar o significado da Lei e da Promessa do Lobinho a um novo lobinho ou lobinha na alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Valores::243",
+      "excel_row": 243,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ensinar aos novos membros da alcateia o aperto de mão e a Saudação do Lobinho.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Valores::244",
+      "excel_row": 244,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar com a alcateia de jogos distintos, respeitando as suas regras e agindo com cordialidade.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Valores::245",
+      "excel_row": 245,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Escrever ou desenhar uma história sobre uma situação em que agiu conforme os ensinamentos da Lei e da Promessa do Lobinho.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Valores::246",
+      "excel_row": 246,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Saber quem é Baloo e o motivo dele ensinar a viver de acordo com a Lei da Jângal.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Valores::247",
+      "excel_row": 247,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Discutir com um Velho Lobo as principais regras dos locais onde convive, compreendendo a importância do respeito.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Valores::248",
+      "excel_row": 248,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Fogo de Conselho, História do Escotismo",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Valores::PTS-24",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Trazer para a Alcateia a idéia de um jogo agradável e divertido ou contar uma história engraçada.",
+      "regra_qtd_texto": "PA Complementar (PTS-24)"
+    },
+    {
+      "chave": "Valores::PTS-25",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Demonstrar que é capaz de manter o bom humor em um momento de dificuldade.",
+      "regra_qtd_texto": "PA Complementar (PTS-25)"
+    },
+    {
+      "chave": "Valores::PTS-26",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Contar para um Velho Lobo uma situação em que disse a verdade, mesmo correndo o risco de ser repreendido (a).",
+      "regra_qtd_texto": "PA Complementar (PTS-26)"
+    },
+    {
+      "chave": "Valores::PTS-27",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Encarregar-se  de  um  dos  serviços da Alcateia durante um Ciclo de Programa e realizar bem essa tarefa.",
+      "regra_qtd_texto": "PA Complementar (PTS-27)"
+    },
+    {
+      "chave": "Valores::PTS-39",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Contar para um Velho Lobo quais são as principais regras de sua escola, de sua casa e da Alcateia.",
+      "regra_qtd_texto": "PA Complementar (PTS-39)"
+    },
+    {
+      "chave": "Valores::PTS-40",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar da eleição do Primo e do Segundo de sua Matilha.",
+      "regra_qtd_texto": "PA Complementar (PTS-40)"
+    },
+    {
+      "chave": "Valores::RC-35",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a história \"Tigre Tigre\" e comparar a promessa de Mowgli com a sua Promessa de Lobinho. Discutir isso com um Velho Lobo.",
+      "regra_qtd_texto": "PA Complementar (RC-35)"
+    },
+    {
+      "chave": "Valores::RC-36",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma lista com suas atitudes no dia-a-dia que mostram que você fez o Melhor Possível para cumprir a Lei do Lobinho e a sua Promessa.",
+      "regra_qtd_texto": "PA Complementar (RC-36)"
+    },
+    {
+      "chave": "Valores::RC-49",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Manter seu quarto e os seus pertences em ordem.",
+      "regra_qtd_texto": "PA Complementar (RC-49)"
+    },
+    {
+      "chave": "Valores::RC-50",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Desempenhar as tarefas de serviço que lhe couberem durante um acampamento e nas reuniões da Alcatéia.",
+      "regra_qtd_texto": "PA Complementar (RC-50)"
+    },
+    {
+      "chave": "Valores::RC-67",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Dizer para um Velho Lobo quais são os principais preceitos de sua fé.",
+      "regra_qtd_texto": "PA Complementar (RC-67)"
+    },
+    {
+      "chave": "Valores::RC-68",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escrever uma história ou desenhar uma história em quadrinhos que mostre uma situação em que você agiu de acordo com os ensinamentos de sua fé.",
+      "regra_qtd_texto": "PA Complementar (RC-68)"
+    },
+    {
+      "chave": "Valores::250",
+      "excel_row": 250,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Escotismo Mundial",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Cuidado com o Corpo::251",
+      "excel_row": 251,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Saber realizar os primeiros socorros em cortes, queimaduras e outros pequenos ferimentos.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Cuidado com o Corpo::252",
+      "excel_row": 252,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Saber utilizar ataduras e tipoias.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Cuidado com o Corpo::253",
+      "excel_row": 253,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Saber usar um termômetro.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Cuidado com o Corpo::254",
+      "excel_row": 254,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Cuidar de sua segurança e dos demais nas atividades da alcateia, seguindo as orientações dos Velhos Lobos.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Cuidado com o Corpo::255",
+      "excel_row": 255,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em atividades da alcateia, mostrar que conhece os limites do próprio corpo e dos demais, respeitando a privacidade de cada um.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::256",
+      "excel_row": 256,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de atividades voltadas à prevenção das doenças mais comuns na infância (viroses, febre, gripe, dengue, catapora, caxumba, sarampo etc.), identificando seus sintomas e aprendendo formas de prevenção.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::257",
+      "excel_row": 257,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Proteger-se do calor e do frio nas atividades da alcateia, utilizando boné, protetor solar, blusas para o frio, beber água e respeitar os limites do seu corpo.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::258",
+      "excel_row": 258,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar atividades físicas desafiadoras como passar por uma falsa baiana, subir em uma árvore, dar cambalhota ou fazer estrela.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::259",
+      "excel_row": 259,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Durante o Jogo do Kim, acertar a maioria dos objetos usando visão, audição, tato, olfato ou paladar.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::260",
+      "excel_row": 260,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer e saber utilizar os recursos da caixa de primeiros socorros da alcateia.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::261",
+      "excel_row": 261,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Fazer um checklist de segurança para a próxima atividade ao ar livre (hidratação, protetor, boné, calçado).",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::262",
+      "excel_row": 262,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Simular como pedir ajuda: quem chamar, o que dizer, onde estamos e como manter a calma.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::263",
+      "excel_row": 263,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Babá, Cuidados com Idosos, Vigilância Epidemiológica, Salvamento, Segurança",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Cuidado com o Corpo::PTS-7",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer as três principais refeições do dia: desjejum, almoço e jantar em horários adequados.",
+      "regra_qtd_texto": "PA Complementar (PTS-7)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::PTS-8",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a importância de uma boa alimentação para a saúde e consumir alimentos variados, praticando cuidados com a higiene.",
+      "regra_qtd_texto": "PA Complementar (PTS-8)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::RC-1",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Desenhar  uma  silhueta  humana com os principais órgãos e sistemas e explicar o seu funcionamento.",
+      "regra_qtd_texto": "PA Complementar (RC-1)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::RC-2",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os sinais das doenças mais comuns da infância e avisar seus pais caso perceba algum desses sinais em você.",
+      "regra_qtd_texto": "PA Complementar (RC-2)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::RC-3",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber utilizar um termômetro, ter cuidados com a exposição ao sol / friagem e conhecer e respeitar os limites de seu corpo.",
+      "regra_qtd_texto": "PA Complementar (RC-3)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::RC-6",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Percorrer uma pista de obstáculos preparada por um Velho Lobo.",
+      "regra_qtd_texto": "PA Complementar (RC-6)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::RC-7",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Passar em uma Falsa Baiana ou subir em uma árvore ou virar cambalhota / estrela.",
+      "regra_qtd_texto": "PA Complementar (RC-7)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::RC-8",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Praticar um esporte com regularidade, relatando as suas atividades a um Velho Lobo.",
+      "regra_qtd_texto": "PA Complementar (RC-8)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::RC-10",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber aplicar ataduras e tipóias.",
+      "regra_qtd_texto": "PA Complementar (RC-10)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::RC-11",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Identificar as situações que oferecem perigo nas atividades escoteiras e apontar os cuidados que se deve tomar para evitá-los.",
+      "regra_qtd_texto": "PA Complementar (RC-11)"
+    },
+    {
+      "chave": "Cuidado com o Corpo::268",
+      "excel_row": 268,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Anatomia Humana, Prevenção em Saúde, Primeiros Socorros",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Espiritualidade::269",
+      "excel_row": 269,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar orações de agradecimento ou momento de reflexão nas atividades da alcateia.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Espiritualidade::270",
+      "excel_row": 270,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Representar artisticamente um símbolo de sua religião e explicá-lo à alcateia.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Espiritualidade::271",
+      "excel_row": 271,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar das celebrações e compromissos com sua crença ou religião regularmente.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Espiritualidade::272",
+      "excel_row": 272,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Durante um momento de reflexão, fazer a leitura de um texto de sua crença ou religião.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Espiritualidade::273",
+      "excel_row": 273,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade que expressa gratidão sobre coisas da vida e da natureza.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Espiritualidade::274",
+      "excel_row": 274,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar uma mandala com elementos da natureza, representando a união e harmonia, e explicar a importância de cada elemento.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Espiritualidade::PTS-52",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Em um passeio com a Alcateia, observar as belas coisas da natureza e agradecer por existirem.",
+      "regra_qtd_texto": "PA Complementar (PTS-52)"
+    },
+    {
+      "chave": "Espiritualidade::PTS-53",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer um cartaz com coisas criadas por Deus e afixar na gruta.",
+      "regra_qtd_texto": "PA Complementar (PTS-53)"
+    },
+    {
+      "chave": "Espiritualidade::PTS-54",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar uma oração de agradecimento em livros de sua religião e anotá-la no livro de orações da Alcateia.",
+      "regra_qtd_texto": "PA Complementar (PTS-54)"
+    },
+    {
+      "chave": "Espiritualidade::PTS-55",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer as orações da Alcateia em duas reuniões semanais.",
+      "regra_qtd_texto": "PA Complementar (PTS-55)"
+    },
+    {
+      "chave": "Espiritualidade::PTS-56",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Representar artisticamente um símbolo de sua religião e apresentar à Alcateia, explicando o seu significado.",
+      "regra_qtd_texto": "PA Complementar (PTS-56)"
+    },
+    {
+      "chave": "Espiritualidade::PTS-57",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Perguntar para sua família sobre o que ela acredita serem os deveres para com Deus, explicando depois para um Velho Lobo.",
+      "regra_qtd_texto": "PA Complementar (PTS-57)"
+    },
+    {
+      "chave": "Espiritualidade::RC-65",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Criar uma oração e conduzi-la em um momento especial com a sua família ou na Alcatéia.",
+      "regra_qtd_texto": "PA Complementar (RC-65)"
+    },
+    {
+      "chave": "Espiritualidade::RC-66",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar uma oração em forma de canção e ensiná-la para a Alcateia.",
+      "regra_qtd_texto": "PA Complementar (RC-66)"
+    },
+    {
+      "chave": "Espiritualidade::275",
+      "excel_row": 275,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades ou insígnias no nível 1+: Yoga, Diálogo Inter-religioso",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Hábitos Saudáveis::276",
+      "excel_row": 276,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Auxiliar na preparação de uma refeição saudável em um acampamento ou acantonamento da alcateia e experimentá-la.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Hábitos Saudáveis::277",
+      "excel_row": 277,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Preparar um lanche saudável para uma caçada, contendo pelo menos três tipos de legumes e dois tipos de frutas.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Hábitos Saudáveis::278",
+      "excel_row": 278,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de pelo menos uma caminhada ao ar livre com a alcateia (entre 2 e 3 km) registrando três observações sobre o local durante o percurso.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Hábitos Saudáveis::279",
+      "excel_row": 279,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Mar",
+      "ds_acao": "Saber remar em bote ou canoa, demonstrando embarque e desembarque.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Hábitos Saudáveis::280",
+      "excel_row": 280,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Utilizar o vestuário ou uniforme de lobinho adequadamente, demonstrando aplicação correta dos distintivos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::281",
+      "excel_row": 281,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de atividades que demonstrem a importância de uma boa alimentação para a saúde, consumindo alimentos variados e cuidando da higiene.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::282",
+      "excel_row": 282,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Escolher um esporte, aprender sobre ele e praticá-lo. Contar para a alcateia sobre o esporte que você pratica, suas características e regras.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::283",
+      "excel_row": 283,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Cuidar da limpeza do corpo, manter uma boa rotina de sono, alimentação e brincadeiras e dedicar um tempo adequado aos estudos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::284",
+      "excel_row": 284,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Manter seu quarto e pertences em ordem.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::285",
+      "excel_row": 285,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Fazer refeições saudáveis nos horários estabelecidos por sua família.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::286",
+      "excel_row": 286,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer Bagheera e entender como ela ensina a viver de forma saudável.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::287",
+      "excel_row": 287,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Preparar um espetinho com pelo menos quatro legumes diferentes e assá-lo em uma fogueira para seu consumo.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::288",
+      "excel_row": 288,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Artes Marciais, Canoagem, Ciclismo, Corrida de Rua, Culinária Vegetariana, Cuidados Bucais, Dança, Desportos Inclusivos, Esportes de Quadra, Futebol, Ginásticas, Hipismo, Mergulho, Natação, Patinação, Plantas Medicinais, Remo, Skateboard, Slackline, Técnicas Verticais, Tênis, Tênis de Mesa, Tiro com Arco, Triatlo, Vela, Yoga",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Hábitos Saudáveis::PTS-1",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer e praticar os cuidados básicos de higiene que protegem a sua saúde.",
+      "regra_qtd_texto": "PA Complementar (PTS-1)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::PTS-2",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber vestir-se, manter-se arrumado (a) e usar corretamente o uniforme / traje de lobinho.",
+      "regra_qtd_texto": "PA Complementar (PTS-2)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::PTS-3",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber arrumar a sua cama, a sua mochila escolar e manter sua mochila em ordem durante um acampamento; contribuir com a limpeza e arrumação dos lugares que usar.",
+      "regra_qtd_texto": "PA Complementar (PTS-3)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::PTS-4",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Demonstrar que conhece e pratica as regras de circulação de pedestres ou ciclistas e os principais sinais de trânsito.",
+      "regra_qtd_texto": "PA Complementar (PTS-4)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::PTS-5",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Demonstrar conhecer os cuidados básicos para a prevenção de acidentes domésticos com facas, fogo, eletricidade, gás, janelas, etc.",
+      "regra_qtd_texto": "PA Complementar (PTS-5)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::PTS-6",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber os primeiros socorros em cortes, queimaduras e outros pequenos ferimentos.",
+      "regra_qtd_texto": "PA Complementar (PTS-6)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::PTS-9",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer Bagheera e compreender porque ela ensina a viver uma vida saudável.",
+      "regra_qtd_texto": "PA Complementar (PTS-9)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::PTS-11",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher um esporte, aprender algumas coisas sobre ele e praticá- lo. Relatar essa experiência para um Velho Lobo.",
+      "regra_qtd_texto": "PA Complementar (PTS-11)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::RC-12",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a pirâmide dos Alimentos, os grupos alimentares e suas funções e consumir alimentos de todos os grupos.",
+      "regra_qtd_texto": "PA Complementar (RC-12)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::RC-13",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Preparar  uma  refeição  simples  e saudável em atividade da Alcatéia.",
+      "regra_qtd_texto": "PA Complementar (RC-13)"
+    },
+    {
+      "chave": "Hábitos Saudáveis::314",
+      "excel_row": 314,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Noções Desportivas, Nutrição",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Saúde Mental::315",
+      "excel_row": 315,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Representar de maneira artística, com a sua alcateia, quais emoções está sentindo e que coisas te deixam feliz.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Saúde Mental::316",
+      "excel_row": 316,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Ajudar um amigo com alguma dificuldade e relatar a experiência a um Velho Lobo.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Saúde Mental::317",
+      "excel_row": 317,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Elogiar os lobinhos da alcateia e agradecer pela ajuda recebida.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Saúde Mental::318",
+      "excel_row": 318,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Saber a quem pedir ajuda quando sentir que algo está incomodando.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Saúde Mental::319",
+      "excel_row": 319,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Propor momentos divertidos e de relaxamento com a sua família, como ir ao parque, praticar esportes, ler um livro, montar um quebra-cabeça etc. e relatar para os Velhos Lobos como foi essa experiência.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Saúde Mental::320",
+      "excel_row": 320,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar suas atividades favoritas e separar um tempo para praticá-las.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Saúde Mental::321",
+      "excel_row": 321,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Praticar uma atividade que te faça sentir feliz e relaxado, encaixando na sua rotina e vendo quanto tempo gasta em suas atividades diárias.",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Saúde Mental::322",
+      "excel_row": 322,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Canto, Coleções, Cubo Mágico, Expressão Musical, Ioiô, Jogos de Cartas Colecionáveis, Jogos de Tabuleiro, Mágica e Ilusionismo, Pipas, Plastimodelismo, Quebra-Cabeças, RPG, Xadrez",
+      "regra_qtd_texto": "Realizar 4 ações"
+    },
+    {
+      "chave": "Saúde Mental::PTS-37",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar  com  sua  Alcateia  ou Grupo Escoteiro de uma campanha de ajuda ao próximo, doando algo seu para a campanha.",
+      "regra_qtd_texto": "PA Complementar (PTS-37)"
+    },
+    {
+      "chave": "Saúde Mental::PTS-38",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ouvir o episódio \"Flor Vermelha\" - 2ª parte de \"Irmãos de Mowgli\"",
+      "regra_qtd_texto": "PA Complementar (PTS-38)"
+    },
+    {
+      "chave": "Saúde Mental::RC-4",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer um diário relatando as atividades que fez durante cada dia de uma semana e analisar como tem utilizado o seu tempo.",
+      "regra_qtd_texto": "PA Complementar (RC-4)"
+    },
+    {
+      "chave": "Saúde Mental::RC-5",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Cuidar da limpeza do seu corpo; dormir, comer e brincar nas horas certas e dedicar tempo suficiente ao estudo.",
+      "regra_qtd_texto": "PA Complementar (RC-5)"
+    },
+    {
+      "chave": "Saúde Mental::335",
+      "excel_row": 335,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Prevenção aos Vícios",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    },
+    {
+      "chave": "Vínculos Saudáveis::336",
+      "excel_row": 336,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar com entusiasmo das atividades da alcateia, brincando, conversando e respeitando os lobinhos e os Velhos Lobos.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Vínculos Saudáveis::337",
+      "excel_row": 337,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Cumprimentar membros do grupo com a Saudação do Lobinho e o aperto de mão.",
+      "regra_qtd_texto": ""
+    },
+    {
+      "chave": "Vínculos Saudáveis::338",
+      "excel_row": 338,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer a história \"Como apareceu o medo\"",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::339",
+      "excel_row": 339,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Com sua alcateia, ir ao cinema ou teatro, se divertir com outros lobinhos e os Velhos Lobos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::340",
+      "excel_row": 340,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade sobre bullying e formas para evitar essa prática.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::341",
+      "excel_row": 341,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Convidar um amigo ou parente para conhecer e participar de uma atividade da alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::342",
+      "excel_row": 342,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade da alcateia que conte com a presença das famílias.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::343",
+      "excel_row": 343,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um jogo ou atividade de expressão de sentimentos.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::344",
+      "excel_row": 344,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Acolher os novos lobinhos e ajudá-los a se integrar na alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::345",
+      "excel_row": 345,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer as seções do seu grupo escoteiro e participar de uma atividade com outra seção.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::346",
+      "excel_row": 346,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade entre diferentes Unidades Escoteiras ou atividade regional do Ramo Lobinho.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::347",
+      "excel_row": 347,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade com outra alcateia.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::348",
+      "excel_row": 348,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Manter contato com amigos da alcateia, além da atividade semanal.",
+      "regra_qtd_texto": "Realizar 5 ações"
+    },
+    {
+      "chave": "Vínculos Saudáveis::PTS-32",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Trazer um amigo ou parente para participar de uma reunião e conhecer a Alcatéia.",
+      "regra_qtd_texto": "PA Complementar (PTS-32)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::PTS-33",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Trazer fotos de sua família e mostrar à Alcateia contando algo sobre cada pessoa e sobre as coisas que mais gosta de fazer com elas.",
+      "regra_qtd_texto": "PA Complementar (PTS-33)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::PTS-34",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um acampamento ou acantonamento com sua Alcateia sem a presença de seus pais.",
+      "regra_qtd_texto": "PA Complementar (PTS-34)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::PTS-35",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma lista com 5 coisas que o  (a)  deixam  alegre,  5  coisas  que o (a) deixam triste e 5 coisas que lhe dão medo e mostrá-la a um Velho  Lobo  ou  compartilhar  com os companheiros em uma roda de conversa com a Alcateia.",
+      "regra_qtd_texto": "PA Complementar (PTS-35)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::PTS-36",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a história de Rikki Tikki Tavi.",
+      "regra_qtd_texto": "PA Complementar (PTS-36)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::PTS-46",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber quais são as diversas Seções do seu Grupo Escoteiro e participar de atividade com alguma delas ou com todo o Grupo.",
+      "regra_qtd_texto": "PA Complementar (PTS-46)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::PTS-47",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Visitar outro Grupo Escoteiro e participar de atividade com a Alcateia.",
+      "regra_qtd_texto": "PA Complementar (PTS-47)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::PTS-48",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma atividade distrital ou intergrupos do Ramo Lobinho.",
+      "regra_qtd_texto": "PA Complementar (PTS-48)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::RC-33",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Narrar ou representar a história de uma pessoa cujo trabalho seja ajudar os demais.",
+      "regra_qtd_texto": "PA Complementar (RC-33)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::RC-34",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplaudir, por meio de um Bravo verdadeiramente alegre, a vitória de seu adversário numa competição.",
+      "regra_qtd_texto": "PA Complementar (RC-34)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::RC-43",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ter  uma  agenda  com  telefone  e/ ou e-mail dos seus amigos (as)  e manter contato com eles.",
+      "regra_qtd_texto": "PA Complementar (RC-43)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::RC-44",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Ajudar algum amigo (a) com algo que seja difícil para ele (a) e relatar esta experiência a um Velho Lobo.",
+      "regra_qtd_texto": "PA Complementar (RC-44)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::RC-45",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Receber  com  alegria  os  lobinhos (as) novos (as) e ajudá-los (as) a se integrarem à Alcatéia, contando- lhes sobre as tradições e ensinando algo da etapa de Integração.",
+      "regra_qtd_texto": "PA Complementar (RC-45)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::RC-46",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pedir para a sua Matilha e para os Velhos Lobos escreverem algumas qualidades e defeitos seus e refletir sobre isso.",
+      "regra_qtd_texto": "PA Complementar (RC-46)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::RC-47",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer as principais diferenças físicas  entre  homens  e  mulheres e perguntar a seus pais ou para os Velhos Lobos sobre curiosidades que tenha a respeito de sexo.",
+      "regra_qtd_texto": "PA Complementar (RC-47)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::RC-48",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar sobre as realizações de três  homens  e  de  três  mulheres que foram importantes para a humanidade.",
+      "regra_qtd_texto": "PA Complementar (RC-48)"
+    },
+    {
+      "chave": "Vínculos Saudáveis::349",
+      "excel_row": 349,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Prevenção ao Bullying",
+      "regra_qtd_texto": "Substituí ações variáveis"
+    }
+  ]
+}

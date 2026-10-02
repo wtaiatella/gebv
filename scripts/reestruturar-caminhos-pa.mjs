@@ -41,9 +41,9 @@ async function main() {
     // 2. Configuração oficial dos Caminhos conforme data/caminhos
     const caminhosConfig = [
       // LOBINHO
-      { ramo: 'LOBINHO', codigo: '1', nome: 'Caminho do integrar', sigla: 'CI' },
-      { ramo: 'LOBINHO', codigo: '2', nome: 'Caminho do descobrir/rastrear', sigla: 'CDR' },
-      { ramo: 'LOBINHO', codigo: '3', nome: 'Caminho do caçar/das estrelas', sigla: 'CCE' },
+      { ramo: 'LOBINHO', codigo: '1', nome: 'Periodo Introdutório', sigla: 'PIL' },
+      { ramo: 'LOBINHO', codigo: '2', nome: 'Pata-Tenra e Saltador', sigla: 'PTS' },
+      { ramo: 'LOBINHO', codigo: '3', nome: 'Rastreador e Caçador', sigla: 'RC' },
 
       // ESCOTEIRO
       { ramo: 'ESCOTEIRO', codigo: '4', nome: 'Período introdutório', sigla: 'P' },

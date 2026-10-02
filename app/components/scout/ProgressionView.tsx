@@ -6,9 +6,9 @@ import type { Escoteiro, EscoteiroEspecialidade } from '@/app/lib/data';
 
 const NOMES_CAMINHOS: Record<string, string> = {
   // LOBINHO
-  '1': 'Caminho do integrar',
-  '2': 'Caminho do descobrir/rastrear',
-  '3': 'Caminho do caçar/das estrelas',
+  '1': 'Periodo Introdutório',
+  '2': 'Pata-Tenra e Saltador',
+  '3': 'Rastreador e Caçador',
   // ESCOTEIRO
   '4': 'Período Introdutório',
   '5': 'Pista e Trilha',
@@ -26,9 +26,9 @@ const NOMES_CAMINHOS: Record<string, string> = {
 };
 
 const PREFIXOS_CAMINHOS: Record<string, string> = {
-  '1': 'CI-',
-  '2': 'CDR-',
-  '3': 'CCE-',
+  '1': 'PIL-',
+  '2': 'PTS-',
+  '3': 'RC-',
   '4': 'P-',
   '5': 'PT-',
   '6': 'RT-',

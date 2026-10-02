@@ -46,6 +46,8 @@ yarn-error.log*
 !/data/catalogo/pa_catalogo.json
 !/data/catalogo/pn_catalogo.json
 !/data/catalogo/pn_equivalencia_regras.json
+!/data/catalogo/pn_catalogo_lobinho.json
+!/data/catalogo/pn_equivalencia_regras_lobinho.json
 
 # typescript
 *.tsbuildinfo
