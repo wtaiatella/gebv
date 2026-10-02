@@ -138,23 +138,59 @@ function SeletorAtividadePa({
   onSelect: (a: PaAtividade) => void;
 }) {
   const [busca, setBusca] = useState('');
+
   const filtradas = useMemo(() => {
-    if (!busca.trim()) return paAtividades.slice(0, 30);
-    const q = busca.toLowerCase();
-    return paAtividades
-      .filter((a) => a.identificacao?.toLowerCase().includes(q) || a.ds_atividade?.toLowerCase().includes(q))
-      .slice(0, 40);
+    if (!busca.trim()) return paAtividades;
+    const q = busca.toLowerCase().trim();
+    return paAtividades.filter(
+      (a) =>
+        a.identificacao?.toLowerCase().includes(q) ||
+        a.ds_atividade?.toLowerCase().includes(q) ||
+        a.nm_caminho?.toLowerCase().includes(q)
+    );
   }, [paAtividades, busca]);
+
+  const grupos = useMemo(() => {
+    const map = new Map<string, PaAtividade[]>();
+    for (const ativ of filtradas) {
+      const grupoNome = ativ.nm_caminho || 'Outras Atividades';
+      if (!map.has(grupoNome)) {
+        map.set(grupoNome, []);
+      }
+      map.get(grupoNome)!.push(ativ);
+    }
+    return Array.from(map.entries()).map(([caminho, itens]) => ({ caminho, itens }));
+  }, [filtradas]);
 
   return (
     <div>
-      <input
-        type="text"
-        value={busca}
-        onChange={(e) => setBusca(e.target.value)}
-        placeholder="Filtrar por código (ex: PT-12, RT-05) ou descrição..."
-        style={{ ...inputStyle, width: '100%', marginBottom: '0.5rem' }}
-      />
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+        <input
+          type="text"
+          value={busca}
+          onChange={(e) => setBusca(e.target.value)}
+          placeholder="Buscar por código (ex: ECA-25, PT-12) ou texto da atividade..."
+          style={{ ...inputStyle, flex: 1 }}
+        />
+        {busca && (
+          <button
+            type="button"
+            onClick={() => setBusca('')}
+            style={{
+              background: 'rgba(255, 255, 255, 0.08)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              color: '#d4d4d8',
+              borderRadius: '6px',
+              padding: '0 0.6rem',
+              cursor: 'pointer',
+              fontSize: '0.8rem',
+            }}
+          >
+            Limpar
+          </button>
+        )}
+      </div>
+
       <select
         className="scout-select"
         value=""
@@ -167,13 +203,25 @@ function SeletorAtividadePa({
         }}
         style={{ ...inputStyle, width: '100%' }}
       >
-        <option value="">Selecione uma atividade da lista...</option>
-        {filtradas.map((a) => (
-          <option key={a.id} value={a.id}>
-            {a.identificacao}: {a.ds_atividade.slice(0, 80)}...
-          </option>
+        <option value="">
+          {filtradas.length === 0
+            ? 'Nenhuma atividade encontrada...'
+            : `Selecione uma atividade (${filtradas.length} disponíveis)...`}
+        </option>
+        {grupos.map((g) => (
+          <optgroup key={g.caminho} label={`${g.caminho} (${g.itens.length})`}>
+            {g.itens.map((a) => (
+              <option key={a.id} value={a.id}>
+                {a.identificacao}: {a.ds_atividade.length > 95 ? a.ds_atividade.slice(0, 95) + '...' : a.ds_atividade}
+              </option>
+            ))}
+          </optgroup>
         ))}
       </select>
+      <div style={{ fontSize: '0.72rem', color: '#888', marginTop: '0.3rem' }}>
+        Total de {filtradas.length} {filtradas.length === 1 ? 'atividade' : 'atividades'}
+        {busca && ` filtradas de ${paAtividades.length}`}
+      </div>
     </div>
   );
 }

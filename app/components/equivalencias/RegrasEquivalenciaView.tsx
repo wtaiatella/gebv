@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import EditarRegraModal, { RegraParaEditar } from './EditarRegraModal';
+import { RenderDetalhesRegra } from './RenderDetalhesRegra';
 
 export type RegraEquivalencia = {
   id: number;
@@ -469,157 +470,106 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
                     <tr>
                       <th style={{ width: '60px' }}>#</th>
                       <th style={{ width: '110px' }}>Tipo / Mod.</th>
-                      <th style={{ minWidth: '280px' }}>Ação Educativa (Novo Programa)</th>
-                      <th style={{ width: '140px' }}>Operação</th>
-                      <th style={{ minWidth: '280px' }}>Fórmula / Regra de Equivalência</th>
-                      <th style={{ minWidth: '180px' }}>Itens Origem (PA / Especialidades)</th>
+                      <th style={{ minWidth: '260px' }}>Ação Educativa (Novo Programa)</th>
+                      <th style={{ minWidth: '380px' }}>Fórmula / Regra de Equivalência</th>
                       <th style={{ width: '100px', textAlign: 'center' }}>Ações</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {blocoRegras.map((regra) => {
-                      const operacaoConfig = getOperacaoBadge(regra.operacao);
-                      const itensFlat = flattenDetalhesRegraItens(regra.detalhes_regra);
-
-                      return (
-                        <tr key={regra.id}>
-                          <td className="col-numero" style={{ fontWeight: 600 }}>
-                            {regra.nr_ordem_acao}
-                          </td>
-                          <td>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                              <span
-                                style={{
-                                  fontSize: '0.75rem',
-                                  fontWeight: 600,
-                                  color: regra.tp_acao === 'Fixa' ? '#38bdf8' : '#a855f7',
-                                }}
-                              >
-                                {regra.tp_acao}
-                              </span>
-                              {regra.modalidade && regra.modalidade !== 'Básico' && (
-                                <span
-                                  style={{
-                                    fontSize: '0.7rem',
-                                    color: regra.modalidade === 'Ar' ? '#0ea5e9' : '#06b6d4',
-                                    background: 'rgba(255,255,255,0.05)',
-                                    padding: '0.1rem 0.35rem',
-                                    borderRadius: '4px',
-                                    display: 'inline-block',
-                                    width: 'fit-content',
-                                  }}
-                                >
-                                  {regra.modalidade}
-                                </span>
-                              )}
-                            </div>
-                          </td>
-                          <td>
-                            <div style={{ color: 'var(--foreground)', fontSize: '0.92rem', lineHeight: 1.4 }}>
-                              {regra.ds_acao}
-                            </div>
-                          </td>
-                          <td>
+                    {blocoRegras.map((regra) => (
+                      <tr key={regra.id}>
+                        <td className="col-numero" style={{ fontWeight: 600 }}>
+                          {regra.nr_ordem_acao}
+                        </td>
+                        <td>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                             <span
                               style={{
-                                display: 'inline-block',
-                                background: operacaoConfig.bg,
-                                color: operacaoConfig.color,
-                                border: `1px solid ${operacaoConfig.border}`,
                                 fontSize: '0.75rem',
-                                fontWeight: 700,
-                                padding: '0.25rem 0.6rem',
-                                borderRadius: '6px',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.03em',
-                                whiteSpace: 'nowrap',
+                                fontWeight: 600,
+                                color: regra.tp_acao === 'Fixa' ? '#38bdf8' : '#a855f7',
                               }}
                             >
-                              {operacaoConfig.label || regra.operacao}
+                              {regra.tp_acao}
                             </span>
+                            {regra.modalidade && regra.modalidade !== 'Básico' && (
+                              <span
+                                style={{
+                                  fontSize: '0.7rem',
+                                  color: regra.modalidade === 'Ar' ? '#0ea5e9' : '#06b6d4',
+                                  background: 'rgba(255,255,255,0.05)',
+                                  padding: '0.1rem 0.35rem',
+                                  borderRadius: '4px',
+                                  display: 'inline-block',
+                                  width: 'fit-content',
+                                }}
+                              >
+                                {regra.modalidade}
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                        <td>
+                          <div style={{ color: 'var(--foreground)', fontSize: '0.92rem', lineHeight: 1.45 }}>
+                            {regra.ds_acao}
+                          </div>
+                        </td>
+                        <td>
+                          <div style={{ fontSize: '0.88rem', color: '#ddd', lineHeight: 1.4 }}>
+                            {regra.operacao === 'SEM_EQUIVALENCIA' || !regra.detalhes_regra ? (
+                              <span
+                                style={{
+                                  display: 'inline-block',
+                                  background: 'rgba(255, 255, 255, 0.06)',
+                                  color: '#a1a1aa',
+                                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                                  padding: '0.18rem 0.55rem',
+                                  borderRadius: '5px',
+                                  fontSize: '0.75rem',
+                                  fontWeight: 600,
+                                }}
+                              >
+                                Sem Equivalência
+                              </span>
+                            ) : (
+                              <RenderDetalhesRegra detalhes={regra.detalhes_regra} />
+                            )}
                             {regra.fl_requer_validacao_manual && (
-                              <div style={{ fontSize: '0.7rem', color: '#eab308', marginTop: '0.25rem' }}>
+                              <div style={{ fontSize: '0.72rem', color: '#eab308', marginTop: '0.35rem', fontWeight: 600 }}>
                                 ⚠️ Validação manual
                               </div>
                             )}
-                          </td>
-                          <td>
-                            <div style={{ fontSize: '0.88rem', color: '#ddd', lineHeight: 1.4 }}>
-                              {regra.descricao_origem || (
-                                <span style={{ color: '#666', fontStyle: 'italic' }}>Sem descrição</span>
-                              )}
-                            </div>
-                          </td>
-                          <td>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
-                              {itensFlat.map((it) => {
-                                const style =
-                                  it.kind === 'pista'
-                                    ? { background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8' }
-                                    : it.kind === 'rumo'
-                                    ? { background: 'rgba(168, 85, 247, 0.15)', color: '#a855f7' }
-                                    : it.kind === 'esp'
-                                    ? { background: 'rgba(234, 179, 8, 0.15)', color: '#eab308', border: '1px solid rgba(234, 179, 8, 0.3)' }
-                                    : { background: 'rgba(255, 255, 255, 0.08)', color: '#ccc' };
-                                return (
-                                  <span
-                                    key={it.key}
-                                    title={it.title}
-                                    style={{
-                                      ...style,
-                                      fontSize: '0.75rem',
-                                      padding: '0.2rem 0.45rem',
-                                      borderRadius: '4px',
-                                      fontFamily: 'monospace',
-                                      cursor: 'help',
-                                      display: 'inline-flex',
-                                      alignItems: 'center',
-                                      gap: '0.25rem',
-                                    }}
-                                  >
-                                    {it.kind === 'esp' && <span>★</span>}
-                                    <span>{it.label}</span>
-                                  </span>
-                                );
-                              })}
-
-                              {itensFlat.length === 0 && (
-                                <span style={{ color: '#666', fontSize: '0.8rem', fontStyle: 'italic' }}>
-                                  Nenhum item vinculado
-                                </span>
-                              )}
-                            </div>
-                          </td>
-                          <td style={{ textAlign: 'center' }}>
-                            <button
-                              onClick={() => handleOpenEdit(regra)}
-                              style={{
-                                background: 'rgba(255, 255, 255, 0.08)',
-                                color: 'var(--foreground)',
-                                border: '1px solid var(--glass-border)',
-                                padding: '0.4rem 0.8rem',
-                                fontSize: '0.8rem',
-                                borderRadius: '8px',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s ease',
-                                boxShadow: 'none',
-                                margin: '0 auto',
-                              }}
-                              onMouseOver={(e) => {
-                                e.currentTarget.style.background = 'var(--primary)';
-                                e.currentTarget.style.color = '#000';
-                              }}
-                              onMouseOut={(e) => {
-                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                                e.currentTarget.style.color = 'var(--foreground)';
-                              }}
-                            >
-                              ✏️ Editar
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                          </div>
+                        </td>
+                        <td style={{ textAlign: 'center' }}>
+                          <button
+                            onClick={() => handleOpenEdit(regra)}
+                            style={{
+                              background: 'rgba(255, 255, 255, 0.08)',
+                              color: 'var(--foreground)',
+                              border: '1px solid var(--glass-border)',
+                              padding: '0.4rem 0.8rem',
+                              fontSize: '0.8rem',
+                              borderRadius: '8px',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease',
+                              boxShadow: 'none',
+                              margin: '0 auto',
+                            }}
+                            onMouseOver={(e) => {
+                              e.currentTarget.style.background = 'var(--primary)';
+                              e.currentTarget.style.color = '#000';
+                            }}
+                            onMouseOut={(e) => {
+                              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                              e.currentTarget.style.color = 'var(--foreground)';
+                            }}
+                          >
+                            ✏️ Editar
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -640,108 +590,3 @@ export default function RegrasEquivalenciaView({ ramo }: RegrasViewProps = {}) {
   );
 }
 
-function getOperacaoBadge(operacao: string) {
-  switch (operacao) {
-    case 'PROGRESSOES':
-    case 'DIRETA':
-      return {
-        label: 'PROGRESSOES',
-        bg: 'rgba(0, 255, 136, 0.12)',
-        color: '#00ff88',
-        border: 'rgba(0, 255, 136, 0.3)',
-      };
-    case 'ESPECIALIDADE':
-    case 'ESPECIALIDADES':
-      return {
-        label: 'ESPECIALIDADE',
-        bg: 'rgba(234, 179, 8, 0.12)',
-        color: '#eab308',
-        border: 'rgba(234, 179, 8, 0.3)',
-      };
-    case 'SEMANTICO':
-      return {
-        label: 'SEMANTICO',
-        bg: 'rgba(56, 189, 248, 0.12)',
-        color: '#38bdf8',
-        border: 'rgba(56, 189, 248, 0.3)',
-      };
-    case 'TODAS':
-      return {
-        label: 'TODAS',
-        bg: 'rgba(168, 85, 247, 0.15)',
-        color: '#c084fc',
-        border: 'rgba(168, 85, 247, 0.35)',
-      };
-    case 'QNT_MINIMA':
-    case 'OR':
-    case 'MIN_COUNT':
-      return {
-        label: 'QNT_MINIMA',
-        bg: 'rgba(56, 189, 248, 0.12)',
-        color: '#38bdf8',
-        border: 'rgba(56, 189, 248, 0.3)',
-      };
-    case 'SEM_EQUIVALENCIA':
-    default:
-      return {
-        label: 'Sem Equivalência',
-        bg: 'rgba(255, 255, 255, 0.06)',
-        color: '#a1a1aa',
-        border: 'rgba(255, 255, 255, 0.15)',
-      };
-  }
-}
-
-type ItemFlatRegra = { key: string; kind: 'pista' | 'rumo' | 'esp' | 'outro'; label: string; title: string };
-
-const MAX_PROFUNDIDADE_FLATTEN_REGRA = 8;
-
-// Achata a árvore de `detalhes_regra` (schema recursivo novo) em uma lista plana de chips
-// para a coluna "Itens Origem". Os campos legados (origem_pistas_ueb/origem_rumo_ueb/
-// origem_especialidades) não existem mais nesse schema — ver qa-report.md.
-function flattenDetalhesRegraItens(detalhes: any, depth: number = 0): ItemFlatRegra[] {
-  if (!detalhes || depth > MAX_PROFUNDIDADE_FLATTEN_REGRA) return [];
-
-  // Compatibilidade com formato legado achatado (janela de transição entre a migração da
-  // enum/colunas e o reseed a partir do catálogo canônico — ver qa-report.md #3).
-  if (!detalhes.tipo && (detalhes.origem_pistas_ueb || detalhes.origem_rumo_ueb || detalhes.origem_especialidades)) {
-    const nivelMin = detalhes.nivel_min_especialidade || 1;
-    return [
-      ...(detalhes.origem_pistas_ueb || []).map((p: string) => ({ key: `pt_${p}`, kind: 'pista' as const, label: `PT-${p}`, title: `PT-${p}` })),
-      ...(detalhes.origem_rumo_ueb || []).map((r: string) => ({ key: `rt_${r}`, kind: 'rumo' as const, label: `RT-${r}`, title: `RT-${r}` })),
-      ...(detalhes.origem_especialidades || []).map((e: string) => ({ key: `esp_${e}`, kind: 'esp' as const, label: `${e} (N${nivelMin}+)`, title: `Especialidade: ${e} (Exigido Nível ${nivelMin}+)` })),
-    ];
-  }
-
-  if (!detalhes.tipo) return [];
-
-  switch (detalhes.tipo) {
-    case 'PROGRESSOES': {
-      const item = detalhes.item;
-      if (!item) return [];
-      const ident: string = item.identificacao || `Atividade ${item.pa_atividade_id}`;
-      const kind: ItemFlatRegra['kind'] = ident.startsWith('RT-') ? 'rumo' : ident.startsWith('PT-') ? 'pista' : 'outro';
-      return [{ key: `prog_${item.pa_atividade_id}_${ident}`, kind, label: ident, title: item.ds_atividade ? `${ident}: ${item.ds_atividade}` : ident }];
-    }
-    case 'ESPECIALIDADE': {
-      const nome = detalhes.nm_especialidade || `Especialidade ID ${detalhes.pa_especialidade_id}`;
-      return [{ key: `esp_${nome}`, kind: 'esp', label: `${nome} (N${detalhes.nivel_minimo}+)`, title: `Especialidade: ${nome} (Exigido Nível ${detalhes.nivel_minimo}+)` }];
-    }
-    case 'SEMANTICO': {
-      return (detalhes.itens || []).map((it: any, i: number) => {
-        const ident: string = it.identificacao || `Atividade ${it.pa_atividade_id}`;
-        const kind: ItemFlatRegra['kind'] = ident.startsWith('RT-') ? 'rumo' : ident.startsWith('PT-') ? 'pista' : 'outro';
-        return { key: `sem_${i}_${ident}`, kind, label: ident, title: `${ident} (busca semântica)` };
-      });
-    }
-    case 'TODAS':
-    case 'QNT_MINIMA': {
-      const blocos = Array.isArray(detalhes.blocos) ? detalhes.blocos : [];
-      return blocos.flatMap((sub: any, i: number) =>
-        flattenDetalhesRegraItens(sub, depth + 1).map((it) => ({ ...it, key: `${i}_${it.key}` }))
-      );
-    }
-    default:
-      return [];
-  }
-}

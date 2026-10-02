@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { RefreshCw, Loader2, Zap, Info } from 'lucide-react';
+import { RefreshCw, Loader2, Zap, Info, Lock } from 'lucide-react';
 import type { Ramo } from '@/app/lib/data';
 import { useScoutContext } from '@/app/context/ScoutContext';
 import { PaxtuConnectButton } from './scout/PaxtuLoginModal';
@@ -446,53 +446,45 @@ export default function ScoutExplorer() {
             </div>
           </div>
 
-          {/* Coluna Direita: Apenas Dois Botões Empilhados de Sincronização (menu-novo.png) */}
+          {/* Coluna Direita: Botões de Sincronização Paxtu 100 Bloqueados Pré-Corte */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', minWidth: '260px' }}>
-            {/* Botão 1: Sincronizar Seção */}
+            {/* Botão 1: Sincronizar Seção (Bloqueado) */}
             <button
               type="button"
-              onClick={handleSyncSection}
-              disabled={syncProgress?.active}
+              disabled={true}
+              title="Sincronização com o Paxtu 100 bloqueada para proteção da base histórica pré-corte"
               style={{
-                background: 'var(--primary)',
-                color: '#000',
-                fontWeight: 800,
+                background: 'rgba(0, 255, 136, 0.08)',
+                color: '#94a3b8',
+                fontWeight: 700,
                 fontSize: '0.95rem',
                 padding: '0.75rem 1.5rem',
                 borderRadius: '12px',
-                border: 'none',
+                border: '1px solid rgba(0, 255, 136, 0.2)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '0.5rem',
-                cursor: syncProgress?.active ? 'not-allowed' : 'pointer',
-                opacity: syncProgress?.active ? 0.7 : 1,
-                boxShadow: '0 4px 14px rgba(0, 255, 136, 0.35)',
+                cursor: 'not-allowed',
+                opacity: 0.65,
+                boxShadow: 'none',
                 transition: 'all 0.2s ease',
               }}
             >
-              {syncProgress?.active && syncProgress.type === 'section' ? (
-                <Loader2 className="animate-spin" size={18} />
-              ) : (
-                <RefreshCw size={18} />
-              )}
-              <span>
-                {syncProgress?.active && syncProgress.type === 'section'
-                  ? `Sincronizando ${ramoAtual}...`
-                  : 'Sincronizar Seção'}
-              </span>
+              <Lock size={16} style={{ color: '#fbbf24' }} />
+              <span>Sincronizar Seção</span>
             </button>
 
-            {/* Botão 2: Sincronizar dados deste jovem */}
+            {/* Botão 2: Sincronizar dados deste jovem (Bloqueado) */}
             <button
               type="button"
-              onClick={handleSyncSingle}
-              disabled={syncProgress?.active || !activeId}
+              disabled={true}
+              title="Sincronização com o Paxtu 100 bloqueada para proteção da base histórica pré-corte"
               style={{
                 background: 'transparent',
-                color: 'var(--primary)',
-                border: '1.5px solid var(--primary)',
-                fontWeight: 700,
+                color: '#94a3b8',
+                border: '1.5px solid rgba(255, 255, 255, 0.15)',
+                fontWeight: 600,
                 fontSize: '0.88rem',
                 padding: '0.7rem 1.4rem',
                 borderRadius: '12px',
@@ -500,21 +492,13 @@ export default function ScoutExplorer() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '0.5rem',
-                cursor: syncProgress?.active || !activeId ? 'not-allowed' : 'pointer',
-                opacity: syncProgress?.active || !activeId ? 0.6 : 1,
+                cursor: 'not-allowed',
+                opacity: 0.6,
                 transition: 'all 0.2s ease',
               }}
             >
-              {syncProgress?.active && syncProgress.type === 'single' ? (
-                <Loader2 className="animate-spin" size={16} />
-              ) : (
-                <RefreshCw size={16} />
-              )}
-              <span>
-                {syncProgress?.active && syncProgress.type === 'single'
-                  ? 'Atualizando jovem...'
-                  : 'Sincronizar dados deste jovem'}
-              </span>
+              <Lock size={15} style={{ color: '#fbbf24' }} />
+              <span>Sincronizar dados deste jovem</span>
             </button>
           </div>
         </section>

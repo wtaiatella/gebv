@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LogIn, Loader2, KeyRound, User, CheckCircle2, X } from 'lucide-react';
+import { LogIn, Loader2, KeyRound, User, CheckCircle2, X, Lock } from 'lucide-react';
 
 type PaxtuLoginModalProps = {
   isOpen: boolean;
@@ -208,47 +208,29 @@ export function PaxtuLoginModal({ isOpen, onClose, onSuccess }: PaxtuLoginModalP
 }
 
 export function PaxtuConnectButton() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loggedUser, setLoggedUser] = useState<string | null>(null);
-
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => setIsModalOpen(true)}
-        style={{
-          fontSize: '0.85rem',
-          padding: '0.6rem 1.1rem',
-          borderRadius: '8px',
-          background: loggedUser ? 'rgba(0, 230, 153, 0.1)' : 'rgba(255, 255, 255, 0.05)',
-          color: loggedUser ? 'var(--primary)' : '#ccc',
-          border: loggedUser ? '1px solid var(--primary)' : '1px solid var(--glass-border)',
-          cursor: 'pointer',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          transition: 'all 0.2s ease',
-        }}
-      >
-        {loggedUser ? (
-          <>
-            <CheckCircle2 size={16} />
-            <span>Paxtu 100: <strong>{loggedUser}</strong></span>
-          </>
-        ) : (
-          <>
-            <LogIn size={16} />
-            <span>Conectar Paxtu 100</span>
-          </>
-        )}
-      </button>
-
-      <PaxtuLoginModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSuccess={(user) => setLoggedUser(user)}
-      />
-    </>
+    <button
+      type="button"
+      disabled={true}
+      title="Login do Paxtu 100 bloqueado para proteção da base histórica pré-corte"
+      style={{
+        fontSize: '0.85rem',
+        padding: '0.6rem 1.1rem',
+        borderRadius: '8px',
+        background: 'rgba(255, 255, 255, 0.04)',
+        color: '#94a3b8',
+        border: '1px solid rgba(255, 255, 255, 0.12)',
+        cursor: 'not-allowed',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        opacity: 0.65,
+        transition: 'all 0.2s ease',
+      }}
+    >
+      <Lock size={15} style={{ color: '#fbbf24' }} />
+      <span>Login do Paxtu 100</span>
+    </button>
   );
 }
 

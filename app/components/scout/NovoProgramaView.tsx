@@ -8,7 +8,30 @@ import type {
   ResumoBlocoTransicionado,
 } from '@/app/lib/services/transicao-service';
 import EditarRegraModal, { RegraParaEditar } from '@/app/components/equivalencias/EditarRegraModal';
+import { RenderDetalhesRegra } from '@/app/components/equivalencias/RenderDetalhesRegra';
 import { useAutoSaveToggle, type ItemSaveFeedback } from '@/app/lib/hooks/useAutoSaveToggle';
+
+function formatarDataConquista(dt: string | null | undefined, isConcluido: boolean): string {
+  if (!isConcluido) return '—';
+  if (!dt) return 'Concluído';
+  try {
+    const dateStr = dt.includes('T') ? dt.split('T')[0] : dt;
+    const parts = dateStr.split('-');
+    if (parts.length === 3) {
+      const [year, month, day] = parts;
+      if (year && month && day) {
+        return `${day.padStart(2, '0')}/${month.padStart(2, '0')}/${year}`;
+      }
+    }
+    const d = new Date(dt);
+    if (!isNaN(d.getTime())) {
+      return d.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+    }
+  } catch {
+    // fallback
+  }
+  return 'Concluído';
+}
 
 type Props = {
   cdAssociado: string;
@@ -21,9 +44,9 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
   const [error, setError] = useState<string | null>(null);
   const [transicionando, setTransicionando] = useState(false);
 
-  // Controle de blocos expandidos em modo detalhado
+  // Controle de blocos expandidos em modo detalhado (padrão: false para visão limpa com data de conquista)
   const [blocosExpandidos, setBlocosExpandidos] = useState<Record<number, boolean>>({});
-  const [modoTabelaGeral, setModoTabelaGeral] = useState<boolean>(true);
+  const [modoTabelaGeral, setModoTabelaGeral] = useState<boolean>(false);
 
   // Controle de acordeons independentes: Eixos e Blocos
   const [eixosAbertos, setEixosAbertos] = useState<Record<number, boolean>>({});
@@ -606,23 +629,24 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                                 onClick={() => toggleBlocoExpandido(bloco.bloco_id)}
                                 style={{
                                   background: isExpandido
-                                    ? 'linear-gradient(135deg, #0284c7, #0369a1)'
-                                    : 'linear-gradient(135deg, #38bdf8, #0284c7)',
-                                  color: '#fff',
+                                    ? 'rgba(255, 255, 255, 0.08)'
+                                    : 'linear-gradient(135deg, #0284c7, #0369a1)',
+                                  color: isExpandido ? '#d4d4d8' : '#fff',
                                   fontWeight: 700,
-                                  fontSize: '0.88rem',
-                                  padding: '0.55rem 1.15rem',
-                                  borderRadius: '10px',
-                                  boxShadow: '0 4px 12px rgba(56, 189, 248, 0.3)',
+                                  fontSize: '0.85rem',
+                                  padding: '0.5rem 1rem',
+                                  borderRadius: '8px',
+                                  border: isExpandido ? '1px solid var(--glass-border)' : 'none',
+                                  boxShadow: isExpandido ? 'none' : '0 4px 12px rgba(2, 132, 199, 0.3)',
                                   whiteSpace: 'nowrap',
                                   cursor: 'pointer',
                                   display: 'flex',
                                   alignItems: 'center',
                                   gap: '0.4rem',
-                                  border: 'none',
+                                  transition: 'all 0.15s ease',
                                 }}
                               >
-                                <span>📐</span>
+                                <span>{isExpandido ? '👁️‍🗨️' : '📐'}</span>
                                 {isExpandido ? 'Ocultar Detalhes PA' : 'Ver Detalhes PA'}
                               </button>
                             </div>
@@ -648,11 +672,11 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                         {/* Conteúdo Expansível do Bloco */}
                         {isBlocoAberto && (
                           <>
-                            {/* Cabeçalho da Grade de 3 Colunas (1.4fr / 140px / 1.4fr) */}
+                            {/* Cabeçalho da Grade de 3 Colunas */}
                             <div
                               style={{
                                 display: 'grid',
-                                gridTemplateColumns: '1.4fr 140px 1.4fr',
+                                gridTemplateColumns: isExpandido ? '1.4fr 140px 1.4fr' : '1fr 140px 140px',
                                 gap: '1rem',
                                 padding: '0.5rem 0.5rem',
                                 borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
@@ -665,7 +689,11 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
                             >
                               <div>AÇÃO EDUCATIVA (PN)</div>
                               <div style={{ textAlign: 'center' }}>STATUS & SALVAMENTO</div>
-                              <div>FÓRMULA DE EQUIVALÊNCIA & MATRIZ</div>
+                              {isExpandido ? (
+                                <div>FÓRMULA DE EQUIVALÊNCIA & MATRIZ</div>
+                              ) : (
+                                <div style={{ textAlign: 'center' }}>DATA DA CONQUISTA</div>
+                              )}
                             </div>
 
                             {/* SEÇÃO 1: AÇÕES EDUCATIVAS FIXAS */}
@@ -904,175 +932,6 @@ export default function NovoProgramaView({ cdAssociado, ramoAtual = 'Escoteiro' 
   );
 }
 
-// Item folha da árvore de detalhes_regra: badge de identificação/status + descrição ao lado,
-// para o chefe não precisar procurar o texto da atividade em outro lugar.
-function BadgeItemRegra({
-  label,
-  conquistado,
-  title,
-  descricao,
-}: {
-  label: string;
-  conquistado: boolean;
-  title?: string;
-  descricao?: string;
-}) {
-  return (
-    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', maxWidth: '100%' }}>
-      <span
-        title={title}
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.2rem',
-          flexShrink: 0,
-          background: conquistado ? 'rgba(0, 255, 136, 0.18)' : 'rgba(255, 255, 255, 0.05)',
-          color: conquistado ? '#00ff88' : '#888',
-          border: conquistado ? '1px solid rgba(0, 255, 136, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '0.12rem 0.4rem',
-          borderRadius: '4px',
-          fontSize: '0.72rem',
-          fontFamily: 'monospace',
-          cursor: title ? 'help' : 'default',
-        }}
-      >
-        <span>{conquistado ? '✓' : '✗'}</span>
-        <span>{label}</span>
-      </span>
-      {descricao && (
-        <span
-          style={{
-            fontSize: '0.78rem',
-            lineHeight: 1.35,
-            color: conquistado ? '#d4d4d8' : '#a1a1aa',
-            minWidth: 0,
-          }}
-        >
-          {descricao}
-        </span>
-      )}
-    </div>
-  );
-}
-
-const MAX_PROFUNDIDADE_RENDER_REGRA = 8;
-
-// Renderiza recursivamente a árvore de `detalhes_regra` na Coluna 3: cabeçalhos de operação
-// contêiner ("Exige X de:" / "Exige TODAS abaixo:") com cartão interno para cada sub-bloco
-// aninhado, e badges por item folha com status de conquista (plan.md §1.1 / prd.md FR-1).
-function RenderDetalhesRegra({
-  detalhes,
-  conquistados,
-  depth = 0,
-}: {
-  detalhes: any;
-  conquistados: string[];
-  depth?: number;
-}): React.ReactElement | null {
-  if (!detalhes || depth > MAX_PROFUNDIDADE_RENDER_REGRA) return null;
-
-  // Compatibilidade com formato legado achatado (janela de transição entre a migração da
-  // enum/colunas e o reseed a partir do catálogo canônico — ver qa-report.md #3).
-  if (!detalhes.tipo && (detalhes.origem_pistas_ueb || detalhes.origem_rumo_ueb || detalhes.origem_especialidades)) {
-    const pistas: string[] = detalhes.origem_pistas_ueb || [];
-    const rumos: string[] = detalhes.origem_rumo_ueb || [];
-    const esps: string[] = detalhes.origem_especialidades || [];
-    const nivelMin = detalhes.nivel_min_especialidade || 1;
-    if (pistas.length === 0 && rumos.length === 0 && esps.length === 0) return null;
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'flex-start' }}>
-        {pistas.map((p) => (
-          <BadgeItemRegra key={`pt_${p}`} label={`PT-${p}`} conquistado={conquistados.includes(`PT-${p}`) || conquistados.includes(`Pista ${p}`)} />
-        ))}
-        {rumos.map((r) => (
-          <BadgeItemRegra key={`rt_${r}`} label={`RT-${r}`} conquistado={conquistados.includes(`RT-${r}`) || conquistados.includes(`Rumo ${r}`)} />
-        ))}
-        {esps.map((e) => (
-          <BadgeItemRegra key={`esp_${e}`} label={`${e} (N${nivelMin}+)`} conquistado={conquistados.some((c) => c.startsWith(`Esp. ${e}`))} />
-        ))}
-      </div>
-    );
-  }
-
-  if (!detalhes.tipo) return null;
-
-  switch (detalhes.tipo) {
-    case 'PROGRESSOES': {
-      const item = detalhes.item;
-      if (!item) return null;
-      const ident = item.identificacao || `Atividade ${item.pa_atividade_id}`;
-      const isConq = conquistados.includes(ident);
-      return (
-        <BadgeItemRegra
-          label={ident}
-          conquistado={isConq}
-          title={`${ident}: ${isConq ? 'Concluído pelo jovem no PA' : 'Não realizado no PA'}`}
-          descricao={item.ds_atividade || undefined}
-        />
-      );
-    }
-    case 'ESPECIALIDADE': {
-      const nome = detalhes.nm_especialidade || `Especialidade ID ${detalhes.pa_especialidade_id}`;
-      const isConq = conquistados.some((c) => c.startsWith(`Esp. ${nome}`));
-      return (
-        <BadgeItemRegra
-          label={`${nome} (N${detalhes.nivel_minimo}+)`}
-          conquistado={isConq}
-          title={`Especialidade PA ${nome}, nível mínimo N${detalhes.nivel_minimo}+`}
-        />
-      );
-    }
-    case 'SEMANTICO': {
-      const itens = detalhes.itens || [];
-      return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'flex-start' }}>
-          <span style={{ fontSize: '0.7rem', color: '#a78bfa', fontWeight: 700 }}>
-            Semântico ({detalhes.logica === 'AND' ? 'Todas' : 'Ao menos uma'}):
-          </span>
-          {itens.map((it: any, i: number) => {
-            const ident = it.identificacao || `Atividade ${it.pa_atividade_id}`;
-            return (
-              <BadgeItemRegra
-                key={`${ident}_${i}`}
-                label={ident}
-                conquistado={conquistados.includes(ident)}
-                descricao={it.ds_atividade || undefined}
-              />
-            );
-          })}
-        </div>
-      );
-    }
-    case 'TODAS':
-    case 'QNT_MINIMA': {
-      const blocos = Array.isArray(detalhes.blocos) ? detalhes.blocos : [];
-      const header =
-        detalhes.tipo === 'TODAS' ? 'Exige TODAS abaixo:' : `Exige ${detalhes.quantidade_minima ?? 1} de:`;
-      return (
-        <div
-          style={{
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            borderRadius: '6px',
-            padding: '0.4rem 0.5rem',
-            background: 'rgba(255, 255, 255, 0.02)',
-          }}
-        >
-          <div style={{ fontSize: '0.72rem', color: '#93c5fd', fontWeight: 700, marginBottom: '0.3rem' }}>
-            {header}
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', alignItems: 'flex-start' }}>
-            {blocos.map((sub: any, i: number) => (
-              <RenderDetalhesRegra key={i} detalhes={sub} conquistados={conquistados} depth={depth + 1} />
-            ))}
-          </div>
-        </div>
-      );
-    }
-    default:
-      return null;
-  }
-}
-
 // Componente para a Linha da Ação Educativa na Grade de 3 Colunas (1.4fr / 140px / 1.4fr)
 function AcaoEquivalenciaRow({
   acao,
@@ -1110,7 +969,7 @@ function AcaoEquivalenciaRow({
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: '1.4fr 140px 1.4fr',
+          gridTemplateColumns: isExpandido ? '1.4fr 140px 1.4fr' : '1fr 140px 140px',
           alignItems: 'center',
           gap: '1rem',
         }}
@@ -1298,66 +1157,84 @@ function AcaoEquivalenciaRow({
           </div>
         </div>
 
-        {/* COLUNA 3: Fórmula & Validação (1.4fr) + Botão Editar Regra */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            gap: '0.75rem',
-          }}
-        >
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '0.83rem', color: '#bae6fd', lineHeight: 1.35 }}>
-              {acao.operacao === 'SEM_EQUIVALENCIA' || !acao.detalhes_regra ? (
-                <span
-                  style={{
-                    display: 'inline-block',
-                    background: 'rgba(255, 255, 255, 0.06)',
-                    color: '#a1a1aa',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    padding: '0.15rem 0.5rem',
-                    borderRadius: '5px',
-                    fontSize: '0.74rem',
-                    fontWeight: 600,
-                  }}
-                >
-                  Sem Equivalência
-                </span>
-              ) : isExpandido ? (
-                <RenderDetalhesRegra
-                  detalhes={acao.detalhes_regra}
-                  conquistados={acao.itens_conquistados_match || []}
-                />
-              ) : (
-                // Modo colapsado (tabela geral): resumo textual gerado no backend, sem os cartões internos
-                <span>{acao.descricao_origem}</span>
-              )}
-            </div>
-          </div>
-
-          {/* Botão Editar Regra */}
-          <button
-            type="button"
-            onClick={onEditRegra}
-            title="Editar Regra de Equivalência (Matriz) desta ação"
+        {/* COLUNA 3: Se isExpandido -> Fórmula & Validação + Botão Editar. Se !isExpandido -> Data da Conquista */}
+        {isExpandido ? (
+          <div
             style={{
-              background: 'rgba(0, 255, 136, 0.12)',
-              color: 'var(--primary)',
-              border: '1px solid rgba(0, 255, 136, 0.25)',
-              fontSize: '0.76rem',
-              fontWeight: 700,
-              padding: '0.35rem 0.7rem',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-              transition: 'all 0.15s ease',
+              display: 'flex',
+              alignItems: 'flex-start',
+              justifyContent: 'space-between',
+              gap: '0.75rem',
             }}
           >
-            Editar
-          </button>
-        </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: '0.83rem', color: '#bae6fd', lineHeight: 1.35 }}>
+                {acao.operacao === 'SEM_EQUIVALENCIA' || !acao.detalhes_regra ? (
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      background: 'rgba(255, 255, 255, 0.06)',
+                      color: '#a1a1aa',
+                      border: '1px solid rgba(255, 255, 255, 0.12)',
+                      padding: '0.15rem 0.5rem',
+                      borderRadius: '5px',
+                      fontSize: '0.74rem',
+                      fontWeight: 600,
+                    }}
+                  >
+                    Sem Equivalência
+                  </span>
+                ) : (
+                  <RenderDetalhesRegra
+                    detalhes={acao.detalhes_regra}
+                    conquistados={acao.itens_conquistados_match || []}
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* Botão Editar Regra */}
+            <button
+              type="button"
+              onClick={onEditRegra}
+              title="Editar Regra de Equivalência (Matriz) desta ação"
+              style={{
+                background: 'rgba(0, 255, 136, 0.12)',
+                color: 'var(--primary)',
+                border: '1px solid rgba(0, 255, 136, 0.25)',
+                fontSize: '0.76rem',
+                fontWeight: 700,
+                padding: '0.35rem 0.7rem',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+                transition: 'all 0.15s ease',
+              }}
+            >
+              Editar
+            </button>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.35rem',
+              textAlign: 'center',
+              fontSize: '0.85rem',
+              fontWeight: isChecked ? 600 : 400,
+              color: isChecked ? '#e2e8f0' : '#71717a',
+              fontFamily: isChecked && acao.dt_conclusao ? 'monospace' : 'inherit',
+            }}
+          >
+            {isChecked && acao.dt_conclusao && (
+              <span style={{ fontSize: '0.8rem', opacity: 0.8 }}>📅</span>
+            )}
+            <span>{formatarDataConquista(acao.dt_conclusao, isChecked)}</span>
+          </div>
+        )}
       </div>
     </div>
   );

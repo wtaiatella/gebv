@@ -99,11 +99,30 @@ export async function GET(request: Request) {
           },
         },
       },
-      orderBy: [
-        { competencia: { caminho: { cd_caminho_paxtu: 'asc' } } },
-        { nr_ordenacao: 'asc' },
-      ],
     });
+
+    function getCaminhoWeight(nmCaminho?: string | null, identificacao?: string | null): number {
+      const c = (nmCaminho || '').toLowerCase();
+      const id = (identificacao || '').toUpperCase();
+      if (c.includes('introdut') || id.startsWith('PIL') || id.startsWith('PIS') || id.startsWith('PIE') || id.startsWith('PIP') || id.startsWith('P-')) return 1;
+      if (c.includes('pata') || c.includes('saltador') || id.startsWith('PTS')) return 2;
+      if (c.includes('rastreador') || c.includes('caçador') || c.includes('cacador') || id.startsWith('RC')) return 3;
+      if (c.includes('pista') || c.includes('trilha') || id.startsWith('PT-')) return 2;
+      if (c.includes('rumo') || c.includes('travessia') || id.startsWith('RT-')) return 3;
+      if (c.includes('escalada') || c.includes('conquista') || c.includes('azimute') || id.startsWith('ECA')) return 2;
+      if (c.includes('comprometimento') || c.includes('cidadania') || id.startsWith('CC')) return 2;
+      if (/\b(ar|aeronauta|aviador)\b/i.test(c) || id.startsWith('IAV') || id.startsWith('IAE')) return 8;
+      if (/\b(mar|naval|grumete)\b/i.test(c) || id.startsWith('IGR') || id.startsWith('INV')) return 9;
+      return 5;
+    }
+
+    paAtividadesDb.sort((a, b) => {
+      const wA = getCaminhoWeight(a.competencia?.caminho?.nm_caminho, a.identificacao);
+      const wB = getCaminhoWeight(b.competencia?.caminho?.nm_caminho, b.identificacao);
+      if (wA !== wB) return wA - wB;
+      return (a.nr_ordenacao || 0) - (b.nr_ordenacao || 0);
+    });
+
     const pa_atividades = paAtividadesDb.map((a) => ({
       id: a.id,
       cd_ueb: a.identificacao || '',

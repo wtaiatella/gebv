@@ -485,7 +485,7 @@ export async function runProgressaoTransicaoAtualizadaTests() {
     // =========================================================================
     // BLOCO 5 (US-5 / AC.11): Integridade das 216 Ações PA Complementares
     // =========================================================================
-    console.log('\n🔹 Bloco 5: Integridade das Ações PA Complementares (Escoteiro & Lobinho)');
+    console.log('\n🔹 Bloco 5: Integridade das Ações PA Complementares (Escoteiro, Lobinho & Sênior)');
     const totalAcoesPaEscoteiro = await prisma.pnAcaoEducativa.count({
       where: { tp_acao: 'PA', ds_ramo: Ramo.ESCOTEIRO },
     });
@@ -495,6 +495,16 @@ export async function runProgressaoTransicaoAtualizadaTests() {
       where: { tp_acao: 'PA', ds_ramo: Ramo.LOBINHO },
     });
     assert(totalAcoesPaLobinho === 127, `Catálogo de ações complementares PA (Lobinho) possui exatamente 127 itens (obtido: ${totalAcoesPaLobinho})`);
+
+    const totalAcoesPaSenior = await prisma.pnAcaoEducativa.count({
+      where: { tp_acao: 'PA', ds_ramo: Ramo.SENIOR },
+    });
+    assert(totalAcoesPaSenior === 80, `Catálogo de ações complementares PA (Sênior) possui exatamente 80 itens (obtido: ${totalAcoesPaSenior})`);
+
+    const totalAcoesSenior = await prisma.pnAcaoEducativa.count({
+      where: { ds_ramo: Ramo.SENIOR },
+    });
+    assert(totalAcoesSenior === 249, `Catálogo do Ramo Sênior possui exatamente 249 ações educativas (obtido: ${totalAcoesSenior})`);
 
     // =========================================================================
     // BLOCO 6 (US-8 / AC.17): Carga Canônica das 448 Regras de Equivalência (Escoteiro)
@@ -544,9 +554,34 @@ export async function runProgressaoTransicaoAtualizadaTests() {
       assert(Array.isArray(acaoGilwell.itens_conquistados_match), 'itens_conquistados_match é um array (usado pela Coluna 3 para status ✓/✗ por item)');
     }
 
-    // Ações com operação SEM_EQUIVALENCIA continuam sem detalhes_regra utilizável (badge neutro)
-    const acaoSemEquiv = todasAsAcoes.find((a) => a.operacao === 'SEM_EQUIVALENCIA');
-    assert(!!acaoSemEquiv, 'Existe ao menos uma ação SEM_EQUIVALENCIA no payload para validar o badge neutro');
+    // =========================================================================
+    // BLOCO 8: Catálogo Completo de pa_atividades no Seletor (Sênior, Escoteiro, Lobinho)
+    // =========================================================================
+    console.log('\n🔹 Bloco 8: Catálogo Completo e Ordenação das Atividades do PA (AC.18)');
+    const { GET: getRegrasEquiv } = await import('@/app/api/regras-equivalencia/route');
+    
+    // Teste Sênior: deve conter todos os 105 itens, incluindo ECA-1 a ECA-75
+    const reqSenior = new Request('http://localhost:3010/api/regras-equivalencia?ramo=Senior');
+    const resSenior = await getRegrasEquiv(reqSenior);
+    const dataSenior = await resSenior.json();
+    assert(dataSenior.success === true, 'Endpoint /api/regras-equivalencia?ramo=Senior responde sucesso');
+    assert(dataSenior.pa_atividades.length === 105, `Catálogo PA Sênior contém exatamente 105 atividades (obtido: ${dataSenior.pa_atividades.length})`);
+    const eca75 = dataSenior.pa_atividades.find((a: any) => a.identificacao === 'ECA-75');
+    assert(!!eca75, 'Catálogo PA Sênior contém a última atividade ECA-75 no seletor');
+    const pis1 = dataSenior.pa_atividades[0];
+    assert(pis1?.identificacao === 'PIS-1', 'Primeira atividade do Sênior é PIS-1 (Período Introdutório)');
+
+    // Teste Escoteiro: deve conter todos os 252 itens
+    const reqEscoteiro = new Request('http://localhost:3010/api/regras-equivalencia?ramo=Escoteiro');
+    const resEscoteiro = await getRegrasEquiv(reqEscoteiro);
+    const dataEscoteiro = await resEscoteiro.json();
+    assert(dataEscoteiro.pa_atividades.length === 252, `Catálogo PA Escoteiro contém exatamente 252 atividades (obtido: ${dataEscoteiro.pa_atividades.length})`);
+
+    // Teste Lobinho: deve conter todos os 136 itens
+    const reqLobinho = new Request('http://localhost:3010/api/regras-equivalencia?ramo=Lobinho');
+    const resLobinho = await getRegrasEquiv(reqLobinho);
+    const dataLobinho = await resLobinho.json();
+    assert(dataLobinho.pa_atividades.length === 136, `Catálogo PA Lobinho contém exatamente 136 atividades (obtido: ${dataLobinho.pa_atividades.length})`);
 
     console.log(`\n🏁 Suíte executada: ${passed} passaram, ${failed} falharam.\n`);
   } catch (err: any) {
