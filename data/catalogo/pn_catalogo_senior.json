@@ -1,0 +1,2647 @@
+{
+  "ramo": "SENIOR",
+  "eixos": [
+    "Habilidades para a Vida",
+    "Meio Ambiente",
+    "Paz e Desenvolvimento",
+    "Saúde e Bem-Estar"
+  ],
+  "blocos": [
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "ds_intencionalidade": "Conhecer diferentes temas, planejar estratégias para aprender de maneira eficaz e utilizar novos conceitos e recursos para melhorar seus resultados. Aprofundar seus conhecimentos em áreas de interesse, descobrindo e explorando sua vocação.",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 1
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "ds_intencionalidade": "Assumir responsabilidades dentro de sua patrulha ou equipe de interesse, trabalhando junto aos colegas para alcançar objetivos. Organizar e administrar recursos para seus projetos, definir um orçamento e executar ações para cumpri-lo. Planejar, realizar e avaliar atividades individuais e coletivas, tomando decisões com consciência e responsabilidade.",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 2
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "ds_intencionalidade": "Expressar suas ideias, talentos e criatividade por meio da arte, da escrita, da música ou de outras formas de criação. Buscar inovar em seus projetos e iniciativas, explorando novas possibilidades.",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 3
+    },
+    {
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "ds_intencionalidade": "Reconhecer e lidar com seus sentimentos, respeitando suas próprias emoções e as dos outros, expressando-se de forma equilibrada e assertiva.",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 4
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "ds_intencionalidade": "Compreender como o consumo responsável influencia o futuro do planeta e adotar hábitos que ajudem a garantir recursos para as próximas gerações.",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 5
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "ds_intencionalidade": "Propor e organizar atividades e projetos para reduzir os impactos ambientais e combater as mudanças climáticas. Incentivar práticas sustentáveis no dia a dia e mobilizar outros para agir pelo meio ambiente.",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 6
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "ds_intencionalidade": "Identificar os impactos das ações humanas na biodiversidade e atuar para proteger os ecossistemas, promovendo a preservação da fauna e flora.",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 2,
+      "nr_ordem": 7
+    },
+    {
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "ds_intencionalidade": "Aproveitar ao máximo as atividades ao ar livre e sua conexão com a natureza, sempre cuidando do ambiente e reduzindo seu impacto sobre ele.",
+      "nr_acoes_fixas_obrigatorias": 8,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 8
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "ds_intencionalidade": "Planejar e coordenar projetos que geram impacto positivo na comunidade, dialogando com outras instituições, e promover ações concretas para o bem comum.",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 2,
+      "nr_ordem": 9
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "ds_intencionalidade": "Participar ativamente da democracia, engajando-se em debates, contribuindo na tomada de decisões e ajudando a construir soluções coletivas para desafios sociais.",
+      "nr_acoes_fixas_obrigatorias": 3,
+      "nr_acoes_variaveis_exigidas": 4,
+      "nr_ordem": 10
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "ds_intencionalidade": "Compartilhar a herança cultural de sua comunidade e do seu país, organizando atividades e projetos que valorizem a história, os costumes e os saberes ancestrais dos povos originários brasileiros.",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 11
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "ds_intencionalidade": "Desenvolver projetos que promovem a paz, o respeito à diversidade, o diálogo entre diferentes culturas e crenças, reconhecendo e valorizando a pluralidade da humanidade.",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 5,
+      "nr_ordem": 12
+    },
+    {
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "ds_intencionalidade": "Alinhar suas atitudes aos seus valores pessoais e aos princípios do Movimento Escoteiro, vivendo a Promessa e a Lei Escoteira de forma consciente e coerente.",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 2,
+      "nr_ordem": 13
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "ds_intencionalidade": "Reconhecer e valorizar suas habilidades físicas, se desafiar a superar limitações e cuidar da própria saúde com respeito ao seu corpo. Valorizar e respeitar a diversidade humana.",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 2,
+      "nr_ordem": 14
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "ds_intencionalidade": "Refletir sobre o sentido da vida, encontrando inspiração na natureza, na solidariedade e na diversidade espiritual da sua comunidade. Buscar viver de acordo com seus valores, alinhando suas crenças às suas ações diárias.",
+      "nr_acoes_fixas_obrigatorias": 0,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 15
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "ds_intencionalidade": "Cuidar do próprio bem-estar adotando hábitos saudáveis, praticando atividades físicas, mantendo uma alimentação equilibrada e garantindo a higiene pessoal e a organização do ambiente onde vive.",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 2,
+      "nr_ordem": 16
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "ds_intencionalidade": "Cultivar hábitos que promovam a saúde mental, aprender a lidar com desafios e aplicar práticas que favorecem um ambiente positivo e acolhedor para si e para aqueles ao seu redor.",
+      "nr_acoes_fixas_obrigatorias": 2,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 17
+    },
+    {
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "ds_intencionalidade": "Construir relações saudáveis e empáticas, criando laços baseados no respeito, na compreensão mútua e no bem-estar coletivo.",
+      "nr_acoes_fixas_obrigatorias": 1,
+      "nr_acoes_variaveis_exigidas": 3,
+      "nr_ordem": 18
+    }
+  ],
+  "acoes": [
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::4",
+      "excel_row": 4,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar, no Ramo Sênior, uma especialidade sobre um tema de seu interesse e que seja um conhecimento novo.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::6",
+      "excel_row": 6,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Explorar diferentes áreas profissionais participando de uma Feira de Profissões ou entrevistando profissionais da área de interesse, investigando os caminhos percorridos, os desafios enfrentados e as motivações que os levaram à escolha da carreira.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::7",
+      "excel_row": 7,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Engajar-se em atividades voluntárias ou estágios em instituições que despertem interesse, permitindo a vivência prática, o desenvolvimento de habilidades e a compreensão do ambiente profissional e comunitário.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::8",
+      "excel_row": 8,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de palestras, workshops ou vivências voltadas à orientação vocacional, planejamento de carreira e desenvolvimento pessoal.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::9",
+      "excel_row": 9,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar uma atividade para a patrulha ou tropa voltada à escolha vocacional.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::10",
+      "excel_row": 10,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar, para sua tropa ou patrulha, uma oficina, curso ou palestra sobre um tema de seu interesse.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::11",
+      "excel_row": 11,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de feiras, mostras ou eventos escolares ou científicos, fora do Movimento Escoteiro, apresentando trabalhos ou projetos desenvolvidos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::ECA-33",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Manter (sozinho ou com sua patrulha) um informativo escoteiro durante 3 meses, com atualizações semanais, expondo também as principais notícias da semana colhidas em diversos meios de comunicação, junto com uma visão crítica de cada uma delas. O informativo poderá ser impresso, um jornal mural na sede ou um blog pela internet.",
+      "regra_qtd_texto": "Atividade PA ECA-33"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::ECA-35",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher uma das seguintes opções: a) Conquistar 3 especialidades de nível 2, em 3 dos ramos de conhecimento a seguir: Cultura, Desportos, Serviços e Ciência e Tecnologia; OU b) Comparar pelo menos 4 opções profissionais, indicando vantagens e desvantagens de cada uma, identificando as decisões que terá de tomar ao longo dos seus estudos e que irão influenciar a escolha de sua profissão.",
+      "regra_qtd_texto": "Atividade PA ECA-35"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::ECA-38",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher uma descoberta científica e explicar como esta contribui (ou pode vir a contribuir) para melhorar o mundo.",
+      "regra_qtd_texto": "Atividade PA ECA-38"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::ECA-41",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer uma auto-avaliação, indicando os seus progressos desde o Compromisso Sênior realizado e os pontos que possui mais dificuldades.",
+      "regra_qtd_texto": "Atividade PA ECA-41"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::ECA-42",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Definir as metas de sua progressão na Tropa Sênior/Guia, estabelecendo prazos para concluir as etapas e as especialidades que pretende conquistar. A cada etapa concluída, estas metas deverão ser revisadas.",
+      "regra_qtd_texto": "Atividade PA ECA-42"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::ECA-45",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Descrever a importância do correto funcionamento dos Conselhos de Patrulha, Tropa e Corte de Honra.",
+      "regra_qtd_texto": "Atividade PA ECA-45"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::ECA-46",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Assumir e desempenhar plenamente seus encargos na patrulha durante os últimos 3 meses, sendo bem avaliado pelos seus companheiros.",
+      "regra_qtd_texto": "Atividade PA ECA-46"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::13",
+      "excel_row": 13,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Gastronomia, Tecnologia, Educação, Idiomas, Ciências Humanas",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Aprendizagem Contínua e Desenvolvimento Vocacional::15",
+      "excel_row": 15,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Aprendizagem Contínua e Desenvolvimento Vocacional",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes insígnias no nível 1+: Insígnia do Aprender, Insígnia da Modalidade do Mar – Naval, Insígnia da Modalidade do Ar – Aeronáutica",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Autonomia e Liderança::19",
+      "excel_row": 19,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conhecer o material individual e de patrulha necessário para diferentes tipos de excursões (acampamento, acantonamento, volante, fixo) e saber organizá-lo na mochila.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Autonomia e Liderança::21",
+      "excel_row": 21,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente do planejamento, da execução e da avaliação de atividades da patrulha, tropa ou equipe de interesse.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Autonomia e Liderança::22",
+      "excel_row": 22,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Desenvolver o planejamento orçamentário de uma atividade da patrulha, equipe de interesse ou tropa.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Autonomia e Liderança::23",
+      "excel_row": 23,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Utilizar transporte coletivo urbano para uma atividade externa da patrulha.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Autonomia e Liderança::24",
+      "excel_row": 24,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Implementar uma estratégia, incluindo a parte financeira, para alcançar uma meta pessoal.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Autonomia e Liderança::25",
+      "excel_row": 25,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e executar um projeto de captação de recursos para participação em atividade escoteira ou projeto pessoal.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Autonomia e Liderança::26",
+      "excel_row": 26,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Assumir e desempenhar diferentes encargos na patrulha.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Autonomia e Liderança::27",
+      "excel_row": 27,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e conduzir um grande jogo para a tropa, com apoio da patrulha ou equipe de interesse.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Autonomia e Liderança::ECA-33",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Manter (sozinho ou com sua patrulha) um informativo escoteiro durante 3 meses, com atualizações semanais, expondo também as principais notícias da semana colhidas em diversos meios de comunicação, junto com uma visão crítica de cada uma delas. O informativo poderá ser impresso, um jornal mural na sede ou um blog pela internet.",
+      "regra_qtd_texto": "Atividade PA ECA-33"
+    },
+    {
+      "chave": "Autonomia e Liderança::ECA-34",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente do planejamento e organização de uma atividade de patrulha ou Seção, sendo posteriormente bem avaliado pelos companheiros e pela chefia.",
+      "regra_qtd_texto": "Atividade PA ECA-34"
+    },
+    {
+      "chave": "Autonomia e Liderança::ECA-35",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher uma das seguintes opções: a) Conquistar 3 especialidades de nível 2, em 3 dos ramos de conhecimento a seguir: Cultura, Desportos, Serviços e Ciência e Tecnologia; OU b) Comparar pelo menos 4 opções profissionais, indicando vantagens e desvantagens de cada uma, identificando as decisões que terá de tomar ao longo dos seus estudos e que irão influenciar a escolha de sua profissão.",
+      "regra_qtd_texto": "Atividade PA ECA-35"
+    },
+    {
+      "chave": "Autonomia e Liderança::ECA-36",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher um tema de seu interesse e criar uma obra a partir dele, tal como uma escultura, pintura, esquete, canção, poesia, dentre outras à sua escolha ou ainda criar uma campanha de divulgação para a seção.",
+      "regra_qtd_texto": "Atividade PA ECA-36"
+    },
+    {
+      "chave": "Autonomia e Liderança::ECA-37",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente de uma mesa redonda, debate ou estudo de caso com membros da sua Seção sobre um tema escolhido dentre vários apresentados pela chefia. Tais como: «Os perigos da idolatria», «A violência entre as torcidas organizadas», «Os conflitos entre as diferentes \"tribos urbanas\": emos, punks, rockeiros, pit boys, etc.».",
+      "regra_qtd_texto": "Atividade PA ECA-37"
+    },
+    {
+      "chave": "Autonomia e Liderança::ECA-38",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher uma descoberta científica e explicar como esta contribui (ou pode vir a contribuir) para melhorar o mundo.",
+      "regra_qtd_texto": "Atividade PA ECA-38"
+    },
+    {
+      "chave": "Autonomia e Liderança::29",
+      "excel_row": 29,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Autonomia e Liderança",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Empreendedorismo e Negócios, Finanças e Economia, Liderança e Gestão, Viagens",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Criatividade e Inovação::33",
+      "excel_row": 33,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Durante um acampamento, planejar e executar pioneirias inovadoras de médio ou grande porte.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Criatividade e Inovação::35",
+      "excel_row": 35,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar e conduzir um Fogo de Conselho ou show de talentos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Criatividade e Inovação::36",
+      "excel_row": 36,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar uma noite cultural para a patrulha ou tropa.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Criatividade e Inovação::37",
+      "excel_row": 37,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Produzir um curta-metragem ou vídeo criativo sobre Escotismo.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Criatividade e Inovação::38",
+      "excel_row": 38,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar uma apresentação artística ou cultural para a comunidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Criatividade e Inovação::39",
+      "excel_row": 39,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e realizar mostra temática com registros diversos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Criatividade e Inovação::40",
+      "excel_row": 40,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de concursos culturais, literários ou artísticos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Criatividade e Inovação::41",
+      "excel_row": 41,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Construir uma versão simplificada de um horizonte artificial funcional.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Criatividade e Inovação::ECA-36",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher um tema de seu interesse e criar uma obra a partir dele, tal como uma escultura, pintura, esquete, canção, poesia, dentre outras à sua escolha ou ainda criar uma campanha de divulgação para a seção.",
+      "regra_qtd_texto": "Atividade PA ECA-36"
+    },
+    {
+      "chave": "Criatividade e Inovação::43",
+      "excel_row": 43,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Comunicações",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Criatividade e Inovação::45",
+      "excel_row": 45,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Criatividade e Inovação",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte insígnia no nível 1+: Inovadores de Impacto",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Inteligência Emocional::49",
+      "excel_row": 49,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Reconhecer situações que comprometem a integridade física ou emocional e saber como agir.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Inteligência Emocional::50",
+      "excel_row": 50,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Praticar feedback construtivo durante as atividades, expressando opiniões de forma assertiva e respeitosa.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Inteligência Emocional::52",
+      "excel_row": 52,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar mudanças repentinas de emoção e equilibrar decisões e reações.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Inteligência Emocional::53",
+      "excel_row": 53,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Envolver-se em atividades aventureiras com segurança, enfrentando seus medos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Inteligência Emocional::54",
+      "excel_row": 54,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar situações de estresse ou desconforto e buscar soluções.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Inteligência Emocional::55",
+      "excel_row": 55,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Negociar responsabilidades familiares e pessoais de forma madura.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Inteligência Emocional::56",
+      "excel_row": 56,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conduzir dinâmicas de confiança e cooperação, lidando com frustrações e celebrando conquistas.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Inteligência Emocional::ECA-47",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os procedimentos básicos para minorar a situação em caso de acidentes, mantendo a calma e o controle da situação.",
+      "regra_qtd_texto": "Atividade PA ECA-47"
+    },
+    {
+      "chave": "Inteligência Emocional::ECA-48",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de jogos escoteiros ou competições esportivas, respeitando as regras e aceitando resultados negativos.",
+      "regra_qtd_texto": "Atividade PA ECA-48"
+    },
+    {
+      "chave": "Inteligência Emocional::ECA-49",
+      "excel_row": 0,
+      "eixo": "Habilidades para a Vida",
+      "bloco": "Inteligência Emocional",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de atividades aventureiras, respeitando as regras de segurança, buscando superar seus medos.",
+      "regra_qtd_texto": "Atividade PA ECA-49"
+    },
+    {
+      "chave": "Consumo Responsável::4",
+      "excel_row": 4,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Liderar a separação de resíduos recicláveis e orgânicos em uma festa da UEL, comunidade ou eventos regionais e nacionais.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Consumo Responsável::5",
+      "excel_row": 5,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Visitar uma estação de tratamento de esgoto, aterro sanitário ou cooperativa de reciclagem e discutir as questões ambientais e de consumo.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Consumo Responsável::6",
+      "excel_row": 6,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Desenvolver um projeto individual ou coletivo sobre o descarte correto de materiais eletrônicos na UEL, comunidade ou escola.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Consumo Responsável::7",
+      "excel_row": 7,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar pelo menos uma oficina, debate ou workshop para a seção sobre os seguintes temas: Cruelty-free (produtos livres de exploração animal), Vegetarianismo e Veganismo, Upcycling (reaproveitamento de itens descartados), Obsolescência Programada e Perceptiva, Microplástico.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Consumo Responsável::8",
+      "excel_row": 8,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em um acampamento, executar uma receita com cascas, talos ou sobras.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Consumo Responsável::9",
+      "excel_row": 9,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar um brechó beneficente ou feira de trocas em sua UEL ou comunidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Consumo Responsável::10",
+      "excel_row": 10,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de visita a cooperativa de reciclagem ou projeto comunitário ligado à economia circular.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Consumo Responsável::12",
+      "excel_row": 12,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Agricultura Sustentável",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Consumo Responsável::14",
+      "excel_row": 14,
+      "eixo": "Meio Ambiente",
+      "bloco": "Consumo Responsável",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte insígnia no nível 1+: Reduzir, Reciclar, Reutilizar",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Mudanças Climáticas::18",
+      "excel_row": 18,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Utilizar ferramentas de acompanhamento meteorológico para o planejamento de atividades ao ar livre.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Mudanças Climáticas::19",
+      "excel_row": 19,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Desenvolver iniciativas ou projetos sobre mudanças climáticas e soluções sustentáveis.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Mudanças Climáticas::20",
+      "excel_row": 20,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar, com sua patrulha, uma atividade ecológica em área urbana, identificando problemas ambientais da localidade e apontando suas causas e possíveis soluções.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Mudanças Climáticas::21",
+      "excel_row": 21,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de clubes ou projetos voltados para sustentabilidade e mudanças climáticas.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Mudanças Climáticas::22",
+      "excel_row": 22,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Utilizar e promover o uso do transporte coletivo, bicicleta ou caminhada em uma atividade escoteira, e utilizar um meio de transporte alternativo de fonte de energia renovável.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Mudanças Climáticas::23",
+      "excel_row": 23,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e executar, em patrulha ou equipe de interesse, um projeto comunitário de reaproveitamento de recursos naturais ou uso de energias renováveis.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Mudanças Climáticas::ECA-66",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Tomar parte em pelo menos 1 atividade em cooperação com outras organizações ligadas à preservação do meio ambiente.",
+      "regra_qtd_texto": "Atividade PA ECA-66"
+    },
+    {
+      "chave": "Mudanças Climáticas::ECA-67",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Apresentar à Seção um estudo ilustrado de um problema ambiental de sua cidade, apontando suas causas e possíveis soluções; OU Fazer parte da Tribo da Terra, conquistando ao menos uma das três insígnias dentro do Ramo Sênior: Insígnia Campeões da Natureza; Insígnia Reduzir, Reciclar, Reutilizar; Insígnia Escoteiros pela Energia Solar.",
+      "regra_qtd_texto": "Atividade PA ECA-67"
+    },
+    {
+      "chave": "Mudanças Climáticas::25",
+      "excel_row": 25,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Sustentabilidade",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Mudanças Climáticas::27",
+      "excel_row": 27,
+      "eixo": "Meio Ambiente",
+      "bloco": "Mudanças Climáticas",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte insígnia no nível 1+: Escoteiro pela Energia Solar",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::31",
+      "excel_row": 31,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma atividade em uma Área de Proteção Ambiental, reconhecendo fauna, flora e bioma local, identificando riscos e propondo soluções para preservação.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::33",
+      "excel_row": 33,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de eventos sobre preservação da biodiversidade organizados por ONGs, escolas ou parques naturais.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::34",
+      "excel_row": 34,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Colaborar em um projeto ou ação promovido por alguma ONG ambiental.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::35",
+      "excel_row": 35,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Coletar e registrar dados sobre espécies locais, qualidade da água ou vegetação.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::36",
+      "excel_row": 36,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar um projeto individual ou coletivo sobre abrigos de animais silvestres, enriquecimento ambiental, reintegração de animais ou outra iniciativa de preservação da fauna.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::37",
+      "excel_row": 37,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar o plantio de árvores nativas em parceria com órgãos ambientais ou ONGs.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::38",
+      "excel_row": 38,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conduzir uma campanha de conscientização sobre preservação da fauna e flora em praças, escolas ou redes sociais da comunidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::39",
+      "excel_row": 39,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Promover palestras ou oficinas abertas à comunidade sobre redução de impactos ambientais e proteção da biodiversidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::ECA-68",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a teoria e realizar, pelo menos uma vez uma «Cirurgia Vegetal» junto com sua patrulha\r\nOU\r\nFazer parte da Tribo da Terra, conquistando ao menos uma das três insígnias dentro do Ramo Sênior: Insígnia Campeões da Natureza; Insígnia Reduzir, Reciclar, Reutilizar; Insígnia Escoteiros pela Energia Solar.",
+      "regra_qtd_texto": "Atividade PA ECA-68"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::ECA-69",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Aplicar em conjunto com a patrulha normas de campismo de baixo impacto OU Fazer parte da Tribo da Terra, conquistando ao menos uma das três insígnias dentro do Ramo Sênior: Insígnia Campeões da Natureza; Insígnia Reduzir, Reciclar, Reutilizar; Insígnia Escoteiros pela Energia Solar.",
+      "regra_qtd_texto": "Atividade PA ECA-69"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::41",
+      "excel_row": 41,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Natureza, Ciências Naturais, Educação Ambiental",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Preservação da Biodiversidade::43",
+      "excel_row": 43,
+      "eixo": "Meio Ambiente",
+      "bloco": "Preservação da Biodiversidade",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte insígnia no nível 1+: Campeões da Natureza",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Vida ao Ar Livre::47",
+      "excel_row": 47,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Montar o campo de patrulha com pioneirias como mesa, canto do lenhador e pórtico, utilizando amarras adequadas.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vida ao Ar Livre::48",
+      "excel_row": 48,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Aplicar os seguintes nós: direito, correr, lais de guia, volta do fiel, nó em oito, balso pelo seio, catau, volta do salvador e boca de lobo durante um acampamento de tropa ou patrulha, conhecendo suas funcionalidades.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vida ao Ar Livre::49",
+      "excel_row": 49,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Escolher corretamente o local para montagem da barraca, incluindo técnicas de montagem, desmontagem e acondicionamento durante um acampamento de tropa ou patrulha.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vida ao Ar Livre::50",
+      "excel_row": 50,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Manusear corretamente ferramentas de corte e sapa, zelando pela segurança e realizando reparos durante um acampamento de tropa ou patrulha.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vida ao Ar Livre::51",
+      "excel_row": 51,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Preparar e executar pelo menos três tipos de fogueiras, utilizando-as para preparar uma refeição mateira e zelando pela segurança, em um acampamento de tropa ou patrulha.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vida ao Ar Livre::52",
+      "excel_row": 52,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e realizar ao menos uma excursão de patrulha em ambiente natural.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vida ao Ar Livre::53",
+      "excel_row": 53,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e realizar ao menos um acampamento de patrulha com técnicas de campismo de baixo impacto.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vida ao Ar Livre::54",
+      "excel_row": 54,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Em atividade ao ar livre, orientar-se utilizando carta topográfica ou náutica e bússola, e utilizar métodos naturais e tecnológicos de orientação.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vida ao Ar Livre::56",
+      "excel_row": 56,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um acampamento volante.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::57",
+      "excel_row": 57,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Selecionar corretamente os materiais de campo para um acampamento de patrulha.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::58",
+      "excel_row": 58,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Em conjunto com a sua patrulha, planejar e construir pelo menos uma das seguintes pioneirias: barraca suspensa, torre de observação ou ponte.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::59",
+      "excel_row": 59,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar um projeto individual ou coletivo sobre abrigos de animais silvestres, enriquecimento ambiental, reintegração de animais ou outra iniciativa de preservação da fauna.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::60",
+      "excel_row": 60,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Demonstrar conhecimento sobre processos de ancoragem e estiramento de cabos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::61",
+      "excel_row": 61,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Utilizar diferentes formas de acondicionamento de alimentos e técnicas de purificação de água em um acampamento.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::62",
+      "excel_row": 62,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Durante um acampamento de patrulha ou tropa, pernoitar em um abrigo natural.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::63",
+      "excel_row": 63,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Durante uma atividade aventureira, pernoitar uma noite em bivaque, abrigo natural ou ao relento.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::64",
+      "excel_row": 64,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de atividades como rafting, canoagem, rapel, espeleologia, escalada, trekking ou mountain bike.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::65",
+      "excel_row": 65,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de atividades aquáticas de exploração de corpos d’água naturais, respeitando os padrões de segurança.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::66",
+      "excel_row": 66,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um acampamento organizado pela patrulha ou tropa de média duração (3 a 5 dias) ou longa duração (6 a 10 dias).",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-21",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Incorporar ao cotidiano a prática de um esporte ou atividades físicas regulares.",
+      "regra_qtd_texto": "Atividade PA ECA-21"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-22",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer e saber utilizar as seguintes amarras: quadra paralela,diagonal e tripé na construção de pioneirias e engenhocas.",
+      "regra_qtd_texto": "Atividade PA ECA-22"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-23",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Fazer e saber utilizar os seguintes nós: volta redonda, pescador, oito, correr, balso pelo seio, catau, volta do salteador, nó de andaime, boca d lobo e volta do enfardador.",
+      "regra_qtd_texto": "Atividade PA ECA-23"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-24",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Confeccionar sozinho uma das seguintes pioneirias: a) lixeira com tampa e pedal; b) pórtico c) canto de lenhador; ou d) intendência suspensa.",
+      "regra_qtd_texto": "Atividade PA ECA-24"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-25",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Planejar na cidade com sua patrulha e executar no acampamento a montagem do campo de patrulha, com as seguintes pioneirias básicas: toldo, mesa com bancos , dispensa e canto do lenhador com porta ferramentas; observando a correta disposição de barracas e pioneirias, considerando fatores como tipo e a inclinação do terreno, vento, rios, árvores e demais fatores do local.",
+      "regra_qtd_texto": "Atividade PA ECA-25"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-26",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Planejar e executar a construção de uma das seguintes pioneiras: a) barraca suspensa ou b) torre de observação com capacidade para 4 pessoas.",
+      "regra_qtd_texto": "Atividade PA ECA-26"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-27",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Mostrar conhecimento sobre os processos de ancoragem e estiramento de cabos.",
+      "regra_qtd_texto": "Atividade PA ECA-27"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-28",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de um acampamento volante (ou travessa) que tenha pelo menos 12 km.",
+      "regra_qtd_texto": "Atividade PA ECA-28"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-29",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Percorrer uma trilha previamente delimitada de pelo menos 2 km, calculando as distâncias e azimutes entre os pontos demarcados.",
+      "regra_qtd_texto": "Atividade PA ECA-29"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-30",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conseguir se orientar utilizando uma carta e uma bússola ao mesmo tempo, sabendo escolher a melhor rota na carta topográfica, calculando distâncias, reconhecendo a direção do curso de um rio, cumes e depressões do terreno e as principais convenções topográficas.",
+      "regra_qtd_texto": "Atividade PA ECA-30"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-31",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber utilizar recursos/métodos naturais para sua orientação no campo.",
+      "regra_qtd_texto": "Atividade PA ECA-31"
+    },
+    {
+      "chave": "Vida ao Ar Livre::ECA-32",
+      "excel_row": 0,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar (com outro membro de sua Seção ) de uma jornada de pelo menos 15 km a pé ou de embarcação, ou ainda 30 km de bicicleta, acampando e preparando suas refeições durante o trajeto e fazendo o Percurso de Gilwell de no mínimo 5 km. Cumprir pelo menos 4 tarefas dentre as relacionadas abaixo, sendo uma das tarefas indicada pelo escotista e apresentando no final um relatório de toda a jornada, fazendo um esboço do percurso realizado, com base nos dados coletados. Tarefas sugeridas: a)Estudo da fauna e flora; b) Estudo dos recursos minerais; c) Meios de transporte; d) Educação; e) População (aspectos históricos e culturais); f) Turismo; g) Recreação e lazer; h) Saúde; i) Comércio; j) Agronomia; k) Indústria; l) Impactos Ambientais provocados pelo Homem.",
+      "regra_qtd_texto": "Atividade PA ECA-32"
+    },
+    {
+      "chave": "Vida ao Ar Livre::68",
+      "excel_row": 68,
+      "eixo": "Meio Ambiente",
+      "bloco": "Vida ao Ar Livre",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Esportes de Aventura, Ecoturismo, Habilidades Escoteiras",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Comunidade::4",
+      "excel_row": 4,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar, sozinho, em patrulha ou equipe, de pelo menos 10 horas de ação comunitária com outras instituições locais.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Comunidade::5",
+      "excel_row": 5,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Capacitar-se em curso promovido por entidades de referência (defesa civil, cruz vermelha, corpo de bombeiros etc.) e estar preparado para atuar em crises humanitárias.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Comunidade::7",
+      "excel_row": 7,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar os riscos de desastres naturais na comunidade, conhecer protocolos de segurança e atuar de acordo com eles.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Comunidade::8",
+      "excel_row": 8,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar uma atividade comunitária, como limpeza de praça, visita a uma instituição sem fins lucrativos ou revitalização de uma creche infantil ou lar de repouso de idosos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Comunidade::9",
+      "excel_row": 9,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Criar uma biblioteca comunitária móvel com livros doados.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Comunidade::10",
+      "excel_row": 10,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar uma campanha de arrecadação (alimentos, roupas, livros) envolvendo diferentes setores da comunidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Comunidade::11",
+      "excel_row": 11,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Representar a tropa em fóruns, conselhos ou encontros comunitários, contribuindo com ideias e propostas.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Comunidade::12",
+      "excel_row": 12,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Promover ações de educação ambiental, saúde ou cidadania em parceria com outras instituições.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Comunidade::ECA-51",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Identificar as principais organizações sociais e de serviço comunitário de sua cidade com as quais possa colaborar.",
+      "regra_qtd_texto": "Atividade PA ECA-51"
+    },
+    {
+      "chave": "Comunidade::ECA-52",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente das campanhas de serviço e de desenvolvimento comunitário organizadas pelo seu Grupo Escoteiro, pelo Distrito ou pela Região.",
+      "regra_qtd_texto": "Atividade PA ECA-52"
+    },
+    {
+      "chave": "Comunidade::ECA-53",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente de pelo menos 1 atividade de cunho comunitário desenvolvida pela sua patrulha.",
+      "regra_qtd_texto": "Atividade PA ECA-53"
+    },
+    {
+      "chave": "Comunidade::ECA-61",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher uma das opções abaixo:\r\na) Atuar como voluntário em alguma outra organização, por um mínimo de 2 meses.\r\nb) Planejar e executar o projeto da Insígnia do Desafio Comunitário.\r\nc) Atuar em alguma campanha de auxílio à comunidade, ou em apoio a desastres.",
+      "regra_qtd_texto": "Atividade PA ECA-61"
+    },
+    {
+      "chave": "Comunidade::14",
+      "excel_row": 14,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Desenvolvimento Comunitário, Ações Humanitárias, Inclusão e acessibilidade",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Comunidade::16",
+      "excel_row": 16,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Comunidade",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes insígnias no nível 1+: Insígnia do Desafio Comunitário, Mensageiro da Paz, Escoteiros do Mundo",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Democracia::20",
+      "excel_row": 20,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente das decisões do Conselho de Patrulha, contribuindo com ideias, votando e assumindo responsabilidades, respeitando os resultados.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Democracia::21",
+      "excel_row": 21,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente das decisões da Assembleia de Tropa, contribuindo com ideias, votando e assumindo responsabilidades, respeitando os resultados.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Democracia::22",
+      "excel_row": 22,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar da eleição do monitor da patrulha e das decisões dos encargos, respeitando os resultados.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Democracia::24",
+      "excel_row": 24,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de Audiência Pública ou consultas populares de temas de seu interesse promovidas pelo poder legislativo.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Democracia::25",
+      "excel_row": 25,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Emitir o título de eleitor, compreendendo a importância dos processos democráticos do país e, em ano eleitoral, pesquisar sobre os candidatos e suas propostas.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Democracia::26",
+      "excel_row": 26,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e executar uma campanha para educar outros jovens sobre temas como voto consciente e direitos do cidadão.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Democracia::27",
+      "excel_row": 27,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de ao menos uma Assembleia do Grupo Escoteiro.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Democracia::28",
+      "excel_row": 28,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar ativamente do Fórum de Grupo Escoteiro.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Democracia::29",
+      "excel_row": 29,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de grêmio estudantil ou conferências de juventude.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Democracia::30",
+      "excel_row": 30,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de pelo menos uma atividade da seção, como debates, estudos de caso ou júri simulado, de forma respeitosa e contributiva.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Democracia::31",
+      "excel_row": 31,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de dinâmicas de mediação de conflitos, praticando a escuta ativa e construção de consensos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Democracia::ECA-58",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Acolher as decisões de seus pais/responsáveis, manifestando respeitosamente seus pontos de vista em contrário.",
+      "regra_qtd_texto": "Atividade PA ECA-58"
+    },
+    {
+      "chave": "Democracia::ECA-59",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente e de forma respeitosa das discussões e decisões dos Conselhos de Patrulha, de Tropa e das eleição de  monitores.",
+      "regra_qtd_texto": "Atividade PA ECA-59"
+    },
+    {
+      "chave": "Democracia::ECA-60",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de forma respeitosa e contributiva de pelo menos 1 das seguintes atividades realizadas na sua Seção: debates, estudos de caso ou «júri simulado».",
+      "regra_qtd_texto": "Atividade PA ECA-60"
+    },
+    {
+      "chave": "Democracia::33",
+      "excel_row": 33,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Democracia",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Equidade, Políticas Públicas",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Herança Cultural::37",
+      "excel_row": 37,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Conduzir a cerimônia de abertura de uma atividade de patrulha ou tropa.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Herança Cultural::39",
+      "excel_row": 39,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar com sua patrulha uma expedição que promova o contato com culturas como povos originários, comunidades quilombolas ou comunidades ribeirinhas ou caiçaras.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::40",
+      "excel_row": 40,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Abordar língua, costumes, festividades e tradições, e debater formas de valorizar e preservar essas culturas.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::41",
+      "excel_row": 41,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar a recepção de membros do Movimento Escoteiro de outras localidades e apresentá-los aos principais pontos históricos e turísticos de seu município.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::42",
+      "excel_row": 42,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Fazer tour em sua cidade, explorando pontos históricos e culturais como centro cultural, biblioteca pública, mercado municipal, feiras típicas, museus e marcos históricos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::43",
+      "excel_row": 43,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar os núcleos culturais de sua região e participar de atividades com eles.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::44",
+      "excel_row": 44,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar uma forma de expressão artística da cultura popular brasileira em um Fogo de Conselho.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::45",
+      "excel_row": 45,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Promover um festival com música, poesia, dança e literatura típicas de uma região para seu grupo escoteiro ou comunidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::46",
+      "excel_row": 46,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Produzir, com sua patrulha, uma peça para uso cotidiano, utilizando técnicas de artesanato brasileiro.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::47",
+      "excel_row": 47,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Apresentar a cultura da sua cidade em um evento regional, nacional ou internacional.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Herança Cultural::ECA-62",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher 1 das opções:\na) Pesquisar sobre a cultura indígena predominante na sua Região Geográfica (N, NE, CO, SE ou S) e apresentar uma dramatização com a devida caracterização.\nb) Pesquisar e aplicar na Seção 2 jogos indígenas oriundos de tribos brasileiras.",
+      "regra_qtd_texto": "Atividade PA ECA-62"
+    },
+    {
+      "chave": "Herança Cultural::ECA-63",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher 1 das opções:\na) Produzir com sua patrulha um troféu de um torneio ou lembrança para presentear outro GE ou alguma autoridade, utilizando alguma técnica típica do artesanato brasileiro.\nb) Preparar uma apresentação no Fogo de Conselho sobre a antiga cultura popular brasileira (história, lenda, danças, músicas, mitos, artesanato, etc), com detalhes de vestimentas, canções e artefatos tradicionais.",
+      "regra_qtd_texto": "Atividade PA ECA-63"
+    },
+    {
+      "chave": "Herança Cultural::49",
+      "excel_row": 49,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Herança Cultural",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Cultura e Arte",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Promoção da Paz::53",
+      "excel_row": 53,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma ação colaborativa sobre diferentes temas que envolvem a cultura da paz, tais como direitos humanos, diálogo inter-religioso, refugiados e imigrantes, diversidades e inclusão.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Promoção da Paz::55",
+      "excel_row": 55,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar uma mesa redonda para outros jovens da comunidade sobre temas como idolatria, torcidas organizadas, tribos urbanas, intolerância religiosa ou xenofobia.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Promoção da Paz::56",
+      "excel_row": 56,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de atividades que promovam a paz e a compreensão entre as pessoas.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Promoção da Paz::57",
+      "excel_row": 57,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar com a patrulha ou equipe de interesse de uma atividade inter-religiosa, conhecendo diferentes tradições de fé, dialogando sobre valores comuns e refletindo sobre diversidade espiritual.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Promoção da Paz::58",
+      "excel_row": 58,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de uma simulação das Nações Unidas, representando diferentes países e debatendo questões globais como direitos humanos, igualdade de gênero, crise dos refugiados ou proteção ambiental.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Promoção da Paz::59",
+      "excel_row": 59,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar e realizar uma atividade com outra unidade escoteira e refletir o significado da fraternidade mundial escoteira.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Promoção da Paz::60",
+      "excel_row": 60,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar um jantar internacional com sua patrulha ou equipe de interesse, apresentando culinária, trajes, músicas e informações sobre o Escotismo de diferentes países.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Promoção da Paz::61",
+      "excel_row": 61,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de atividades, jogos ou ações que promovam a solidariedade com grupos de jovens na comunidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Promoção da Paz::62",
+      "excel_row": 62,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Desenvolver um momento inter-religioso na sua seção, grupo escoteiro ou comunidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Promoção da Paz::ECA-57",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolha uma das seguintes atividades:\na) Identificar e discutir com sua patrulha as manifestações mais evidentes de «Bullying» que observa na escola, bairro, família e dentro do movimento escoteiro.\nb) Assistir e debater com sua patrulha um filme ou peça teatral que proporcione a discussão a respeito dos direitos individuais e coletivos.",
+      "regra_qtd_texto": "Atividade PA ECA-57"
+    },
+    {
+      "chave": "Promoção da Paz::ECA-64",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer a Organização Mundial do Movimento Escoteiro(WOSM), localização do Escritório Mundial, suas Regiões e respectivos escritórios.",
+      "regra_qtd_texto": "Atividade PA ECA-64"
+    },
+    {
+      "chave": "Promoção da Paz::ECA-65",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher uma das atividades abaixo:\r\na) Manter contato com um sênior ou guia estrangeiro durante pelo menos três meses (mínimo de quatro mensagens ou cartas enviadas) procurando aumentar seus conhecimentos sobre o escotismo, a história, geografia e os costumes do país em questão e apresentando o resultado para sua patrulha.\r\nb) Participar ativamente da organização de um «Jantar Internacional» da seção, onde cada patrulha representará um país diferente, apresentando, além da culinária, trajes e músicas característicos e informações gerais sobre o Escotismo naquele país.\r\nc) Conquistar a Insígnia do Cone Sul - Ramo Sênior.\r\nd) Conquistar a Insígnia da Lusofonia - Ramo Sênior.",
+      "regra_qtd_texto": "Atividade PA ECA-65"
+    },
+    {
+      "chave": "Promoção da Paz::ECA-74",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Realizar (sozinho ou com sua patrulha) uma pesquisa sobre ao menos 4 religiões, apontando suas similaridades e apresentando o resultado à Seção.",
+      "regra_qtd_texto": "Atividade PA ECA-74"
+    },
+    {
+      "chave": "Promoção da Paz::ECA-75",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar e promover um debate com a sua patrulha ou Seção sobre a relação entre a intolerância religiosa e conflitos atuais no Brasil e no mundo.",
+      "regra_qtd_texto": "Atividade PA ECA-75"
+    },
+    {
+      "chave": "Promoção da Paz::64",
+      "excel_row": 64,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Direitos Humanos, Diversidades",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Promoção da Paz::66",
+      "excel_row": 66,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Promoção da Paz",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes insígnias no nível 1+: Insígnia da Lusofonia, Insígnia do Cone Sul, Diálogos pela Paz",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Valores::70",
+      "excel_row": 70,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Avaliar com seus pares a vivência da Promessa e da Lei Escoteira e realizar o Compromisso Sênior.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Valores::72",
+      "excel_row": 72,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar da avaliação da sua Progressão Pessoal e dos companheiros em patrulha.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Valores::73",
+      "excel_row": 73,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Explicar o significado da Lei e da Promessa Escoteiras aos novos membros da patrulha.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Valores::74",
+      "excel_row": 74,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Auxiliar um companheiro de patrulha a realizar seu Compromisso Sênior.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Valores::75",
+      "excel_row": 75,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um debate de casos reais de notícias ou situações sociais, analisando-os à luz dos valores escoteiros.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Valores::ECA-39",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Exemplicar o significado que atribui à Lei e Promessa Escoteiras e os valores nelas contidos, identificando decisões e comportamentos pessoais deles decorrentes e como tenta aplicá- los no dia a dia, numa conversa com um dos escotistas da Seção.",
+      "regra_qtd_texto": "Atividade PA ECA-39"
+    },
+    {
+      "chave": "Valores::ECA-40",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Redigir o seu próprio Compromisso Sênior, discutindo-o com um dos escotistas da Seção. Este compromisso deverá ser validado pela Corte de Honra.",
+      "regra_qtd_texto": "Atividade PA ECA-40"
+    },
+    {
+      "chave": "Valores::ECA-43",
+      "excel_row": 0,
+      "eixo": "Paz e Desenvolvimento",
+      "bloco": "Valores",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar, com empenho e sem distinção, dos vários tipos de atividade da Seção por pelo menos 6 meses,  procurando sempre justificar previamente ao monitor ou escotista as suas ausências.",
+      "regra_qtd_texto": "Atividade PA ECA-43"
+    },
+    {
+      "chave": "Cuidado com o Corpo::4",
+      "excel_row": 4,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Capacitar-se para atuar nas situações de primeiros socorros indicadas abaixo: atendimento a pequenos cortes, contusões e escoriações; avaliação dos limites de pressão arterial, pulso e temperatura corporal; cuidados em casos de queimaduras, insolação, hipotermia e desidratação; atendimento a picadas de animais peçonhentos; reconhecimento e manejo de hemorragias externas e internas; imobilização de fraturas, entorses, controle cervical e traumatismo craniano; atendimento a crises convulsivas, estados de choque e casos de intoxicação ou envenenamento; reconhecimento de sinais de infarto ou AVC e acionamento imediato do resgate; atendimento a engasgos e a choque elétrico; aplicação de técnicas de reanimação cardiopulmonar (RCP); execução correta de bandagens, tipóias e técnicas de transporte de feridos; uso adequado do kit de primeiros socorros em atividades ao ar livre; acionamento correto dos serviços de emergência (SAMU, bombeiros e polícia).",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Cuidado com o Corpo::5",
+      "excel_row": 5,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Nas atividades da patrulha ou tropa, identificar condutas que possam colocar em risco a saúde física e mental, compartilhando medidas com os companheiros para mitigar esses riscos.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Cuidado com o Corpo::7",
+      "excel_row": 7,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Experimentar atividades físicas ou modalidades esportivas diversas (coletivas, individuais ou adaptadas) e refletir sobre a experiência.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Cuidado com o Corpo::8",
+      "excel_row": 8,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Pesquisar sobre saúde física e mental na juventude e apresentar propostas para a tropa melhorar seus hábitos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Cuidado com o Corpo::9",
+      "excel_row": 9,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conduzir oficinas ou jogos inclusivos que valorizem a diversidade de habilidades físicas do grupo.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Cuidado com o Corpo::10",
+      "excel_row": 10,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de um workshop, palestra ou atividade que trate dos perigos do uso de anabolizantes, drogas, álcool, tabaco ou cigarros eletrônicos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Cuidado com o Corpo::11",
+      "excel_row": 11,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar o material de primeiros socorros da patrulha para diferentes atividades.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Cuidado com o Corpo::12",
+      "excel_row": 12,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de workshop ou outra atividade relacionada à prevenção das Infecções Sexualmente Transmissíveis (IST).",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-1",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os limites normais de pressão arterial, pulso e temperatura e saber como podem mudar devido a doença ou lesão. Conhecer 3 pontos de verificação de pulsação e saber quando utilizar cada um.",
+      "regra_qtd_texto": "Atividade PA ECA-1"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-2",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Saber identificar a existência de fraturas (internas e externas), entorses e luxações, conhecendo seus tratamentos e socorro de urgência.",
+      "regra_qtd_texto": "Atividade PA ECA-2"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-3",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os sintomas e tratamento de urgência de: estado de choque, traumatismo craniano e hemorragia (interna e externa).",
+      "regra_qtd_texto": "Atividade PA ECA-3"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-4",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer os principais sintomas e tratamento de urgência para: picadas de animais venenosos, envenenamentos e queimaduras de todos os graus.",
+      "regra_qtd_texto": "Atividade PA ECA-4"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-5",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Explicar como agir e  como evitar casos de insolação, hipotermia e queimaduras e as medidas de primeiros socorros para cada situação.",
+      "regra_qtd_texto": "Atividade PA ECA-5"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-6",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Compreender a importância de se manter imóvel uma pessoa suspeita de fratura na coluna vertebral, bacia e costelas. Saber aplicar controle cervical e imobilização alternativa e conhecer meios de transporte improvisados e de urgência para acidentados em trilhas.",
+      "regra_qtd_texto": "Atividade PA ECA-6"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-7",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Compreender a importância de reconhecer e tratar rapidamente uma parada cardiorespiratória sabendo aplicar corretamente as técnicas de reanimação cardiopulmonar (RCP).",
+      "regra_qtd_texto": "Atividade PA ECA-7"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-8",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Pesquisar e apresentar o resultado do trabalho à Seção, sobre um dos temas a seguir: a) Anorexia Nervosa, b) Perigos do uso de anabolizantes, c) Álcool e direção.",
+      "regra_qtd_texto": "Atividade PA ECA-8"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-9",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Identificar as doenças sexualmente transmissíveis (DST) comuns e respectivas formas de prevenção. Ser capaz de identificar comportamentos de risco e de tomar as devidas ações preventivas.",
+      "regra_qtd_texto": "Atividade PA ECA-9"
+    },
+    {
+      "chave": "Cuidado com o Corpo::ECA-10",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Identificar 3 drogas (dentre as quais uma estimulante, uma depressora e uma psicotrópica) e explicar seus efeitos no organismo e os riscos associados.",
+      "regra_qtd_texto": "Atividade PA ECA-10"
+    },
+    {
+      "chave": "Cuidado com o Corpo::14",
+      "excel_row": 14,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Cuidado com o Corpo",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Saúde",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Espiritualidade::18",
+      "excel_row": 18,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Conduzir momentos de silêncio, oração ou meditação em atividades da tropa, valorizando a diversidade espiritual.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Espiritualidade::19",
+      "excel_row": 19,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Participar de projetos e atividades que permitam conhecer, atuar e dialogar com jovens de diferentes opções de fé e crenças.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Espiritualidade::20",
+      "excel_row": 20,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Colaborar em celebrações religiosas ou outras expressões de fé e espiritualidade de sua comunidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Espiritualidade::21",
+      "excel_row": 21,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar um momento de reflexão e conexão com um ambiente natural em que se possa apreciar a beleza do mundo e cultivar um relacionamento harmônico com ele.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Espiritualidade::ECA-70",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Escolher 1 dos itens:\na) Realizar uma pesquisa sobre as origens de sua crença religiosa e apresentar o resultado à Seção ou Patrulha.\nb) Correlacionar os artigos da Lei Escoteira com os seus princípios religiosos e discuti-los com a chefia.",
+      "regra_qtd_texto": "Atividade PA ECA-70"
+    },
+    {
+      "chave": "Espiritualidade::ECA-71",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar, freqüentemente, dos momentos de reflexão realizados no início e término das atividades escoteiras, buscando fazer orações sinceras e reflexivas.",
+      "regra_qtd_texto": "Atividade PA ECA-71"
+    },
+    {
+      "chave": "Espiritualidade::ECA-72",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Buscar reservar momentos de reflexão e aproximação com Deus, por meio da oração.",
+      "regra_qtd_texto": "Atividade PA ECA-72"
+    },
+    {
+      "chave": "Espiritualidade::ECA-73",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar de uma das seguintes atividades de reflexão (fichas REME): \"Carta a mim mesmo\" ou \"Salmo 151\".",
+      "regra_qtd_texto": "Atividade PA ECA-73"
+    },
+    {
+      "chave": "Espiritualidade::23",
+      "excel_row": 23,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Espiritualidade",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Diálogo inter-religioso",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Hábitos Saudáveis::27",
+      "excel_row": 27,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar um cardápio de acampamento para a patrulha ou equipe de interesse, priorizando alimentação sustentável, com mínimo uso de produtos industrializados e redução de resíduos, e avaliar após a atividade se os objetivos foram atingidos.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Hábitos Saudáveis::28",
+      "excel_row": 28,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Praticar atividades físicas regularmente.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Hábitos Saudáveis::30",
+      "excel_row": 30,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Manter o canto da patrulha limpo e organizado, colaborando também com a limpeza da sede.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Hábitos Saudáveis::31",
+      "excel_row": 31,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Planejar e realizar um almoço ou jantar equilibrado e saudável para a patrulha, elaborando o cardápio, organizando a lista de compras, preparando os alimentos e fazendo a avaliação posterior.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Hábitos Saudáveis::32",
+      "excel_row": 32,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Praticar atividades como meditação, yoga ou técnicas de relaxamento na natureza.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Hábitos Saudáveis::33",
+      "excel_row": 33,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Elaborar um plano pessoal de hábitos saudáveis e avaliar seu cumprimento ao longo do ciclo.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Hábitos Saudáveis::34",
+      "excel_row": 34,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Demonstrar manter a rotina de cuidado com seu ambiente doméstico, com autonomia e cooperação nas responsabilidades da casa.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-11",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar o material de primeiros socorros da patrulha para cada tipo de atividade por pelo menos 1 mês.",
+      "regra_qtd_texto": "Atividade PA ECA-11"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-12",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Conhecer o material individual necessário para diferentes típos de excursões, de acordo com o programa de atividade (acampamento, acantonamento, volante, fixa, etc) sabendo arrumá-lo na mochila.",
+      "regra_qtd_texto": "Atividade PA ECA-12"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-13",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Selecionar corretamente o material de campo para um acampamento de patrulha ou Seção.",
+      "regra_qtd_texto": "Atividade PA ECA-13"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-14",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Demonstrar conhecer as regras de segurança no manuseio de facões e  machadinhas, tomando cuidados para a manutenção e conservação das ferramentas da  patrulha.",
+      "regra_qtd_texto": "Atividade PA ECA-14"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-15",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Construir com demais membros da Seção uma fogueira para o Fogo de Conselho, respeitando as regras de segurança na montagem e desmontagem da fogueira, bem como às normas do local.",
+      "regra_qtd_texto": "Atividade PA ECA-15"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-16",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Manter em conjunto com a  patrulha o canto de patrulha limpo e organizando, colaborando também com a limpeza e organização da sede.",
+      "regra_qtd_texto": "Atividade PA ECA-16"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-17",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Elaborar e executar um cardápio para a patrulha em um acampamento de 3 dias.",
+      "regra_qtd_texto": "Atividade PA ECA-17"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-18",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Elaborar a lista de compras e um cardápio individual, corretamente equilibrado em quantidade, variedade e valores nutricionais pa um bivaque ou um acampamento volante de 2 dias devidamente balanceado e adequado ao clima e à conservação dos gêneros.",
+      "regra_qtd_texto": "Atividade PA ECA-18"
+    },
+    {
+      "chave": "Hábitos Saudáveis::ECA-19",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Cozinhar à lenha ao ar livre, sem o uso de utensílios (cozinha mateira) pelo menos 3 pratos e 1 sobremesa.",
+      "regra_qtd_texto": "Atividade PA ECA-19"
+    },
+    {
+      "chave": "Hábitos Saudáveis::36",
+      "excel_row": 36,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Hábitos Saudáveis",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Esportes, Educação alimentar e nutricional",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Saúde Mental::40",
+      "excel_row": 40,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Buscar informações e conhecimentos sobre os Espaços Seguros no Movimento Escoteiro e promover seus conceitos em todas as atividades.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Saúde Mental::41",
+      "excel_row": 41,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Reconhecer sinais de estresse, ansiedade ou tristeza em colegas e praticar técnicas básicas de primeiros socorros em saúde mental, como escuta ativa, apoio inicial e encaminhamento para ajuda adequada.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Saúde Mental::43",
+      "excel_row": 43,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar, com sua patrulha ou equipe de interesse, uma campanha relacionada à temática de saúde mental.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Saúde Mental::44",
+      "excel_row": 44,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Desenvolver hábitos e atividades para aliviar a tensão do dia a dia, proporcionando momentos de bem-estar e equilíbrio.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Saúde Mental::45",
+      "excel_row": 45,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Convidar profissionais da área de saúde ou saúde mental para falar sobre o assunto na tropa.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Saúde Mental::46",
+      "excel_row": 46,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Organizar sua rotina de atividades mensais, considerando a importância do equilíbrio entre atividades do mundo digital e real.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Saúde Mental::47",
+      "excel_row": 47,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Utilizar técnicas ou espaços para autoexpressão e contato com suas emoções e pensamentos.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Saúde Mental::ECA-20",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Planejar um calendário mensal pessoal, distribuindo o tempo entre os estudos, obrigações familiares e sociais, escotismo e lazer.",
+      "regra_qtd_texto": "Atividade PA ECA-20"
+    },
+    {
+      "chave": "Saúde Mental::ECA-37",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente de uma mesa redonda, debate ou estudo de caso com membros da sua Seção sobre um tema escolhido dentre vários apresentados pela chefia. Tais como: «Os perigos da idolatria», «A violência entre as torcidas organizadas», «Os conflitos entre as diferentes \"tribos urbanas\": emos, punks, rockeiros, pit boys, etc.».",
+      "regra_qtd_texto": "Atividade PA ECA-37"
+    },
+    {
+      "chave": "Saúde Mental::ECA-44",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Criar um filme, uma peça de teatro, uma poesia, um texto literário ou uma charge que expressem sua visão otimista de encarar o mundo.",
+      "regra_qtd_texto": "Atividade PA ECA-44"
+    },
+    {
+      "chave": "Saúde Mental::49",
+      "excel_row": 49,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Saúde Mental",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar ao menos uma das seguintes especialidades no nível 1+: Saúde Mental e Bem-Estar Emocional, Hobbies e Lazer",
+      "regra_qtd_texto": "Ação Substitutiva"
+    },
+    {
+      "chave": "Vínculos Saudáveis::53",
+      "excel_row": 53,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Fixa",
+      "modalidade": "Básico",
+      "ds_acao": "Identificar e discutir com sua patrulha ou equipe de interesse as manifestações de bullying e cyberbullying ao seu redor, elaborando e implementando estratégias para prevenir e combater essas situações.",
+      "regra_qtd_texto": "Ação Fixa"
+    },
+    {
+      "chave": "Vínculos Saudáveis::55",
+      "excel_row": 55,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Promover um encontro social que reúna jovens de diferentes realidades e contextos, criando um ambiente de convivência, troca de experiências e respeito à diversidade.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vínculos Saudáveis::56",
+      "excel_row": 56,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Realizar uma roda de conversa para debater temas como confiança, respeito e equilíbrio nas relações.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vínculos Saudáveis::57",
+      "excel_row": 57,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Engajar-se em uma equipe de interesse para planejar e executar projetos ou conquistar especialidades, fortalecendo a colaboração e a construção de vínculos positivos no grupo.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vínculos Saudáveis::58",
+      "excel_row": 58,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Promover reuniões regulares na patrulha que incluam espaços de escuta e apoio.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vínculos Saudáveis::59",
+      "excel_row": 59,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Assumir responsabilidades no ambiente familiar, contribuindo de forma constante com tarefas do dia a dia.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vínculos Saudáveis::60",
+      "excel_row": 60,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "Básico",
+      "ds_acao": "Convidar um colega da mesma faixa etária para participar de um Fogo de Conselho, integrado à sua patrulha e com o devido Registro de Visitante.",
+      "regra_qtd_texto": "Ação Variável"
+    },
+    {
+      "chave": "Vínculos Saudáveis::ECA-50",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Participar ativamente dos debates e processos decisórios realizados na Seção, expondo as suas opinões e respeitando as opiniões alheias.",
+      "regra_qtd_texto": "Atividade PA ECA-50"
+    },
+    {
+      "chave": "Vínculos Saudáveis::ECA-54",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar sozinho ou em conjunto com a patrulha, uma reunião social, com jovens de ambos os sexos.",
+      "regra_qtd_texto": "Atividade PA ECA-54"
+    },
+    {
+      "chave": "Vínculos Saudáveis::ECA-55",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Assumir responsabilidades em casa, contribuindo assim com o aumento da confiança por parte de seus pais.",
+      "regra_qtd_texto": "Atividade PA ECA-55"
+    },
+    {
+      "chave": "Vínculos Saudáveis::ECA-56",
+      "excel_row": 0,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Variável",
+      "modalidade": "PA",
+      "ds_acao": "Organizar um debate com sua patrulha ou seção sobre um dos seguintes itens: infidelidade, ciúmes, ficar ou namorar: eis a questão, relacionamentos emocionalmente desequilibrados.",
+      "regra_qtd_texto": "Atividade PA ECA-56"
+    },
+    {
+      "chave": "Vínculos Saudáveis::62",
+      "excel_row": 62,
+      "eixo": "Saúde e Bem-Estar",
+      "bloco": "Vínculos Saudáveis",
+      "tp_acao": "Substitutiva",
+      "modalidade": "Básico",
+      "ds_acao": "Conquistar a seguinte especialidade no nível 1+: Saúde sexual e reprodutiva",
+      "regra_qtd_texto": "Ação Substitutiva"
+    }
+  ]
+}
