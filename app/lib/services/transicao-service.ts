@@ -440,14 +440,20 @@ export function extrairEspecialidadesPnDaAcao(ds_acao: string): {
   especialidades: string[];
 } | null {
   if (!ds_acao) return null;
-  const match = ds_acao.match(/Conquistar ao menos uma das seguintes especialidades no nível\s*(\d)\+:\s*(.+)$/i);
+  const match = ds_acao.match(
+    /Conquistar (?:ao menos uma das seguintes|a seguinte|as seguintes)?\s*(?:especialidades?|insígnias?|especialidades? ou insígnias?|insígnias? ou especialidades?|especialidades?\/insígnias?)\s*no nível\s*(\d)\+:\s*(.+)$/i
+  );
   if (!match) return null;
 
   const nivel_exigido = parseInt(match[1], 10) || 1;
   const rawList = match[2];
-  const especialidades = rawList
+  const protectedList = rawList
+    .replace(/Reduzir,\s*Reciclar,\s*Reutilizar/gi, 'Reduzir###COMMA###Reciclar###COMMA###Reutilizar')
+    .replace(/Reduzir,\s*Reciclar e Reutilizar/gi, 'Reduzir###COMMA###Reciclar e Reutilizar');
+
+  const especialidades = protectedList
     .split(',')
-    .map((s) => s.trim())
+    .map((s) => s.replace(/###COMMA###/g, ', ').trim())
     .filter((s) => s.length > 0);
 
   return {
@@ -679,12 +685,15 @@ export async function getProgressoNovoModelo(
 
   const completedPistas = new Set<string>();
   const completedRumo = new Set<string>();
+  const allIdentificacoes = new Set<string>();
 
   for (const row of oldActivities) {
     const caminhoPaxtu = row.atividade?.cd_caminho_paxtu || row.atividade?.competencia?.caminho?.cd_caminho_paxtu || '';
     const nrOrd = row.atividade?.nr_ordenacao !== null && row.atividade?.nr_ordenacao !== undefined ? String(row.atividade.nr_ordenacao) : '';
     const ident = row.atividade?.identificacao || '';
     const numOnly = ident.replace(/\D/g, '') || nrOrd;
+
+    if (ident) allIdentificacoes.add(ident);
 
     if (caminhoPaxtu === '4' || caminhoPaxtu === '5' || ident.startsWith('P')) {
       if (numOnly) completedPistas.add(numOnly);
@@ -738,7 +747,7 @@ export async function getProgressoNovoModelo(
 
   const contextoAvaliacao: ContextoAvaliacaoTransicao = {
     atividadesPaConcluidasIds,
-    atividadesPaIdentificacoes: new Set([...completedPistas, ...completedRumo]),
+    atividadesPaIdentificacoes: new Set([...completedPistas, ...completedRumo, ...allIdentificacoes]),
     especialidadesPa: new Map(Array.from(scoutEspMap.entries()).map(([k, v]) => [k, v.nr_nivel])),
     especialidadesPaIds: new Map(Array.from(scoutEspMap.values()).map((v) => [parseInt(v.cd_especialidade, 10), v.nr_nivel])),
     especialidadesPn: scoutEspPnMap,
@@ -1295,6 +1304,7 @@ export async function processarTransicaoAssociado(
 
     const completedPistas = new Set<string>();
     const completedRumo = new Set<string>();
+    const allIdentificacoes = new Set<string>();
     const atividadesPaConcluidasIds = new Set<number>();
 
     for (const row of oldActivities) {
@@ -1303,6 +1313,8 @@ export async function processarTransicaoAssociado(
       const nrOrd = row.atividade?.nr_ordenacao !== null && row.atividade?.nr_ordenacao !== undefined ? String(row.atividade.nr_ordenacao) : '';
       const ident = row.atividade?.identificacao || '';
       const numOnly = ident.replace(/\D/g, '') || nrOrd;
+
+      if (ident) allIdentificacoes.add(ident);
 
       if (caminhoPaxtu === '4' || caminhoPaxtu === '5' || ident.startsWith('P')) {
         if (numOnly) completedPistas.add(numOnly);
@@ -1347,7 +1359,7 @@ export async function processarTransicaoAssociado(
 
     const contextoAvaliacao: ContextoAvaliacaoTransicao = {
       atividadesPaConcluidasIds,
-      atividadesPaIdentificacoes: new Set([...completedPistas, ...completedRumo]),
+      atividadesPaIdentificacoes: new Set([...completedPistas, ...completedRumo, ...allIdentificacoes]),
       especialidadesPa: scoutEspMap,
       especialidadesPaIds: scoutEspIdMap,
       especialidadesPn: scoutEspPnMap,

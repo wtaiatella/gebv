@@ -390,9 +390,10 @@ export async function runProgressaoTransicaoAtualizadaTests() {
     console.log('\n🔹 Bloco 4: Concessão Automática e Inviolabilidade das 15 Ações de Especialidades PN (AC.9, AC.10)');
     const { extrairEspecialidadesPnDaAcao, processarTransicaoAssociado } = await import('../../app/lib/services/transicao-service');
 
-    // Encontra a primeira ação de especialidade PN
+    // Encontra a primeira ação de especialidade PN do Ramo Escoteiro
     const acaoEspPn = await prisma.pnAcaoEducativa.findFirst({
       where: {
+        ds_ramo: Ramo.ESCOTEIRO,
         ds_acao: { startsWith: 'Conquistar ao menos uma das seguintes especialidades' },
       },
     });
@@ -484,38 +485,40 @@ export async function runProgressaoTransicaoAtualizadaTests() {
     // =========================================================================
     // BLOCO 5 (US-5 / AC.11): Integridade das 216 Ações PA Complementares
     // =========================================================================
-    console.log('\n🔹 Bloco 5: Integridade das 216 Ações PA Complementares (AC.11)');
-    const totalAcoesPa = await prisma.pnAcaoEducativa.count({
-      where: { tp_acao: 'PA' },
-    });
-    assert(totalAcoesPa === 216, `Catálogo de ações complementares PA possui exatamente 216 itens (obtido: ${totalAcoesPa})`);
-
-    const acoesPaEscoteiro = await prisma.pnAcaoEducativa.count({
+    console.log('\n🔹 Bloco 5: Integridade das Ações PA Complementares (Escoteiro & Lobinho)');
+    const totalAcoesPaEscoteiro = await prisma.pnAcaoEducativa.count({
       where: { tp_acao: 'PA', ds_ramo: Ramo.ESCOTEIRO },
     });
-    assert(acoesPaEscoteiro === 216, 'Todas as 216 ações PA complementares pertencem ao ramo Escoteiro');
+    assert(totalAcoesPaEscoteiro === 216, `Catálogo de ações complementares PA (Escoteiro) possui exatamente 216 itens (obtido: ${totalAcoesPaEscoteiro})`);
+
+    const totalAcoesPaLobinho = await prisma.pnAcaoEducativa.count({
+      where: { tp_acao: 'PA', ds_ramo: Ramo.LOBINHO },
+    });
+    assert(totalAcoesPaLobinho === 127, `Catálogo de ações complementares PA (Lobinho) possui exatamente 127 itens (obtido: ${totalAcoesPaLobinho})`);
 
     // =========================================================================
-    // BLOCO 6 (US-8 / AC.17): Carga Canônica das 448 Regras de Equivalência
+    // BLOCO 6 (US-8 / AC.17): Carga Canônica das 448 Regras de Equivalência (Escoteiro)
     // =========================================================================
-    console.log('\n🔹 Bloco 6: Carga Canônica das 448 Regras de Equivalência (AC.17)');
-    const totalRegrasDb = await prisma.pnEquivalenciaRegra.count();
-    assert(totalRegrasDb === 448, `Banco de dados possui exatamente 448 regras de equivalência (obtido: ${totalRegrasDb})`);
+    console.log('\n🔹 Bloco 6: Carga Canônica das 448 Regras de Equivalência (Escoteiro) (AC.17)');
+    const totalRegrasDb = await prisma.pnEquivalenciaRegra.count({
+      where: { acao: { ds_ramo: Ramo.ESCOTEIRO } },
+    });
+    assert(totalRegrasDb === 448, `Banco de dados possui exatamente 448 regras de equivalência do Ramo Escoteiro (obtido: ${totalRegrasDb})`);
 
     const regrasComDetalhes = await prisma.pnEquivalenciaRegra.count({
-      where: { detalhes_regra: { not: undefined } },
+      where: { acao: { ds_ramo: Ramo.ESCOTEIRO }, detalhes_regra: { not: undefined } },
     });
-    assert(regrasComDetalhes === 448, 'Todas as 448 regras possuem campo detalhes_regra preenchido');
+    assert(regrasComDetalhes === 448, 'Todas as 448 regras do Ramo Escoteiro possuem campo detalhes_regra preenchido');
 
     const regrasSemEquiv = await prisma.pnEquivalenciaRegra.count({
-      where: { operacao: 'SEM_EQUIVALENCIA' },
+      where: { acao: { ds_ramo: Ramo.ESCOTEIRO }, operacao: 'SEM_EQUIVALENCIA' },
     });
-    assert(regrasSemEquiv === 59, `Exatamente 59 regras possuem operacao = SEM_EQUIVALENCIA (obtido: ${regrasSemEquiv})`);
+    assert(regrasSemEquiv === 59, `Exatamente 59 regras do Ramo Escoteiro possuem operacao = SEM_EQUIVALENCIA (obtido: ${regrasSemEquiv})`);
 
     const regrasProgressoes = await prisma.pnEquivalenciaRegra.count({
-      where: { operacao: 'PROGRESSOES' },
+      where: { acao: { ds_ramo: Ramo.ESCOTEIRO }, operacao: 'PROGRESSOES' },
     });
-    assert(regrasProgressoes === 285, `Exatamente 285 regras possuem operacao = PROGRESSOES (obtido: ${regrasProgressoes})`);
+    assert(regrasProgressoes === 285, `Exatamente 285 regras do Ramo Escoteiro possuem operacao = PROGRESSOES (obtido: ${regrasProgressoes})`);
 
     // =========================================================================
     // BLOCO 7 (regressão qa-report.md #0): Contrato de dados da Coluna 3 (NovoProgramaView)
