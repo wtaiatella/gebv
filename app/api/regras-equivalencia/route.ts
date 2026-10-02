@@ -33,31 +33,35 @@ export async function GET(request: Request) {
       ],
     });
 
-    const regras = regrasDb.map((r) => ({
-      id: r.id,
-      acao_pn_id: r.acao_pn_id,
-      operacao: r.operacao,
-      descricao_origem: r.descricao_origem,
-      origem_pistas_ueb: r.origem_pistas_ueb,
-      origem_rumo_ueb: r.origem_rumo_ueb,
-      origem_especialidades: r.origem_especialidades,
-      nivel_min_especialidade: r.nivel_min_especialidade,
-      min_count: r.min_count,
-      fl_requer_validacao_manual: r.fl_requer_validacao_manual,
-      updated_at: r.updated_at,
-      ds_acao: r.acao.ds_acao,
-      tp_acao: r.acao.tp_acao,
-      modalidade: r.acao.modalidade,
-      regra_qtd_texto: r.acao.regra_qtd_texto,
-      nr_ordem_acao: r.acao.nr_ordem,
-      bloco_id: r.acao.bloco_id,
-      nm_bloco: r.acao.bloco.nm_bloco,
-      ds_intencionalidade: r.acao.bloco.ds_intencionalidade,
-      nr_ordem_bloco: r.acao.bloco.nr_ordem,
-      eixo_id: r.acao.bloco.eixo_id,
-      nm_eixo: r.acao.bloco.eixo.nm_eixo,
-      ds_ramo: r.acao.ds_ramo,
-    }));
+    const regras = regrasDb.map((r) => {
+      const detalhes: any = r.detalhes_regra && typeof r.detalhes_regra === 'object' ? r.detalhes_regra : {};
+      return {
+        id: r.id,
+        acao_pn_id: r.acao_pn_id,
+        operacao: r.operacao,
+        descricao_origem: r.descricao_origem,
+        detalhes_regra: r.detalhes_regra,
+        origem_pistas_ueb: Array.isArray(detalhes.origem_pistas_ueb) ? detalhes.origem_pistas_ueb : [],
+        origem_rumo_ueb: Array.isArray(detalhes.origem_rumo_ueb) ? detalhes.origem_rumo_ueb : [],
+        origem_especialidades: Array.isArray(detalhes.origem_especialidades) ? detalhes.origem_especialidades : [],
+        nivel_min_especialidade: typeof detalhes.nivel_min_especialidade === 'number' ? detalhes.nivel_min_especialidade : 1,
+        min_count: typeof detalhes.min_count === 'number' ? detalhes.min_count : 1,
+        fl_requer_validacao_manual: r.fl_requer_validacao_manual,
+        updated_at: r.updated_at,
+        ds_acao: r.acao.ds_acao,
+        tp_acao: r.acao.tp_acao,
+        modalidade: r.acao.modalidade,
+        regra_qtd_texto: r.acao.regra_qtd_texto,
+        nr_ordem_acao: r.acao.nr_ordem,
+        bloco_id: r.acao.bloco_id,
+        nm_bloco: r.acao.bloco.nm_bloco,
+        ds_intencionalidade: r.acao.bloco.ds_intencionalidade,
+        nr_ordem_bloco: r.acao.bloco.nr_ordem,
+        eixo_id: r.acao.bloco.eixo_id,
+        nm_eixo: r.acao.bloco.eixo.nm_eixo,
+        ds_ramo: r.acao.ds_ramo,
+      };
+    });
 
     // 2. Busca lista de Eixos
     const eixosDb = await prisma.pnEixo.findMany({
@@ -95,11 +99,30 @@ export async function GET(request: Request) {
           },
         },
       },
-      orderBy: [
-        { competencia: { caminho: { cd_caminho_paxtu: 'asc' } } },
-        { nr_ordenacao: 'asc' },
-      ],
     });
+
+    function getCaminhoWeight(nmCaminho?: string | null, identificacao?: string | null): number {
+      const c = (nmCaminho || '').toLowerCase();
+      const id = (identificacao || '').toUpperCase();
+      if (c.includes('introdut') || id.startsWith('PIL') || id.startsWith('PIS') || id.startsWith('PIE') || id.startsWith('PIP') || id.startsWith('P-')) return 1;
+      if (c.includes('pata') || c.includes('saltador') || id.startsWith('PTS')) return 2;
+      if (c.includes('rastreador') || c.includes('caçador') || c.includes('cacador') || id.startsWith('RC')) return 3;
+      if (c.includes('pista') || c.includes('trilha') || id.startsWith('PT-')) return 2;
+      if (c.includes('rumo') || c.includes('travessia') || id.startsWith('RT-')) return 3;
+      if (c.includes('escalada') || c.includes('conquista') || c.includes('azimute') || id.startsWith('ECA')) return 2;
+      if (c.includes('comprometimento') || c.includes('cidadania') || id.startsWith('CC')) return 2;
+      if (/\b(ar|aeronauta|aviador)\b/i.test(c) || id.startsWith('IAV') || id.startsWith('IAE')) return 8;
+      if (/\b(mar|naval|grumete)\b/i.test(c) || id.startsWith('IGR') || id.startsWith('INV')) return 9;
+      return 5;
+    }
+
+    paAtividadesDb.sort((a, b) => {
+      const wA = getCaminhoWeight(a.competencia?.caminho?.nm_caminho, a.identificacao);
+      const wB = getCaminhoWeight(b.competencia?.caminho?.nm_caminho, b.identificacao);
+      if (wA !== wB) return wA - wB;
+      return (a.nr_ordenacao || 0) - (b.nr_ordenacao || 0);
+    });
+
     const pa_atividades = paAtividadesDb.map((a) => ({
       id: a.id,
       cd_ueb: a.identificacao || '',

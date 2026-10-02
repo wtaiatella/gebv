@@ -24,7 +24,7 @@ async function seedCatalogo() {
     const [rawPa, rawPn, rawEquiv, rawEsps, rawPnEsps] = await Promise.all([
       readFile(path.join(baseDir, 'pa_catalogo.json'), 'utf-8'),
       readFile(path.join(baseDir, 'pn_catalogo.json'), 'utf-8'),
-      readFile(path.join(baseDir, 'equivalencias.json'), 'utf-8'),
+      readFile(path.join(baseDir, 'pn_equivalencia_regras.json'), 'utf-8'),
       readFile(espPaPath, 'utf-8'),
       readFile(espPnPath, 'utf-8'),
     ]);
@@ -63,7 +63,7 @@ async function seedCatalogo() {
 
     // 3. Validação de Regras de Equivalência (Paridade 1:1 estrita)
     if (!equivCatalogo.regras || equivCatalogo.regras.length !== pnCatalogo.acoes.length) {
-      throw new Error(`ABORTADO: equivalencias.json (${equivCatalogo.regras?.length || 0} regras) não coincide 1:1 com ações (${pnCatalogo.acoes.length}).`);
+      throw new Error(`ABORTADO: pn_equivalencia_regras.json (${equivCatalogo.regras?.length || 0} regras) não coincide 1:1 com ações (${pnCatalogo.acoes.length}).`);
     }
 
     // 4. Validação do Catálogo de Especialidades (PA e PN)
@@ -333,6 +333,28 @@ async function seedCatalogo() {
     // -------------------------------------------------------------
     console.log('4. Populando Regras de Equivalência consolidadas por ação (pn_equivalencia_regras)...');
     
+    // Mapeamento de PA atividades por identificacao para enriquecimento do detalhes_regra
+    const paAtivRes = await client.query(`SELECT id, identificacao FROM pa_atividades WHERE ds_ramo = $1`, [dsRamo]);
+    const paAtivIdMap = new Map(paAtivRes.rows.map((r) => [r.identificacao, r.id]));
+
+    function enrichDetalhesRegra(dr) {
+      if (!dr) return dr;
+      if (dr.tipo === 'PROGRESSOES' && dr.item) {
+        const ativId = paAtivIdMap.get(dr.item.identificacao);
+        if (ativId) dr.item.pa_atividade_id = ativId;
+      } else if (dr.tipo === 'TODAS' || dr.tipo === 'QNT_MINIMA') {
+        if (Array.isArray(dr.blocos)) {
+          for (const b of dr.blocos) enrichDetalhesRegra(b);
+        }
+      } else if (dr.tipo === 'SEMANTICO' && Array.isArray(dr.itens)) {
+        for (const item of dr.itens) {
+          const ativId = paAtivIdMap.get(item.identificacao);
+          if (ativId) item.pa_atividade_id = ativId;
+        }
+      }
+      return dr;
+    }
+
     const regrasPorChave = new Map(
       equivCatalogo.regras.map((r) => [r.chave, r])
     );
@@ -343,74 +365,26 @@ async function seedCatalogo() {
       const directRegra = regrasPorChave.get(chave);
 
       if (!directRegra) {
-        throw new Error(`ABORTADO: ação "${acao.ds_acao}" (chave ${chave}) não possui regra correspondente em equivalencias.json.`);
+        throw new Error(`ABORTADO: ação "${acao.ds_acao}" (chave ${chave}) não possui regra correspondente em pn_equivalencia_regras.json.`);
       }
 
-      // Pistas, Rumo e Especialidades da regra
-      const pistasSet = new Set(directRegra.refs_pistas_ueb || []);
-      const rumoSet = new Set(directRegra.refs_rumo_ueb || []);
-      const espSet = new Set(directRegra.refs_especialidades || []);
-      let minCount = directRegra.min_count || 1;
-      const nivelMin = directRegra.nivel_min_especialidade || 1;
+      const operacao = directRegra.operacao || 'SEM_EQUIVALENCIA';
+      const descricaoOrigem = directRegra.descricao_origem || 'Sem relação';
+      const flRequerValidacaoManual = Boolean(directRegra.fl_requer_validacao_manual);
+      const detalhesRegra = enrichDetalhesRegra(
+        directRegra.detalhes_regra
+          ? JSON.parse(JSON.stringify(directRegra.detalhes_regra))
+          : { tipo: operacao }
+      );
 
-      const pistasArr = Array.from(pistasSet);
-      const rumoArr = Array.from(rumoSet);
-      const espArr = Array.from(espSet);
-      const totalOrigens = pistasArr.length + rumoArr.length + espArr.length;
-
-      // Determina Operação e Descrição
-      let operacao = directRegra.tp_regra || 'SEM_EQUIVALENCIA';
-      let descricaoOrigem = directRegra.label_f_h?.trim() || 'Sem relação';
-      let requerValidacaoManual = (operacao === 'SEM_EQUIVALENCIA' || totalOrigens === 0);
-
-      if (espArr.length > 0 && pistasArr.length === 0 && rumoArr.length === 0) {
-        operacao = 'ESPECIALIDADES';
-        const nivelLabel = ` (Nível ${nivelMin}+)`;
-        if (!descricaoOrigem || descricaoOrigem === 'Sem relação') {
-          if (espArr.length <= 5) {
-            descricaoOrigem = `Especialidade${nivelLabel}: ${espArr.join(', ')}`;
-          } else {
-            descricaoOrigem = `Especialidade${nivelLabel}: ${espArr.slice(0, 6).join(', ')} e mais ${espArr.length - 6} opções`;
-          }
-        }
-      } else if (totalOrigens > 0) {
-        if (minCount > 1) {
-          operacao = 'MIN_COUNT';
-        } else if (totalOrigens > 1) {
-          operacao = 'OR';
-        } else {
-          operacao = 'DIRETA';
-        }
-
-        const descParts = [];
-        if (pistasArr.length > 0) descParts.push(`Pista ${pistasArr.join(', ')}`);
-        if (rumoArr.length > 0) descParts.push(`Rumo ${rumoArr.join(', ')}`);
-        if (espArr.length > 0) descParts.push(`Esp. ${espArr.slice(0, 3).join(', ')}`);
-
-        if (!descricaoOrigem || descricaoOrigem === 'Sem relação') {
-          descricaoOrigem = descParts.join(' ou ');
-        }
-      } else {
-        operacao = 'SEM_EQUIVALENCIA';
-        descricaoOrigem = 'Sem relação';
-        requerValidacaoManual = true;
-      }
-
-      // 5. Insere a regra única para a ação
+      // Insere ou atualiza a regra única para a ação
       await client.query(
         `INSERT INTO pn_equivalencia_regras (
-          acao_pn_id, operacao, descricao_origem, origem_pistas_ueb,
-          origem_rumo_ueb, origem_especialidades, nivel_min_especialidade,
-          min_count, fl_requer_validacao_manual, detalhes_regra
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+          acao_pn_id, operacao, descricao_origem, fl_requer_validacao_manual, detalhes_regra
+        ) VALUES ($1, $2::"OperacaoEquivalencia", $3, $4, $5)
         ON CONFLICT (acao_pn_id) DO UPDATE SET
           operacao = EXCLUDED.operacao,
           descricao_origem = EXCLUDED.descricao_origem,
-          origem_pistas_ueb = EXCLUDED.origem_pistas_ueb,
-          origem_rumo_ueb = EXCLUDED.origem_rumo_ueb,
-          origem_especialidades = EXCLUDED.origem_especialidades,
-          nivel_min_especialidade = EXCLUDED.nivel_min_especialidade,
-          min_count = EXCLUDED.min_count,
           fl_requer_validacao_manual = EXCLUDED.fl_requer_validacao_manual,
           detalhes_regra = EXCLUDED.detalhes_regra,
           updated_at = CURRENT_TIMESTAMP`,
@@ -418,20 +392,8 @@ async function seedCatalogo() {
           acao.id,
           operacao,
           descricaoOrigem,
-          pistasArr,
-          rumoArr,
-          espArr,
-          nivelMin,
-          minCount,
-          requerValidacaoManual,
-          JSON.stringify({
-            origem_pistas_ueb: pistasArr,
-            origem_rumo_ueb: rumoArr,
-            origem_especialidades: espArr,
-            min_count: minCount,
-            nivel_min_especialidade: nivelMin,
-            matched_labels: directRegra.label_f_h || '',
-          }),
+          flRequerValidacaoManual,
+          JSON.stringify(detalhesRegra),
         ]
       );
     }
