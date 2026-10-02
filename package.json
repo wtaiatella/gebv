@@ -20,7 +20,7 @@
     "db:setup-producao": "npm run db:seed-pa && npm run db:seed-catalogo && npm run db:seed-pn-lobinho && npm run db:seed-pn-senior && npm run db:seed-jovens && npm run progressoes:transicao",
     "db:backfill-progressao": "npx tsx --env-file=.env scripts/backfill-progressao-relacional.mjs",
     "db:embeddings:progressao": "python3 scripts/gerar-embeddings-progressao.py",
-    "progressoes:transicao": "node --env-file=.env scripts/run-transicao.mjs",
+    "progressoes:transicao": "npx -y tsx --env-file=.env scripts/run-transicao.mjs",
     "paxtu:login": "node --env-file=.env scripts/paxtu-login.mjs",
     "paxtu:scrape": "node --env-file=.env scripts/paxtu-scrape.mjs",
     "paxtu:fetch-raw": "node --env-file=.env scripts/fetch-antonia-raw.mjs",

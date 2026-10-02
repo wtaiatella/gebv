@@ -181,10 +181,11 @@ async function main() {
            cd_associado, nm_associado, nr_registro_formatado, ds_categoria, ds_ramo,
            fl_status, dt_nascimento, ds_email, ds_telefone_cel, dados_cadastrais_completos
          )
-         VALUES ($1, $2, $3, $4, $5::"Ramo", $6, $7, $8, $9, $10)
+         VALUES ($1, $2, $3, $4::"CategoriaAssociado", $5::"Ramo", $6::"StatusAssociado", $7, $8, $9, $10)
          ON CONFLICT (cd_associado) DO UPDATE SET
            nm_associado = EXCLUDED.nm_associado,
            nr_registro_formatado = EXCLUDED.nr_registro_formatado,
+           ds_categoria = EXCLUDED.ds_categoria,
            ds_ramo = EXCLUDED.ds_ramo,
            fl_status = EXCLUDED.fl_status,
            dt_nascimento = EXCLUDED.dt_nascimento,
@@ -195,7 +196,7 @@ async function main() {
           cdAssociado,
           dp.nm_associado,
           dp.nr_registro_formatado || dp.nr_registro || null,
-          dp.ds_categoria === 'Escotista' ? 'ESCOTISTA' : 'BENEFICIARIO',
+          (dp.ds_categoria || '').toLowerCase().includes('escotista') ? 'ESCOTISTA' : 'BENEFICIARIO',
           dsRamo,
           'ATIVO',
           validDtNasc,
