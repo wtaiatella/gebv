@@ -43,6 +43,8 @@ yarn-error.log*
 /data/especialidades/**/images
 !/data/catalogo/
 !/data/catalogo/*.json
+!/data/embeddings
+!/data/embeddings/**
 
 # typescript
 *.tsbuildinfo

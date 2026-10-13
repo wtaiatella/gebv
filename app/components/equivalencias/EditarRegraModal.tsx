@@ -463,7 +463,7 @@ function NoEditor({
       ? '◆ Atividade do Programa Antigo (Pista / Rumo)'
       : no.tipo === 'ESPECIALIDADE'
       ? '★ Especialidade do Programa Antigo no Nível Mínimo'
-      : '🧠 Correspondência Semântica Vetorial (BAAI/bge-m3)';
+      : '🧠 Correspondência Semântica por IA (Top 10 Sugestões)';
 
   return (
     <div
@@ -930,7 +930,7 @@ export default function EditarRegraModal({
             >
               <option value="PROGRESSOES">PROGRESSOES (Item único de atividade do Programa Antigo)</option>
               <option value="ESPECIALIDADE">ESPECIALIDADE (Especialidade do PA em nível mínimo)</option>
-              <option value="SEMANTICO">SEMANTICO (Busca vetorial BAAI/bge-m3 com correspondências Top 10)</option>
+              <option value="SEMANTICO">SEMANTICO (Busca por Inteligência Artificial — Top 10 Sugestões)</option>
               <option value="TODAS">TODAS (Contêiner E / AND — cumprir todos os blocos)</option>
               <option value="QNT_MINIMA">QNT_MINIMA (Contêiner OU / Mínimo N — cumprir quantidade mínima)</option>
               <option value="SEM_EQUIVALENCIA">SEM_EQUIVALENCIA (Sem equivalência histórica de PA)</option>
